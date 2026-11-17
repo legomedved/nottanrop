@@ -1,0 +1,25 @@
+{
+  "name": "nottekart",
+  "version": "1.0.0",
+  "description": "Interaktivt nøttekart for nøttanrop.no",
+  "scripts": {
+    "build": "esbuild src/nottekart.js --bundle --minify --format=iife --loader:.css=text --target=es2019 --outfile=dist/nottekart.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/legomedved/nottanrop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/legomedved/nottanrop/issues"
+  },
+  "homepage": "https://github.com/legomedved/nottanrop#readme",
+  "devDependencies": {
+    "d3-geo": "^3.1.1",
+    "esbuild": "^0.24.0",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
+  }
+}

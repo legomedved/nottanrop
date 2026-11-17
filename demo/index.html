@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nøtteverden – testside</title>
+  <style>
+    body { margin: 0; background: #fbf7f3; font-family: "DM Sans", system-ui, sans-serif; color: #5a3a1c; }
+    header { padding: 3rem 1rem 1rem; text-align: center; }
+    h1 { font: 700 clamp(2.5rem, 7vw, 4.5rem)/1 "Recoleta", Georgia, serif; margin: 0 0 .5rem; }
+    section { padding: 1rem 16px 4rem; }
+    .spacer { height: 120vh; display: grid; place-items: center; color: #c49a6c; }
+  </style>
+</head>
+<body>
+  <!-- This mimics the top of the Webflow "Nøtteverden" page. -->
+  <header>
+    <h1>Nøtteverden</h1>
+    <p>Hvor kommer nøttene fra? Snu kloden og finn ut.</p>
+  </header>
+  <section>
+    <div data-nottekart data-nk-start="mandel"></div>
+  </section>
+  <div class="spacer">(resten av siden)</div>
+  <script src="../dist/nottekart.min.js"></script>
+</body>
+</html>

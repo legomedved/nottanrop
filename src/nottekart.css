@@ -1,0 +1,65 @@
+/* Nøttekart — styles. All classes prefixed .nk- so they never clash with Webflow. */
+.nk {
+  --nk-cream: #fbf7f3;
+  --nk-almond: #f5e0c6;
+  --nk-camel: #c49a6c;
+  --nk-brown: #5a3a1c;
+  --nk-accent: #ff7a2a;
+  --nk-display: "Recoleta", Georgia, serif;
+  --nk-body: "DM Sans", Inter, system-ui, sans-serif;
+  --nk-mono: "Space Mono", ui-monospace, monospace;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  color: var(--nk-brown);
+  font-family: var(--nk-body);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (max-width: 767px) { .nk { grid-template-columns: 1fr; } }
+
+.nk-stage { position: relative; }
+.nk-globe { display: block; width: 100%; height: auto; touch-action: none; cursor: grab; user-select: none; }
+.nk-globe:active { cursor: grabbing; }
+.nk-sphere { fill: var(--nk-cream); stroke: var(--nk-brown); stroke-width: 2; }
+.nk-grat { fill: none; stroke: var(--nk-camel); stroke-width: 0.5; stroke-opacity: 0.45; }
+.nk-land { fill: var(--nk-almond); stroke: var(--nk-brown); stroke-width: 0.8; stroke-linejoin: round; }
+
+.nk-mark { cursor: pointer; }
+.nk-dot { stroke-width: 2; transition: r 0.2s; }
+.nk-pulse { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.nk-mark.is-active .nk-dot { r: 10; }
+/* the "siren": selected origin pulses like the logo's emergency light */
+.nk-mark.is-active .nk-pulse { animation: nk-siren 1.6s ease-out infinite; }
+@keyframes nk-siren { from { opacity: 0.55; transform: scale(1); } to { opacity: 0; transform: scale(3.2); } }
+
+.nk-hint {
+  position: absolute; left: 50%; bottom: -0.5rem; transform: translateX(-50%);
+  margin: 0; font: 700 0.7rem/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--nk-camel); transition: opacity 0.4s;
+}
+.nk-touched .nk-hint { opacity: 0; }
+
+.nk-nav ul { list-style: none; margin: 0 0 1.5rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.nk-chip {
+  font: 500 0.9rem/1 var(--nk-body); color: var(--nk-brown); background: transparent;
+  border: 1.5px solid var(--nk-brown); border-radius: 999px; padding: 0.55em 0.9em 0.55em 0.75em;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 0.45em;
+}
+.nk-chip::before { content: ""; width: 0.6em; height: 0.6em; border-radius: 50%; background: var(--nk-c); }
+.nk-chip:hover { background: var(--nk-almond); }
+.nk-chip[aria-pressed="true"] { background: var(--nk-brown); color: var(--nk-cream); }
+.nk-chip:focus-visible, .nk-mark:focus-visible { outline: 3px solid var(--nk-accent); outline-offset: 3px; }
+
+.nk-card { border: 2px solid var(--nk-accent); border-radius: 1rem; padding: clamp(1.25rem, 3vw, 2rem); background: var(--nk-cream); }
+.nk-label { margin: 0 0 0.3rem; font: 700 0.7rem/1.3 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--nk-camel); }
+.nk-title { margin: 0; font: 700 clamp(2.2rem, 5vw, 3.4rem)/1 var(--nk-display); color: var(--nk-brown); }
+.nk-latin { margin: 0.3rem 0 1rem; font-style: italic; color: var(--nk-camel); }
+.nk-story { margin: 0 0 1rem; line-height: 1.55; }
+.nk-wit { margin: 0 0 1.25rem; padding-left: 0.8rem; border-left: 3px solid var(--nk-accent); font-weight: 500; }
+.nk-ours { border-top: 1px dashed var(--nk-camel); padding-top: 1rem; }
+.nk-ours p:not(.nk-label) { margin: 0 0 0.8rem; }
+.nk-draft { margin: 0.5rem 0 0; font: 700 0.65rem/1 var(--nk-mono); color: #b43024; letter-spacing: 0.08em; }
+
+@media (prefers-reduced-motion: reduce) { .nk-mark.is-active .nk-pulse { animation: none; } }
