@@ -127,6 +127,16 @@
   font: 700 1.15rem/1.3 var(--nk-display); color: var(--nk-key);
   background: var(--nk-almond); box-shadow: inset 4px 0 0 var(--nk-accent);
 }
+.nk-facts { margin: 0 0 1.3rem; }
+.nk-facts ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.55rem; }
+.nk-facts li { position: relative; padding-left: 1.3rem; font-size: 0.93rem; line-height: 1.5; }
+.nk-facts li::before { content: "!"; position: absolute; left: 0; top: 0.1em; width: 0.95rem; height: 0.95rem; border-radius: 50%;
+  background: var(--nk-red); color: var(--nk-cream); font: 700 0.62rem/0.95rem var(--nk-mono); text-align: center; }
+.nk-sources { margin-top: 1rem; font-size: 0.82rem; }
+.nk-sources summary { cursor: pointer; font: 700 0.66rem/1.6 var(--nk-mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.nk-sources summary:focus-visible { outline: 3px solid var(--nk-accent); outline-offset: 2px; }
+.nk-sources ol { margin: 0.5rem 0 0; padding-left: 1.2rem; display: grid; gap: 0.25rem; }
+.nk-sources a { color: var(--nk-brown); text-underline-offset: 2px; }
 .nk-ours { margin: 0; padding-top: 1rem; border-top: 1.5px dashed var(--nk-brown); display: grid; grid-template-columns: auto 1fr; gap: 0.45rem 1rem; }
 .nk-ours dt { font: 700 0.66rem/1.6 var(--nk-mono); letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.8; }
 .nk-ours dd { margin: 0; font-size: 0.95rem; }

@@ -369,6 +369,13 @@ class Nottekart {
     el("p", { class: "nk-story" }, c).textContent = n.historie;
     el("blockquote", { class: "nk-wit" }, c).textContent = n.vits;
 
+    if (n.fakta && n.fakta.length) {
+      const f = el("div", { class: "nk-facts" }, c);
+      el("p", { class: "nk-label" }, f).textContent = "Visste du?";
+      const ul = el("ul", {}, f);
+      for (const x of n.fakta) el("li", {}, ul).textContent = x.tekst;
+    }
+
     const ours = el("dl", { class: "nk-ours" }, c);
     const row = (k, v) => { el("dt", {}, ours).textContent = k; el("dd", {}, ours).textContent = v; };
     if (n.produkter.length) {
@@ -378,6 +385,16 @@ class Nottekart {
     } else {
       row("I glassene våre", "Nei. Med på kartet for allmenndannelsens skyld.");
       row("Avstand", `${fmtKm(km)} km fra Nesodden`);
+    }
+    const kilder = (n.kilder || []).filter((k) => k.apnet !== false);
+    if (kilder.length) {
+      const det = el("details", { class: "nk-sources" }, c);
+      el("summary", {}, det).textContent = `${n.verifisert ? "Faktasjekket" : "Kilder"} · ${kilder.length}`;
+      const ol = el("ol", {}, det);
+      for (const k of kilder) {
+        const a = el("a", { href: k.url, target: "_blank", rel: "noopener" }, el("li", {}, ol));
+        a.textContent = k.title || new URL(k.url).hostname;
+      }
     }
     if (!n.verifisert) el("p", { class: "nk-draft" }, c).textContent = "Utkast · fakta ikke verifisert";
   }

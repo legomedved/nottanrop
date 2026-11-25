@@ -87,7 +87,7 @@ const font = (pkg, file) => url(path.join(ROOT, "node_modules/@fontsource", pkg,
 
   slides.push(`<section class="slide cta">
     <div class="top"><span class="tag">Nøtteverden</span>${pager(total)}</div>
-    <img class="fly" src="${art("nan-ill-heltnotta-flyr-pakke-1024.webp")}" alt="">
+    <div class="fly"><img src="${art("nan-ill-heltnotta-flyr-tom-1024.webp")}" alt=""><img class="cargo" src="${art("notter/nan-ill-mandel-512.webp")}" alt=""></div>
     <h2>Snu hele kloden selv.</h2>
     <p class="lead">${data.notter.length} nøtter, frø og bedragere – og hvor våre egne kommer fra.</p>
     <p class="link">nøttanrop.no/notteverden</p>
@@ -137,9 +137,11 @@ const font = (pkg, file) => url(path.join(ROOT, "node_modules/@fontsource", pkg,
   .wit { font: 700 40px/1.2 var(--display); color: var(--key); margin: 0 0 26px; padding: 20px 26px; background: var(--almond); border-radius: 18px; box-shadow: inset 8px 0 0 var(--accent); }
   .meta { font: 700 22px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; margin: 0; }
   .cta { background: var(--almond); }
-  .cta .fly { width: 820px; margin: 90px auto 50px; display: block; }
+  .cta .fly { position: relative; width: 820px; margin: 90px auto 50px; }
+  .cta .fly img:first-child { width: 820px; display: block; }
+  .cta .fly .cargo { position: absolute; width: 104px; left: 742px; top: 204px; transform: rotate(-8deg); filter: drop-shadow(4px 6px 0 rgba(27,17,8,.18)); }
   .cta .link { display: inline-block; align-self: flex-start; font: 700 34px/1 var(--mono); background: var(--key); color: var(--cream); padding: 22px 30px; border-radius: 999px; margin: 50px 0 0; box-shadow: 8px 8px 0 var(--orange); }
-  .sign { font: 700 44px/1 var(--display); margin: auto 0 60px; }
+  .sign { font: 700 44px/1 var(--display); margin: 44px 0 0; }
   </style><body>${slides.join("\n")}</body></html>`;
   fs.writeFileSync(path.join(BUILD, "carousel.html"), html);
 
