@@ -1,174 +1,166 @@
 {
-  "_les_meg": "UTKAST. Alle fakta har verifisert:false til noen har sjekket kildene. 'vaare' = hvor VÅRE råvarer kommer fra; null betyr at vi ikke har bekreftet det ennå. Ikke gjett her.",
+  "_les_meg": "UTKAST. Alle fakta har verifisert:false til noen har sjekket kildene og fylt inn 'kilder'. 'vaare' = hvor VÅRE råvarer kommer fra; null betyr ikke bekreftet ennå. Ikke gjett her. 'stempel' er dommen som stemples på kortet: ekte | bedrager | omstridt | ingrediens.",
+  "hjem": { "sted": "Nesodden", "lat": 59.85, "lon": 10.62 },
   "notter": [
     {
-      "id": "mandel",
-      "navn": "Mandel",
-      "latin": "Prunus dulcis",
-      "farge": "orange",
+      "id": "mandel", "navn": "Mandel", "latin": "Prunus dulcis", "farge": "orange",
       "opphav": { "sted": "Midtøsten og Sentral-Asia", "lat": 32, "lon": 53 },
+      "stempel": "bedrager", "botanikk": "Frøet i en steinfrukt, i familie med fersken og plomme.",
       "historie": "Dyrket i tusenvis av år i Midtøsten og Sentral-Asia, og nevnt flere ganger i Bibelen. I dag kommer den største delen av verdens mandler fra California.",
-      "vits": "Reiste fra Persia til Nesodden. Klaget ikke én gang.",
-      "produkter": ["Mandelykke", "Mango"],
-      "vaare": null,
-      "verifisert": false,
-      "kilder": []
+      "vits": "Fersken i forkledning. Vi elsker den likevel.",
+      "produkter": ["Mandelykke", "Mango"], "vaare": null, "verifisert": false, "kilder": []
     },
     {
-      "id": "hasselnott",
-      "navn": "Hasselnøtt",
-      "latin": "Corylus avellana",
-      "farge": "red",
+      "id": "hasselnott", "navn": "Hasselnøtt", "latin": "Corylus avellana", "farge": "red",
       "opphav": { "sted": "Svartehavskysten, Tyrkia", "lat": 40.9, "lon": 38.4 },
+      "stempel": "ekte", "botanikk": "En ekte nøtt: hardt skall som ikke åpner seg selv, ett frø inni.",
       "historie": "Mennesker i Europa har spist hasselnøtter siden steinalderen, også i Norge. I dag står Tyrkias svartehavskyst for mesteparten av verdensproduksjonen.",
       "vits": "Den eneste på kartet som kunne gått hjem til Norge til fots.",
-      "produkter": ["Sunntella"],
-      "vaare": null,
-      "verifisert": false,
-      "kilder": []
+      "produkter": ["Sunntella"], "vaare": null, "verifisert": false, "kilder": []
     },
     {
-      "id": "cashew",
-      "navn": "Cashew",
-      "latin": "Anacardium occidentale",
-      "farge": "green",
+      "id": "cashew", "navn": "Cashew", "latin": "Anacardium occidentale", "farge": "green",
       "opphav": { "sted": "Nordøst-Brasil", "lat": -5, "lon": -39 },
-      "historie": "Hjemmehørende i nordøst-Brasil. Portugisiske sjøfolk tok den med til India og Øst-Afrika på 1500-tallet. Nøtta henger under en saftig «cashew-eple», og skallet inneholder et etsende stoff. Derfor selges den aldri med skall.",
+      "stempel": "bedrager", "botanikk": "Et frø som henger under en falsk frukt, «cashew-eplet».",
+      "historie": "Hjemmehørende i nordøst-Brasil. Portugisiske sjøfolk tok den med til India og Øst-Afrika på 1500-tallet. Skallet inneholder et etsende stoff, derfor selges den aldri med skall.",
       "vits": "Henger utenpå sin egen frukt. Ingen skam i det.",
-      "produkter": ["Cashewdrøm", "Cashewdrøm med matcha", "Cashewdrøm med jordbær", "Solbær"],
-      "vaare": null,
-      "verifisert": false,
-      "kilder": []
+      "produkter": ["Cashewdrøm", "Cashewdrøm med matcha", "Cashewdrøm med jordbær", "Solbær"], "vaare": null, "verifisert": false, "kilder": []
     },
     {
-      "id": "kokos",
-      "navn": "Kokos",
-      "latin": "Cocos nucifera",
-      "farge": "green",
+      "id": "kokos", "navn": "Kokos", "latin": "Cocos nucifera", "farge": "green",
       "opphav": { "sted": "Indo-Stillehavet", "lat": 5, "lon": 125 },
-      "historie": "Botanisk sett en steinfrukt, ikke en nøtt. Kokosnøtter kan flyte over hav, og austronesiske sjøfolk spredte dem videre over Stillehavet og Indiahavet.",
-      "vits": "Teknisk sett ikke en nøtt. Vi lar den være med av ren høflighet.",
-      "produkter": ["Cashewdrøm"],
-      "vaare": null,
-      "verifisert": false,
-      "kilder": []
+      "stempel": "bedrager", "botanikk": "En steinfrukt, i samme kategori som oliven.",
+      "historie": "Kokosnøtter kan flyte over hav, og austronesiske sjøfolk spredte dem videre over Stillehavet og Indiahavet.",
+      "vits": "I samme kategori som oliven. Det har ingen fortalt den.",
+      "produkter": ["Cashewdrøm"], "vaare": null, "verifisert": false, "kilder": []
     },
     {
-      "id": "pistasj",
-      "navn": "Pistasj",
-      "latin": "Pistacia vera",
-      "farge": "pistasj",
+      "id": "pistasj", "navn": "Pistasj", "latin": "Pistacia vera", "farge": "pistasj",
       "opphav": { "sted": "Iran og Sentral-Asia", "lat": 30.3, "lon": 57 },
+      "stempel": "bedrager", "botanikk": "Frøet i en steinfrukt, i familie med cashew og mango.",
       "historie": "Kommer fra Iran og Sentral-Asia. Skallet sprekker opp av seg selv når nøtta er moden.",
       "vits": "Åpner seg av seg selv. Mer enn man kan si om de fleste.",
-      "produkter": ["Pistasjkrem"],
-      "vaare": null,
-      "verifisert": false,
-      "kilder": []
+      "produkter": ["Pistasjkrem"], "vaare": null, "verifisert": false, "kilder": []
     },
     {
-      "id": "kakao",
-      "navn": "Kakao",
-      "latin": "Theobroma cacao",
-      "farge": "brown",
+      "id": "kakao", "navn": "Kakao", "latin": "Theobroma cacao", "farge": "brown",
       "opphav": { "sted": "Øvre Amazonas, Ecuador", "lat": -4, "lon": -78.5 },
+      "stempel": "ingrediens", "botanikk": "Frø (bønner) fra en stor, ribbet frukt som vokser rett på stammen.",
       "historie": "Arkeologiske funn tyder på at kakao ble brukt i øvre Amazonas for over 5000 år siden, før den nådde Mellom-Amerika. Latinnavnet betyr «gudenes mat».",
       "vits": "Ikke en nøtt. Men i Sunntella oppfører den seg som en.",
-      "produkter": ["Sunntella"],
-      "vaare": null,
-      "verifisert": false,
-      "kilder": []
+      "produkter": ["Sunntella"], "vaare": null, "verifisert": false, "kilder": []
     },
     {
-      "id": "matcha",
-      "navn": "Matcha",
-      "latin": "Camellia sinensis",
-      "farge": "matcha",
+      "id": "matcha", "navn": "Matcha", "latin": "Camellia sinensis", "farge": "matcha",
       "opphav": { "sted": "Japan", "lat": 34.9, "lon": 135.8 },
-      "historie": "Steinmalt grønn te. Teplantene skygges før høsting, noe som gir den dype grønnfargen.",
+      "stempel": "ingrediens", "botanikk": "Steinmalte teblader.",
+      "historie": "Teplantene skygges før høsting, noe som gir den dype grønnfargen. Bladene males til fint pulver.",
       "vits": "Den mest zen ingrediensen vi har. Den bryr seg ikke om at den er på et nøttekart.",
-      "produkter": ["Cashewdrøm med matcha"],
-      "vaare": { "land": "Japan", "lat": 34.9, "lon": 135.8 },
-      "verifisert": false,
-      "kilder": []
+      "produkter": ["Cashewdrøm med matcha"], "vaare": { "land": "Japan", "lat": 34.9, "lon": 135.8 }, "verifisert": false, "kilder": []
     },
     {
-      "id": "jordbaer",
-      "navn": "Jordbær",
-      "latin": "Fragaria × ananassa",
-      "farge": "jordbaer",
-      "opphav": { "sted": "Europa (hagejordbær krysset i Frankrike på 1700-tallet)", "lat": 48.4, "lon": -4.5 },
-      "historie": "Hagejordbæret vi kjenner i dag er en krysning av en nordamerikansk og en chilensk art, og oppstod i Frankrike på 1700-tallet.",
+      "id": "jordbaer", "navn": "Jordbær", "latin": "Fragaria × ananassa", "farge": "jordbaer",
+      "opphav": { "sted": "Frankrike (krysset på 1700-tallet)", "lat": 48.4, "lon": -4.5 },
+      "stempel": "ingrediens", "botanikk": "En falsk frukt. De små prikkene utenpå er de egentlige fruktene.",
+      "historie": "Hagejordbæret er en krysning av en nordamerikansk og en chilensk art, og oppstod i Frankrike på 1700-tallet.",
       "vits": "Halvt chilensk, halvt amerikansk, født i Frankrike, frysetørket i Tsjekkia. Mer reist enn oss.",
-      "produkter": ["Cashewdrøm med jordbær"],
-      "vaare": { "land": "Tsjekkia", "lat": 49.8, "lon": 15.5 },
-      "verifisert": false,
-      "kilder": []
+      "produkter": ["Cashewdrøm med jordbær"], "vaare": { "land": "Tsjekkia", "lat": 49.8, "lon": 15.5 }, "verifisert": false, "kilder": []
     },
     {
-      "id": "valnott",
-      "navn": "Valnøtt",
-      "latin": "Juglans regia",
-      "farge": "camel",
+      "id": "mango", "navn": "Mango", "latin": "Mangifera indica", "farge": "mango",
+      "opphav": { "sted": "Sør- og Sørøst-Asia", "lat": 22, "lon": 92 },
+      "stempel": "ingrediens", "botanikk": "En steinfrukt, i familie med cashew og pistasj.",
+      "historie": "Dyrket i India og Sørøst-Asia i tusenvis av år, og regnet som nasjonalfrukten i India.",
+      "vits": "Fetter av cashew. Familieselskap i glasset.",
+      "produkter": ["Mango"], "vaare": null, "verifisert": false, "kilder": []
+    },
+    {
+      "id": "solbaer", "navn": "Solbær", "latin": "Ribes nigrum", "farge": "solbaer",
+      "opphav": { "sted": "Nord-Europa og Nord-Asia", "lat": 61, "lon": 30 },
+      "stempel": "ingrediens", "botanikk": "Et ekte bær.",
+      "historie": "Vokser vilt i nordlige deler av Europa og Asia, og har lenge vært en hagebusk i Norge.",
+      "vits": "Den eneste på kartet som trives i november.",
+      "produkter": ["Solbær"], "vaare": null, "verifisert": false, "kilder": []
+    },
+    {
+      "id": "eikenott", "navn": "Eikenøtt", "latin": "Quercus robur", "farge": "camel",
+      "opphav": { "sted": "Hele den nordlige halvkule, også Sør-Norge", "lat": 58.4, "lon": 8.8 },
+      "stempel": "ekte", "botanikk": "En ekte nøtt.",
+      "historie": "Ekorn graver ned eikenøtter som vinterlager og glemmer mange av dem. Slik planter de ny eikeskog.",
+      "vits": "Helt nøtta sin livrett. Han deler ikke.",
+      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+    },
+    {
+      "id": "kastanje", "navn": "Kastanje", "latin": "Castanea sativa", "farge": "camel",
+      "opphav": { "sted": "Sør-Europa og Lilleasia", "lat": 40, "lon": 30 },
+      "stempel": "ekte", "botanikk": "En ekte nøtt, inni et piggete hylster.",
+      "historie": "Søtkastanjen ble spredt over store deler av Europa i romertiden, og var i lange perioder hverdagsmat i fjellbygder.",
+      "vits": "Ekte nøtt. Sier det til alle som vil høre.",
+      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+    },
+    {
+      "id": "valnott", "navn": "Valnøtt", "latin": "Juglans regia", "farge": "camel",
       "opphav": { "sted": "Sentral-Asia", "lat": 41.3, "lon": 72.9 },
+      "stempel": "omstridt", "botanikk": "Botanikerne er uenige: noen kaller den nøtt, andre steinfrukt.",
       "historie": "Ville valnøttskoger finnes fortsatt i Kirgisistan. Kina er i dag verdens største produsent.",
       "vits": "Ser ut som en hjerne. Har ennå ikke hatt en eneste god idé.",
-      "produkter": [],
-      "vaare": null,
-      "verifisert": false,
-      "kilder": []
+      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
     },
     {
-      "id": "macadamia",
-      "navn": "Macadamia",
-      "latin": "Macadamia integrifolia",
-      "farge": "camel",
-      "opphav": { "sted": "Queensland, Australia", "lat": -27.5, "lon": 153 },
-      "historie": "Hjemmehørende i regnskogene i østlige Australia. Den ble først dyrket kommersielt i stor skala på Hawaii.",
-      "vits": "Australias mest kjente eksport som ikke hopper.",
-      "produkter": [],
-      "vaare": null,
-      "verifisert": false,
-      "kilder": []
-    },
-    {
-      "id": "pekan",
-      "navn": "Pekan",
-      "latin": "Carya illinoinensis",
-      "farge": "camel",
+      "id": "pekan", "navn": "Pekan", "latin": "Carya illinoinensis", "farge": "camel",
       "opphav": { "sted": "Mississippi-dalen, USA", "lat": 32, "lon": -91 },
+      "stempel": "omstridt", "botanikk": "Samme gråsone som valnøtta, som den er i familie med.",
       "historie": "Hjemmehørende i Mississippi-dalen, og brukt av urfolk lenge før europeerne kom. Navnet kommer fra algonkinsk og betyr omtrent «nøtt som må knekkes med stein».",
       "vits": "Navnet er bokstavelig talt en bruksanvisning.",
-      "produkter": [],
-      "vaare": null,
-      "verifisert": false,
-      "kilder": []
+      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
     },
     {
-      "id": "parannott",
-      "navn": "Paranøtt",
-      "latin": "Bertholletia excelsa",
-      "farge": "camel",
+      "id": "macadamia", "navn": "Macadamia", "latin": "Macadamia integrifolia", "farge": "camel",
+      "opphav": { "sted": "Queensland, Australia", "lat": -27.5, "lon": 153 },
+      "stempel": "bedrager", "botanikk": "Et frø i en tørr kapsel.",
+      "historie": "Hjemmehørende i regnskogene i østlige Australia. Den ble først dyrket kommersielt i stor skala på Hawaii.",
+      "vits": "Australias mest kjente eksport som ikke hopper.",
+      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+    },
+    {
+      "id": "parannott", "navn": "Paranøtt", "latin": "Bertholletia excelsa", "farge": "camel",
       "opphav": { "sted": "Amazonas", "lat": -11, "lon": -67 },
+      "stempel": "bedrager", "botanikk": "Et frø. Opptil to dusin ligger pakket i én hard kapsel.",
       "historie": "Høstes nesten bare fra ville trær i Amazonas. Trærne er avhengige av bestemte bier for pollinering og av gnageren aguti for å spre frøene.",
       "vits": "Trenger en bie, en gnager og en regnskog. Vi trenger bare en skje.",
-      "produkter": [],
-      "vaare": null,
-      "verifisert": false,
-      "kilder": []
+      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
     },
     {
-      "id": "peanott",
-      "navn": "Peanøtt",
-      "latin": "Arachis hypogaea",
-      "farge": "camel",
+      "id": "pinjekjerne", "navn": "Pinjekjerne", "latin": "Pinus pinea", "farge": "camel",
+      "opphav": { "sted": "Middelhavet", "lat": 41.9, "lon": 12.5 },
+      "stempel": "bedrager", "botanikk": "Frøet fra en furukongle.",
+      "historie": "Pinjefuru har vært dyrket rundt Middelhavet siden antikken. Mye av det som selges i dag kommer fra andre furuarter i Asia.",
+      "vits": "Kommer fra en kongle. Koster som et smykke.",
+      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+    },
+    {
+      "id": "muskatnott", "navn": "Muskatnøtt", "latin": "Myristica fragrans", "farge": "camel",
+      "opphav": { "sted": "Bandaøyene, Indonesia", "lat": -4.5, "lon": 129.9 },
+      "stempel": "bedrager", "botanikk": "Et frø, brukt som krydder.",
+      "historie": "Kom opprinnelig bare fra de små Bandaøyene. I 1667 ga England fra seg den lille muskatøya Run til Nederland, og Nederland ga fra seg kravet på Manhattan.",
+      "vits": "Var en gang verdt mer enn Manhattan. Bokstavelig talt.",
+      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+    },
+    {
+      "id": "jordmandel", "navn": "Jordmandel", "latin": "Cyperus esculentus", "farge": "camel",
+      "opphav": { "sted": "Nord-Afrika og Middelhavet", "lat": 26, "lon": 31 },
+      "stempel": "bedrager", "botanikk": "En liten rotknoll fra et halvgress.",
+      "historie": "Funnet i gamle egyptiske graver. I Valencia lages den søte drikken horchata av den.",
+      "vits": "Heter mandel, er en knoll, kalles nøtt. Identitetskrise på tre språk.",
+      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+    },
+    {
+      "id": "peanott", "navn": "Peanøtt", "latin": "Arachis hypogaea", "farge": "camel",
       "opphav": { "sted": "Sør-Amerika (Bolivia / Argentina)", "lat": -22, "lon": -64 },
-      "historie": "Ikke en nøtt, men en belgfrukt som modner under jorda. Den ble domestisert i Sør-Amerika for flere tusen år siden.",
+      "stempel": "bedrager", "botanikk": "En belgfrukt, i familie med erter og bønner, som modner under jorda.",
+      "historie": "Domestisert i Sør-Amerika for flere tusen år siden, og spredt over hele verden etter 1500-tallet.",
       "vits": "Har lurt hele verden i tusenvis av år. Vi avslører den herved.",
-      "produkter": [],
-      "vaare": null,
-      "verifisert": false,
-      "kilder": []
+      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
     }
   ]
 }
