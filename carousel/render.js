@@ -44,7 +44,7 @@ const font = (pkg, file) => url(path.join(ROOT, "node_modules/@fontsource", pkg,
   await gp.emulateMedia({ reducedMotion: "reduce" }); // no flight, route drawn instantly
   await gp.goto(url(path.join(BUILD, "globe.html")));
   await gp.waitForFunction(() => window.Nottekart);
-  await gp.evaluate(() => { document.querySelector(".nk-hint")?.remove(); });
+  await gp.evaluate(() => { document.querySelectorAll(".nk-hint, .nk-panel, .nk-legend").forEach((e) => e.remove()); });
   for (const id of SERIES) {
     await gp.evaluate((id) => window.Nottekart.instances[0].select(id), id);
     await gp.waitForTimeout(150);
