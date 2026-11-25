@@ -32,6 +32,18 @@ cream paper → grainy light on the water only → flat olive land plate (offset
 | `carousel/out/` | The finished PNGs | — |
 | `demo/index.html` | Local test page that imitates the Webflow page | — |
 
+## Fact-check (25 Nov 2026)
+
+Every entry was researched, then verified line by line against pages that were actually opened and read
+(Wikipedia with its cited references, Store norske leksikon). Claims that couldn't be confirmed were removed.
+Each card shows the sources under **Faktasjekket**. To add a fact: add a source to `kilder` too.
+
+## Our own ingredients
+
+From the nutrition declarations: **Eldorado** (almonds, hazelnuts, cashews, coconut), **Freia** (cocoa powder),
+**Dansukker** (cane sugar). Growing countries confirmed so far: matcha (Japan), strawberries (grown in Slovakia,
+packed in Czech Republic), cocoa (Brazil). The rest: read the country of origin off the Eldorado bags and add it to `vaare`.
+
 ## Honesty rules (built in)
 
 - Every entry has `verifisert: false` until a source is added in `kilder`. The site shows "Utkast · fakta ikke verifisert" (draft, facts not verified). Every carousel slide carries a red **"Utkast · ikke publiser"** (draft, don't publish) pill until the facts are verified.
@@ -43,6 +55,9 @@ cream paper → grainy light on the water only → flat olive land plate (offset
    ```html
    <div data-nottekart data-nk-start="mandel"></div>
    ```
+Already done on the Nøtteverden page (page custom code, footer): it places the globe under the hero automatically,
+pinned to an exact commit. Requires the GitHub repository to be **public**. Manual setup, for other pages:
+
 2. Page settings → *Before </body> tag*:
    ```html
    <script src="https://cdn.jsdelivr.net/gh/legomedved/nottanrop@main/dist/nottekart.min.js" defer></script>
@@ -58,5 +73,5 @@ Weight: script about 43 KB compressed (map included), plus 27 KB for Helt nøtta
 ```
 npm install
 npm run build       # the globe
-npm run carousel    # the Insta slides
+npm run carousel    # the Insta slides (put Recoleta-Bold.woff2/.otf in fonts-local/ – never committed, it's licensed)
 ```
