@@ -23,6 +23,7 @@
     "@fontsource/space-mono": "^5.1.0",
     "d3-geo": "^3.1.1",
     "esbuild": "^0.24.0",
+    "gsap": "^3.12.5",
     "topojson-client": "^3.1.0",
     "world-atlas": "^2.0.2"
   }

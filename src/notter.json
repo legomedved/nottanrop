@@ -67,7 +67,8 @@
           "tekst": "På hebraisk heter mandelen shaqed, som ligner ordet for «våker». Treet blomstrer tidlig om våren, og Jeremia lager ordspill på det.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/mandel"
     },
     {
       "id": "hasselnott",
@@ -124,7 +125,8 @@
           "tekst": "På Colonsay i Skottland fant arkeologer en grop med hundretusener av brente hasselnøttskall fra mesolittisk tid. Steinalderens svar på et nøtteri.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/hasselnott"
     },
     {
       "id": "cashew",
@@ -203,7 +205,8 @@
           "tekst": "Navnet kommer fra tupi-språket i Brasil, via portugisisk caju.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/cashewnott"
     },
     {
       "id": "kokos",
@@ -260,7 +263,8 @@
           "tekst": "I et forsøk fra 1941 kunne kokosnøtter fortsatt spire etter 110 dager på havet. Utvalget var svært lite, så ta det med en klype salt.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/kokosnott"
     },
     {
       "id": "pistasj",
@@ -332,7 +336,8 @@
           "tekst": "Et pistasjtre er enten hann eller hunn. Uten en hann i nærheten blir det ingen nøtter.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/pistasj"
     },
     {
       "id": "kakao",
@@ -389,7 +394,8 @@
           "tekst": "Der det finnes penger, finnes falskmyntnere. Falske kakaobønner ble laget av amarantdeig, voks og avokadosteiner.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/kakaobonne"
     },
     {
       "id": "matcha",
@@ -692,7 +698,8 @@
           "tekst": "Osebergskipet er bygget nesten helt av eik. Treårringene tyder på at tømmeret ikke ble hogd rundt Oslofjorden, men kom fra et annet sted.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/akernott"
     },
     {
       "id": "kastanje",
@@ -752,7 +759,8 @@
           "tekst": "På Etna står «Hundre hesters kastanje», anslått til mellom 2000 og 4000 år. Guinness har den som treet med størst omkrets noensinne: 57,9 meter, målt i 1780. Siden har den delt seg i flere stammer.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/kastanje"
     },
     {
       "id": "valnott",
@@ -817,7 +825,8 @@
           "tekst": "Ifølge en lokal legende tok Aleksander den store med seg valnøtter fra Arslanbob til Europa. Det er folklore, men god folklore.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/valnott"
     },
     {
       "id": "pekan",
@@ -868,7 +877,8 @@
           "tekst": "Den første pekansorten som ble podet med hell, ble laget i 1846–47 av Antoine, en slavebundet gartner på Oak Alley-plantasjen i Louisiana. Sorten fikk navnet «Centennial» etter verdensutstillingen i 1876.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/pekanott"
     },
     {
       "id": "macadamia",
@@ -908,7 +918,8 @@
           "tekst": "Det trengs rundt 2000 newton for å knekke skallet, og materialet har mekaniske egenskaper som ligner aluminium.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/macadamia"
     },
     {
       "id": "parannott",
@@ -949,7 +960,8 @@
           "tekst": "Paranøtter inneholder mer radium enn vanlig mat. Treets enorme rotsystem samler det opp fra jorda. Dosen er liten, men vi syntes du burde vite det.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/paranott"
     },
     {
       "id": "pinjekjerne",
@@ -990,7 +1002,8 @@
           "tekst": "Noen pinjekjerner gir «pinjemunn»: en bitter metallsmak som kommer en til tre dager etter at du har spist dem, og kan vare i et par uker. Mistenkt synder er rå kjerner fra den kinesiske arten Pinus armandii.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/pinjekjerne"
     },
     {
       "id": "muskatnott",
@@ -1106,7 +1119,8 @@
           "tekst": "En studie fra 2014 foreslo at vår fjerne slektning «Nøtteknekkermannen» (Paranthropus boisei) levde av jordmandler for rundt to millioner år siden. Nøtter knakk han neppe.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/tigernott"
     },
     {
       "id": "peanott",
@@ -1156,7 +1170,8 @@
           "tekst": "Planten blomstrer i lyset, men gjemmer avkommet: etter blomstringen vokser en stilk ned i jorda, og der nede modner belgen.",
           "kilder": []
         }
-      ]
+      ],
+      "side": "/notteverden/jordnott"
     }
   ]
 }

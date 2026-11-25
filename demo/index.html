@@ -24,14 +24,18 @@
 </head>
 <body>
   <!-- This mimics the top of the Webflow "Nøtteverden" page. -->
+  <div style="height:60vh"></div>
   <header>
     <h1>Nøtteverden</h1>
     <p>Hvor kommer nøttene fra? Snu kloden og finn ut.</p>
   </header>
   <section>
-    <div data-nottekart data-nk-start="mandel"></div>
+    <div data-nottekart data-nk-start="mandel" data-nk-scroll></div>
   </section>
   <div class="spacer">(resten av siden)</div>
+  <!-- Webflow loads GSAP on the real site; here we load it locally -->
+  <script src="../node_modules/gsap/dist/gsap.min.js"></script>
+  <script src="../node_modules/gsap/dist/ScrollTrigger.min.js"></script>
   <script src="../dist/nottekart.min.js"></script>
 </body>
 </html>

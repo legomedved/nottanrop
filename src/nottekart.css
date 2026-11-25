@@ -162,6 +162,16 @@
 .nk-ours dt { font: 500 0.66rem/1.6 var(--nk-mono); letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.8; }
 .nk-ours dd { margin: 0; font-size: 0.95rem; }
 @media (max-width: 480px) { .nk-ours { grid-template-columns: 1fr; gap: 0.1rem; } .nk-ours dd { margin-bottom: 0.5rem; } }
+.nk .nk-more {
+  display: inline-flex; align-items: center; gap: 0.5em; margin-top: 1.2rem;
+  font: 500 0.72rem/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+  color: var(--nk-cream); background: var(--nk-brown); padding: 0.85em 1.15em; border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--nk-accent); transition: transform 0.15s, box-shadow 0.15s;
+}
+.nk .nk-more:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--nk-accent); }
+.nk .nk-more span { transition: transform 0.15s; }
+.nk .nk-more:hover span { transform: translateX(3px); }
+.nk .nk-more:focus-visible { outline: 3px solid var(--nk-accent); outline-offset: 3px; }
 .nk-draft { margin: 1rem 0 0; font: 500 0.62rem/1 var(--nk-mono); color: #b43024; letter-spacing: 0.08em; text-transform: uppercase; }
 
 @media (prefers-reduced-motion: reduce) {

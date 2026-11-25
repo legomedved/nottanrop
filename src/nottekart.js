@@ -202,7 +202,7 @@ class Nottekart {
     // ---- drag to rotate --------------------------------------------------
     let last = null;
     this.svg.addEventListener("pointerdown", (e) => {
-      this.dragging = true; this.idle = false; last = [e.clientX, e.clientY];
+      this.dragging = true; this.idle = false; this.userTook = true; last = [e.clientX, e.clientY];
       this.svg.setPointerCapture(e.pointerId);
       r.classList.add("nk-touched");
       cancelAnimationFrame(this.rotRaf);
@@ -297,6 +297,7 @@ class Nottekart {
   async select(id, { animate = true } = {}) {
     const n = data.notter.find((x) => x.id === id);
     if (!n) return;
+    if (animate) this.userTook = true;
     const token = (this.token = {});
     this.selected = n;
     if (animate) this.idle = false;
@@ -398,6 +399,10 @@ class Nottekart {
       }
     }
     if (!n.verifisert) el("p", { class: "nk-draft" }, c).textContent = "Utkast · fakta ikke verifisert";
+    if (n.side) {
+      const a = el("a", { class: "nk-more", href: (this.root.dataset.nkBase || "") + n.side }, c);
+      a.innerHTML = `Les hele oppslaget om ${n.navn.toLowerCase()} <span aria-hidden="true">→</span>`;
+    }
   }
 
   startIdleSpin() {
@@ -412,18 +417,41 @@ class Nottekart {
     new IntersectionObserver(([e]) => { this.inView = e.isIntersecting; }).observe(this.root);
   }
 
-  bindScroll() {
-    const ST = window.ScrollTrigger;
-    if (!window.gsap || !ST || reduceMotion()) return;
-    let base = null;
-    ST.create({
-      trigger: this.root, start: "top top", end: "bottom top", scrub: 0.6,
-      onUpdate: (self) => {
-        if (this.dragging) return;
-        if (base === null) base = this.rotation[0];
-        this.idle = false;
-        this.setRotation([base + self.progress * 120, this.rotation[1]]);
-      },
+  // Scroll entrance (GSAP + ScrollTrigger, loaded by Webflow). As the globe scrolls in, it turns in from
+  // the far side of the planet and settles over the selected nut; chips and card arrive in a short stagger.
+  // The first touch, drag or chip click hands control to the reader for good.
+  bindScroll(tries = 0) {
+    const gsap = window.gsap, ST = window.ScrollTrigger;
+    if (reduceMotion()) return;
+    if (!gsap || !ST) {                       // Webflow may load GSAP after us
+      if (tries < 40) setTimeout(() => this.bindScroll(tries + 1), 150);
+      return;
+    }
+    gsap.registerPlugin(ST);
+    const stage = this.root.querySelector(".nk-stage");
+    const target = this.rotation.slice(0, 2);
+    const proxy = { k: 0 };
+    this.idle = false;
+    gsap.timeline({
+      scrollTrigger: { trigger: this.root, start: "top 90%", end: "top 30%", scrub: 0.8 },
+    })
+      .fromTo(stage, { scale: 0.86, rotate: -4 }, { scale: 1, rotate: 0, ease: "none" }, 0)
+      .to(proxy, {
+        k: 1, ease: "none",
+        onUpdate: () => {
+          if (this.userTook || this.dragging) return;
+          const e = 1 - Math.pow(1 - proxy.k, 2);
+          this.setRotation([target[0] - (1 - e) * 150, target[1] * e]);
+          this.idle = proxy.k >= 0.999;      // settled: the slow drift may take over
+        },
+      }, 0);
+    gsap.from(this.root.querySelectorAll(".nk-nav .nk-label, .nk-chip"), {
+      y: 14, autoAlpha: 0, duration: 0.5, ease: "power2.out", stagger: 0.018,
+      scrollTrigger: { trigger: this.root.querySelector(".nk-panel"), start: "top 85%", once: true },
+    });
+    gsap.from(this.card, {
+      y: 28, autoAlpha: 0, duration: 0.7, ease: "power3.out",
+      scrollTrigger: { trigger: this.card, start: "top 90%", once: true },
     });
   }
 }
