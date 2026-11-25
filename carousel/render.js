@@ -97,7 +97,12 @@ const font = (pkg, file) => url(path.join(ROOT, "node_modules/@fontsource", pkg,
   const grain = `url("data:image/svg+xml;utf8,${encodeURIComponent(
     `<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>`)}")`;
 
+  // Recoleta is licensed: it lives in fonts-local/ (git-ignored), never in the repo.
+  const rec = ["Recoleta-Bold.woff2", "Recoleta-Bold.woff", "Recoleta-Bold.otf", "Recoleta-Bold.ttf"]
+    .map((f) => path.join(ROOT, "fonts-local", f)).find((f) => fs.existsSync(f));
+  console.log(rec ? `Recoleta: ${path.basename(rec)}` : "Recoleta not found in fonts-local/ – using Fraunces stand-in");
   const html = `<!doctype html><html lang="no"><meta charset="utf-8"><style>
+  ${rec ? `@font-face { font-family: "Recoleta"; font-weight: 700; src: url(${url(rec)}); }` : ""}
   @font-face { font-family: "Fraunces"; font-weight: 700; src: url(${font("fraunces", "fraunces-latin-700-normal.woff2")}); }
   @font-face { font-family: "DM Sans"; font-weight: 400; src: url(${font("dm-sans", "dm-sans-latin-400-normal.woff2")}); }
   @font-face { font-family: "DM Sans"; font-weight: 500; src: url(${font("dm-sans", "dm-sans-latin-500-normal.woff2")}); }

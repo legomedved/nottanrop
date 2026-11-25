@@ -1,3 +1,5 @@
 node_modules/
 .DS_Store
 carousel/build/
+# licensed fonts: never commit (Recoleta is commercial)
+fonts-local/

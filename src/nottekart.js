@@ -136,6 +136,9 @@ class Nottekart {
     this.gRouteUnder = svg("path", { class: "nk-route-under" }, this.svg);
     this.gRoute = svg("path", { class: "nk-route" }, this.svg);
     this.gMarks = svg("g", {}, this.svg);
+    this.gSource = svg("g", { class: "nk-source" }, this.svg); // where OUR batch comes from, when it differs from the origin
+    svg("rect", { x: -6, y: -6, width: 12, height: 12, transform: "rotate(45)", fill: "#fbf7f3", stroke: KEY, "stroke-width": 2 }, this.gSource);
+    svg("circle", { r: 2.4, fill: "#cc6121" }, this.gSource);
     this.gHome = svg("g", { class: "nk-home" }, this.svg);
     this.gHero = svg("g", { class: "nk-hero" }, this.svg);
     this.gRim = svg("path", { class: "nk-rim" }, this.svg);
@@ -164,14 +167,16 @@ class Nottekart {
     svg("path", { d: "M-7 1 A7 7 0 0 1 7 1 Z", fill: "#e23c2e", stroke: KEY, "stroke-width": 1.6 }, this.gHome);
     svg("rect", { x: -9, y: 1, width: 18, height: 4, rx: 1, fill: "#5a3a1c", stroke: KEY, "stroke-width": 1.4 }, this.gHome);
 
-    // Helt nøtta, flying the parcel home. Image faces right.
+    // Helt nøtta, paws cupped forward. The ingredient he carries is swapped per selection.
+    // Paw position measured on the 360px source: (337, 111) → (112, 37) at 120px wide.
     this.hero = svg("image", {
-      href: `${this.assets}nan-ill-heltnotta-flyr-pakke-360.webp`,
-      width: 120, height: 85, x: -60, y: -48, class: "nk-hero-img",
+      href: `${this.assets}nan-ill-heltnotta-flyr-tom-360.webp`,
+      width: 120, height: 82, x: -60, y: -48, class: "nk-hero-img",
     }, this.gHero);
+    this.cargo = svg("image", { width: 30, height: 30, x: 37, y: -38, class: "nk-cargo" }, this.gHero);
 
     const legend = el("p", { class: "nk-legend", "aria-hidden": "true" }, stage);
-    legend.innerHTML = `<span><i class="nk-lg-ours"></i>I glassene våre</span><span><i class="nk-lg-rest"></i>Resten av nøtteverden</span><span><i class="nk-lg-route"></i>Utrykning til Nesodden</span><span><i class="nk-lg-dist"></i>Bare avstand</span>`;
+    legend.innerHTML = `<span><i class="nk-lg-ours"></i>I glassene våre</span><span><i class="nk-lg-rest"></i>Resten av nøtteverden</span><span><i class="nk-lg-route"></i>Utrykning til Nesodden</span><span><i class="nk-lg-dist"></i>Bare avstand</span><span><i class="nk-lg-src"></i>Våre kommer herfra</span>`;
     el("p", { class: "nk-hint", "aria-hidden": "true" }, stage).textContent = "Dra for å snu kloden";
 
     // ---- panel -----------------------------------------------------------
@@ -241,6 +246,7 @@ class Nottekart {
     this.gInk.setAttribute("d", l);
     for (const { n, g } of this.marks) this.place(g, [n.opphav.lon, n.opphav.lat]);
     this.place(this.gHome, HOME);
+    if (this.sourceAt) this.place(this.gSource, this.sourceAt); else this.gSource.style.display = "none";
     this.renderFlight();
   }
 
@@ -263,7 +269,7 @@ class Nottekart {
     let ang = (Math.atan2(dy, dx) * 180) / Math.PI;
     const flip = dx < 0;
     if (flip) ang -= 180;
-    ang = Math.max(-35, Math.min(35, ang)); // keep him upright-ish; he's a squirrel, not a rocket
+    ang = Math.max(-22, Math.min(22, ang)); // keep him level-ish; he's a squirrel, not a rocket
     this.gHero.style.display = "";
     this.gHero.setAttribute("transform",
       `translate(${here[0].toFixed(1)},${here[1].toFixed(1)}) rotate(${ang.toFixed(1)}) scale(${flip ? -1 : 1},1)`);
@@ -300,6 +306,7 @@ class Nottekart {
     this.root.style.setProperty("--nk-accent", accent);
 
     const src = n.vaare || n.opphav;
+    this.sourceAt = n.vaare && (n.vaare.lat !== n.opphav.lat || n.vaare.lon !== n.opphav.lon) ? [n.vaare.lon, n.vaare.lat] : null;
     const from = [src.lon, src.lat];
     const interp = geoInterpolate(from, HOME);
     const km = Math.round(geoDistance(from, HOME) * 6371);
@@ -312,6 +319,7 @@ class Nottekart {
     const ours = n.produkter.length > 0; // only what's in our jars gets an utrykning (and a hero)
     this.flight = { interp, t: 0, flying: false, ours };
     this.gRoute.classList.toggle("is-distance", !ours);
+    if (ours) this.cargo.setAttribute("href", `${this.assets}nan-ill-${n.id}-160.webp`);
     this.gRouteUnder.classList.toggle("is-distance", !ours);
     const still = !animate || reduceMotion();
     await this.rotateTo(centre, still ? 0 : 900);
@@ -365,7 +373,7 @@ class Nottekart {
     const row = (k, v) => { el("dt", {}, ours).textContent = k; el("dd", {}, ours).textContent = v; };
     if (n.produkter.length) {
       row("I glassene våre", n.produkter.join(" · "));
-      row("Våre kommer fra", n.vaare ? n.vaare.land : "Vi sjekker med leverandøren. Ærlighet tar litt tid.");
+      row("Våre kommer fra", n.vaare ? (n.vaare.notat ? `${n.vaare.land} (${n.vaare.notat.split(" (")[0]})` : n.vaare.land) : "Vi sjekker med leverandøren. Ærlighet tar litt tid.");
       row(n.vaare ? "Reisen hit" : "Reisen hit (fra opphavet)", `${fmtKm(km)} km til Nesodden`);
     } else {
       row("I glassene våre", "Nei. Med på kartet for allmenndannelsens skyld.");

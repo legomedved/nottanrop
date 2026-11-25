@@ -1,166 +1,1574 @@
 {
-  "_les_meg": "UTKAST. Alle fakta har verifisert:false til noen har sjekket kildene og fylt inn 'kilder'. 'vaare' = hvor VÅRE råvarer kommer fra; null betyr ikke bekreftet ennå. Ikke gjett her. 'stempel' er dommen som stemples på kortet: ekte | bedrager | omstridt | ingrediens.",
-  "hjem": { "sted": "Nesodden", "lat": 59.85, "lon": 10.62 },
+  "_les_meg": "UTKAST. Alle fakta har verifisert:false til noen har sjekket kildene og fylt inn 'kilder'. 'vaare' = hvor VÅRE råvarer kommer fra; null betyr ikke bekreftet ennå. Ikke gjett her. 'stempel' er dommen som stemples på kortet: ekte | bedrager | omstridt | ingrediens. Våre leverandører (fra næringsdeklarasjonene): Eldorado (mandler, hasselnøtter, cashew, kokos), Freia (kakaopulver), Dansukker (rørsukker). 'fakta' = ekstra 'Visste du?'-fakta. 'kilder[].apnet' = om kilden faktisk er åpnet og lest.",
+  "hjem": {
+    "sted": "Nesodden",
+    "lat": 59.85,
+    "lon": 10.62
+  },
   "notter": [
     {
-      "id": "mandel", "navn": "Mandel", "latin": "Prunus dulcis", "farge": "orange",
-      "opphav": { "sted": "Midtøsten og Sentral-Asia", "lat": 32, "lon": 53 },
-      "stempel": "bedrager", "botanikk": "Frøet i en steinfrukt, i familie med fersken og plomme.",
-      "historie": "Dyrket i tusenvis av år i Midtøsten og Sentral-Asia, og nevnt flere ganger i Bibelen. I dag kommer den største delen av verdens mandler fra California.",
+      "id": "mandel",
+      "navn": "Mandel",
+      "latin": "Prunus dulcis",
+      "farge": "orange",
+      "opphav": {
+        "sted": "Sørvest-Asia",
+        "lat": 36,
+        "lon": 43
+      },
+      "stempel": "bedrager",
+      "botanikk": "Frøet i en steinfrukt. Nær slekt av fersken og plomme.",
+      "historie": "Dyrket i tusenvis av år i Sørvest-Asia, og nevnt flere ganger i Bibelen. I dag kommer rundt fire av fem mandler fra California.",
       "vits": "Fersken i forkledning. Vi elsker den likevel.",
-      "produkter": ["Mandelykke", "Mango"], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [
+        "Mandelykke",
+        "Mango"
+      ],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "USDA ERS Fruit and Tree Nuts Outlook: July 2024",
+          "url": "https://ers.usda.gov/sites/default/files/_laserfiche/outlooks/109636/FTS-379.pdf",
+          "apnet": false
+        },
+        {
+          "title": "Insights Into the Almond Domestication History (PMC)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12399410/",
+          "apnet": false
+        },
+        {
+          "title": "Evolutionary Genomics of Peach and Almond Domestication (PMC)",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5144968/",
+          "apnet": false
+        },
+        {
+          "title": "NETBible: Almond",
+          "url": "https://classic.net.bible.org/dictionary.php?word=almond",
+          "apnet": false
+        },
+        {
+          "title": "Selection of superior late-blooming almond (Prunus dulcis [Mill.] D.A.Webb) genotypes (PMC)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10345730/",
+          "apnet": false
+        },
+        {
+          "title": "Gene flow among wild and domesticated almond species (PMC)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3353361/",
+          "apnet": false
+        },
+        {
+          "title": "NETBible: Jeremiah 1:11-12",
+          "url": "https://classic.net.bible.org/passage.php?passage=jer+1%3A11%2C12",
+          "apnet": false
+        },
+        {
+          "title": "USDA FAS GAIN: Tree Nut – Almond Annual, Australia 2025",
+          "url": "https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Tree+Nut+-+Almond+Annual_Canberra_Australia_AS2025-0015.pdf",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Ville mandler er bitre og giftige: de inneholder amygdalin, som blir til blåsyre. Én enkelt mutasjon gjorde kjernen søt, og det var den som gjorde mandelen spiselig nok til å dyrkes.",
+          "kilder": [
+            {
+              "title": "Mutation of a bHLH transcription factor allowed almond domestication (Sánchez-Pérez et al., Science 2019; KU repository)",
+              "url": "https://test01.ku.dk/:obvius/pureproxy/3974268/en/publications/mutation-of-a-bhlh-transcription-factor-allowed-almond-domesticat"
+            },
+            {
+              "title": "EurekAlert: sequencing almond reveals bitter-sweet",
+              "url": "https://www.eurekalert.org/news-releases/482748"
+            }
+          ]
+        },
+        {
+          "tekst": "Howard Carter fant mandler i Tutankhamons grav. Faraoen ville tydeligvis ha snacks i etterlivet.",
+          "kilder": [
+            {
+              "title": "Griffith Institute, Oxford: Tutankhamun – Botanical specimens",
+              "url": "https://www.griffith.ox.ac.uk/gri/4tutbot.html"
+            }
+          ]
+        },
+        {
+          "tekst": "På hebraisk heter mandeltreet shaqed, «den våkne», fordi det blomstrer først av alle om våren. Jeremia lager ordspill på det.",
+          "kilder": [
+            {
+              "title": "NETBible: Almond (Bible.org)",
+              "url": "https://classic.net.bible.org/dictionary.php?word=almond"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "hasselnott", "navn": "Hasselnøtt", "latin": "Corylus avellana", "farge": "red",
-      "opphav": { "sted": "Svartehavskysten, Tyrkia", "lat": 40.9, "lon": 38.4 },
-      "stempel": "ekte", "botanikk": "En ekte nøtt: hardt skall som ikke åpner seg selv, ett frø inni.",
-      "historie": "Mennesker i Europa har spist hasselnøtter siden steinalderen, også i Norge. I dag står Tyrkias svartehavskyst for mesteparten av verdensproduksjonen.",
-      "vits": "Den eneste på kartet som kunne gått hjem til Norge til fots.",
-      "produkter": ["Sunntella"], "vaare": null, "verifisert": false, "kilder": []
+      "id": "hasselnott",
+      "navn": "Hasselnøtt",
+      "latin": "Corylus avellana",
+      "farge": "red",
+      "opphav": {
+        "sted": "Svartehavskysten, Tyrkia",
+        "lat": 40.9,
+        "lon": 38.4
+      },
+      "stempel": "ekte",
+      "botanikk": "En ekte nøtt: hardt skall som ikke åpner seg selv, ett frø inni. Botanikerne bruker den som skoleeksempel.",
+      "historie": "Mennesker i Europa har spist hasselnøtter siden steinalderen, også i Norge. I dag står Tyrkias svartehavskyst for over halvparten av verdensproduksjonen.",
+      "vits": "Vokser vilt i Norge. Dro likevel til Tyrkia for å gjøre karriere.",
+      "produkter": [
+        "Sunntella"
+      ],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "Britannica: Hazelnut",
+          "url": "https://www.britannica.com/plant/hazelnut",
+          "apnet": false
+        },
+        {
+          "title": "UiB Universitetshagene: Corylus avellana",
+          "url": "https://www.uib.no/en/universitygardens/136500/corylus-avellana-hazel",
+          "apnet": false
+        },
+        {
+          "title": "Helgi Library: Hazelnut production 2022 (FAOSTAT)",
+          "url": "https://www.helgilibrary.com/charts/which-country-produces-the-most-hazelnuts",
+          "apnet": false
+        },
+        {
+          "title": "Oregon State Landscape Plants: Corylus avellana",
+          "url": "https://landscapeplants.oregonstate.edu/plants/corylus-avellana",
+          "apnet": false
+        },
+        {
+          "title": "Oregon State: Corylus (genus)",
+          "url": "https://landscapeplants.oregonstate.edu/corylus",
+          "apnet": false
+        },
+        {
+          "title": "Styring et al. 2024, Frontiers in Environmental Archaeology (hasselnøttskall fra mesolittiske/neolittiske boplasser)",
+          "url": "https://www.frontiersin.org/journals/environmental-archaeology/articles/10.3389/fearc.2024.1351411/full",
+          "apnet": false
+        },
+        {
+          "title": "Helgi Library: Hazelnut Production in Turkey",
+          "url": "https://www.helgilibrary.com/indicators/hazelnut-production/turkey/",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Artsnavnet avellana kommer fra byen Abella (i dag Avella) nær Napoli, som var kjent for nøttene sine allerede i romertiden. Plinius kalte dem nux abellana.",
+          "kilder": [
+            {
+              "title": "Lewis & Short Latin Dictionary: Abella / Abellana nux",
+              "url": "https://www.alatius.com/ls/index.php?id=62"
+            },
+            {
+              "title": "Università del Molise, Giardino di Capracotta: Corylus avellana",
+              "url": "https://giardinocapracotta.unimol.it/en/?p=3197"
+            }
+          ]
+        },
+        {
+          "tekst": "På Colonsay i Skottland fant arkeologer en grop med hundretusener av brente hasselnøttskall fra mesolittisk tid. Steinalderens svar på et nøtteri.",
+          "kilder": [
+            {
+              "title": "ScARF: 5.3.3.1 Mesolithic activities (Staosnaig)",
+              "url": "https://scarf.scot/regional/rarfa/5-the-early-prehistory-of-argyll-the-archaeological-record-research-themes-and-future-priorities-for-the-palaeolithic-mesolithic-and-earliest-neolithic-periods-12000bp-6000bp-10050bc-4050b/5-3-major-research-themes/5-3-3-residential-settlement-reconstructing-mobility-patterns-c-9400-7800-cal-bp/5-3-3-1-mesolithic-activities/"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "cashew", "navn": "Cashew", "latin": "Anacardium occidentale", "farge": "green",
-      "opphav": { "sted": "Nordøst-Brasil", "lat": -5, "lon": -39 },
-      "stempel": "bedrager", "botanikk": "Et frø som henger under en falsk frukt, «cashew-eplet».",
-      "historie": "Hjemmehørende i nordøst-Brasil. Portugisiske sjøfolk tok den med til India og Øst-Afrika på 1500-tallet. Skallet inneholder et etsende stoff, derfor selges den aldri med skall.",
-      "vits": "Henger utenpå sin egen frukt. Ingen skam i det.",
-      "produkter": ["Cashewdrøm", "Cashewdrøm med matcha", "Cashewdrøm med jordbær", "Solbær"], "vaare": null, "verifisert": false, "kilder": []
+      "id": "cashew",
+      "navn": "Cashew",
+      "latin": "Anacardium occidentale",
+      "farge": "green",
+      "opphav": {
+        "sted": "Nordøst-Brasil",
+        "lat": -5,
+        "lon": -39
+      },
+      "stempel": "bedrager",
+      "botanikk": "Et frø i en nyreformet frukt som henger under en falsk frukt, «cashew-eplet».",
+      "historie": "Hjemmehørende i nordøst-Brasil. Portugiserne tok den med til India og Øst-Afrika på 1500-tallet. Skallet inneholder en etsende olje, derfor selges den aldri med skall.",
+      "vits": "Henger utenpå sin egen falske frukt. Ingen skam i det.",
+      "produkter": [
+        "Cashewdrøm",
+        "Cashewdrøm med matcha",
+        "Cashewdrøm med jordbær",
+        "Solbær"
+      ],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "Britannica: Cashew",
+          "url": "https://www.britannica.com/plant/cashew",
+          "apnet": false
+        },
+        {
+          "title": "Purdue NewCROP (Morton): Cashew Apple",
+          "url": "https://hort.purdue.edu/newcrop/morton/cashew_apple.html",
+          "apnet": false
+        },
+        {
+          "title": "UF/IFAS HS377: Cashew Apple",
+          "url": "https://ask.ifas.ufl.edu/publication/HS377",
+          "apnet": false
+        },
+        {
+          "title": "Cashew nut shell liquid poisoning (PMC)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4759998/",
+          "apnet": false
+        },
+        {
+          "title": "DermNet: Cashew nut",
+          "url": "https://dermnetnz.org/topics/cashew-nut",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Cashew er i samme familie som giftsumak. Oljen i skallet er nær slekt med stoffet som gir giftsumak-utslett.",
+          "kilder": [
+            {
+              "title": "Cashew nut shell liquid poisoning (PMC)",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4759998/"
+            },
+            {
+              "title": "UF/IFAS HS377",
+              "url": "https://ask.ifas.ufl.edu/publication/HS377"
+            }
+          ]
+        },
+        {
+          "tekst": "I Goa brenner de brennevin av cashew-eplet. Feni ble i 2009 Indias første brennevin med beskyttet geografisk betegnelse.",
+          "kilder": [
+            {
+              "title": "Indian GI Registry: Application 120 (Feni)",
+              "url": "https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/120"
+            },
+            {
+              "title": "Scroll.in: feni GI",
+              "url": "https://scroll.in/article/813750/scroll_in"
+            }
+          ]
+        },
+        {
+          "tekst": "Navnet kommer fra tupi-språket i Brasil, via portugisisk caju.",
+          "kilder": [
+            {
+              "title": "Merriam-Webster: cashew",
+              "url": "https://www.merriam-webster.com/dictionary/cashew"
+            },
+            {
+              "title": "Etymonline: cashew",
+              "url": "https://www.etymonline.com/word/cashew"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "kokos", "navn": "Kokos", "latin": "Cocos nucifera", "farge": "green",
-      "opphav": { "sted": "Indo-Stillehavet", "lat": 5, "lon": 125 },
-      "stempel": "bedrager", "botanikk": "En steinfrukt, i samme kategori som oliven.",
-      "historie": "Kokosnøtter kan flyte over hav, og austronesiske sjøfolk spredte dem videre over Stillehavet og Indiahavet.",
+      "id": "kokos",
+      "navn": "Kokos",
+      "latin": "Cocos nucifera",
+      "farge": "green",
+      "opphav": {
+        "sted": "Indo-Stillehavet",
+        "lat": 5,
+        "lon": 125
+      },
+      "stempel": "bedrager",
+      "botanikk": "En steinfrukt, i samme kategori som oliven og fersken.",
+      "historie": "Kokosnøtter kan flyte over hav. Austronesiske sjøfolk tok dem med seg videre, helt til Madagaskar.",
       "vits": "I samme kategori som oliven. Det har ingen fortalt den.",
-      "produkter": ["Cashewdrøm"], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [
+        "Cashewdrøm"
+      ],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "Kew: Coconut palm – Cocos nucifera",
+          "url": "https://www.kew.org/plants/coconut-palm",
+          "apnet": false
+        },
+        {
+          "title": "Library of Congress: Is a coconut a fruit, nut or seed?",
+          "url": "https://www.loc.gov/everyday-mysteries/agriculture/item/is-a-coconut-a-fruit-nut-or-seed/",
+          "apnet": false
+        },
+        {
+          "title": "Gunn, Baudouin & Olsen 2011, PLoS ONE (PubMed)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/21731660/",
+          "apnet": false
+        },
+        {
+          "title": "Britannica: Why is a coconut a drupe rather than a true botanical nut?",
+          "url": "https://www.britannica.com/science/Why-is-a-coconut-a-drupe-rather-than-a-true-botanical-nut",
+          "apnet": false
+        },
+        {
+          "title": "Principes/Palms 52(1): review citing Edmondson 1941",
+          "url": "https://palms.org/wp-content/uploads/2016/05/v52n1p19-21.pdf",
+          "apnet": false
+        },
+        {
+          "title": "WashU Source: Deep history of coconuts decoded",
+          "url": "https://source.washu.edu/2011/06/deep-history-of-coconuts-decoded/",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "«Coco» er portugisisk og spansk for et grimasefjes eller en busemann. De tre prikkene på skallet minnet sjøfolkene om et ansikt.",
+          "kilder": [
+            {
+              "title": "Etymonline: coco",
+              "url": "https://www.etymonline.com/word/coco"
+            },
+            {
+              "title": "Merriam-Webster: coco",
+              "url": "https://www.merriam-webster.com/dictionary/coco"
+            },
+            {
+              "title": "Kew: Coconut palm",
+              "url": "https://www.kew.org/plants/coconut-palm"
+            }
+          ]
+        },
+        {
+          "tekst": "I et forsøk fra 1941 spirte to av tre kokosnøtter etter 110 dager på havet. Utvalget var 15 nøtter, så ta det med en klype salt.",
+          "kilder": [
+            {
+              "title": "Palms 52(1): review citing Edmondson 1941",
+              "url": "https://palms.org/wp-content/uploads/2016/05/v52n1p19-21.pdf"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "pistasj", "navn": "Pistasj", "latin": "Pistacia vera", "farge": "pistasj",
-      "opphav": { "sted": "Iran og Sentral-Asia", "lat": 30.3, "lon": 57 },
-      "stempel": "bedrager", "botanikk": "Frøet i en steinfrukt, i familie med cashew og mango.",
-      "historie": "Kommer fra Iran og Sentral-Asia. Skallet sprekker opp av seg selv når nøtta er moden.",
+      "id": "pistasj",
+      "navn": "Pistasj",
+      "latin": "Pistacia vera",
+      "farge": "pistasj",
+      "opphav": {
+        "sted": "Nordøst-Iran og Sentral-Asia",
+        "lat": 36.5,
+        "lon": 61.5
+      },
+      "stempel": "bedrager",
+      "botanikk": "Frøet i en steinfrukt, i familie med cashew og mango. Trærne er enten hann eller hunn.",
+      "historie": "Vokser vilt fra nordøst-Iran til Sentral-Asia. Skallet sprekker opp av seg selv når nøtta er moden.",
       "vits": "Åpner seg av seg selv. Mer enn man kan si om de fleste.",
-      "produkter": ["Pistasjkrem"], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [
+        "Pistasjkrem"
+      ],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "POWO (Kew): Pistacia vera",
+          "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:70280-1",
+          "apnet": false
+        },
+        {
+          "title": "Britannica: Pistachio",
+          "url": "https://www.britannica.com/plant/pistachio-plant",
+          "apnet": false
+        },
+        {
+          "title": "UC Davis Postharvest: Pistachio",
+          "url": "https://postharvest.ucdavis.edu/produce-facts-sheets/pistachio",
+          "apnet": false
+        },
+        {
+          "title": "UC Davis PLB143: Pistachio, Pistacia vera (Anacardiaceae)",
+          "url": "https://psfaculty.plantsciences.ucdavis.edu/gepts/plb143/CROP/Pistachio/Crop%20of%20the%20Day%20Pistachio.pdf",
+          "apnet": false
+        },
+        {
+          "title": "UCANR: Update on Pistachio Fruit Development (2023)",
+          "url": "https://ucanr.edu/sites/default/files/2023-02/380862.pdf",
+          "apnet": false
+        },
+        {
+          "title": "USDA FAS: Tree Nuts: World Markets and Trade, Feb 2025",
+          "url": "https://www.fas.usda.gov/sites/default/files/2025-02/TreeNuts-Feb-2025.pdf",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Pistasj står i Bibelen. Jakob sendte pistasj og mandler som gave til Josef i Egypt (1 Mos 43:11).",
+          "kilder": [
+            {
+              "title": "NETBible: Genesis 43:11-14",
+              "url": "https://classic.net.bible.org/passage.php?passage=Gen+43%3A11-14&mode=text"
+            }
+          ]
+        },
+        {
+          "tekst": "Pistasj i store mengder kan varme seg selv opp og ta fyr. Sjøforsikrerne behandler last av dem nesten som farlig gods.",
+          "kilder": [
+            {
+              "title": "TIS – Transport Information Service (GDV): Pistachio nuts",
+              "url": "https://tis-gdv.de/?p=9153"
+            }
+          ]
+        },
+        {
+          "tekst": "Et pistasjtre er enten hann eller hunn. Uten en hann i nærheten blir det ingen nøtter.",
+          "kilder": [
+            {
+              "title": "UC Davis Fruit & Nut Center: Pistachio Climate & Cultivars",
+              "url": "https://fruitsandnuts.ucdavis.edu/climate-cultivars"
+            },
+            {
+              "title": "UCANR: Botany and Physiology of the Pistachio Tree (Gordon)",
+              "url": "https://ucanr.edu/sites/default/files/2017-11/274433.pdf"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "kakao", "navn": "Kakao", "latin": "Theobroma cacao", "farge": "brown",
-      "opphav": { "sted": "Øvre Amazonas, Ecuador", "lat": -4, "lon": -78.5 },
-      "stempel": "ingrediens", "botanikk": "Frø (bønner) fra en stor, ribbet frukt som vokser rett på stammen.",
-      "historie": "Arkeologiske funn tyder på at kakao ble brukt i øvre Amazonas for over 5000 år siden, før den nådde Mellom-Amerika. Latinnavnet betyr «gudenes mat».",
+      "id": "kakao",
+      "navn": "Kakao",
+      "latin": "Theobroma cacao",
+      "farge": "brown",
+      "opphav": {
+        "sted": "Øvre Amazonas, Ecuador",
+        "lat": -4,
+        "lon": -78.5
+      },
+      "stempel": "ingrediens",
+      "botanikk": "Frø (bønner) fra en stor, ribbet frukt som vokser rett ut av stammen.",
+      "historie": "Funn i Ecuador viser at kakao ble brukt i øvre Amazonas for 5300 år siden, 1500 år før Mellom-Amerika. Slektsnavnet betyr «gudenes mat».",
       "vits": "Ikke en nøtt. Men i Sunntella oppfører den seg som en.",
-      "produkter": ["Sunntella"], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [
+        "Sunntella"
+      ],
+      "vaare": {
+        "land": "Brasil",
+        "notat": "pin i Bahia, Brasils største kakaoregion (antatt, ikke bekreftet region)",
+        "lat": -14.8,
+        "lon": -39.2
+      },
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "EurekAlert: Zarrillo et al. 2018",
+          "url": "https://www.eurekalert.org/news-releases/705092",
+          "apnet": false
+        },
+        {
+          "title": "Field Museum: The Cacao Tree",
+          "url": "https://www.fieldmuseum.org/blog/chocolates-natural-roots-cacao-tree",
+          "apnet": false
+        },
+        {
+          "title": "Missouri Botanical Garden: Theobroma cacao",
+          "url": "http://www.missouribotanicalgarden.org/PlantFinder/PlantFinderDetails.aspx?taxonid=287263",
+          "apnet": false
+        },
+        {
+          "title": "A spatial perspective on flowering in cauliflorous cacao (PMC)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12445857/",
+          "apnet": false
+        },
+        {
+          "title": "Science News: Ancient South Americans tasted chocolate 1,500 years before anyone else",
+          "url": "https://www.sciencenews.org/article/ancient-south-americans-tasted-chocolate-1500-years-anyone-else?tgt=nr",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Hos aztekerne var kakaobønner penger. Hundre bønner kunne kjøpe en slave.",
+          "kilder": [
+            {
+              "title": "Penn Museum, Expedition 45(2): Yom Yom Cacao!",
+              "url": "https://www.penn.museum/documents/publications/expedition/45-2/Yom%20Yom%20Cacao.pdf"
+            }
+          ]
+        },
+        {
+          "tekst": "Der det finnes penger, finnes falskmyntnere. Arkeologer har funnet «kakaobønner» av leire.",
+          "kilder": [
+            {
+              "title": "Smithsonian Magazine: What We Know About the Earliest History of Chocolate",
+              "url": "https://www.smithsonianmag.com/history/archaeology-chocolate-180954243/"
+            },
+            {
+              "title": "Penn Museum, Expedition: Yom Yom Cacao!",
+              "url": "https://www.penn.museum/documents/publications/expedition/45-2/Yom%20Yom%20Cacao.pdf"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "matcha", "navn": "Matcha", "latin": "Camellia sinensis", "farge": "matcha",
-      "opphav": { "sted": "Japan", "lat": 34.9, "lon": 135.8 },
-      "stempel": "ingrediens", "botanikk": "Steinmalte teblader.",
-      "historie": "Teplantene skygges før høsting, noe som gir den dype grønnfargen. Bladene males til fint pulver.",
+      "id": "matcha",
+      "navn": "Matcha",
+      "latin": "Camellia sinensis",
+      "farge": "matcha",
+      "opphav": {
+        "sted": "Japan",
+        "lat": 34.9,
+        "lon": 135.8
+      },
+      "stempel": "ingrediens",
+      "botanikk": "Skyggedyrkede teblader, malt til fint pulver. Tradisjonelt i steinkvern.",
+      "historie": "Zen-munken Eisai tok med seg te og pulverte fra Kina til Japan i 1191. Teplantene skygges i uker før høsting, som gir den dype grønnfargen.",
       "vits": "Den mest zen ingrediensen vi har. Den bryr seg ikke om at den er på et nøttekart.",
-      "produkter": ["Cashewdrøm med matcha"], "vaare": { "land": "Japan", "lat": 34.9, "lon": 135.8 }, "verifisert": false, "kilder": []
+      "produkter": [
+        "Cashewdrøm med matcha"
+      ],
+      "vaare": {
+        "land": "Japan",
+        "lat": 34.9,
+        "lon": 135.8
+      },
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "Kyoto Prefecture: History and Culture of Uji Green Tea",
+          "url": "https://www.pref.kyoto.jp/kyotoyamashiro/pdf/ujicha_yamashiro_english.pdf",
+          "apnet": false
+        },
+        {
+          "title": "Mechanism Underlying the Shading-Induced Chlorophyll Accumulation in Tea Leaves (PMC)",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8675639/",
+          "apnet": false
+        },
+        {
+          "title": "Nippon.com: An Uji Encounter with Centuries of Tea Tradition",
+          "url": "https://www.nippon.com/en/japan-topics/g02456/an-uji-encounter-with-centuries-of-tea-tradition.html",
+          "apnet": false
+        },
+        {
+          "title": "Effect of Shading on ... Matcha Green Tea (PMC)",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9696345/",
+          "apnet": false
+        },
+        {
+          "title": "Nippon.com: Japanese Matcha Taking the World by Storm",
+          "url": "https://www.nippon.com/en/japan-topics/g02563/",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "En tradisjonell steinkvern maler bare rundt 40 gram matcha i timen. Tålmodighet er inkludert i prisen.",
+          "kilder": [
+            {
+              "title": "Nippon.com: An Uji Encounter with Centuries of Tea Tradition",
+              "url": "https://www.nippon.com/en/japan-topics/g02456/an-uji-encounter-with-centuries-of-tea-tradition.html"
+            }
+          ]
+        },
+        {
+          "tekst": "Ifølge krøniken Azuma Kagami ga Eisai te til en shogun med fyllesyke, sammen med boken sin om te og helse. Japans første teanmeldelse var altså en bakruskur.",
+          "kilder": [
+            {
+              "title": "Five Colleges Center for East Asian Studies: History of Tea",
+              "url": "https://www.fivecolleges.edu/community/center-east-asian-studies/japanese-tea-ceremony/history-tea"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "jordbaer", "navn": "Jordbær", "latin": "Fragaria × ananassa", "farge": "jordbaer",
-      "opphav": { "sted": "Frankrike (krysset på 1700-tallet)", "lat": 48.4, "lon": -4.5 },
-      "stempel": "ingrediens", "botanikk": "En falsk frukt. De små prikkene utenpå er de egentlige fruktene.",
-      "historie": "Hagejordbæret er en krysning av en nordamerikansk og en chilensk art, og oppstod i Frankrike på 1700-tallet.",
-      "vits": "Halvt chilensk, halvt amerikansk, født i Frankrike, frysetørket i Tsjekkia. Mer reist enn oss.",
-      "produkter": ["Cashewdrøm med jordbær"], "vaare": { "land": "Tsjekkia", "lat": 49.8, "lon": 15.5 }, "verifisert": false, "kilder": []
+      "id": "jordbaer",
+      "navn": "Jordbær",
+      "latin": "Fragaria × ananassa",
+      "farge": "jordbaer",
+      "opphav": {
+        "sted": "Frankrike (krysset på 1700-tallet)",
+        "lat": 48.4,
+        "lon": -4.5
+      },
+      "stempel": "ingrediens",
+      "botanikk": "En falsk frukt. De små prikkene utenpå er de egentlige fruktene, rundt 200 på hvert bær.",
+      "historie": "En krysning av en nordamerikansk og en chilensk art. Den oppstod i Bretagne rundt 1750.",
+      "vits": "Halvt chilensk, halvt nordamerikansk, født i Bretagne, dyrket i Slovakia, pakket i Tsjekkia. Mer reist enn oss.",
+      "produkter": [
+        "Cashewdrøm med jordbær"
+      ],
+      "vaare": {
+        "land": "Slovakia",
+        "notat": "dyrket i Slovakia, pakket i Tsjekkia",
+        "lat": 48.7,
+        "lon": 19.7
+      },
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "UMN Fruit: A spy, a botanist, and a strawberry",
+          "url": "https://fruit.umn.edu/spy-botanist-strawberry",
+          "apnet": false
+        },
+        {
+          "title": "Google Arts & Culture: Strawberries",
+          "url": "https://artsandculture.google.com/asset/strawberries/ugEHt-Xme1ipKQ?hl=en",
+          "apnet": false
+        },
+        {
+          "title": "SNL: jordbær",
+          "url": "https://snl.no/jordbær",
+          "apnet": false
+        },
+        {
+          "title": "Univ. of Illinois, Digital Flowers: accessory fruit",
+          "url": "https://life.illinois.edu/help/digitalflowers/Fruits/50.htm",
+          "apnet": false
+        },
+        {
+          "title": "USDA ARS: Native strawberry (PDF)",
+          "url": "https://www.ars.usda.gov/ARSUserFiles/1718/PDF/2001/NativeStrawberrry.pdf",
+          "apnet": false
+        },
+        {
+          "title": "Live Science: Why do strawberries have seeds on the outside?",
+          "url": "https://www.livescience.com/planet-earth/plants/why-do-strawberries-have-seeds-on-the-outside",
+          "apnet": false
+        },
+        {
+          "title": "Connexion France: La fraise",
+          "url": "https://www.connexionfrance.com/magazine/la-fraise-the-strange-history-of-frances-strawberry-family/156879",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Mannen som tok med de chilenske jordbærplantene til Frankrike i 1714, var en militæringeniør på spionoppdrag. Han het Frézier. Jordbær heter fraise på fransk.",
+          "kilder": [
+            {
+              "title": "UMN Fruit: A spy, a botanist, and a strawberry",
+              "url": "https://fruit.umn.edu/spy-botanist-strawberry"
+            },
+            {
+              "title": "Wikipedia: Amédée-François Frézier",
+              "url": "https://en.wikipedia.org/wiki/Am%C3%A9d%C3%A9e-Fran%C3%A7ois_Fr%C3%A9zier"
+            }
+          ]
+        },
+        {
+          "tekst": "Norge har sitt eget ville jordbær, markjordbæret. Det vokser i hele landet og har ingenting med hagejordbærets reisebrev å gjøre.",
+          "kilder": [
+            {
+              "title": "SNL: markjordbær",
+              "url": "https://snl.no/markjordbær"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "mango", "navn": "Mango", "latin": "Mangifera indica", "farge": "mango",
-      "opphav": { "sted": "Sør- og Sørøst-Asia", "lat": 22, "lon": 92 },
-      "stempel": "ingrediens", "botanikk": "En steinfrukt, i familie med cashew og pistasj.",
-      "historie": "Dyrket i India og Sørøst-Asia i tusenvis av år, og regnet som nasjonalfrukten i India.",
+      "id": "mango",
+      "navn": "Mango",
+      "latin": "Mangifera indica",
+      "farge": "mango",
+      "opphav": {
+        "sted": "Sør- og Sørøst-Asia",
+        "lat": 22,
+        "lon": 92
+      },
+      "stempel": "ingrediens",
+      "botanikk": "En steinfrukt, i familie med cashew og pistasj.",
+      "historie": "Dyrket i India og Sørøst-Asia i flere tusen år. Regnet som nasjonalfrukten i India, Pakistan og Filippinene.",
       "vits": "Fetter av cashew. Familieselskap i glasset.",
-      "produkter": ["Mango"], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [
+        "Mango"
+      ],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "Wikipedia: Mango",
+          "url": "https://en.wikipedia.org/wiki/Mango",
+          "apnet": false
+        },
+        {
+          "title": "Wikipedia: Mangifera indica",
+          "url": "https://en.wikipedia.org/wiki/Mangifera_indica",
+          "apnet": false
+        },
+        {
+          "title": "Scientific American: cashews, mangoes and poison ivy",
+          "url": "https://www.scientificamerican.com/article/what-do-cashews-mangoes-and-poison-ivy-have-in-common/",
+          "apnet": false
+        },
+        {
+          "title": "Kyoto University repository: Mangifera survey (PDF)",
+          "url": "https://repository.kulib.kyoto-u.ac.jp/dspace/bitstream/2433/202729/2/dnogk02145.pdf",
+          "apnet": false
+        },
+        {
+          "title": "Wikipedia: National symbols of India",
+          "url": "https://en.wikipedia.org/wiki/National_symbols_of_India",
+          "apnet": false
+        },
+        {
+          "title": "Tridge: Fresh Mango production India",
+          "url": "https://www.tridge.com/intelligences/mango/IN/production",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Mangoskallet inneholder urushiol, det samme stoffet som gjør giftsumak beryktet. Folk som tåler fruktkjøttet, kan få utslett rundt munnen av skallet. Cashew har samme stoff i skallet, derfor selges den aldri med skall.",
+          "kilder": [
+            {
+              "title": "Scientific American: What do cashews, mangoes and poison ivy have in common?",
+              "url": "https://www.scientificamerican.com/article/what-do-cashews-mangoes-and-poison-ivy-have-in-common/"
+            },
+            {
+              "title": "PMC case report: mango dermatitis",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6861053"
+            }
+          ]
+        },
+        {
+          "tekst": "Ifølge tradisjonen plantet mogulkeiser Akbar en lund med hundre tusen mangotrær i Darbhanga i Bihar. Stedet heter fortsatt Lakhi Bagh, 'hundretusenhagen'. (Tallet er tradisjon, ikke telling. Andre kilder sier 40 000.)",
+          "kilder": [
+            {
+              "title": "Outlook Traveller: Darbhanga",
+              "url": "https://www.outlookindia.com/traveller/ot-getaway-guides/darbhanga-bihars-royalty/"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "solbaer", "navn": "Solbær", "latin": "Ribes nigrum", "farge": "solbaer",
-      "opphav": { "sted": "Nord-Europa og Nord-Asia", "lat": 61, "lon": 30 },
-      "stempel": "ingrediens", "botanikk": "Et ekte bær.",
-      "historie": "Vokser vilt i nordlige deler av Europa og Asia, og har lenge vært en hagebusk i Norge.",
-      "vits": "Den eneste på kartet som trives i november.",
-      "produkter": ["Solbær"], "vaare": null, "verifisert": false, "kilder": []
+      "id": "solbaer",
+      "navn": "Solbær",
+      "latin": "Ribes nigrum",
+      "farge": "solbaer",
+      "opphav": {
+        "sted": "Nord-Europa og Nord-Asia",
+        "lat": 61,
+        "lon": 30
+      },
+      "stempel": "ingrediens",
+      "botanikk": "Et ekte bær. Botanisk sett mer bær enn jordbæret.",
+      "historie": "Vokser vilt i Nord-Europa og Nord-Asia, i Norge helt opp til Trøndelag. En vanlig hagebusk her i landet.",
+      "vits": "Kom aldri lenger enn til hagen. Trengte ikke.",
+      "produkter": [
+        "Solbær"
+      ],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "SNL: solbær",
+          "url": "https://snl.no/solbær",
+          "apnet": false
+        },
+        {
+          "title": "NIBIO: Black currants – small berries with big content",
+          "url": "https://nibio.no/en/news/2026/black-currants-small-berries-with-big-content",
+          "apnet": false
+        },
+        {
+          "title": "Library of Congress: America's blackcurrant ban",
+          "url": "https://blogs.loc.gov/law/2022/10/americas-blackcurrant-ban/",
+          "apnet": false
+        },
+        {
+          "title": "Univ. of Wisconsin: European Black Currant",
+          "url": "https://uncommonfruit.cias.wisc.edu/european-black-currant/",
+          "apnet": false
+        },
+        {
+          "title": "USDA ARS: Hummer & Barney 2002, HortTechnology (PDF)",
+          "url": "https://www.ars.usda.gov/ARSUserFiles/2674/w.2002.hummer.barney.hortechnology.2002.12.377.pdf",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "I USA ble solbær forbudt i flere tiår fordi busken huser en soppsykdom som dreper furu. Det føderale forbudet ble opphevet i 1966, men noen delstater regulerer den fortsatt.",
+          "kilder": [
+            {
+              "title": "Library of Congress, In Custodia Legis: America's blackcurrant ban",
+              "url": "https://blogs.loc.gov/law/2022/10/americas-blackcurrant-ban/"
+            },
+            {
+              "title": "USDA ARS: Hummer & Barney 2002 (PDF)",
+              "url": "https://www.ars.usda.gov/ARSUserFiles/2674/w.2002.hummer.barney.hortechnology.2002.12.377.pdf"
+            }
+          ]
+        },
+        {
+          "tekst": "Under andre verdenskrig var appelsiner nesten umulige å få tak i i Storbritannia. Solbær ble dyrket i stor skala som C-vitamin til barna, og det er slik Ribena fikk sitt store gjennombrudd.",
+          "kilder": [
+            {
+              "title": "Wikipedia: Blackcurrant (R. nigrum)",
+              "url": "https://www.wikipedia.com/wiki/R._nigrum"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "eikenott", "navn": "Eikenøtt", "latin": "Quercus robur", "farge": "camel",
-      "opphav": { "sted": "Hele den nordlige halvkule, også Sør-Norge", "lat": 58.4, "lon": 8.8 },
-      "stempel": "ekte", "botanikk": "En ekte nøtt.",
-      "historie": "Ekorn graver ned eikenøtter som vinterlager og glemmer mange av dem. Slik planter de ny eikeskog.",
+      "id": "eikenott",
+      "navn": "Eikenøtt",
+      "latin": "Quercus robur",
+      "farge": "camel",
+      "opphav": {
+        "sted": "Europa, helt opp til Sør-Norge",
+        "lat": 58.4,
+        "lon": 8.8
+      },
+      "stempel": "ekte",
+      "botanikk": "En ekte nøtt, med egen hatt.",
+      "historie": "Ekorn og nøtteskriker gjemmer eikenøtter til vinteren og glemmer mange. Nøtteskrika er den flittigste skogplanteren.",
       "vits": "Helt nøtta sin livrett. Han deler ikke.",
-      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "SNL: eik",
+          "url": "https://snl.no/eik",
+          "apnet": false
+        },
+        {
+          "title": "SNL: sommereik",
+          "url": "https://snl.no/sommereik",
+          "apnet": false
+        },
+        {
+          "title": "Springer, Journal of Ornithology 2021 (jay acorn caching)",
+          "url": "https://link.springer.com/article/10.1007/s10336-021-01892-y",
+          "apnet": false
+        },
+        {
+          "title": "Wikipedia: Quercus robur",
+          "url": "https://en.wikipedia.org/wiki/Quercus_robur",
+          "apnet": false
+        },
+        {
+          "title": "Univ. Hamburg Botany online: Fagaceae",
+          "url": "https://www1.biologie.uni-hamburg.de/b-online/vascular/fag.htm",
+          "apnet": false
+        },
+        {
+          "title": "New World Encyclopedia: Acorn",
+          "url": "https://www.newworldencyclopedia.org/entry/Acorn",
+          "apnet": false
+        },
+        {
+          "title": "Journal of Ornithology (Springer) 2024: The hidden truth – jay caching sites",
+          "url": "https://link.springer.com/content/pdf/10.1007/s10336-024-02181-0.pdf",
+          "apnet": false
+        },
+        {
+          "title": "NINA rapport 2010/631",
+          "url": "https://www.nina.no/archive/nina/pppbasepdf/rapport/2010/631.pdf",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Norge er verdens nordgrense for både sommereik og vintereik. Vill eik vokser til Smøla på Nordmøre.",
+          "kilder": [
+            {
+              "title": "SNL: eik",
+              "url": "https://snl.no/eik"
+            }
+          ]
+        },
+        {
+          "tekst": "Osebergskipet er bygget nesten helt av eik. Treårringene tyder på at tømmeret ikke ble hogd rundt Oslofjorden, men kom fra et annet sted.",
+          "kilder": [
+            {
+              "title": "Britannica: Oseberg ship",
+              "url": "https://www.britannica.com/topic/Oseberg-ship"
+            },
+            {
+              "title": "Wikipedia: Oseberg Ship",
+              "url": "https://en.wikipedia.org/wiki/Oseberg_ship"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "kastanje", "navn": "Kastanje", "latin": "Castanea sativa", "farge": "camel",
-      "opphav": { "sted": "Sør-Europa og Lilleasia", "lat": 40, "lon": 30 },
-      "stempel": "ekte", "botanikk": "En ekte nøtt, inni et piggete hylster.",
-      "historie": "Søtkastanjen ble spredt over store deler av Europa i romertiden, og var i lange perioder hverdagsmat i fjellbygder.",
+      "id": "kastanje",
+      "navn": "Kastanje",
+      "latin": "Castanea sativa",
+      "farge": "camel",
+      "opphav": {
+        "sted": "Sør-Europa og Lilleasia",
+        "lat": 40,
+        "lon": 30
+      },
+      "stempel": "ekte",
+      "botanikk": "En ekte nøtt, inni et piggete hylster.",
+      "historie": "Romerne spredte dyrkingen over store deler av Europa. I fjellbygdene ble treet kalt brødtreet.",
       "vits": "Ekte nøtt. Sier det til alle som vil høre.",
-      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "Conedera et al. 2004: The cultivation of Castanea sativa in Europe",
+          "url": "https://link.springer.com/doi/10.1007/s00334-004-0038-7",
+          "apnet": false
+        },
+        {
+          "title": "European Atlas of Forest Tree Species: Castanea sativa",
+          "url": "https://ilvo.vlaanderen.be/uploads/documents/European_Atlas_of_Forest_Tree_Species_Tamme_kastanje.pdf",
+          "apnet": false
+        },
+        {
+          "title": "Ticino.ch: Castagne",
+          "url": "https://www.ticino.ch/en/commons/details/Castagne/13032.html",
+          "apnet": false
+        },
+        {
+          "title": "SNL: hestekastanje",
+          "url": "https://snl.no/hestekastanje",
+          "apnet": false
+        },
+        {
+          "title": "Univ. Hamburg Botany online: Fagaceae",
+          "url": "https://www1.biologie.uni-hamburg.de/b-online/vascular/fag.htm",
+          "apnet": false
+        },
+        {
+          "title": "WSL: Chestnut culture – the pollen tells a Roman story",
+          "url": "https://www.wsl.ch/en/news/chestnut-culture-the-pollen-tells-a-roman-story/",
+          "apnet": false
+        },
+        {
+          "title": "Visit Tuscany: Lunigiana PDO chestnut flour",
+          "url": "https://www.visittuscany.com/en/flavors/lunigiana-pdo-chestnut-flour/",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Hestekastanjen i norske parker er ikke i slekt med søtkastanjen. Nøttene er giftige og har vært brukt til å lage såpe. Bare navnet er lånt.",
+          "kilder": [
+            {
+              "title": "SNL: hestekastanje",
+              "url": "https://snl.no/hestekastanje"
+            }
+          ]
+        },
+        {
+          "tekst": "På Etna står 'Hundre hesters kastanje', anslått til flere tusen år. Guinness har den som treet med størst omkrets (flere stammer). Alderen er aldri bekreftet.",
+          "kilder": [
+            {
+              "title": "Guinness World Records: Greatest circumference of a living tree (multiple trunks)",
+              "url": "https://www.guinnessworldrecords.com/world-records/786335-greatest-circumference-of-a-living-tree-multiple-trunks"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "valnott", "navn": "Valnøtt", "latin": "Juglans regia", "farge": "camel",
-      "opphav": { "sted": "Sentral-Asia", "lat": 41.3, "lon": 72.9 },
-      "stempel": "omstridt", "botanikk": "Botanikerne er uenige: noen kaller den nøtt, andre steinfrukt.",
-      "historie": "Ville valnøttskoger finnes fortsatt i Kirgisistan. Kina er i dag verdens største produsent.",
+      "id": "valnott",
+      "navn": "Valnøtt",
+      "latin": "Juglans regia",
+      "farge": "camel",
+      "opphav": {
+        "sted": "Sentral-Asia",
+        "lat": 41.3,
+        "lon": 72.9
+      },
+      "stempel": "omstridt",
+      "botanikk": "Botanikerne er uenige. Noen kaller den nøtt, andre steinfrukt, og noen har funnet opp et eget ord.",
+      "historie": "Ville valnøttskoger står fortsatt i Kirgisistan. Kina er i dag verdens største produsent.",
       "vits": "Ser ut som en hjerne. Har ennå ikke hatt en eneste god idé.",
-      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "Britannica: English walnut",
+          "url": "https://www.britannica.com/plant/Persian-walnut",
+          "apnet": false
+        },
+        {
+          "title": "Wikipedia: Arslanbob",
+          "url": "https://en.wikipedia.org/wiki/Arslanbob",
+          "apnet": false
+        },
+        {
+          "title": "USDA FAS: China Tree Nuts Annual",
+          "url": "https://fas.usda.gov/data/china-tree-nuts-annual-7",
+          "apnet": false
+        },
+        {
+          "title": "Etymonline: walnut",
+          "url": "https://www.etymonline.com/word/Walnut",
+          "apnet": false
+        },
+        {
+          "title": "Wikipedia: Juglans regia",
+          "url": "https://en.wikipedia.org/wiki/Juglans_regia",
+          "apnet": false
+        },
+        {
+          "title": "Frontiers in Plant Science 2024 (Juglans regia, Central Asia)",
+          "url": "https://www.frontiersin.org/articles/10.3389/fpls.2024.1394409/full",
+          "apnet": false
+        },
+        {
+          "title": "AramcoWorld: Walnuts and the First Forest Farms",
+          "url": "https://www.aramcoworld.com/articles/2017/walnuts-and-the-first-forest-farms",
+          "apnet": false
+        },
+        {
+          "title": "Wayne's Word (Palomar College, arkivert): fruit classification",
+          "url": "https://webarchive.library.unt.edu/eot2008/20090116094956/http:/waynesword.palomar.edu/ecoph8.htm",
+          "apnet": false
+        },
+        {
+          "title": "Wikipedia: Juglans",
+          "url": "https://en.wikipedia.org/wiki/Juglans",
+          "apnet": false
+        },
+        {
+          "title": "IUCN story 2008 (walnut-fruit forests)",
+          "url": "https://iucn.org/node/11247",
+          "apnet": false
+        },
+        {
+          "title": "INC: Walnuts Global Statistical Review",
+          "url": "https://inc.nutfruit.org/?p=129966",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Navnet betyr 'fremmed nøtt'. Germanerne brukte det for å skille innførte valnøtter fra den hjemlige hasselnøtten. Det samme 'val-' finnes i ordet for walisere.",
+          "kilder": [
+            {
+              "title": "Etymonline: walnut",
+              "url": "https://www.etymonline.com/word/Walnut"
+            },
+            {
+              "title": "Merriam-Webster: walnut",
+              "url": "https://www.merriam-webster.com/dictionary/walnut"
+            }
+          ]
+        },
+        {
+          "tekst": "Ifølge en lokal legende tok Aleksander den store med seg valnøtter fra Arslanbob til Europa. Det er folklore, men god folklore.",
+          "kilder": [
+            {
+              "title": "AramcoWorld: Walnuts and the First Forest Farms",
+              "url": "https://www.aramcoworld.com/articles/2017/walnuts-and-the-first-forest-farms"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "pekan", "navn": "Pekan", "latin": "Carya illinoinensis", "farge": "camel",
-      "opphav": { "sted": "Mississippi-dalen, USA", "lat": 32, "lon": -91 },
-      "stempel": "omstridt", "botanikk": "Samme gråsone som valnøtta, som den er i familie med.",
-      "historie": "Hjemmehørende i Mississippi-dalen, og brukt av urfolk lenge før europeerne kom. Navnet kommer fra algonkinsk og betyr omtrent «nøtt som må knekkes med stein».",
+      "id": "pekan",
+      "navn": "Pekan",
+      "latin": "Carya illinoinensis",
+      "farge": "camel",
+      "opphav": {
+        "sted": "Mississippi-dalen, USA",
+        "lat": 32,
+        "lon": -91
+      },
+      "stempel": "omstridt",
+      "botanikk": "En steinfruktlignende nøtt i et grønt skall som sprekker i fire. Samme gråsone som valnøtta, som den er i familie med.",
+      "historie": "Hjemmehørende langs Mississippi og ned i Texas og Mexico, og brukt av urfolk lenge før europeerne kom. Navnet kommer via fransk «pacane» fra et algonkinsk ord for nøtt, avledet av «å knekke nøtter».",
       "vits": "Navnet er bokstavelig talt en bruksanvisning.",
-      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "USDA Forest Service Silvics: Pecan",
+          "url": "https://research.fs.usda.gov/silvics/pecan",
+          "apnet": false
+        },
+        {
+          "title": "Dictionary.com: pecan",
+          "url": "https://www.dictionary.com/browse/pecan",
+          "apnet": false
+        },
+        {
+          "title": "Wayne's Word: Fruit Terminology (Part 2)",
+          "url": "https://webarchive.library.unt.edu/eot2008/20090117223234/http:/waynesword.palomar.edu/termfr2.htm",
+          "apnet": false
+        },
+        {
+          "title": "USDA Plant Guide: Pecan",
+          "url": "https://plants.usda.gov/DocumentLibrary/plantguide/pdf/pg_cail2.pdf",
+          "apnet": false
+        },
+        {
+          "title": "Wikipedia: Pecan",
+          "url": "https://en.wikipedia.org/wiki/Pecan",
+          "apnet": false
+        },
+        {
+          "title": "Vocabulary.com: pecan",
+          "url": "https://www.vocabulary.com/dictionary/pecan",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Den første foredlede pekansorten ble podet i 1846–47 av Antoine, en slavebundet gartner på Oak Alley-plantasjen i Louisiana. Sorten fikk navnet «Centennial» etter verdensutstillingen i 1876. Om Antoine selv vet vi nesten ingenting.",
+          "kilder": [
+            {
+              "title": "Zócalo Public Square: The Slave Gardener Who Turned the Pecan Into a Cash Crop",
+              "url": "https://live-zocalopublicsquare.ws.asu.edu/?p=89973"
+            },
+            {
+              "title": "Pecan South: The beginning of modern pecan culture (Centennial)",
+              "url": "https://www.pecansouthmagazine.com/magazine/article/the-beginning-of-modern-pecan-culture-centennial/"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "macadamia", "navn": "Macadamia", "latin": "Macadamia integrifolia", "farge": "camel",
-      "opphav": { "sted": "Queensland, Australia", "lat": -27.5, "lon": 153 },
-      "stempel": "bedrager", "botanikk": "Et frø i en tørr kapsel.",
-      "historie": "Hjemmehørende i regnskogene i østlige Australia. Den ble først dyrket kommersielt i stor skala på Hawaii.",
+      "id": "macadamia",
+      "navn": "Macadamia",
+      "latin": "Macadamia integrifolia",
+      "farge": "camel",
+      "opphav": {
+        "sted": "Queensland, Australia",
+        "lat": -27.5,
+        "lon": 153
+      },
+      "stempel": "bedrager",
+      "botanikk": "Et frø i en tørr belgkapsel som sprekker opp langs én søm.",
+      "historie": "Hjemmehørende i regnskogene i østlige Australia. Hawaii bygde den første store industrien på 1900-tallet, og Australia tok først igjen i 1997.",
       "vits": "Australias mest kjente eksport som ikke hopper.",
-      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "Macquarie University: Plant of the week – Macadamia",
+          "url": "https://www.mq.edu.au/__data/assets/pdf_file/0004/1281658/Plant-of-the-week-Macadamia-November-2023-1.pdf",
+          "apnet": false
+        },
+        {
+          "title": "Macquarie University: Macadamia nuts – why do they have hard shells",
+          "url": "https://www.mq.edu.au/__data/assets/pdf_file/0003/1292331/Macadamia-nuts-why-do-they-have-hard-shells-1.pdf",
+          "apnet": false
+        },
+        {
+          "title": "UQ QAAFI: Gympie identified as birthplace of global macadamia industry",
+          "url": "https://qaafi.uq.edu.au/node/5801",
+          "apnet": false
+        },
+        {
+          "title": "Smithsonian: Most of the world's macadamias may have originated from a single Australian tree",
+          "url": "https://www.smithsonianmag.com/smart-news/most-worlds-macadamias-may-have-originated-single-australian-tree-180972349",
+          "apnet": false
+        },
+        {
+          "title": "PLOS ONE (PMC4125148): macadamia seed coat mechanics",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4125148",
+          "apnet": false
+        },
+        {
+          "title": "Kamehameha Schools: Historical snapshots – Macadamia nuts",
+          "url": "https://kaiwakiloumoku.ksbe.edu/article/historical-snapshots-macadamia-nuts",
+          "apnet": false
+        },
+        {
+          "title": "Australian Macadamias: Why people think macadamias are from Hawaii",
+          "url": "https://australian-macadamias.org/why-people-think-macadamias-are-from-hawaii-and-why-they-are-wrong",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "De fleste hawaiiske macadamiasorter – som dominerer plantasjer verden over – ser ut til å stamme fra ett eller noen få trær ved Gympie i Queensland, fraktet til Hawaii på 1800-tallet.",
+          "kilder": [
+            {
+              "title": "Smithsonian Magazine (2019)",
+              "url": "https://www.smithsonianmag.com/smart-news/most-worlds-macadamias-may-have-originated-single-australian-tree-180972349"
+            },
+            {
+              "title": "Hort Innovation: Gympie identified as birthplace of global macadamia industry",
+              "url": "https://www.horticulture.com.au/hort-innovation/news-events/media-releases/2019/gympie-identified-as-birthplace-of-global-macadamia-industry"
+            }
+          ]
+        },
+        {
+          "tekst": "Skallet tåler 1800–4000 newton før det knekker, og materialet er like sterkt per vekt som glødet aluminium.",
+          "kilder": [
+            {
+              "title": "PLOS ONE (PMC4125148)",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4125148"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "parannott", "navn": "Paranøtt", "latin": "Bertholletia excelsa", "farge": "camel",
-      "opphav": { "sted": "Amazonas", "lat": -11, "lon": -67 },
-      "stempel": "bedrager", "botanikk": "Et frø. Opptil to dusin ligger pakket i én hard kapsel.",
-      "historie": "Høstes nesten bare fra ville trær i Amazonas. Trærne er avhengige av bestemte bier for pollinering og av gnageren aguti for å spre frøene.",
+      "id": "parannott",
+      "navn": "Paranøtt",
+      "latin": "Bertholletia excelsa",
+      "farge": "camel",
+      "opphav": {
+        "sted": "Amazonas",
+        "lat": -11,
+        "lon": -67
+      },
+      "stempel": "bedrager",
+      "botanikk": "Et frø. 10–25 av dem ligger pakket i én tung, treaktig kapsel.",
+      "historie": "Høstes nesten bare fra ville trær i Amazonas. Trærne trenger store bier som orkidébier for pollinering, og gnageren aguti, som graver ned frø og glemmer dem.",
       "vits": "Trenger en bie, en gnager og en regnskog. Vi trenger bare en skje.",
-      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "NYBG Plant Talk: Brazil nuts are seeds, not nuts",
+          "url": "https://www.nybg.org/blogs/plant-talk/2009/08/science/brazil-nuts-are-seeds-not-nuts/",
+          "apnet": false
+        },
+        {
+          "title": "FAO/Embrapa pollination compendium (2018)",
+          "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1093487/1/I9201EN1.pdf",
+          "apnet": false
+        },
+        {
+          "title": "Cavalcante et al. 2018, Apidologie",
+          "url": "https://link.springer.com/10.1007/s13592-018-0578-y",
+          "apnet": false
+        },
+        {
+          "title": "NYBG Lecythidaceae Pages: The Brazil Nut",
+          "url": "https://www.nybg.org/botany/mori/lecythidaceae/brazil%20nut%20industry/The%20Brazil%20Nut.htm",
+          "apnet": false
+        },
+        {
+          "title": "Britannica: Brazil nut",
+          "url": "https://www.britannica.com/topic/Brazil-nut",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Paranøtter er blant de mest radioaktive matvarene vi har. De kan inneholde rundt 1000 ganger mer radium enn et gjennomsnittlig tysk kosthold, ifølge tyske strålevernmyndigheter. Ufarlig, men vi syntes du burde vite det.",
+          "kilder": [
+            {
+              "title": "BfS (Bundesamt für Strahlenschutz): Brazil nuts",
+              "url": "https://www.bfs.de/EN/topics/ion/environment/foodstuffs/brazil-nuts/brazil-nuts.html"
+            },
+            {
+              "title": "ORAU Health Physics Museum: Brazil Nuts",
+              "url": "https://www.orau.org/health-physics-museum/collection/consumer/food/brazil-nuts.html"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "pinjekjerne", "navn": "Pinjekjerne", "latin": "Pinus pinea", "farge": "camel",
-      "opphav": { "sted": "Middelhavet", "lat": 41.9, "lon": 12.5 },
-      "stempel": "bedrager", "botanikk": "Frøet fra en furukongle.",
-      "historie": "Pinjefuru har vært dyrket rundt Middelhavet siden antikken. Mye av det som selges i dag kommer fra andre furuarter i Asia.",
+      "id": "pinjekjerne",
+      "navn": "Pinjekjerne",
+      "latin": "Pinus pinea",
+      "farge": "camel",
+      "opphav": {
+        "sted": "Middelhavet",
+        "lat": 41.9,
+        "lon": 12.5
+      },
+      "stempel": "bedrager",
+      "botanikk": "Frøet fra en furukongle. Bartrær har ikke frukt, så nøtt blir det aldri.",
+      "historie": "Pinjefuru har vært dyrket rundt Middelhavet siden antikken. Det meste som selges i dag kommer likevel fra koreafuru i Kina og Russland.",
       "vits": "Kommer fra en kongle. Koster som et smykke.",
-      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "CBI: Entering the European market for pine nuts",
+          "url": "https://www.cbi.eu/market-information/processed-fruit-vegetables-edible-nuts/pine-nuts/market-entry",
+          "apnet": false
+        },
+        {
+          "title": "MDPI Forests 8(10):367 – Pine Nuts: A Review of Recent Sanitary Conditions and Market Development",
+          "url": "https://mdpi.com/1999-4907/8/10/367",
+          "apnet": false
+        },
+        {
+          "title": "NSW Food Authority: Pine nuts and pine mouth",
+          "url": "https://www.foodauthority.nsw.gov.au/about-us/science/food-risk-studies/pine-nuts-and-pine-mouth",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Noen pinjekjerner gir «pinjemunn»: en bitter metallsmak som kommer en til tre dager etter at du har spist dem, og kan vare i ukevis. Mistenkt synder er den kinesiske arten Pinus armandii, som nå er tatt ut av listen over spiselige nøtter.",
+          "kilder": [
+            {
+              "title": "NSW Food Authority: Pine nuts and pine mouth",
+              "url": "https://www.foodauthority.nsw.gov.au/about-us/science/food-risk-studies/pine-nuts-and-pine-mouth"
+            },
+            {
+              "title": "Canadian Food Inspection Agency: Bitter or metallic taste in pine nuts",
+              "url": "https://inspection.canada.ca/en/food-safety-consumers/fact-sheets/specific-products-and-risks/commonly-occurring-issues-food/bitter-metallic-taste-pine-nuts"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "muskatnott", "navn": "Muskatnøtt", "latin": "Myristica fragrans", "farge": "camel",
-      "opphav": { "sted": "Bandaøyene, Indonesia", "lat": -4.5, "lon": 129.9 },
-      "stempel": "bedrager", "botanikk": "Et frø, brukt som krydder.",
-      "historie": "Kom opprinnelig bare fra de små Bandaøyene. I 1667 ga England fra seg den lille muskatøya Run til Nederland, og Nederland ga fra seg kravet på Manhattan.",
-      "vits": "Var en gang verdt mer enn Manhattan. Bokstavelig talt.",
-      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+      "id": "muskatnott",
+      "navn": "Muskatnøtt",
+      "latin": "Myristica fragrans",
+      "farge": "camel",
+      "opphav": {
+        "sted": "Bandaøyene, Indonesia",
+        "lat": -4.5,
+        "lon": 129.9
+      },
+      "stempel": "bedrager",
+      "botanikk": "Et frø i en fersken-lignende frukt. Den røde kappen rundt frøet er macis.",
+      "historie": "Kom opprinnelig bare fra de små Bandaøyene. Ved freden i Breda i 1667 fikk alle beholde det de satt på: Nederland muskatøya Run, England Manhattan.",
+      "vits": "Ble en gang byttet mot Manhattan. Nesten.",
+      "produkter": [],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "Atlas of Mutual Heritage: Run",
+          "url": "https://www.atlasofmutualheritage.nl/page/4236/run",
+          "apnet": false
+        },
+        {
+          "title": "Britannica: Anglo-Dutch Wars",
+          "url": "https://www.britannica.com/event/Anglo-Dutch-Wars",
+          "apnet": false
+        },
+        {
+          "title": "POWO: Myristica fragrans",
+          "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:586076-1/general-information",
+          "apnet": false
+        },
+        {
+          "title": "Britannica: Nutmeg tree",
+          "url": "https://www.britannica.com/plant/nutmeg-tree",
+          "apnet": false
+        },
+        {
+          "title": "Britannica: Mace (spice)",
+          "url": "https://www.britannica.com/topic/mace-spice",
+          "apnet": false
+        },
+        {
+          "title": "Britannica: Breda (place)",
+          "url": "https://www.britannica.com/place/Breda",
+          "apnet": false
+        },
+        {
+          "title": "Project MUSE: The Hidden Dimension – 'European' Treaties in Global Perspective, 1500–1800",
+          "url": "https://muse.jhu.edu/article/370445",
+          "apnet": false
+        },
+        {
+          "title": "National Geographic: Was Manhattan really sold to the Dutch for just $24?",
+          "url": "https://www.nationalgeographic.com/premium/article/manhattan-dutch-lenape-new-amsterdam-york",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Fra 1616 til 1620 holdt engelskmannen Nathaniel Courthope den lille øya Run mot nederlandsk beleiring, etter at øyboerne hadde godtatt Jakob I som konge. Han ble drept i et bakhold i 1620.",
+          "kilder": [
+            {
+              "title": "British History Online: East Indies, China and Japan, January 1617",
+              "url": "https://www.british-history.ac.uk/node/59813"
+            },
+            {
+              "title": "Wikipedia: Nathaniel Courthope",
+              "url": "https://en.wikipedia.org/wiki/Nathaniel_Courthope"
+            }
+          ]
+        },
+        {
+          "tekst": "Handelen var ikke helt endelig: Nederland erobret New York tilbake i 1673 og kalte den New Orange. Året etter ga de den fra seg igjen i freden i Westminster.",
+          "kilder": [
+            {
+              "title": "New Netherland Institute: Historical Calendar",
+              "url": "https://newnetherlandinstitute.org/new-netherland-history-and-heritage/timelines-of-new-netherland/historical-calendar/"
+            },
+            {
+              "title": "Britannica: Dutch War",
+              "url": "https://www.britannica.com/event/Dutch-War"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "jordmandel", "navn": "Jordmandel", "latin": "Cyperus esculentus", "farge": "camel",
-      "opphav": { "sted": "Nord-Afrika og Middelhavet", "lat": 26, "lon": 31 },
-      "stempel": "bedrager", "botanikk": "En liten rotknoll fra et halvgress.",
-      "historie": "Funnet i gamle egyptiske graver. I Valencia lages den søte drikken horchata av den.",
+      "id": "jordmandel",
+      "navn": "Jordmandel",
+      "latin": "Cyperus esculentus",
+      "farge": "camel",
+      "opphav": {
+        "sted": "Nildalen, Egypt",
+        "lat": 25.9,
+        "lon": 32.7
+      },
+      "stempel": "bedrager",
+      "botanikk": "En liten stengelknoll fra et halvgress, i slekt med papyrus.",
+      "historie": "Funnet i egyptiske graver fra over 5000 år tilbake. Araberne tok den med til Spania, og i Valencia lages den søte drikken horchata av den.",
       "vits": "Heter mandel, er en knoll, kalles nøtt. Identitetskrise på tre språk.",
-      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "POWO: Cyperus esculentus",
+          "url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:300668-2/general-information",
+          "apnet": false
+        },
+        {
+          "title": "NPR The Salt: Loathed by farmers, loved by ancients",
+          "url": "https://www.npr.org/sections/thesalt/2016/04/27/472581773/loathed-by-farmers-loved-by-ancients-the-strange-history-of-tiger-nuts",
+          "apnet": false
+        },
+        {
+          "title": "Alimentarium: Tiger nut",
+          "url": "https://www.alimentarium.org/en/knowledge/tiger-nut",
+          "apnet": false
+        },
+        {
+          "title": "Visit València: Horchata",
+          "url": "https://visitvalencia.com/en/what-to-do-valencia/gastronomy/where-to-drink/horchata",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "En studie fra Oxford i 2014 foreslo at vår fjerne slektning «Nøtteknekkermannen» (Paranthropus boisei) levde mest av jordmandler for to millioner år siden. Nøtter knakk han neppe.",
+          "kilder": [
+            {
+              "title": "University of Oxford: Tiger nuts",
+              "url": "https://www.ox.ac.uk/node/11940"
+            },
+            {
+              "title": "Archaeology Magazine: 'Nutcracker Man' Noshed on Tiger Nuts",
+              "url": "https://archaeology.org/news/2014/01/09/140109-paranthropus-boisei-diet-tiger-nuts/"
+            }
+          ]
+        },
+        {
+          "tekst": "Ifølge legenden smakte kong Jaume I drikken og utbrøt «Això és or, xata!» – «Dette er gull, jenta mi!». Det finnes null belegg for historien, men valencianerne forteller den gjerne.",
+          "kilder": [
+            {
+              "title": "Escapada Rural: La leyenda de la horchata",
+              "url": "https://www.escapadarural.com/blog/la-leyenda-de-la-horchata/"
+            },
+            {
+              "title": "Directo al Paladar: Horchata de chufa, el oro blanco",
+              "url": "https://www.directoalpaladar.com/otras-bebidas/horchata-chufa-oro-blanco-que-nace-huerta-valenciana"
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "peanott", "navn": "Peanøtt", "latin": "Arachis hypogaea", "farge": "camel",
-      "opphav": { "sted": "Sør-Amerika (Bolivia / Argentina)", "lat": -22, "lon": -64 },
-      "stempel": "bedrager", "botanikk": "En belgfrukt, i familie med erter og bønner, som modner under jorda.",
-      "historie": "Domestisert i Sør-Amerika for flere tusen år siden, og spredt over hele verden etter 1500-tallet.",
+      "id": "peanott",
+      "navn": "Peanøtt",
+      "latin": "Arachis hypogaea",
+      "farge": "camel",
+      "opphav": {
+        "sted": "Sør-Amerika (Bolivia / Argentina)",
+        "lat": -22,
+        "lon": -64
+      },
+      "stempel": "bedrager",
+      "botanikk": "En belgfrukt i ertefamilien. Den blomstrer over bakken og borer så frukten ned i jorda for å modne.",
+      "historie": "Oppsto som en krysning av to ville arter i Bolivia og Argentina. Peanøtter fra Peru er 7600 år gamle, og etter 1500-tallet spredte de seg over hele verden.",
       "vits": "Har lurt hele verden i tusenvis av år. Vi avslører den herved.",
-      "produkter": [], "vaare": null, "verifisert": false, "kilder": []
+      "produkter": [],
+      "vaare": null,
+      "verifisert": false,
+      "kilder": [
+        {
+          "title": "UGA Today: Researchers trace peanut crop back to its Bolivian roots",
+          "url": "https://news.uga.edu/peanut-crop-bolivian-roots-0216/",
+          "apnet": false
+        },
+        {
+          "title": "Bertioli et al. 2016, Nature Genetics",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/26901068/",
+          "apnet": false
+        },
+        {
+          "title": "ScienceDaily (2007): Earliest evidence of peanut, cotton and squash farming",
+          "url": "https://www.sciencedaily.com/releases/2007/06/070628162623.htm",
+          "apnet": false
+        },
+        {
+          "title": "Britannica: Geocarpy",
+          "url": "https://www.britannica.com/science/geocarpy",
+          "apnet": false
+        },
+        {
+          "title": "CONICET Repositorio Institucional (genome donor populations)",
+          "url": "https://ri.conicet.gov.ar/handle/11336/273217",
+          "apnet": false
+        },
+        {
+          "title": "PMC11765555: Proteome of peanut pegs penetrating into the soil",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11765555/",
+          "apnet": false
+        },
+        {
+          "title": "AGRIS: Preceramic Adoption of Peanut, Squash, and Cotton in Northern Peru",
+          "url": "https://agris.fao.org/search/en/records/65df10fe0f3e94b9e5d4b1a9",
+          "apnet": false
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Peanøtta finnes ikke vill. Den er en krysning av to ville arter som vokste hundrevis av kilometer fra hverandre, trolig satt i gang av en bie, etter at mennesker hadde fraktet den ene arten inn til den andre.",
+          "kilder": [
+            {
+              "title": "UGA Today: Researchers trace peanut crop back to its Bolivian roots",
+              "url": "https://news.uga.edu/peanut-crop-bolivian-roots-0216/"
+            },
+            {
+              "title": "Bertioli et al. 2016, Nature Genetics",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/26901068/"
+            }
+          ]
+        },
+        {
+          "tekst": "Planten blomstrer i lyset, men gjemmer avkommet: etter blomstringen vokser en stilk ned i jorda, og først i mørket der begynner belgen å svulme.",
+          "kilder": [
+            {
+              "title": "Britannica: Geocarpy",
+              "url": "https://www.britannica.com/science/geocarpy"
+            },
+            {
+              "title": "PMC9178256: Peanut pod development, darkness and mechanical stress",
+              "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9178256/"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

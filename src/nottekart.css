@@ -52,7 +52,7 @@
 @keyframes nk-blink { 0% { opacity: 1; } 50% { opacity: 0.2; } }
 
 .nk-hero { pointer-events: none; }
-.nk-hero-img { filter: drop-shadow(3px 4px 0 rgba(27, 17, 8, 0.18)); }
+.nk-hero-img, .nk-cargo { filter: drop-shadow(3px 4px 0 rgba(27, 17, 8, 0.18)); }
 
 .nk-legend {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1.2rem; margin: 0.8rem 0 0;
@@ -63,6 +63,8 @@
 .nk-lg-ours { width: 0.8em; height: 0.8em; border-radius: 50%; border: 3px solid var(--nk-accent); box-shadow: 0 0 0 1.5px var(--nk-key); }
 .nk-lg-rest { width: 0.55em; height: 0.55em; border-radius: 50%; background: var(--nk-camel); box-shadow: 0 0 0 1.5px var(--nk-key); }
 .nk-lg-route { width: 2em; border-top: 2.5px dashed #cc6121; }
+.nk-source { pointer-events: none; }
+.nk-lg-src { width: 0.6em; height: 0.6em; transform: rotate(45deg); background: var(--nk-cream); box-shadow: inset 0 0 0 2px var(--nk-key); }
 .nk-lg-dist { width: 2em; border-top: 2.5px dotted var(--nk-key); }
 .nk-hint {
   display: table; margin: 0.9rem auto 0; white-space: nowrap;
@@ -70,7 +72,9 @@
   color: var(--nk-cream); background: var(--nk-brown); padding: 0.5em 0.9em; border-radius: 999px;
   transition: opacity 0.4s;
 }
-.nk-touched .nk-lg-dist { width: 2em; border-top: 2.5px dotted var(--nk-key); }
+.nk-touched .nk-source { pointer-events: none; }
+.nk-lg-src { width: 0.6em; height: 0.6em; transform: rotate(45deg); background: var(--nk-cream); box-shadow: inset 0 0 0 2px var(--nk-key); }
+.nk-lg-dist { width: 2em; border-top: 2.5px dotted var(--nk-key); }
 .nk-hint { opacity: 0; }
 
 /* ---- panel ---------------------------------------------------------- */
