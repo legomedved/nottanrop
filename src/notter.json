@@ -1,9 +1,10 @@
 {
   "_les_meg": "UTKAST. Alle fakta har verifisert:false til noen har sjekket kildene og fylt inn 'kilder'. 'vaare' = hvor VÅRE råvarer kommer fra; null betyr ikke bekreftet ennå. Ikke gjett her. 'stempel' er dommen som stemples på kortet: ekte | bedrager | omstridt | ingrediens. Våre leverandører (fra næringsdeklarasjonene): Eldorado (mandler, hasselnøtter, cashew, kokos), Freia (kakaopulver), Dansukker (rørsukker). 'fakta' = ekstra 'Visste du?'-fakta. 'kilder' = sider som faktisk er åpnet og lest ved faktasjekk 2026-11-25 (Wikipedia/SNL). 'verifisert' = alle påstander bekreftet mot disse.",
   "hjem": {
-    "sted": "Nesodden",
-    "lat": 59.85,
-    "lon": 10.62
+    "sted": "Oslofjorden",
+    "notat": "Laget på Vinterbro · grunnlagt på Nesodden",
+    "lat": 59.74,
+    "lon": 10.77
   },
   "notter": [
     {

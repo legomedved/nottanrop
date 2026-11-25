@@ -8,8 +8,9 @@
   --nk-red: #e23c2e;
   --nk-accent: #ff7a2a;
   --nk-display: "Recoleta", "Fraunces", Georgia, serif;
-  --nk-body: "DM Sans", Inter, system-ui, sans-serif;
-  --nk-mono: "Space Mono", ui-monospace, monospace;
+  --nk-display-w: 600;
+  --nk-body: "Dmsans Variablefont Opsz Wght", "DM Sans", Inter, system-ui, sans-serif;
+  --nk-mono: "Dmmono", "DM Mono", "Space Mono", ui-monospace, monospace;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   gap: clamp(1.5rem, 4vw, 4.5rem);
@@ -68,7 +69,7 @@
 .nk-lg-dist { width: 2em; border-top: 2.5px dotted var(--nk-key); }
 .nk-hint {
   display: table; margin: 0.9rem auto 0; white-space: nowrap;
-  font: 700 0.66rem/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase;
+  font: 500 0.66rem/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--nk-cream); background: var(--nk-brown); padding: 0.5em 0.9em; border-radius: 999px;
   transition: opacity 0.4s;
 }
@@ -78,7 +79,7 @@
 .nk-hint { opacity: 0; }
 
 /* ---- panel ---------------------------------------------------------- */
-.nk-label { margin: 0 0 0.5rem; font: 700 0.68rem/1.3 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--nk-brown); opacity: 0.75; }
+.nk-label { margin: 0 0 0.5rem; font: 500 0.68rem/1.3 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--nk-brown); opacity: 0.75; }
 .nk-nav ul { list-style: none; margin: 0 0 1.1rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .nk-chip {
   font: 500 0.88rem/1 var(--nk-body); color: var(--nk-brown); background: var(--nk-cream);
@@ -100,14 +101,14 @@
 }
 .nk-card-top { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.1rem; padding-right: 7.5rem; }
 .nk-tag {
-  font: 700 0.66rem/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase;
+  font: 500 0.66rem/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase;
   background: var(--nk-brown); color: var(--nk-cream); padding: 0.5em 0.8em; border-radius: 999px;
 }
 .nk-tag-ghost { background: transparent; color: var(--nk-brown); box-shadow: inset 0 0 0 1.5px var(--nk-brown); }
 
 .nk-stamp {
   position: absolute; top: 1.1rem; right: 1.1rem; margin: 0;
-  font: 700 0.82rem/1 var(--nk-mono); letter-spacing: 0.1em; text-transform: uppercase;
+  font: 500 0.82rem/1 var(--nk-mono); letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--nk-key); border: 2.5px solid currentColor; outline: 1px solid currentColor; outline-offset: 2px;
   padding: 0.5em 0.6em; border-radius: 0.3rem; transform: rotate(-7deg);
   opacity: 0.88; mix-blend-mode: multiply;
@@ -118,30 +119,30 @@
 .nk-stamp-omstridt { color: #cc6121; transform: rotate(5deg); }
 @keyframes nk-stamp { from { opacity: 0; transform: scale(1.8) rotate(-12deg); } }
 
-.nk-title { margin: 0; font: 700 clamp(2.4rem, 5vw, 3.6rem)/0.95 var(--nk-display); color: var(--nk-brown); letter-spacing: -0.01em; }
+.nk-title { margin: 0; font: 600 clamp(2.4rem, 5vw, 3.6rem)/0.95 var(--nk-display); color: var(--nk-brown); letter-spacing: -0.01em; }
 .nk-latin { margin: 0.5rem 0 0.2rem; font-size: 0.9rem; font-style: italic; color: var(--nk-brown); opacity: 0.8; }
 .nk-botany { margin: 0 0 1rem; font-size: 0.9rem; color: var(--nk-brown); }
 .nk-story { margin: 0 0 1rem; line-height: 1.6; }
 .nk-wit {
   margin: 0 0 1.3rem; padding: 0.7rem 0.9rem; border-radius: 0.6rem;
-  font: 700 1.15rem/1.3 var(--nk-display); color: var(--nk-key);
+  font: 600 1.15rem/1.3 var(--nk-display); color: var(--nk-key);
   background: var(--nk-almond); box-shadow: inset 4px 0 0 var(--nk-accent);
 }
 .nk-facts { margin: 0 0 1.3rem; }
 .nk-facts ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.55rem; }
 .nk-facts li { position: relative; padding-left: 1.3rem; font-size: 0.93rem; line-height: 1.5; }
 .nk-facts li::before { content: "!"; position: absolute; left: 0; top: 0.1em; width: 0.95rem; height: 0.95rem; border-radius: 50%;
-  background: var(--nk-red); color: var(--nk-cream); font: 700 0.62rem/0.95rem var(--nk-mono); text-align: center; }
+  background: var(--nk-red); color: var(--nk-cream); font: 500 0.62rem/0.95rem var(--nk-mono); text-align: center; }
 .nk-sources { margin-top: 1rem; font-size: 0.82rem; }
-.nk-sources summary { cursor: pointer; font: 700 0.66rem/1.6 var(--nk-mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.nk-sources summary { cursor: pointer; font: 500 0.66rem/1.6 var(--nk-mono); letter-spacing: 0.06em; text-transform: uppercase; }
 .nk-sources summary:focus-visible { outline: 3px solid var(--nk-accent); outline-offset: 2px; }
 .nk-sources ol { margin: 0.5rem 0 0; padding-left: 1.2rem; display: grid; gap: 0.25rem; }
 .nk-sources a { color: var(--nk-brown); text-underline-offset: 2px; }
 .nk-ours { margin: 0; padding-top: 1rem; border-top: 1.5px dashed var(--nk-brown); display: grid; grid-template-columns: auto 1fr; gap: 0.45rem 1rem; }
-.nk-ours dt { font: 700 0.66rem/1.6 var(--nk-mono); letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.8; }
+.nk-ours dt { font: 500 0.66rem/1.6 var(--nk-mono); letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.8; }
 .nk-ours dd { margin: 0; font-size: 0.95rem; }
 @media (max-width: 480px) { .nk-ours { grid-template-columns: 1fr; gap: 0.1rem; } .nk-ours dd { margin-bottom: 0.5rem; } }
-.nk-draft { margin: 1rem 0 0; font: 700 0.62rem/1 var(--nk-mono); color: #b43024; letter-spacing: 0.08em; text-transform: uppercase; }
+.nk-draft { margin: 1rem 0 0; font: 500 0.62rem/1 var(--nk-mono); color: #b43024; letter-spacing: 0.08em; text-transform: uppercase; }
 
 @media (prefers-reduced-motion: reduce) {
   .nk-mark.is-active .nk-pulse, .nk-stamp, .nk-home.is-alarm .nk-rays line { animation: none; }

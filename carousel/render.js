@@ -80,7 +80,7 @@ const font = (pkg, file) => url(path.join(ROOT, "node_modules/@fontsource", pkg,
         <p class="latin">${n.latin} · ${n.opphav.sted}</p>
         <p class="botany">${n.botanikk}</p>
         <p class="wit">${n.vits}</p>
-        <p class="meta">${km(n)} km fra Nesodden${n.produkter.length ? ` · i ${n.produkter[0]}` : ""}</p>
+        <p class="meta">${km(n)} km fra ${HOME.sted}${n.produkter.length ? ` · i ${n.produkter[0]}` : ""}</p>
       </div>
     </section>`);
   });
@@ -98,50 +98,51 @@ const font = (pkg, file) => url(path.join(ROOT, "node_modules/@fontsource", pkg,
     `<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>`)}")`;
 
   // Recoleta is licensed: it lives in fonts-local/ (git-ignored), never in the repo.
-  const rec = ["Recoleta-Bold.woff2", "Recoleta-Bold.woff", "Recoleta-Bold.otf", "Recoleta-Bold.ttf"]
+  const rec = ["Recoleta-SemiBold.otf", "Recoleta-Bold.woff2", "Recoleta-Bold.otf"]
     .map((f) => path.join(ROOT, "fonts-local", f)).find((f) => fs.existsSync(f));
   console.log(rec ? `Recoleta: ${path.basename(rec)}` : "Recoleta not found in fonts-local/ – using Fraunces stand-in");
   const html = `<!doctype html><html lang="no"><meta charset="utf-8"><style>
-  ${rec ? `@font-face { font-family: "Recoleta"; font-weight: 700; src: url(${url(rec)}); }` : ""}
+  ${rec ? `@font-face { font-family: "Recoleta"; font-weight: 600; src: url(${url(rec)}); }` : ""}
   @font-face { font-family: "Fraunces"; font-weight: 700; src: url(${font("fraunces", "fraunces-latin-700-normal.woff2")}); }
   @font-face { font-family: "DM Sans"; font-weight: 400; src: url(${font("dm-sans", "dm-sans-latin-400-normal.woff2")}); }
   @font-face { font-family: "DM Sans"; font-weight: 500; src: url(${font("dm-sans", "dm-sans-latin-500-normal.woff2")}); }
+  @font-face { font-family: "DM Mono"; font-weight: 500; src: url(${url(path.join(ROOT, "fonts-local", "DMMono-Medium.ttf"))}); }
   @font-face { font-family: "Space Mono"; font-weight: 700; src: url(${font("space-mono", "space-mono-latin-700-normal.woff2")}); }
   :root { --cream:#fbf7f3; --almond:#f5e0c6; --brown:#5a3a1c; --key:#1b1108; --red:#e23c2e; --orange:#ff7a2a;
-          --display:"Recoleta","Fraunces",Georgia,serif; --body:"DM Sans",system-ui,sans-serif; --mono:"Space Mono",monospace; }
+          --display:"Recoleta","Fraunces",Georgia,serif; --body:"DM Sans",system-ui,sans-serif; --mono:"DM Mono","Space Mono",monospace; }
   * { box-sizing: border-box; } body { margin: 0; background: #ccc; }
   .slide { position: relative; width: 1080px; height: 1440px; overflow: hidden; background: var(--cream); color: var(--brown);
            font-family: var(--body); padding: 72px; display: flex; flex-direction: column; margin-bottom: 20px; }
   .slide::after { content: ""; position: absolute; inset: 0; background-image: ${grain}; opacity: .10; mix-blend-mode: multiply; pointer-events: none; }
   ${draft ? `.slide::before { content: "Utkast · ikke publiser"; white-space: nowrap; position: absolute; z-index: 5; top: 84px; left: 50%; transform: translateX(-50%);
-     font: 700 18px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #fff; background: #b43024; padding: 10px 16px; border-radius: 999px; }` : ""}
+     font: 500 18px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #fff; background: #b43024; padding: 10px 16px; border-radius: 999px; }` : ""}
   .top { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
-  .tag { font: 700 22px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; background: var(--brown); color: var(--cream); padding: 13px 20px; border-radius: 999px; }
+  .tag { font: 500 22px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; background: var(--brown); color: var(--cream); padding: 13px 20px; border-radius: 999px; }
   .tag.ghost { background: transparent; color: var(--brown); box-shadow: inset 0 0 0 2.5px var(--brown); }
-  h1 { font: 700 168px/.9 var(--display); margin: 90px 0 0; color: var(--brown); letter-spacing: -.02em; position: relative; z-index: 2; }
-  h2 { font: 700 120px/.92 var(--display); margin: 0; color: var(--brown); letter-spacing: -.015em; }
+  h1 { font: 600 168px/.9 var(--display); margin: 90px 0 0; color: var(--brown); letter-spacing: -.02em; position: relative; z-index: 2; }
+  h2 { font: 600 120px/.92 var(--display); margin: 0; color: var(--brown); letter-spacing: -.015em; }
   .lead { font: 400 40px/1.35 var(--body); max-width: 760px; margin: 40px 0 0; position: relative; z-index: 2; }
   .cover { background: var(--almond); }
   .cover .phone { position: absolute; right: -20px; bottom: 60px; width: 600px; }
-  .swipe { position: absolute; left: 72px; bottom: 120px; margin: 0; font: 700 24px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  .swipe { position: absolute; left: 72px; bottom: 120px; margin: 0; font: 500 24px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
   .nut .visual { position: relative; flex: 1; display: grid; place-items: center; min-height: 0; }
   .nut .globe { width: 660px; height: 660px; }
   .nut .panel-art { width: 640px; height: 640px; border-radius: 28px; border: 3px solid var(--key); }
-  .stamp { position: absolute; top: 50px; right: 10px; margin: 0; font: 700 44px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
+  .stamp { position: absolute; top: 50px; right: 10px; margin: 0; font: 500 44px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
            color: var(--key); border: 6px solid currentColor; outline: 2.5px solid currentColor; outline-offset: 6px; padding: 18px 22px; border-radius: 10px;
            transform: rotate(-8deg); background: rgba(251,247,243,.82); mix-blend-mode: multiply; }
   .stamp-bedrager { color: var(--red); } .stamp-omstridt { color: #cc6121; transform: rotate(6deg); }
   .card { position: relative; z-index: 2; background: var(--cream); border: 3px solid var(--key); border-radius: 30px; box-shadow: 14px 14px 0 var(--accent); padding: 46px 52px 50px; }
   .latin { font: italic 400 26px/1.3 var(--body); margin: 14px 0 6px; opacity: .85; }
   .botany { font: 400 30px/1.35 var(--body); margin: 0 0 26px; }
-  .wit { font: 700 40px/1.2 var(--display); color: var(--key); margin: 0 0 26px; padding: 20px 26px; background: var(--almond); border-radius: 18px; box-shadow: inset 8px 0 0 var(--accent); }
-  .meta { font: 700 22px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; margin: 0; }
+  .wit { font: 600 40px/1.2 var(--display); color: var(--key); margin: 0 0 26px; padding: 20px 26px; background: var(--almond); border-radius: 18px; box-shadow: inset 8px 0 0 var(--accent); }
+  .meta { font: 500 22px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; margin: 0; }
   .cta { background: var(--almond); }
   .cta .fly { position: relative; width: 820px; margin: 90px auto 50px; }
   .cta .fly img:first-child { width: 820px; display: block; }
   .cta .fly .cargo { position: absolute; width: 104px; left: 742px; top: 204px; transform: rotate(-8deg); filter: drop-shadow(4px 6px 0 rgba(27,17,8,.18)); }
-  .cta .link { display: inline-block; align-self: flex-start; font: 700 34px/1 var(--mono); background: var(--key); color: var(--cream); padding: 22px 30px; border-radius: 999px; margin: 50px 0 0; box-shadow: 8px 8px 0 var(--orange); }
-  .sign { font: 700 44px/1 var(--display); margin: 44px 0 0; }
+  .cta .link { display: inline-block; align-self: flex-start; font: 500 34px/1 var(--mono); background: var(--key); color: var(--cream); padding: 22px 30px; border-radius: 999px; margin: 50px 0 0; box-shadow: 8px 8px 0 var(--orange); }
+  .sign { font: 600 44px/1 var(--display); margin: 44px 0 0; }
   </style><body>${slides.join("\n")}</body></html>`;
   fs.writeFileSync(path.join(BUILD, "carousel.html"), html);
 

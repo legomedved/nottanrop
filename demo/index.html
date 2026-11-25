@@ -5,15 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nøtteverden – testside</title>
   <style>
-    /* local preview only: Webflow already loads Recoleta, DM Sans and Space Mono */
+    /* local preview only: the site's own fonts, from the git-ignored fonts-local/ (fallbacks below) */
+    @font-face { font-family: "Recoleta"; font-weight: 600; src: url(../fonts-local/Recoleta-SemiBold.otf); }
+    @font-face { font-family: "Dmsans Variablefont Opsz Wght"; font-weight: 100 1000; src: url(../fonts-local/DMSans-Variable.ttf); }
+    @font-face { font-family: "Dmmono"; font-weight: 400; src: url(../fonts-local/DMMono-Regular.ttf); }
+    @font-face { font-family: "Dmmono"; font-weight: 500; src: url(../fonts-local/DMMono-Medium.ttf); }
     @font-face { font-family: "Fraunces"; font-weight: 700; src: url(../node_modules/@fontsource/fraunces/files/fraunces-latin-700-normal.woff2); }
     @font-face { font-family: "DM Sans"; font-weight: 400; src: url(../node_modules/@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2); }
     @font-face { font-family: "DM Sans"; font-weight: 500; src: url(../node_modules/@fontsource/dm-sans/files/dm-sans-latin-500-normal.woff2); }
     @font-face { font-family: "Space Mono"; font-weight: 700; src: url(../node_modules/@fontsource/space-mono/files/space-mono-latin-700-normal.woff2); }
     @font-face { font-family: "Space Mono"; font-weight: 400; src: url(../node_modules/@fontsource/space-mono/files/space-mono-latin-400-normal.woff2); }
-    body { margin: 0; background: #fbf7f3; font-family: "DM Sans", system-ui, sans-serif; color: #5a3a1c; }
+    body { margin: 0; background: #fbf7f3; font-family: "Dmsans Variablefont Opsz Wght", "DM Sans", system-ui, sans-serif; color: #5a3a1c; }
     header { padding: 3rem 1rem 1rem; text-align: center; }
-    h1 { font: 700 clamp(2.5rem, 7vw, 4.5rem)/1 "Recoleta", "Fraunces", Georgia, serif; margin: 0 0 .5rem; }
+    h1 { font: 600 clamp(2.5rem, 7vw, 4.5rem)/1 "Recoleta", "Fraunces", Georgia, serif; margin: 0 0 .5rem; }
     section { padding: 1rem 16px 4rem; }
     .spacer { height: 120vh; display: grid; place-items: center; color: #c49a6c; }
   </style>

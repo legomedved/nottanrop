@@ -108,7 +108,7 @@ class Nottekart {
     const stage = el("div", { class: "nk-stage" }, r);
     this.svg = svg("svg", {
       class: "nk-globe", viewBox: `0 0 ${S} ${S}`, role: "img",
-      "aria-label": "Jordklode tegnet som et gammelt skoleatlas. Den viser hvor nøttene kommer fra, og ruten til Nesodden. Dra for å snu den, eller velg en nøtt i listen.",
+      "aria-label": "Jordklode tegnet som et gammelt skoleatlas. Den viser hvor nøttene kommer fra, og ruten hjem til Oslofjorden. Dra for å snu den, eller velg en nøtt i listen.",
     }, stage);
     const defs = svg("defs", {}, this.svg);
 
@@ -160,7 +160,7 @@ class Nottekart {
       return { n, g };
     });
 
-    // home: the siren from the logo, on the tip of Nesodden
+    // home: the siren from the logo, on the kitchen by the Oslofjord (Vinterbro)
     const rays = svg("g", { class: "nk-rays" }, this.gHome);
     [[-12, -10, -16, -15], [0, -14, 0, -21], [12, -10, 16, -15]].forEach(([x1, y1, x2, y2]) =>
       svg("line", { x1, y1, x2, y2 }, rays));
@@ -176,7 +176,7 @@ class Nottekart {
     this.cargo = svg("image", { width: 30, height: 30, x: 37, y: -38, class: "nk-cargo" }, this.gHero);
 
     const legend = el("p", { class: "nk-legend", "aria-hidden": "true" }, stage);
-    legend.innerHTML = `<span><i class="nk-lg-ours"></i>I glassene våre</span><span><i class="nk-lg-rest"></i>Resten av nøtteverden</span><span><i class="nk-lg-route"></i>Utrykning til Nesodden</span><span><i class="nk-lg-dist"></i>Bare avstand</span><span><i class="nk-lg-src"></i>Våre kommer herfra</span>`;
+    legend.innerHTML = `<span><i class="nk-lg-ours"></i>I glassene våre</span><span><i class="nk-lg-rest"></i>Resten av nøtteverden</span><span><i class="nk-lg-route"></i>Utrykning til Oslofjorden</span><span><i class="nk-lg-dist"></i>Bare avstand</span><span><i class="nk-lg-src"></i>Våre kommer herfra</span>`;
     el("p", { class: "nk-hint", "aria-hidden": "true" }, stage).textContent = "Dra for å snu kloden";
 
     // ---- panel -----------------------------------------------------------
@@ -381,10 +381,11 @@ class Nottekart {
     if (n.produkter.length) {
       row("I glassene våre", n.produkter.join(" · "));
       row("Våre kommer fra", n.vaare ? (n.vaare.notat ? `${n.vaare.land} (${n.vaare.notat.split(" (")[0]})` : n.vaare.land) : "Vi sjekker med leverandøren. Ærlighet tar litt tid.");
-      row(n.vaare ? "Reisen hit" : "Reisen hit (fra opphavet)", `${fmtKm(km)} km til Nesodden`);
+      row(n.vaare ? "Reisen hit" : "Reisen hit (fra opphavet)", `${fmtKm(km)} km til ${data.hjem.sted}`);
+      row("Hjemme", data.hjem.notat);
     } else {
       row("I glassene våre", "Nei. Med på kartet for allmenndannelsens skyld.");
-      row("Avstand", `${fmtKm(km)} km fra Nesodden`);
+      row("Avstand", `${fmtKm(km)} km fra ${data.hjem.sted}`);
     }
     const kilder = (n.kilder || []).filter((k) => k.apnet !== false);
     if (kilder.length) {
