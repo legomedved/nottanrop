@@ -432,19 +432,21 @@ class Nottekart {
     const target = this.rotation.slice(0, 2);
     const proxy = { k: 0 };
     this.idle = false;
+    const pose = () => {
+      if (this.userTook || this.dragging) return;
+      const e = 1 - Math.pow(1 - proxy.k, 2);
+      this.setRotation([target[0] - (1 - e) * 150, target[1] * e]);
+      this.idle = proxy.k >= 0.999;          // settled: the slow drift may take over
+    };
     gsap.timeline({
       scrollTrigger: { trigger: this.root, start: "top 90%", end: "top 30%", scrub: 0.8 },
     })
       .fromTo(stage, { scale: 0.86, rotate: -4 }, { scale: 1, rotate: 0, ease: "none" }, 0)
-      .to(proxy, {
-        k: 1, ease: "none",
-        onUpdate: () => {
-          if (this.userTook || this.dragging) return;
-          const e = 1 - Math.pow(1 - proxy.k, 2);
-          this.setRotation([target[0] - (1 - e) * 150, target[1] * e]);
-          this.idle = proxy.k >= 0.999;      // settled: the slow drift may take over
-        },
-      }, 0);
+      .to(proxy, { k: 1, ease: "none", onUpdate: () => pose() }, 0);
+    // GSAP only calls onUpdate once scrolling starts, so set the starting pose now (no jump later).
+    const tl = ST.getAll().find((t) => t.trigger === this.root);
+    proxy.k = tl ? tl.progress : 0;
+    pose();
     gsap.from(this.root.querySelectorAll(".nk-nav .nk-label, .nk-chip"), {
       y: 14, autoAlpha: 0, duration: 0.5, ease: "power2.out", stagger: 0.018,
       scrollTrigger: { trigger: this.root.querySelector(".nk-panel"), start: "top 85%", once: true },
