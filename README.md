@@ -27,7 +27,9 @@ cream paper → grainy light on the water only → flat olive land plate (offset
 | `src/nottekart.js` / `.css` | The globe | Claude / developer |
 | `assets/` | Art the globe loads (Helt nøtta, 27 KB) | — |
 | `dist/nottekart.min.js` | The finished file Webflow loads. **Generated, so don't edit it** | — |
-| `carousel/render.js` | Makes the Insta slides from the same data | Claude |
+| `carousel/render.js` | Carousel part 1, "Nøtt eller bedrager?" (`npm run carousel`) | Claude |
+| `carousel/del2.js` | Carousel part 2, "Hvor kommer våre fra?" (`npm run carousel:del2`). Shows only routes confirmed in `vaare` | Claude |
+| `carousel/lib.js` | Shared carousel parts: fonts, paper grain, globe snapshots, PNG export | Claude |
 | `carousel/art/` | Illustrations from Magnific (project "& nan - Nøttanrop") | — |
 | `carousel/out/` | The finished PNGs | — |
 | `demo/index.html` | Local test page that imitates the Webflow page | — |
@@ -55,8 +57,10 @@ packed in Czech Republic), cocoa (Brazil). The rest: read the country of origin 
    ```html
    <div data-nottekart data-nk-start="mandel"></div>
    ```
-Already done on the Nøtteverden page (page custom code, footer): it places the globe under the hero automatically,
-pinned to an exact commit. Requires the GitHub repository to be **public**. Manual setup, for other pages:
+Already done on the Nøtteverden page: in the Designer, the "Kartet" section holds a div named
+**"Nøttekart (globus)"** with the attributes below; the old dotted map next to it is hidden ("Gammelt prikkekart (skjult)").
+The page's custom code (footer) loads the script, pinned to an exact commit. To update: change the commit hash there and publish.
+Each card links to its entry in the Nøtteverden CMS (`side` in `src/notter.json`). For other pages:
 
 2. Page settings → *Before </body> tag*:
    ```html
