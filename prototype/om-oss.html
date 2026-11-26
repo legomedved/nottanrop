@@ -71,7 +71,7 @@ a{color:inherit}
 .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
 .moon{position:relative;justify-self:center;width:min(100%,430px);aspect-ratio:1}
 .moon__disc{position:absolute;inset:0;border-radius:50%;overflow:hidden;border:3px solid var(--ink);background:var(--almond);transform:rotate(var(--drum,0deg));box-shadow:0 0 0 10px color-mix(in srgb,var(--orange-light) 22%,transparent),0 0 90px 20px color-mix(in srgb,var(--orange-light) 35%,transparent)}
-.moon__disc img{width:100%;height:100%;object-fit:cover;filter:url(#riso);transform:scale(1.08)}
+.moon__disc img{width:100%;height:100%;object-fit:cover;filter:url(#riso-skumring);transform:scale(1.08)}
 .moon__disc::after{content:"";position:absolute;inset:0;background:var(--halftone);opacity:.22;mix-blend-mode:multiply}
 .moon__plate{position:absolute;inset:0;border-radius:50%;background:var(--orange);transform:translate(7px,5px);z-index:-1;opacity:.9}
 .moon__cap{position:absolute;left:50%;bottom:-2.4rem;translate:-50% 0;white-space:nowrap;opacity:.8}
@@ -143,7 +143,8 @@ details.long summary{cursor:pointer;font:700 .8rem/1.2 var(--mono);text-transfor
 .ph button:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
 .ph button::before{content:"";position:absolute;inset:0;background:var(--orange);transform:translate(4px,3px);z-index:-1;border-radius:3px}
 .ph img{width:100%;height:100%;object-fit:cover;transition:filter .5s}
-.ph.is-riso img{filter:url(#riso)}
+.ph.is-riso img{filter:url(#riso-brun)}
+.ph.ink-fjord img{filter:url(#riso-fjord)}.ph.ink-marked img{filter:url(#riso-marked)}.ph.ink-skumring img{filter:url(#riso-skumring)}.ph.ink-skog img{filter:url(#riso-skog)}
 .ph.is-riso button::after{content:"";position:absolute;inset:0;background:var(--halftone);opacity:.18;mix-blend-mode:multiply;transition:opacity .5s;pointer-events:none}
 .ph.is-riso button:hover img,.ph.is-riso button:focus-visible img{filter:none}
 .ph.is-riso button:hover::after,.ph.is-riso button:focus-visible::after{opacity:0}
@@ -167,7 +168,7 @@ details.long summary{cursor:pointer;font:700 .8rem/1.2 var(--mono);text-transfor
 .label.is-flipped .label__inner{transform:rotateY(180deg)}
 .label__face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--paper);border:3px solid var(--orange);outline:2px solid var(--ink);outline-offset:3px;border-radius:14px;overflow:hidden}
 .label__back{position:absolute;inset:0;transform:rotateY(180deg);display:grid;background:var(--almond)}
-.label__back img{width:100%;height:100%;object-fit:cover;filter:url(#riso)}
+.label__back img{width:100%;height:100%;object-fit:cover;filter:url(#riso-fjord)}
 .label__band{height:2.6rem;background:var(--band);border-bottom:2px solid var(--ink);position:relative}
 .label__band::after{content:"";position:absolute;inset:0;background:var(--halftone);opacity:.18}
 .label__body{padding:1.1rem 1.2rem 1.3rem}
@@ -255,14 +256,52 @@ dialog.lb img{max-height:78vh;width:auto;margin:0 auto}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <!-- one-colour riso: black maps to brown-darkest ink, white maps to almond paper -->
-  <filter id="riso" color-interpolation-filters="sRGB">
-    <feColorMatrix type="matrix" values=".3 .55 .15 0 0  .3 .55 .15 0 0  .3 .55 .15 0 0  0 0 0 1 0"/>
-    <feComponentTransfer>
-      <feFuncR type="table" tableValues="0.106 0.56 0.88 0.961"/>
-      <feFuncG type="table" tableValues="0.067 0.37 0.75 0.878"/>
-      <feFuncB type="table" tableValues="0.031 0.2 0.6 0.776"/>
-    </feComponentTransfer>
+  <!-- two-plate riso in brand inks: a dark plate for shadows, a bright plate for midtones,
+       the bright plate printed 2.5 px out of register -->
+  <filter id="riso-brun" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+    <feColorMatrix in="SourceGraphic" type="matrix" values=".3 .55 .15 0 0  .3 .55 .15 0 0  .3 .55 .15 0 0  0 0 0 1 0" result="L"/>
+    <feComponentTransfer in="L" result="A"><feFuncR type="table" tableValues="0.106 0.374 0.750 1.000 1.000 1.000"/><feFuncG type="table" tableValues="0.067 0.347 0.739 1.000 1.000 1.000"/><feFuncB type="table" tableValues="0.031 0.322 0.729 1.000 1.000 1.000"/></feComponentTransfer>
+    <feComponentTransfer in="L" result="B0"><feFuncR type="table" tableValues="1.000 1.000 1.000 1.000 1.000 1.000"/><feFuncG type="table" tableValues="0.631 0.631 0.676 0.797 0.934 1.000"/><feFuncB type="table" tableValues="0.412 0.412 0.482 0.676 0.894 1.000"/></feComponentTransfer>
+    <feOffset in="B0" dx="2.5" dy="1.5" result="B"/>
+    <feBlend in="A" in2="B" mode="multiply" result="AB"/>
+    <feFlood flood-color="#FBF7F3" result="P"/>
+    <feBlend in="AB" in2="P" mode="multiply"/>
+  </filter>
+  <filter id="riso-fjord" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+    <feColorMatrix in="SourceGraphic" type="matrix" values=".3 .55 .15 0 0  .3 .55 .15 0 0  .3 .55 .15 0 0  0 0 0 1 0" result="L"/>
+    <feComponentTransfer in="L" result="A"><feFuncR type="table" tableValues="0.224 0.456 0.783 1.000 1.000 1.000"/><feFuncG type="table" tableValues="0.271 0.489 0.796 1.000 1.000 1.000"/><feFuncB type="table" tableValues="0.255 0.478 0.791 1.000 1.000 1.000"/></feComponentTransfer>
+    <feComponentTransfer in="L" result="B0"><feFuncR type="table" tableValues="0.596 0.596 0.645 0.778 0.927 1.000"/><feFuncG type="table" tableValues="0.722 0.722 0.755 0.847 0.950 1.000"/><feFuncB type="table" tableValues="0.686 0.686 0.724 0.827 0.944 1.000"/></feComponentTransfer>
+    <feOffset in="B0" dx="2.5" dy="1.5" result="B"/>
+    <feBlend in="A" in2="B" mode="multiply" result="AB"/>
+    <feFlood flood-color="#FBF7F3" result="P"/>
+    <feBlend in="AB" in2="P" mode="multiply"/>
+  </filter>
+  <filter id="riso-marked" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+    <feColorMatrix in="SourceGraphic" type="matrix" values=".3 .55 .15 0 0  .3 .55 .15 0 0  .3 .55 .15 0 0  0 0 0 1 0" result="L"/>
+    <feComponentTransfer in="L" result="A"><feFuncR type="table" tableValues="0.106 0.374 0.750 1.000 1.000 1.000"/><feFuncG type="table" tableValues="0.067 0.347 0.739 1.000 1.000 1.000"/><feFuncB type="table" tableValues="0.031 0.322 0.729 1.000 1.000 1.000"/></feComponentTransfer>
+    <feComponentTransfer in="L" result="B0"><feFuncR type="table" tableValues="0.886 0.886 0.900 0.937 0.980 1.000"/><feFuncG type="table" tableValues="0.235 0.235 0.327 0.579 0.862 1.000"/><feFuncB type="table" tableValues="0.180 0.180 0.279 0.549 0.852 1.000"/></feComponentTransfer>
+    <feOffset in="B0" dx="2.5" dy="1.5" result="B"/>
+    <feBlend in="A" in2="B" mode="multiply" result="AB"/>
+    <feFlood flood-color="#FBF7F3" result="P"/>
+    <feBlend in="AB" in2="P" mode="multiply"/>
+  </filter>
+  <filter id="riso-skumring" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+    <feColorMatrix in="SourceGraphic" type="matrix" values=".3 .55 .15 0 0  .3 .55 .15 0 0  .3 .55 .15 0 0  0 0 0 1 0" result="L"/>
+    <feComponentTransfer in="L" result="A"><feFuncR type="table" tableValues="0.478 0.635 0.854 1.000 1.000 1.000"/><feFuncG type="table" tableValues="0.180 0.426 0.771 1.000 1.000 1.000"/><feFuncB type="table" tableValues="0.408 0.585 0.834 1.000 1.000 1.000"/></feComponentTransfer>
+    <feComponentTransfer in="L" result="B0"><feFuncR type="table" tableValues="1.000 1.000 1.000 1.000 1.000 1.000"/><feFuncG type="table" tableValues="0.631 0.631 0.676 0.797 0.934 1.000"/><feFuncB type="table" tableValues="0.412 0.412 0.482 0.676 0.894 1.000"/></feComponentTransfer>
+    <feOffset in="B0" dx="2.5" dy="1.5" result="B"/>
+    <feBlend in="A" in2="B" mode="multiply" result="AB"/>
+    <feFlood flood-color="#FBF7F3" result="P"/>
+    <feBlend in="AB" in2="P" mode="multiply"/>
+  </filter>
+  <filter id="riso-skog" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+    <feColorMatrix in="SourceGraphic" type="matrix" values=".3 .55 .15 0 0  .3 .55 .15 0 0  .3 .55 .15 0 0  0 0 0 1 0" result="L"/>
+    <feComponentTransfer in="L" result="A"><feFuncR type="table" tableValues="0.200 0.440 0.776 1.000 1.000 1.000"/><feFuncG type="table" tableValues="0.255 0.478 0.791 1.000 1.000 1.000"/><feFuncB type="table" tableValues="0.078 0.355 0.742 1.000 1.000 1.000"/></feComponentTransfer>
+    <feComponentTransfer in="L" result="B0"><feFuncR type="table" tableValues="0.647 0.647 0.689 0.806 0.936 1.000"/><feFuncG type="table" tableValues="0.745 0.745 0.776 0.860 0.954 1.000"/><feFuncB type="table" tableValues="0.439 0.439 0.507 0.692 0.899 1.000"/></feComponentTransfer>
+    <feOffset in="B0" dx="2.5" dy="1.5" result="B"/>
+    <feBlend in="A" in2="B" mode="multiply" result="AB"/>
+    <feFlood flood-color="#FBF7F3" result="P"/>
+    <feBlend in="AB" in2="P" mode="multiply"/>
   </filter>
 </svg>
 
@@ -419,9 +458,9 @@ dialog.lb img{max-height:78vh;width:auto;margin:0 auto}
           <h3>Det er ikke vi som bestemmer her</h3>
           <p>Det er melangeren. En trommel av stål med granittbunn snurrer rundt, mens to granittsteiner holdes på plass og ruller mot bunnen. Time etter time. Friksjonen varmer massen, oljen i nøttene slipper løs, og det som var hele nøtter blir smør. Trykk på maskinen og hils på.</p>
           <div class="photos">
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-01-for-start-1.webp" alt="Melangeren i gang, massen har begynt å bli blank" loading="lazy"></button><figcaption>Melangeren i gang</figcaption></figure>
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-01-for-start-2.webp" alt="Steinene ruller, massen er fortsatt grov" loading="lazy"></button><figcaption>Steinene ruller</figcaption></figure>
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-01-for-start-3.webp" alt="Mandelmasse på vei mot smør" loading="lazy"></button><figcaption>På vei mot smør</figcaption></figure>
+            <figure class="ph is-riso ink-brun"><button type="button"><img src="img/omoss-01-for-start-1.webp" alt="Melangeren i gang, massen har begynt å bli blank" loading="lazy"></button><figcaption>Melangeren i gang</figcaption></figure>
+            <figure class="ph is-riso ink-fjord"><button type="button"><img src="img/omoss-01-for-start-2.webp" alt="Steinene ruller, massen er fortsatt grov" loading="lazy"></button><figcaption>Steinene ruller</figcaption></figure>
+            <figure class="ph is-riso ink-brun"><button type="button"><img src="img/omoss-01-for-start-3.webp" alt="Mandelmasse på vei mot smør" loading="lazy"></button><figcaption>På vei mot smør</figcaption></figure>
           </div>
         </li>
 
@@ -464,8 +503,8 @@ dialog.lb img{max-height:78vh;width:auto;margin:0 auto}
           <h3>Jonas</h3>
           <p>Første kunde het Jonas. Han fikk 20&nbsp;% rabatt på neste kjøp. Jonas, hvis du leser dette: den gjelder fortsatt. Vi venter.</p>
           <div class="photos">
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-04-jonas-1.webp" alt="Markedsdag i Moss, mars 2026" loading="lazy"></button><figcaption>Markedsdag i Moss, mars 2026</figcaption></figure>
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-04-jonas-2.webp" alt="Standen ved bilen, glassene på bordet" loading="lazy"></button><figcaption>Standen ved bilen</figcaption></figure>
+            <figure class="ph is-riso ink-marked"><button type="button"><img src="img/omoss-04-jonas-1.webp" alt="Markedsdag i Moss, mars 2026" loading="lazy"></button><figcaption>Markedsdag i Moss, mars 2026</figcaption></figure>
+            <figure class="ph is-riso ink-fjord"><button type="button"><img src="img/omoss-04-jonas-2.webp" alt="Standen ved bilen, glassene på bordet" loading="lazy"></button><figcaption>Standen ved bilen</figcaption></figure>
           </div>
         </li>
 
@@ -474,8 +513,8 @@ dialog.lb img{max-height:78vh;width:auto;margin:0 auto}
           <h3>Nye vinduer, samme nøtter</h3>
           <p>Så flyttet vi, og ideen ble med til Hallangspollen. Nøttene klaget ikke.</p>
           <div class="photos">
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-05-hallangspollen-1.webp" alt="Utsikten over Hallangspollen" loading="lazy"></button><figcaption>Utsikten</figcaption></figure>
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-05-hallangspollen-2.webp" alt="Stua i Hallangspollen" loading="lazy"></button><figcaption>Stua</figcaption></figure>
+            <figure class="ph is-riso ink-fjord"><button type="button"><img src="img/omoss-05-hallangspollen-1.webp" alt="Utsikten over Hallangspollen" loading="lazy"></button><figcaption>Utsikten</figcaption></figure>
+            <figure class="ph is-riso ink-skog"><button type="button"><img src="img/omoss-05-hallangspollen-2.webp" alt="Stua i Hallangspollen" loading="lazy"></button><figcaption>Stua</figcaption></figure>
           </div>
         </li>
 
@@ -485,10 +524,10 @@ dialog.lb img{max-height:78vh;width:auto;margin:0 auto}
           <p>Ingen reklame. Bare et bord, en skje og smaksprøver. På FLOKE, på søndagsmarkeder, i gårdsbutikker. Folk smakte, kjøpte, kom tilbake og tok med en venn.</p>
           <div class="count"><b data-count="5000">5&nbsp;000</b><span>glass har funnet veien hjem til noen ved lansering</span></div>
           <div class="photos">
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-06-hand-til-hand-1.webp" alt="Smaksprøver og gaveeske" loading="lazy"></button><figcaption>Smaksprøver</figcaption></figure>
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-06-hand-til-hand-2.webp" alt="Folk ved standen i Moss" loading="lazy"></button><figcaption>Folk ved standen</figcaption></figure>
+            <figure class="ph is-riso ink-marked"><button type="button"><img src="img/omoss-06-hand-til-hand-1.webp" alt="Smaksprøver og gaveeske" loading="lazy"></button><figcaption>Smaksprøver</figcaption></figure>
+            <figure class="ph is-riso ink-fjord"><button type="button"><img src="img/omoss-06-hand-til-hand-2.webp" alt="Folk ved standen i Moss" loading="lazy"></button><figcaption>Folk ved standen</figcaption></figure>
             <figure class="ph"><button type="button"><img src="img/omoss-06-hand-til-hand-3.webp" alt="Sunntella i vårsola" loading="lazy"></button><figcaption>Sunntella i vårsola</figcaption></figure>
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-06-hand-til-hand-4.webp" alt="Glass klare til nye hender" loading="lazy"></button><figcaption>Klare til nye hender</figcaption></figure>
+            <figure class="ph is-riso ink-skumring"><button type="button"><img src="img/omoss-06-hand-til-hand-4.webp" alt="Glass klare til nye hender" loading="lazy"></button><figcaption>Klare til nye hender</figcaption></figure>
           </div>
         </li>
 
@@ -497,9 +536,9 @@ dialog.lb img{max-height:78vh;width:auto;margin:0 auto}
           <h3>Nattskiftet</h3>
           <p>Fager Bakst lånte oss bakeriet om natta. Vi malte mens Fagerstrand sov, vasket ut og var borte før fem, når bakerne kom. Vi kaller dem medskapere. Det er de.</p>
           <div class="photos">
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-07-nattskiftet-1.webp" alt="Fager Bakst, litt over to om natta" loading="lazy"></button><figcaption>Litt over to om natta</figcaption></figure>
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-07-nattskiftet-2.webp" alt="Glass med lokk, klare før morgenen" loading="lazy"></button><figcaption>Klare før morgenen</figcaption></figure>
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-07-nattskiftet-3.webp" alt="Tralla med råvarer og glass" loading="lazy"></button><figcaption>Tralla</figcaption></figure>
+            <figure class="ph is-riso ink-skumring"><button type="button"><img src="img/omoss-07-nattskiftet-1.webp" alt="Fager Bakst, litt over to om natta" loading="lazy"></button><figcaption>Litt over to om natta</figcaption></figure>
+            <figure class="ph is-riso ink-fjord"><button type="button"><img src="img/omoss-07-nattskiftet-2.webp" alt="Glass med lokk, klare før morgenen" loading="lazy"></button><figcaption>Klare før morgenen</figcaption></figure>
+            <figure class="ph is-riso ink-skumring"><button type="button"><img src="img/omoss-07-nattskiftet-3.webp" alt="Tralla med råvarer og glass" loading="lazy"></button><figcaption>Tralla</figcaption></figure>
           </div>
         </li>
 
@@ -532,7 +571,7 @@ dialog.lb img{max-height:78vh;width:auto;margin:0 auto}
           <a class="btn" href="/forhandlere">Se alle forhandlere <span aria-hidden="true">→</span></a>
           <div class="photos">
             <figure class="ph"><button type="button"><img src="img/omoss-10-ferdig-3.webp" alt="Alle tre på bordet" loading="lazy"></button><figcaption>Alle tre på bordet</figcaption></figure>
-            <figure class="ph is-riso"><button type="button"><img src="img/omoss-10-ferdig-1.webp" alt="Neste parti er allerede i trommelen" loading="lazy"></button><figcaption>Neste parti</figcaption></figure>
+            <figure class="ph is-riso ink-skumring"><button type="button"><img src="img/omoss-10-ferdig-1.webp" alt="Neste parti er allerede i trommelen" loading="lazy"></button><figcaption>Neste parti</figcaption></figure>
           </div>
         </li>
       </ol>
@@ -688,7 +727,7 @@ dialog.lb img{max-height:78vh;width:auto;margin:0 auto}
     <ol>
       <li>Brødteksten er hentet ordrett fra dagens Om oss-side. I hero er bare rekkefølgen endret, så den sterkeste linjen er størst. Nytt er bare korte merkelapper: navn på stadiene i melangeren, kortere bildetekster og én overlinje («Ett parti · 24 timer · Oslofjorden»).</li>
       <li>Himmelen følger klokka: kvelden før (samme skumring som forsiden), natt ved 00:00, morgen ved 06:00, dag, skumring ved 18:00, natt igjen ved 24:00.</li>
-      <li>Steder og prosess trykkes som riso (brun-svart på mandel). Produktbilder står i ekte farge, som kodeksen sier. Hold musa over et riso-bilde for å se fargene.</li>
+      <li>Steder og prosess trykkes som riso med to plater i merkevarens farger: brun + lys oransje, teal + aqua (fjorden), svart + rødt (markedene), plomme + lys oransje (natt) og mørk grønn + matchagrønn (ute). Den lyse platen ligger 2,5 px skjevt. Produktbilder står i ekte farge, som kodeksen sier. Hold musa over et riso-bilde for å se fargene.</li>
       <li>Melangeren er tegnet på nytt i trykkstabelen: flate farger, blekk, halvtone på skyggesiden og en fargeplate som ligger 3 px skjevt.</li>
       <li>Telefonnummeret er 929 70 305 på siden, men 980 48 585 i merkevareguiden. Ett av dem må rettes.</li>
       <li>Helt Nøtta er brukt én gang, i nød-seksjonen. Om oss står ikke på listen over hans faste steder i kodeksen, så dette må dere bestemme.</li>
