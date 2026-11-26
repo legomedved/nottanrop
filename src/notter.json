@@ -1213,7 +1213,9 @@
         "region": "Central Valley (antatt)"
       },
       "farge": "orange",
-      "tekst": "Mandlene i Mandelykke kommer fra California."
+      "tekst": "Mandlene i Mandelykke kommer fra California.",
+      "overskrift": "Ville mandler er giftige. Den søte kom trolig av én mutasjon.",
+      "overskrift_kilde": "notter.mandel.fakta"
     },
     {
       "id": "hasselnott",
@@ -1228,7 +1230,9 @@
         "region": "Svartehavskysten (antatt)"
       },
       "farge": "red",
-      "tekst": "Hasselnøttene i Sunntella kommer fra Tyrkia. De vokser vilt i Norge også, men Tyrkia gjør jobben."
+      "tekst": "Hasselnøttene i Sunntella kommer fra Tyrkia. De vokser vilt i Norge også, men Tyrkia gjør jobben.",
+      "overskrift": "Den eneste ekte nøtta i glassene våre.",
+      "overskrift_kilde": "notter.*.stempel"
     },
     {
       "id": "kakao",
@@ -1242,7 +1246,9 @@
         "lon": -39.2
       },
       "farge": "red",
-      "tekst": "Kakaopulveret i Sunntella er dyrket i Brasil."
+      "tekst": "Kakaopulveret i Sunntella er dyrket i Brasil.",
+      "overskrift": "Hos aztekerne var kakaobønner penger. Hundre bønner kjøpte en kalkunhøne.",
+      "overskrift_kilde": "notter.kakao.fakta"
     },
     {
       "id": "rorsukker",
@@ -1261,7 +1267,9 @@
         "region": "São Paulo (antatt)"
       },
       "farge": "camel",
-      "tekst": "Rørsukkeret kommer fra Brasil, samme land som kakaoen. I Sunntella møtes de igjen."
+      "tekst": "Rørsukkeret kommer fra Brasil, samme land som kakaoen. I Sunntella møtes de igjen.",
+      "overskrift": "Verdens største avling i tonn. Brasil dyrker nesten 40 prosent.",
+      "overskrift_kilde": "https://en.wikipedia.org/wiki/Sugarcane (38 % i 2022)"
     },
     {
       "id": "cashew",
@@ -1278,7 +1286,9 @@
         "region": "Sør-India (antatt)"
       },
       "farge": "green",
-      "tekst": "Portugiserne tok cashewen fra Brasil til India på 1500-tallet. Derfra kommer vår."
+      "tekst": "Portugiserne tok cashewen fra Brasil til India på 1500-tallet. Derfra kommer vår.",
+      "overskrift": "I familie med giftsumak. Derfor selges den nesten aldri med skall.",
+      "overskrift_kilde": "notter.cashew.fakta/historie"
     },
     {
       "id": "kokos",
@@ -1295,7 +1305,9 @@
         "region": "kokostriangelet (antatt)"
       },
       "farge": "green",
-      "tekst": "Kokosen i Cashewdrøm kommer fra Sri Lanka."
+      "tekst": "Kokosen i Cashewdrøm kommer fra Sri Lanka.",
+      "overskrift": "Botanisk en steinfrukt, i samme kategori som oliven.",
+      "overskrift_kilde": "notter.kokos.botanikk"
     },
     {
       "id": "matcha",
@@ -1309,7 +1321,9 @@
         "lon": 135.8
       },
       "farge": "matcha",
-      "tekst": "Grønne teblader fra Japan, malt til pulver."
+      "tekst": "Grønne teblader fra Japan, malt til pulver.",
+      "overskrift": "Kom til Japan i 1191, med zen-munken Eisai.",
+      "overskrift_kilde": "notter.matcha.historie"
     },
     {
       "id": "jordbaer",
@@ -1324,7 +1338,9 @@
         "lon": 19.7
       },
       "farge": "jordbaer",
-      "tekst": "Dyrket i Slovakia. Pakket i Tsjekkia. Smurt på brød ved Oslofjorden."
+      "tekst": "Dyrket i Slovakia. Pakket i Tsjekkia. Smurt på brød ved Oslofjorden.",
+      "overskrift": "Prikkene utenpå er de egentlige fruktene.",
+      "overskrift_kilde": "notter.jordbaer.botanikk"
     },
     {
       "id": "pistasj",
@@ -1339,7 +1355,9 @@
         "region": "Gaziantep (antatt)"
       },
       "farge": "pistasj",
-      "tekst": "Pistasjene i de første glassene av pistasjkremen kommer fra Tyrkia."
+      "tekst": "Pistasjene i de første glassene av pistasjkremen kommer fra Tyrkia.",
+      "overskrift": "I store mengder kan pistasj varme seg selv opp. I verste fall tar den fyr.",
+      "overskrift_kilde": "notter.pistasj.fakta"
     },
     {
       "id": "kakaosmor",
@@ -1354,7 +1372,9 @@
         "region": "San Martín (antatt)"
       },
       "farge": "brown",
-      "tekst": "Kakaosmøret i pistasjkremen kommer fra Peru."
+      "tekst": "Kakaosmøret i pistasjkremen kommer fra Peru.",
+      "overskrift": "Smelter ved 34–38 grader. Rett under kroppstemperatur.",
+      "overskrift_kilde": "https://en.wikipedia.org/wiki/Cocoa_butter"
     },
     {
       "id": "olivenolje",
@@ -1369,7 +1389,9 @@
       },
       "farge": "pistasj",
       "tekst": "Økologisk extra virgin olivenolje fra Hellas.",
-      "kilde": "Norganic-ordre 30-21407: «Olivenolje, extra virgin, økologisk, Hellas»"
+      "kilde": "Norganic-ordre 30-21407: «Olivenolje, extra virgin, økologisk, Hellas»",
+      "overskrift": "Extra virgin: kaldt og mekanisk presset, uten løsemidler.",
+      "overskrift_kilde": "https://en.wikipedia.org/wiki/Olive_oil"
     },
     {
       "id": "salt",
@@ -1389,7 +1411,9 @@
         "region": "Trapani, Sicilia (antatt)"
       },
       "farge": "camel",
-      "tekst": "Havsaltet kommer fra Italia. Én klype, i alle seks glass."
+      "tekst": "Havsaltet kommer fra Italia. Én klype, i alle seks glass.",
+      "overskrift": "Havsalt er sjøvann minus vannet.",
+      "overskrift_kilde": "https://en.wikipedia.org/wiki/Sea_salt"
     }
   ]
 }
