@@ -462,14 +462,18 @@ class Nottekart {
     const tl = ST.getAll().find((t) => t.trigger === this.root);
     proxy.k = tl ? tl.progress : 0;
     pose();
-    gsap.from(this.root.querySelectorAll(".nk-nav .nk-label, .nk-chip"), {
-      y: 14, autoAlpha: 0, duration: 0.5, ease: "power2.out", stagger: 0.018,
+    // Opacity only (never visibility): hidden chips would drop out of keyboard navigation.
+    const enter = [];
+    enter.push(gsap.from(this.root.querySelectorAll(".nk-nav .nk-label, .nk-chip"), {
+      y: 14, opacity: 0, duration: 0.5, ease: "power2.out", stagger: 0.018,
       scrollTrigger: { trigger: this.root.querySelector(".nk-panel"), start: "top 85%", once: true },
-    });
-    gsap.from(this.card, {
-      y: 28, autoAlpha: 0, duration: 0.7, ease: "power3.out",
+    }));
+    enter.push(gsap.from(this.card, {
+      y: 28, opacity: 0, duration: 0.7, ease: "power3.out",
       scrollTrigger: { trigger: this.card, start: "top 90%", once: true },
-    });
+    }));
+    // Keyboard users who tab in before scrolling see everything at once.
+    this.root.addEventListener("focusin", () => enter.forEach((t) => t.progress(1)), { once: true });
   }
 }
 
