@@ -144,3 +144,10 @@
   .verden-samarbeid .section-enkel_cta{padding-right:clamp(1.4rem,4vw,2rem);padding-bottom:clamp(11rem,52vw,16rem)}
   .nh-call__ekorn{width:min(52%,220px)}
 }
+
+/* ---------- wins over the site's cream-hero wash (.page_wrapper > section:first-of-type) and label fade ---------- */
+.page_wrapper > section.nh-hero.nh-fj{background-color:var(--aqua-d)!important;background-image:linear-gradient(180deg,var(--aqua) 0%,#ADD0C6 55%,var(--aqua-d) 100%)!important}
+.page_wrapper > section.nh-hero.nh-sa{background-color:#E5C9A6!important;background-image:none!important}
+.page_wrapper > section.nh-hero.nh-nv{background-color:#3E5B57!important;background-image:none!important}
+.verden-samarbeid .section-enkel_card .section-enkel_label{opacity:1;color:#FFFCFB!important}
+.verden-samarbeid .section-enkel_card:nth-child(3) .section-enkel_label{color:#1B1108!important}
