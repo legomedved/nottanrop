@@ -25,7 +25,12 @@
         "Mandelykke",
         "Mango"
       ],
-      "vaare": null,
+      "vaare": {
+        "land": "California, USA",
+        "lat": 37.0,
+        "lon": -120.5,
+        "region": "Central Valley (antatt)"
+      },
       "verifisert": true,
       "kilder": [
         {
@@ -87,7 +92,12 @@
       "produkter": [
         "Sunntella"
       ],
-      "vaare": null,
+      "vaare": {
+        "land": "Tyrkia",
+        "lat": 40.9,
+        "lon": 38.4,
+        "region": "Svartehavskysten (antatt)"
+      },
       "verifisert": true,
       "kilder": [
         {
@@ -225,7 +235,12 @@
       "produkter": [
         "Cashewdrøm"
       ],
-      "vaare": null,
+      "vaare": {
+        "land": "Sri Lanka",
+        "lat": 7.5,
+        "lon": 80.0,
+        "region": "kokostriangelet (antatt)"
+      },
       "verifisert": true,
       "kilder": [
         {
@@ -1181,9 +1196,14 @@
       "i": [
         "Mandelykke"
       ],
-      "vaare": null,
+      "vaare": {
+        "land": "California, USA",
+        "lat": 37.0,
+        "lon": -120.5,
+        "region": "Central Valley (antatt)"
+      },
       "farge": "orange",
-      "notat": "Ny leverandør. Vi tegner ruten når databladet ligger på bordet."
+      "tekst": "Mandlene i Mandelykke kommer fra California."
     },
     {
       "id": "hasselnott",
@@ -1191,9 +1211,14 @@
       "i": [
         "Sunntella"
       ],
-      "vaare": null,
+      "vaare": {
+        "land": "Tyrkia",
+        "lat": 40.9,
+        "lon": 38.4,
+        "region": "Svartehavskysten (antatt)"
+      },
       "farge": "red",
-      "notat": "Ny leverandør. Vi tegner ruten når databladet ligger på bordet."
+      "tekst": "Hasselnøttene i Sunntella kommer fra Tyrkia. De vokser vilt i Norge også, men Tyrkia gjør jobben."
     },
     {
       "id": "kakao",
@@ -1219,9 +1244,14 @@
         "Cashewdrøm med jordbær",
         "Pistasjkrem"
       ],
-      "vaare": null,
+      "vaare": {
+        "land": "Brasil",
+        "lat": -21.5,
+        "lon": -48.5,
+        "region": "São Paulo (antatt)"
+      },
       "farge": "camel",
-      "notat": "Vi tegner ruten når databladet ligger på bordet."
+      "tekst": "Rørsukkeret kommer fra Brasil, samme land som kakaoen. I Sunntella møtes de igjen."
     },
     {
       "id": "cashew",
@@ -1233,7 +1263,7 @@
       ],
       "vaare": null,
       "farge": "green",
-      "notat": "Ny leverandør. Vi tegner ruten når databladet ligger på bordet."
+      "notat": "Opprinnelsesland under avklaring. Vi tegner ruten når databladet ligger på bordet."
     },
     {
       "id": "kokos",
@@ -1243,9 +1273,14 @@
         "Cashewdrøm med matcha",
         "Cashewdrøm med jordbær"
       ],
-      "vaare": null,
+      "vaare": {
+        "land": "Sri Lanka",
+        "lat": 7.5,
+        "lon": 80.0,
+        "region": "kokostriangelet (antatt)"
+      },
       "farge": "green",
-      "notat": "Ny leverandør. Vi tegner ruten når databladet ligger på bordet."
+      "tekst": "Kokosen i Cashewdrøm kommer fra Sri Lanka."
     },
     {
       "id": "matcha",
@@ -1284,7 +1319,7 @@
       ],
       "vaare": null,
       "farge": "pistasj",
-      "notat": "Manna, via Norganic. Opprinnelsesland etterspurt."
+      "notat": "Manna, via Norganic. Vi har spurt om opprinnelseslandet."
     },
     {
       "id": "kakaosmor",
@@ -1292,9 +1327,14 @@
       "i": [
         "Pistasjkrem"
       ],
-      "vaare": null,
+      "vaare": {
+        "land": "Peru",
+        "lat": -6.5,
+        "lon": -76.4,
+        "region": "San Martín (antatt)"
+      },
       "farge": "brown",
-      "notat": "Via Norganic. Opprinnelsesland etterspurt."
+      "tekst": "Kakaosmøret i pistasjkremen kommer fra Peru."
     },
     {
       "id": "olivenolje",

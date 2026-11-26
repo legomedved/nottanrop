@@ -49,7 +49,7 @@ const chips = (list) => list.map((p) => `<span class="jar" style="--c:${PRODUKT[
         <div class="visual"><img class="globe" src="${routes[x.id]}" alt=""></div>
         <div class="card">
           <p class="mono route-line">${steg.map((s) => `<span>${s}</span>`).join('<i aria-hidden="true">→</i>')}</p>
-          <div class="row"><h2>${x.navn}</h2><p class="km"><b>${km(x.vaare)}</b> km</p></div>
+          <div class="row"><h2 class="${x.navn.length > 8 ? "long" : ""}">${x.navn}</h2><p class="km"><b>${km(x.vaare)}</b> km</p></div>
           <p class="lead small">${x.tekst}</p>
           ${finnes}
         </div></section>`);
@@ -92,7 +92,8 @@ const chips = (list) => list.map((p) => `<span class="jar" style="--c:${PRODUKT[
   .route-line{margin:0 0 16px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
   .route-line i{font-style:normal;color:var(--accent)}
   .pending .route-line{opacity:.7}
-  .row{display:flex;justify-content:space-between;align-items:baseline;gap:20px}
+  .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 20px}
+  h2.long{font-size:84px}
   h2{font:600 104px/.95 var(--display);margin:0;color:var(--brown)}
   .km{margin:0;font:500 30px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
   .km b{font:600 72px/1 var(--display);letter-spacing:0;text-transform:none}
