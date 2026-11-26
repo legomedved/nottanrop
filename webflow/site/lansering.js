@@ -17,6 +17,7 @@
  * 5. Typography: every H1 in sentence case; the home hero line gets weight and a plum halo.
  * 6. Language: English CMS dates become "26. november 2026"; Kontakt subject placeholder "Emne".
  * 7. Unwritten copy: rows still reading "[… skriver selv]" are hidden until the text is written.
+ * 8. Icons: swaps the template donut favicon/touch icon for Helt Nøtta until Site settings has them.
  *
  * Debug: add ?kontrast to a URL to log every change in the console.
  */
@@ -164,6 +165,16 @@
       row.classList.add('nan-skjult');
     });
   }
+
+  /* ---------- 8 · icons (stopgap until Site settings → General has the new favicon/webclip) ---------- */
+  var ICON = 'https://cdn.jsdelivr.net/gh/legomedved/nottanrop@db9a73c9baaed1ae2cf6377529483a3cd498fda1/webflow/site/ikon/';
+  function icons() {
+    var fav = d.querySelector('link[rel="shortcut icon"], link[rel="icon"]');
+    if (fav && /favicon-2\.png/.test(fav.href)) { fav.href = ICON + 'favicon-32.png'; fav.type = 'image/png'; }
+    var tch = d.querySelector('link[rel="apple-touch-icon"]');
+    if (tch && /_favicon\.png/.test(tch.href)) tch.href = ICON + 'apple-touch-180.png';
+  }
+  icons();
 
   function run() {
     [language, unwritten, worlds, accents, fills, floor].forEach(function (f) { try { f(); } catch (e) { if (DEBUG) console.warn('lansering', f.name, e); } });
