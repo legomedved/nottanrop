@@ -96,3 +96,13 @@ In Webflow: page **«Om oss (ny)»** (`/om-oss-ny`, draft). The text and photos 
 The stylesheet and script load from jsDelivr pinned to a commit (embed «Om oss – stil (jsDelivr)» and the page footer code).
 To change the look: edit `prototype/om-oss.html`, run `python3 webflow/om-oss/build.py`, commit, and swap the commit hash in both places.
 The melanger, riso colours and sky are drawn by the script, so they show on the published page, not on the Designer canvas.
+
+## Nye helter: Fjordnotater, Samarbeid, Nøtteverden
+
+`prototype/heroes.html` is the study; `webflow/heroes/` is what runs in Webflow.
+
+- `sections/*.html`: native Webflow elements, inserted with the WHTML builder (classes prefixed `nh-`). Text and photos are ordinary Designer elements.
+- `heroes.css`: loaded by a style embed at the top of each page, pinned to a commit on jsDelivr. To change the look: edit, commit, swap the hash in the three style embeds, publish.
+- `embed-fj-chart.html`, `embed-stamp.html`, `embed-nv-art.html`: the sea chart, the postmark, and the Nøtteverden routes (animated, still under reduced motion).
+- The Samarbeid riso filters live in the Samarbeid style embed. The cards and contact box keep their own elements and copy; only photos, ids (`#i-hylla`, `#pa-stand`, `#gaver`) and CSS were added.
+- Nøtteverden art: Magnific, project «& nan - Nøttanrop» (stratosphere, upscaled). The unpublished `nv-hopp` capsule hero is hidden in the Designer, not deleted.
