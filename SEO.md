@@ -41,7 +41,16 @@ difference is 20/255 (WebP noise); the only other change is the globe's grain, w
 | robots.txt | Training crawlers allowed (your call). Paste `webflow/site/robots.txt` after the domain move |
 
 Still slow: **LCP 9–14 s**, because the hero images are lazy-loaded (§6, Designer, about 2 min). That is now the biggest single speed win.
-New find: Webflow loads **all 20 GSAP plugins** on every page (Site settings → GSAP). The site likely uses ScrollTrigger and maybe SplitText *(inference: check before switching off)*; switching off the rest saves ~18 requests.
+New find: Webflow loads **all 20 GSAP plugins** on every page. Measured which ones are actually used (each plugin wrapped
+and logged in a real browser on 33 pages at 1440 px and 390 px, with scrolling and hovering; plus a text scan of all custom
+code and a read of the 3 IX3 interactions):
+- **Keep: ScrollTrigger.** Used by the Nøtteverden globe's scroll entrance. `drips.js` calls `ScrollTrigger.refresh()` only if it exists
+- **Switch off: the other 19** (Flip, SplitText, Draggable, DrawSVG, Inertia, MorphSVG, MotionPath, MotionPathHelper, Observer,
+  Physics2D, PhysicsProps, ScrambleText, ScrollSmoother, ScrollTo, Text, CustomEase, CustomBounce, CustomWiggle, EasePack).
+  The only CustomEase calls come from CustomWiggle registering itself. The home "Helt Nøtta hopper" interactions animate only
+  scale, rotation, x/y and opacity with standard eases. Saves 236 KB of JS (≈95 KB compressed) and 19 requests per page
+- No API can change these toggles (confirmed with Webflow's assistant), so this is a Designer click. Afterwards: check the home
+  intro jump and the globe on Nøtteverden. If you later add a text-split or scroll interaction in the Designer, switch its plugin back on
 
 ---
 
