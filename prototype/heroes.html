@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tre helter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,500..800,100;1,9..144,500..700,100&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Three hero studies: Fjordnotater (sea chart + postcards), Samarbeid (riso market prints),
+   Nøtteverden (stratosphere over the earth's curve, routes home to Vinterbro).
+   Each ends in the site's hero drip, cut from the hero so the next section shows through.
+   On Webflow the display face is the site's Recoleta; Fraunces stands in here. */
+:root{
+  --paper:#FBF7F3; --cream:#FFFCFB; --almond:#F5E0C6; --camel:#C49A6C; --brown:#5A3A1C; --ink:#1B1108;
+  --orange:#FF7A2A; --orange-light:#FFA169; --red:#E23C2E;
+  --aqua-l:#D1EDE5; --aqua:#BEE6DB; --aqua-d:#98B8AF; --aqua-dd:#6F8C85; --aqua-ink:#394541;
+  --matcha:#7FA233; --pistasj:#B8BE6E;
+  --display:"Recoleta","Fraunces",Georgia,serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --gutter:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  --drip-h:clamp(64px,9.77vw,180px);
+  --wave:url("img/white-wave-svg-1.webp");
+  --wave-m:url("img/smaller-white-wave.webp");
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .106 0 0 0 0 .067 0 0 0 0 .031 0 0 0 1.4 -.3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;font-size:.75rem}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- prototype chrome ---------- */
+.ribbon{background:var(--ink);color:var(--almond);padding:.55rem 0;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em}
+.ribbon .wrap{display:flex;gap:.5rem 1.5rem;flex-wrap:wrap;justify-content:space-between}
+.ribbon a{color:var(--orange-light)}
+.navfake{position:absolute;top:0;left:0;right:0;z-index:6;height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,60px);
+  font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--brown);background:rgba(251,247,243,.18);backdrop-filter:blur(6px)}
+.navfake b{font-family:var(--display);font-style:italic;font-size:1.3rem;text-transform:none;letter-spacing:0}
+.navfake span{border:1px solid currentColor;border-radius:99px;padding:.45rem 1rem}
+.label{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--almond);display:inline-block;padding:.35rem .7rem;border-radius:99px;margin:2rem 0 .75rem}
+
+/* ---------- shared hero shell ---------- */
+.hero{position:relative;overflow:hidden;isolation:isolate;padding-top:131px;
+  /* the site drip, cut out of the hero so the next section shows through */
+  -webkit-mask-image:var(--wave),linear-gradient(#000,#000);mask-image:var(--wave),linear-gradient(#000,#000);
+  -webkit-mask-size:100% var(--drip-h),100% 100%;mask-size:100% var(--drip-h),100% 100%;
+  -webkit-mask-position:center bottom,0 0;mask-position:center bottom,0 0;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-composite:xor;mask-composite:exclude}
+@media (max-width:767px){.hero{-webkit-mask-image:var(--wave-m),linear-gradient(#000,#000);mask-image:var(--wave-m),linear-gradient(#000,#000)}}
+.hero::after{content:"";position:absolute;inset:0;z-index:5;pointer-events:none;opacity:.09;background-image:var(--grain)}
+.hero h1{font-family:var(--display);font-weight:700;line-height:.95;letter-spacing:-.01em;margin:0}
+.after{padding:2.5rem 0 4rem}
+.after p{max-width:36rem;margin:.25rem 0 0}
+.after h2{font-family:var(--display);font-size:clamp(1.8rem,3.4vw,2.8rem);line-height:1.05;margin:.4rem 0 .6rem}
+
+/* =========================================================
+   1 · FJORDNOTATER: sea chart, three postcards on the route
+   ========================================================= */
+.fj{background:linear-gradient(180deg,var(--aqua) 0%,#ADD0C6 55%,var(--aqua-d) 100%);color:var(--cream);min-height:min(900px,100vh)}
+.fj__chart{position:absolute;inset:0;z-index:0;width:100%;height:100%;color:var(--aqua-ink)}
+.fj__chart .snd{font:400 11px var(--mono);fill:currentColor;opacity:.42}
+.fj__chart .route{fill:none;stroke:var(--brown);stroke-width:2;stroke-dasharray:2 9;stroke-linecap:round;opacity:.75}
+.fj__chart .iso{fill:none;stroke:currentColor;stroke-width:1;opacity:.22}
+.fj__grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2rem;align-items:center;padding-bottom:calc(var(--drip-h) + 3rem)}
+.fj__kicker{color:var(--aqua-ink)}
+.fj h1{font-size:clamp(3.2rem,6.4vw,6.6rem);color:var(--cream);text-shadow:3px 3px 0 var(--aqua-ink);margin:.6rem 0 1rem}
+.fj__count{display:flex;gap:.6rem;flex-wrap:wrap}
+.fj__count a{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--aqua-ink);
+  border:1.5px solid var(--aqua-ink);border-radius:99px;padding:.4rem .8rem;transition:background .2s,color .2s}
+.fj__count a:hover{background:var(--aqua-ink);color:var(--aqua-l)}
+.cards{position:relative;height:clamp(420px,44vw,600px)}
+.pc{position:absolute;width:52%;background:var(--paper);padding:10px 10px 12px;border-radius:4px;text-decoration:none;color:var(--ink);
+  box-shadow:0 1px 0 rgba(27,17,8,.15),6px 10px 0 rgba(57,69,65,.28);transform:rotate(var(--r));transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.pc img{aspect-ratio:4/3;object-fit:cover;width:100%;border-radius:2px}
+.pc__cap{display:flex;justify-content:space-between;gap:.5rem;align-items:baseline;margin-top:.5rem}
+.pc__cap b{font-family:var(--display);font-size:1.05rem;line-height:1.1}
+.pc__cap span{font-family:var(--mono);font-size:.68rem;color:var(--aqua-ink);white-space:nowrap}
+.pc:hover,.pc:focus-visible{transform:rotate(0) translateY(-6px);z-index:4;box-shadow:0 1px 0 rgba(27,17,8,.15),10px 16px 0 rgba(57,69,65,.3)}
+.pc--1{--r:-5deg;left:0;top:4%;z-index:1}
+.pc--2{--r:4deg;left:44%;top:0;z-index:2}
+.pc--3{--r:-2deg;left:22%;top:42%;z-index:3}
+.stamp{position:absolute;right:-18px;top:-18px;width:86px;height:86px;color:var(--red);transform:rotate(14deg);mix-blend-mode:multiply;pointer-events:none}
+.stamp text{font:700 8.5px var(--mono);letter-spacing:.14em;fill:currentColor}
+.pin{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--orange);border:2px solid var(--brown);left:calc(50% - 7px);top:-7px}
+
+/* =========================================================
+   2 · SAMARBEID: riso market prints, taped
+   ========================================================= */
+.sa{background:#E5C9A6;color:var(--ink);min-height:min(860px,100vh)}
+.sa__grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:2.5rem;align-items:center;padding-bottom:calc(var(--drip-h) + 3rem)}
+.sa h1{font-size:clamp(2.8rem,5.6vw,5.8rem);text-transform:uppercase;letter-spacing:-.005em;color:var(--ink);margin:.7rem 0 1rem;text-shadow:3px 3px 0 var(--orange)}
+.sa__lede{max-width:30rem;font-size:1.15rem;line-height:1.5;color:var(--brown);margin:0 0 1.6rem}
+.sa__ctas{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.06em;
+  background:var(--orange);color:var(--ink);border:2px solid var(--ink);border-radius:99px;padding:.85rem 1.5rem;text-decoration:none;box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.sa__phone{font-family:var(--mono);font-size:.85rem;color:var(--brown);text-decoration:none;border-bottom:1.5px solid currentColor}
+.prints{position:relative;height:clamp(440px,46vw,620px)}
+.pr{position:absolute;margin:0;width:50%;background:var(--paper);padding:10px 10px 0;box-shadow:5px 8px 0 rgba(90,58,28,.25);transform:rotate(var(--r));transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.pr img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.pr figcaption{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.55rem 0 .65rem}
+.pr figcaption a{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:99px;padding:.3rem .65rem;color:var(--cream)}
+.pr figcaption span{font-family:var(--mono);font-size:.66rem;color:var(--brown);opacity:.8}
+.pr::before{content:"";position:absolute;left:50%;top:-12px;width:92px;height:26px;transform:translateX(-50%) rotate(-3deg);background:rgba(245,224,198,.82);
+  box-shadow:0 1px 0 rgba(90,58,28,.12);clip-path:polygon(3% 0,97% 4%,100% 50%,96% 100%,2% 96%,0 50%)}
+.pr:hover{transform:rotate(0) scale(1.02);z-index:5}
+.pr--1{--r:-6deg;left:0;top:8%}
+.pr--2{--r:3deg;left:28%;top:0;z-index:2}
+.pr--3{--r:-1.5deg;left:50%;top:22%;z-index:3}
+.t-red{background:var(--red)} .t-orange{background:var(--orange);color:var(--ink)!important} .t-brown{background:var(--brown)}
+.riso-marked{filter:url(#riso-marked)} .riso-brun{filter:url(#riso-brun)} .riso-skumring{filter:url(#riso-skumring)} .riso-fjord{filter:url(#riso-fjord)}
+
+/* =========================================================
+   3 · NØTTEVERDEN: the stratosphere, the curve, the routes home
+   ========================================================= */
+.nv{background:linear-gradient(180deg,#4D625D 0%,#6F8C85 26%,var(--aqua-d) 52%,var(--aqua) 74%,var(--aqua-l) 84%);color:var(--cream);min-height:min(940px,100vh)}
+.nv__sky{position:absolute;inset:0;z-index:0;width:100%;height:100%}
+.nv__copy{position:relative;z-index:3;padding-top:clamp(1rem,4vh,3rem);max-width:40rem}
+.nv__kicker{color:var(--aqua-l);opacity:.9}
+.nv h1{font-size:clamp(3.4rem,9vw,8.8rem);color:var(--cream);text-shadow:3px 3px 0 var(--aqua-ink);margin:.6rem 0 1rem}
+.nv__alt{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--aqua-l);display:flex;gap:1.25rem;flex-wrap:wrap}
+.nv__alt span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--orange);margin-right:.5rem;vertical-align:1px}
+.nv__spacer{height:clamp(380px,46vw,620px)}
+.nv__sky .route{fill:none;stroke:var(--cream);stroke-width:1.6;stroke-dasharray:2 8;stroke-linecap:round;opacity:.9}
+.nv__sky .rlabel{font:700 12px var(--mono);letter-spacing:.12em;fill:var(--aqua-ink);paint-order:stroke;stroke:var(--aqua-l);stroke-width:4px;stroke-linejoin:round}
+.nv__sky .rlabel tspan.k{fill:var(--brown)}
+.nv__sky .home{font:700 13px var(--mono);letter-spacing:.14em;fill:var(--ink)}
+@media (max-width:767px){.nv__sky .rlabel{display:none}}
+@media (prefers-reduced-motion:reduce){.nv__sky .mover{display:none}}
+
+/* ---------- mobile ---------- */
+@media (max-width:860px){
+  .fj__grid,.sa__grid{grid-template-columns:1fr;gap:1.5rem}
+  .cards{height:auto;display:grid;grid-auto-flow:column;grid-auto-columns:72%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:14px 4px 22px;margin:0 calc(-1*var(--gutter))}
+  .pc{position:relative;inset:auto;width:auto;scroll-snap-align:center}
+  .pc--1{margin-left:var(--gutter)}
+  .prints{height:clamp(300px,92vw,440px)}
+  .pr{width:56%}
+  .pr--1{left:-2%;top:10%} .pr--2{left:24%;top:0} .pr--3{left:46%;top:24%}
+  .pr figcaption span{display:none}
+  .navfake .links{display:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="riso-brun" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+    <feColorMatrix in="SourceGraphic" type="matrix" values=".3 .55 .15 0 0  .3 .55 .15 0 0  .3 .55 .15 0 0  0 0 0 1 0" result="L"/>
+    <feComponentTransfer in="L" result="A"><feFuncR type="table" tableValues="0.106 0.374 0.750 1.000 1.000 1.000"/><feFuncG type="table" tableValues="0.067 0.347 0.739 1.000 1.000 1.000"/><feFuncB type="table" tableValues="0.031 0.322 0.729 1.000 1.000 1.000"/></feComponentTransfer>
+    <feComponentTransfer in="L" result="B0"><feFuncR type="table" tableValues="1.000 1.000 1.000 1.000 1.000 1.000"/><feFuncG type="table" tableValues="0.631 0.631 0.676 0.797 0.934 1.000"/><feFuncB type="table" tableValues="0.412 0.412 0.482 0.676 0.894 1.000"/></feComponentTransfer>
+    <feOffset in="B0" dx="2.5" dy="1.5" result="B"/><feBlend in="A" in2="B" mode="multiply" result="AB"/>
+    <feFlood flood-color="#FBF7F3" result="P"/><feBlend in="AB" in2="P" mode="multiply"/>
+  </filter>
+  <filter id="riso-marked" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+    <feColorMatrix in="SourceGraphic" type="matrix" values=".3 .55 .15 0 0  .3 .55 .15 0 0  .3 .55 .15 0 0  0 0 0 1 0" result="L"/>
+    <feComponentTransfer in="L" result="A"><feFuncR type="table" tableValues="0.106 0.374 0.750 1.000 1.000 1.000"/><feFuncG type="table" tableValues="0.067 0.347 0.739 1.000 1.000 1.000"/><feFuncB type="table" tableValues="0.031 0.322 0.729 1.000 1.000 1.000"/></feComponentTransfer>
+    <feComponentTransfer in="L" result="B0"><feFuncR type="table" tableValues="0.886 0.886 0.900 0.937 0.980 1.000"/><feFuncG type="table" tableValues="0.235 0.235 0.327 0.579 0.862 1.000"/><feFuncB type="table" tableValues="0.180 0.180 0.279 0.549 0.852 1.000"/></feComponentTransfer>
+    <feOffset in="B0" dx="2.5" dy="1.5" result="B"/><feBlend in="A" in2="B" mode="multiply" result="AB"/>
+    <feFlood flood-color="#FBF7F3" result="P"/><feBlend in="AB" in2="P" mode="multiply"/>
+  </filter>
+  <filter id="riso-skumring" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+    <feColorMatrix in="SourceGraphic" type="matrix" values=".3 .55 .15 0 0  .3 .55 .15 0 0  .3 .55 .15 0 0  0 0 0 1 0" result="L"/>
+    <feComponentTransfer in="L" result="A"><feFuncR type="table" tableValues="0.478 0.635 0.854 1.000 1.000 1.000"/><feFuncG type="table" tableValues="0.180 0.426 0.771 1.000 1.000 1.000"/><feFuncB type="table" tableValues="0.408 0.585 0.834 1.000 1.000 1.000"/></feComponentTransfer>
+    <feComponentTransfer in="L" result="B0"><feFuncR type="table" tableValues="1.000 1.000 1.000 1.000 1.000 1.000"/><feFuncG type="table" tableValues="0.631 0.631 0.676 0.797 0.934 1.000"/><feFuncB type="table" tableValues="0.412 0.412 0.482 0.676 0.894 1.000"/></feComponentTransfer>
+    <feOffset in="B0" dx="2.5" dy="1.5" result="B"/><feBlend in="A" in2="B" mode="multiply" result="AB"/>
+    <feFlood flood-color="#FBF7F3" result="P"/><feBlend in="AB" in2="P" mode="multiply"/>
+  </filter>
+  <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="3" cy="3" r="1.15" fill="#394541"/></pattern>
+  <pattern id="dots-l" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="3" cy="3" r=".8" fill="#394541"/></pattern>
+  <radialGradient id="limbfade" cx="50%" cy="0%" r="60%"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff"/></radialGradient>
+  <mask id="limbmask"><rect x="-2000" y="0" width="6000" height="3000" fill="url(#limbfade)"/></mask>
+</svg>
+
+<div class="ribbon"><div class="wrap"><span>PROTOTYPE · tre helter · fjordnotater / samarbeid / nøtteverden</span><span>drip = sitens egen form · <a href="#fj">1</a> · <a href="#sa">2</a> · <a href="#nv">3</a></span></div></div>
+
+<!-- ============ 1 · FJORDNOTATER ============ -->
+<div class="wrap"><span class="label">1 · Fjordnotater: sjøkart og postkort</span></div>
+<section class="hero fj" id="fj" aria-labelledby="fj-h">
+  <div class="navfake" aria-hidden="true"><b>Nøttanrop</b><div class="links">Produkter · Om oss · Ressurser</div><span>Kontakt</span></div>
+  <!-- the chart: depth contours, soundings, a compass, the route the notes follow (schematic, not a map) -->
+  <svg class="fj__chart" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g class="iso">
+      <path d="M-20 640 C 180 600 260 700 420 660 S 700 560 860 610 S 1160 700 1460 620"/>
+      <path d="M-20 700 C 200 660 280 760 440 720 S 720 620 880 670 S 1180 760 1460 680"/>
+      <path d="M-20 200 C 160 240 300 150 470 190 S 760 280 940 220 S 1240 130 1460 190"/>
+      <path d="M-20 150 C 170 190 310 100 480 140 S 770 230 950 170 S 1250 80 1460 140"/>
+    </g>
+    <g class="snd">
+      <text x="70" y="250">12</text><text x="180" y="330">18</text><text x="120" y="470">23</text><text x="300" y="560">31</text>
+      <text x="610" y="150">9</text><text x="760" y="330">27</text><text x="1310" y="260">14</text><text x="1380" y="420">36</text>
+      <text x="1240" y="600">42</text><text x="690" y="640">38</text><text x="1050" y="140">7</text><text x="420" y="780">29</text>
+    </g>
+    <!-- compass rose, ink -->
+    <g transform="translate(1320 140)" stroke="#394541" fill="none" stroke-width="1.2" opacity=".7">
+      <circle r="38"/><circle r="31" stroke-dasharray="1 4"/>
+      <path d="M0 -48 L6 0 L0 48 L-6 0 Z" fill="#394541" fill-opacity=".85"/><path d="M-48 0 L0 5 L48 0 L0 -5 Z"/>
+      <text y="-54" text-anchor="middle" font-family="Space Mono" font-size="11" fill="#394541" stroke="none" font-weight="700">N</text>
+    </g>
+    <path class="route" d="M760 160 C 900 260 1180 230 1220 380 S 980 560 1080 720 S 1300 820 1400 880"/>
+  </svg>
+  <div class="wrap fj__grid">
+    <div>
+      <p class="mono fj__kicker">En uhøytidelig guide til Oslofjorden</p>
+      <h1 id="fj-h">Fjordnotater</h1>
+      <nav class="fj__count" aria-label="Notatene">
+        <a href="#">Nº 1 Natten før Sandvang</a><a href="#">Nº 2 Linnebråtevien</a><a href="#">Nº 3 Hallangspollen</a>
+      </nav>
+    </div>
+    <div class="cards">
+      <a class="pc pc--1" href="#"><i class="pin"></i>
+        <img src="img/6b078c5acb5864e967c651ba_nan-hero-fjordnotat-natten-for-sandvang-900.webp" alt="Helt Nøtta på en furugrein over en dampende stamp under nordlys" loading="eager">
+        <div class="pc__cap"><b>Natten før Sandvang</b><span>Nº 1</span></div>
+      </a>
+      <a class="pc pc--2" href="#"><i class="pin"></i>
+        <img src="img/6b078c5b5aa453847bd51b02_nan-hero-fjordnotat-linnebratevien-900.webp" alt="Helt Nøtta på en strømstolpe ved en landevei på Nesodden" loading="eager">
+        <div class="pc__cap"><b>Linnebråtevien</b><span>Nº 2</span></div>
+        <svg class="stamp" viewBox="0 0 100 100" aria-hidden="true"><defs><path id="sc" d="M50 50 m-36 0 a36 36 0 1 1 72 0 a36 36 0 1 1 -72 0"/></defs>
+          <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="50" cy="50" r="27" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <text><textPath href="#sc">FJORDNOTAT · OSLOFJORDEN · </textPath></text>
+          <text x="50" y="56" text-anchor="middle" style="font-size:16px">Nº 2</text></svg>
+      </a>
+      <a class="pc pc--3" href="#"><i class="pin"></i>
+        <img src="img/6b078c5a0a3b807f6c90d269_nan-hero-fjordnotat-hallangspollen-900.webp" alt="Helt Nøtta i en furugrein over Oslofjorden med et rødt badehus i skumringen" loading="eager">
+        <div class="pc__cap"><b>Hallangspollen</b><span>Nº 3</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+<div class="after wrap"><p class="mono">En uhøytidelig guide til Oslofjorden</p><h2>Små tekster fra der nøttene blir til.</h2><p>Fjordnotater er korte notater om steder rundt Oslofjorden. Nesodden, Drøbak og veiene imellom, slik de ser ut fra kjøkkenbenken og fra nattskiftet.</p></div>
+
+<!-- ============ 2 · SAMARBEID ============ -->
+<div class="wrap"><span class="label">2 · Samarbeid: riso-trykk fra markedet</span></div>
+<section class="hero sa" id="sa" aria-labelledby="sa-h">
+  <div class="navfake" aria-hidden="true"><b>Nøttanrop</b><div class="links">Produkter · Om oss · Ressurser</div><span>Kontakt</span></div>
+  <div class="wrap sa__grid">
+    <div>
+      <h1 id="sa-h">Samarbeid</h1>
+      <p class="sa__lede">Kafé, bakeri, gaveeske, marked eller arrangement? Vi lager gjerne noe sammen med folk som bryr seg om ekte råvarer.</p>
+      <div class="sa__ctas"><a class="btn" href="#">Ta kontakt</a><a class="sa__phone" href="tel:+4792970305">929 70 305</a></div>
+    </div>
+    <div class="prints">
+      <figure class="pr pr--1"><img class="riso-skumring" src="img/omoss-07-nattskiftet-1-900.webp" alt="Fager Bakst, litt over to om natta" crossorigin="anonymous">
+        <figcaption><a class="t-brown" href="#i-hylla">I hylla</a><span>Fager Bakst</span></figcaption></figure>
+      <figure class="pr pr--2"><img class="riso-marked" src="img/omoss-04-jonas-2-p-1600-900.webp" alt="Standen ved bilen, glassene på bordet" crossorigin="anonymous">
+        <figcaption><a class="t-red" href="#pa-stand">På stand</a><span>Moss, mars 2026</span></figcaption></figure>
+      <figure class="pr pr--3"><img class="riso-brun" src="img/omoss-06-hand-til-hand-1-900.webp" alt="Smaksprøver og gaveeske" crossorigin="anonymous">
+        <figcaption><a class="t-orange" href="#gaver">Gaver</a><span>85 g-glass</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+<div class="after wrap"><p class="mono">I hylla · På stand · Gaver</p><h2>Bli forhandler</h2><p>Gårdsbutikk, bakeri eller delikatesse? Vi sender gjerne innkjøpsprislista.</p></div>
+
+<!-- ============ 3 · NØTTEVERDEN ============ -->
+<div class="wrap"><span class="label">3 · Nøtteverden: stratosfæren</span></div>
+<section class="hero nv" id="nv" aria-labelledby="nv-h">
+  <div class="navfake" aria-hidden="true"><b>Nøttanrop</b><div class="links">Produkter · Om oss · Ressurser</div><span>Kontakt</span></div>
+  <svg class="nv__sky" viewBox="0 0 1440 940" preserveAspectRatio="xMidYMax slice" role="img" aria-labelledby="nv-alt">
+    <title id="nv-alt">Jordas krumning sett fra stratosfæren i dagslys. Stiplede ruter fra California, Tyrkia, India og Sri Lanka møtes på Vinterbro.</title>
+    <!-- atmosphere glow: the only gradient, it is light -->
+    <ellipse cx="720" cy="2560" rx="2140" ry="1990" fill="#E7F5F0" opacity=".55"/>
+    <ellipse cx="720" cy="2560" rx="2105" ry="1955" fill="#D1EDE5" opacity=".7"/>
+    <!-- the earth: flat ocean ink, halftone shadow toward the limb, a few flat land plates -->
+    <ellipse cx="720" cy="2560" rx="2080" ry="1930" fill="#98B8AF"/>
+    <ellipse cx="720" cy="2560" rx="2080" ry="1930" fill="url(#dots)" mask="url(#limbmask)" opacity=".55"/>
+    <!-- flat cloud plates -->
+    <g fill="#FBF7F3" opacity=".92">
+      <path d="M380 690 h120 a14 14 0 0 0 0 -28 a22 22 0 0 0 -40 -10 a26 26 0 0 0 -50 6 a16 16 0 0 0 -30 32 z"/>
+      <path d="M1170 680 h90 a11 11 0 0 0 0 -22 a18 18 0 0 0 -32 -8 a20 20 0 0 0 -40 6 a12 12 0 0 0 -18 24 z"/>
+    </g>
+    <!-- routes home: schematic great-circle arcs, not a map -->
+    <path id="r1" class="route" d="M-40 860 C 120 420 520 470 742 702"/>
+    <path id="r2" class="route" d="M1480 820 C 1340 420 980 430 742 702"/>
+    <path id="r3" class="route" d="M1480 980 C 1240 560 950 560 742 702"/>
+    <path id="r4" class="route" d="M-40 1000 C 200 600 560 560 742 702"/>
+    <text class="rlabel" x="150" y="560"><tspan class="k">Mandel</tspan> · California</text>
+    <text class="rlabel" x="1110" y="500" text-anchor="end"><tspan class="k">Hasselnøtt</tspan> · Tyrkia</text>
+    <text class="rlabel" x="1250" y="690" text-anchor="end"><tspan class="k">Cashew</tspan> · India</text>
+    <text class="rlabel" x="120" y="760"><tspan class="k">Kokos</tspan> · Sri Lanka</text>
+    <!-- travelling nuts (static under reduced motion) -->
+    <g class="mover"><image href="img/nan-ill-mandel-240.webp" width="44" height="44" x="-22" y="-22"><animateMotion dur="14s" repeatCount="indefinite" rotate="auto"><mpath href="#r1"/></animateMotion></image></g>
+    <g class="mover"><image href="img/nan-ill-cashew-240.webp" width="44" height="44" x="-22" y="-22"><animateMotion dur="17s" begin="-6s" repeatCount="indefinite"><mpath href="#r3"/></animateMotion></image></g>
+    <!-- home: Vinterbro, the siren dot -->
+    <g transform="translate(742 702)">
+      <circle r="22" fill="#FF7A2A" opacity=".25"><animate attributeName="r" values="10;30;10" dur="3s" repeatCount="indefinite"/></circle>
+      <circle r="9" fill="#FF7A2A" stroke="#1B1108" stroke-width="2.5"/>
+      <g transform="translate(18 -34)"><rect x="0" y="-18" width="128" height="28" rx="14" fill="#FBF7F3" stroke="#1B1108" stroke-width="2"/><text class="home" x="64" y="1" text-anchor="middle">VINTERBRO</text></g>
+    </g>
+  </svg>
+  <div class="wrap"><div class="nv__copy">
+    <p class="mono nv__kicker">11 råvarer fra 9 land</p>
+    <h1 id="nv-h">Nøtteverden</h1>
+    <div class="nv__alt"><span>Mandel</span><span>Hasselnøtt</span><span>Cashew</span><span>Kokos</span></div>
+  </div></div>
+  <div class="nv__spacer" aria-hidden="true"></div>
+</section>
+<div class="after wrap"><p class="mono">Nøtteverden</p><h2>Verden er helt nøtta.</h2><p>Et glass Nøttanrop er et lite verdenskart. Mandler fra California, hasselnøtter fra Tyrkia, cashew fra India og kokos fra Sri Lanka – samlet, ristet og steinkvernet på Vinterbro.</p></div>
+
+<script>
+// reduced motion: freeze SMIL in the stratosphere
+if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('svg').forEach(s=>s.pauseAnimations&&s.pauseAnimations());
+</script>
+</body>
+</html>
