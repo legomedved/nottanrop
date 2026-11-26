@@ -342,6 +342,21 @@ class Nottekart {
     requestAnimationFrame(step);
   }
 
+  // For tools (the carousel): draw a route from any point home, with any cargo, frozen at flight progress t.
+  async showRoute(from, cargoHref, t = 1) {
+    this.token = {}; this.userTook = true; this.idle = false;
+    for (const { g } of this.marks) g.classList.remove("is-active");
+    const interp = geoInterpolate(from, HOME);
+    this.sourceAt = from;
+    this.flight = { interp, t, flying: t < 1, ours: true };
+    this.gRoute.classList.remove("is-distance");
+    this.gRouteUnder.classList.remove("is-distance");
+    if (cargoHref) this.cargo.setAttribute("href", cargoHref);
+    const far = geoDistance(from, HOME) > 2.2;
+    await this.rotateTo(far ? geoInterpolate(from, HOME)(0.2) : interp(0.5), 0);
+    this.render();
+  }
+
   alarm() {
     this.gHome.classList.remove("is-alarm");
     void this.gHome.getBBox();

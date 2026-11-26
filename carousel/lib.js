@@ -85,6 +85,29 @@ async function globeShots(browser, list) {
   return files;
 }
 
+// Route snapshots for any ingredient: from [lon,lat] to home, Helt nøtta at progress t carrying `cargo` (a file path).
+async function routeShots(browser, list) {
+  fs.mkdirSync(BUILD, { recursive: true });
+  fs.writeFileSync(path.join(BUILD, "globe.html"),
+    `<!doctype html><meta charset="utf-8"><body style="margin:0;background:transparent">
+     <div data-nottekart style="width:900px;display:block"></div>
+     <script src="${url(path.join(ROOT, "dist/nottekart.min.js"))}"></script>`);
+  const p = await browser.newPage({ viewport: { width: 900, height: 1400 } });
+  await p.goto(url(path.join(BUILD, "globe.html")));
+  await p.waitForFunction(() => window.Nottekart);
+  await p.evaluate(() => document.querySelectorAll(".nk-hint, .nk-panel, .nk-legend").forEach((e) => e.remove()));
+  const files = {};
+  for (const { key, from, cargo, t = 0.58 } of list) {
+    await p.evaluate(([from, href, t]) => window.Nottekart.instances[0].showRoute(from, href, t), [from, url(cargo), t]);
+    await p.waitForTimeout(500);
+    const f = path.join(BUILD, `route-${key}.png`);
+    await p.locator(".nk-globe").screenshot({ path: f, omitBackground: true });
+    files[key] = url(f);
+  }
+  await p.close();
+  return files;
+}
+
 async function exportSlides(browser, html, prefix) {
   fs.mkdirSync(OUT, { recursive: true });
   const f = path.join(BUILD, `${prefix}.html`);
@@ -102,5 +125,5 @@ async function exportSlides(browser, html, prefix) {
   await p.close();
 }
 
-module.exports = { ROOT, data, HOME, url, art, nut, km, ACCENT, fontCSS, BASE_CSS, globeShots, exportSlides,
+module.exports = { ROOT, data, HOME, url, art, nut, km, ACCENT, fontCSS, BASE_CSS, globeShots, routeShots, exportSlides,
   hasRecoleta: () => fs.existsSync(local("Recoleta-SemiBold.otf")) };

@@ -358,7 +358,7 @@
       ],
       "vaare": {
         "land": "Brasil",
-        "notat": "pin i Bahia, Brasils største kakaoregion (antatt, ikke bekreftet region)",
+        "notat": "egen innkjøpt råvare",
         "lat": -14.8,
         "lon": -39.2
       },
@@ -1172,6 +1172,159 @@
         }
       ],
       "side": "/notteverden/jordnott"
+    }
+  ],
+  "ingredienser": [
+    {
+      "id": "mandel",
+      "navn": "Mandler",
+      "i": [
+        "Mandelykke"
+      ],
+      "vaare": null,
+      "farge": "orange",
+      "notat": "Ny leverandør. Vi tegner ruten når databladet ligger på bordet."
+    },
+    {
+      "id": "hasselnott",
+      "navn": "Hasselnøtter",
+      "i": [
+        "Sunntella"
+      ],
+      "vaare": null,
+      "farge": "red",
+      "notat": "Ny leverandør. Vi tegner ruten når databladet ligger på bordet."
+    },
+    {
+      "id": "kakao",
+      "navn": "Kakao",
+      "i": [
+        "Sunntella"
+      ],
+      "vaare": {
+        "land": "Brasil",
+        "lat": -14.8,
+        "lon": -39.2
+      },
+      "farge": "red",
+      "tekst": "Kakaopulveret i Sunntella er dyrket i Brasil."
+    },
+    {
+      "id": "rorsukker",
+      "navn": "Rørsukker",
+      "i": [
+        "Sunntella",
+        "Cashewdrøm",
+        "Cashewdrøm med matcha",
+        "Cashewdrøm med jordbær",
+        "Pistasjkrem"
+      ],
+      "vaare": null,
+      "farge": "camel",
+      "notat": "Vi tegner ruten når databladet ligger på bordet."
+    },
+    {
+      "id": "cashew",
+      "navn": "Cashew",
+      "i": [
+        "Cashewdrøm",
+        "Cashewdrøm med matcha",
+        "Cashewdrøm med jordbær"
+      ],
+      "vaare": null,
+      "farge": "green",
+      "notat": "Ny leverandør. Vi tegner ruten når databladet ligger på bordet."
+    },
+    {
+      "id": "kokos",
+      "navn": "Kokos",
+      "i": [
+        "Cashewdrøm",
+        "Cashewdrøm med matcha",
+        "Cashewdrøm med jordbær"
+      ],
+      "vaare": null,
+      "farge": "green",
+      "notat": "Ny leverandør. Vi tegner ruten når databladet ligger på bordet."
+    },
+    {
+      "id": "matcha",
+      "navn": "Matcha",
+      "i": [
+        "Cashewdrøm med matcha"
+      ],
+      "vaare": {
+        "land": "Japan",
+        "lat": 34.9,
+        "lon": 135.8
+      },
+      "farge": "matcha",
+      "tekst": "Grønne teblader fra Japan, malt til pulver."
+    },
+    {
+      "id": "jordbaer",
+      "navn": "Jordbær",
+      "i": [
+        "Cashewdrøm med jordbær"
+      ],
+      "vaare": {
+        "land": "Slovakia",
+        "via": "Tsjekkia",
+        "lat": 48.7,
+        "lon": 19.7
+      },
+      "farge": "jordbaer",
+      "tekst": "Dyrket i Slovakia. Pakket i Tsjekkia. Smurt på brød ved Oslofjorden."
+    },
+    {
+      "id": "pistasj",
+      "navn": "Pistasj",
+      "i": [
+        "Pistasjkrem"
+      ],
+      "vaare": null,
+      "farge": "pistasj",
+      "notat": "Manna, via Norganic. Opprinnelsesland etterspurt."
+    },
+    {
+      "id": "kakaosmor",
+      "navn": "Kakaosmør",
+      "i": [
+        "Pistasjkrem"
+      ],
+      "vaare": null,
+      "farge": "brown",
+      "notat": "Via Norganic. Opprinnelsesland etterspurt."
+    },
+    {
+      "id": "olivenolje",
+      "navn": "Olivenolje",
+      "i": [
+        "Pistasjkrem"
+      ],
+      "vaare": {
+        "land": "Hellas",
+        "lat": 39.1,
+        "lon": 22.0
+      },
+      "farge": "pistasj",
+      "tekst": "Økologisk extra virgin olivenolje fra Hellas.",
+      "kilde": "Norganic-ordre 30-21407: «Olivenolje, extra virgin, økologisk, Hellas»"
+    },
+    {
+      "id": "salt",
+      "navn": "Salt",
+      "i": [
+        "Mandelykke",
+        "Sunntella",
+        "Cashewdrøm",
+        "Cashewdrøm med matcha",
+        "Cashewdrøm med jordbær",
+        "Pistasjkrem"
+      ],
+      "vaare": null,
+      "farge": "camel",
+      "notat": "Vi tegner ruten når databladet ligger på bordet."
     }
   ]
 }
