@@ -34,6 +34,7 @@ cream paper → grainy light on the water only → flat olive land plate (offset
 | `carousel/lib.js` | Shared carousel parts: fonts, paper grain, globe snapshots, PNG export | Claude |
 | `carousel/art/` | Illustrations from Magnific (project "& nan - Nøttanrop") | — |
 | `carousel/out/` | The finished PNGs | — |
+| `webflow/kort/` | **Kortsystem**: one print language for every card on the site (see its README). Loaded by the `nanfix4` head script, pinned to a commit | Claude |
 | `demo/index.html` | Local test page that imitates the Webflow page | — |
 
 ## Fact-check (25 Nov 2026)
