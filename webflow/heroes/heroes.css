@@ -1,0 +1,146 @@
+/* Nøttanrop · three heroes (Fjordnotater, Samarbeid, Nøtteverden) + Samarbeid riso body.
+   Source: prototype/heroes.html. Loaded by a style embed at the top of each page, pinned to a commit on jsDelivr.
+   Classes are prefixed nh-. Each hero ends in the site drip, cut out of the hero (mask) so the next section shows through. */
+
+.nh-hero,.nh-hero *{box-sizing:border-box}
+.nh-hero{
+  --paper:#FBF7F3; --cream:#FFFCFB; --almond:#F5E0C6; --camel:#C49A6C; --brown:#5A3A1C; --ink:#1B1108;
+  --orange:#FF7A2A; --orange-dark:#CC6121; --orange-light:#FFA169; --red:#E23C2E;
+  --aqua-l:#D1EDE5; --aqua:#BEE6DB; --aqua-d:#98B8AF; --aqua-ink:#394541;
+  --display:"Recoleta",Georgia,serif;
+  --body:"Dmsans Variablefont Opsz Wght","DM Sans",system-ui,sans-serif;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  --drip-h:clamp(64px,9.77vw,180px);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .106 0 0 0 0 .067 0 0 0 0 .031 0 0 0 1.4 -.3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  position:relative;overflow:hidden;isolation:isolate;padding-top:131px;font-family:var(--body);
+  -webkit-mask-image:url("https://cdn.prod.website-files.com/693eb2bc3e42b68a1bb20701/693eb2bc3e42b68a1bb209fe_white-wave-svg%201.webp"),linear-gradient(#000,#000);
+          mask-image:url("https://cdn.prod.website-files.com/693eb2bc3e42b68a1bb20701/693eb2bc3e42b68a1bb209fe_white-wave-svg%201.webp"),linear-gradient(#000,#000);
+  -webkit-mask-size:100% var(--drip-h),100% 100%;mask-size:100% var(--drip-h),100% 100%;
+  -webkit-mask-position:center bottom,0 0;mask-position:center bottom,0 0;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-composite:xor;mask-composite:exclude}
+@media (max-width:767px){.nh-hero{
+  -webkit-mask-image:url("https://cdn.prod.website-files.com/693eb2bc3e42b68a1bb20701/693eb2bc3e42b68a1bb20a19_smaller-white-wave.webp"),linear-gradient(#000,#000);
+          mask-image:url("https://cdn.prod.website-files.com/693eb2bc3e42b68a1bb20701/693eb2bc3e42b68a1bb20a19_smaller-white-wave.webp"),linear-gradient(#000,#000)}}
+.nh-hero::after{content:"";position:absolute;inset:0;z-index:5;pointer-events:none;opacity:.09;background-image:var(--grain)}
+.nh-wrap{position:relative;max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nh-hero h1{font-family:var(--display);font-weight:700;line-height:.95;letter-spacing:-.01em;margin:0;text-transform:none}
+.nh-hero p{letter-spacing:normal}
+.nh-hero img{max-width:100%;display:block}
+.nh-mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;font-size:.75rem;line-height:1.4;margin:0}
+.nh-hero a:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+
+/* ---------- 1 · Fjordnotater: sea chart + postcards ---------- */
+.nh-fj{background:linear-gradient(180deg,var(--aqua) 0%,#ADD0C6 55%,var(--aqua-d) 100%);color:var(--cream);min-height:min(900px,100vh)}
+.nh-fj__chart{position:absolute;inset:0;z-index:0;color:var(--aqua-ink);pointer-events:none}
+.nh-fj__chart .w-embed,.nh-fj__chart svg{position:absolute;inset:0;width:100%;height:100%}
+.nh-fj__chart .snd{font:400 11px var(--mono);fill:currentColor;opacity:.42}
+.nh-fj__chart .route{fill:none;stroke:var(--brown);stroke-width:2;stroke-dasharray:2 9;stroke-linecap:round;opacity:.75;animation:nhdash 2.4s linear infinite}
+.nh-fj__chart .iso{fill:none;stroke:currentColor;stroke-width:1;opacity:.22}
+.nh-fj__grid{z-index:2;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2rem;align-items:center;padding-top:clamp(1rem,4vh,3rem);padding-bottom:calc(var(--drip-h) + 3rem)}
+.nh-fj__kicker{color:var(--aqua-ink)}
+.nh-hero .nh-fj__title{font-size:clamp(3.2rem,6.4vw,6.6rem);color:var(--cream);text-shadow:3px 3px 0 var(--aqua-ink);margin:.6rem 0 1.1rem}
+.nh-fj__count{display:flex;gap:.6rem;flex-wrap:wrap}
+.nh-pill{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--aqua-ink);
+  border:1.5px solid var(--aqua-ink);border-radius:99px;padding:.4rem .8rem;transition:background .2s,color .2s}
+.nh-pill:hover{background:var(--aqua-ink);color:var(--aqua-l)}
+.nh-cards{position:relative;height:clamp(420px,44vw,600px)}
+.nh-pc{position:absolute;display:block;width:52%;background:var(--paper);padding:10px 10px 12px;border-radius:4px;text-decoration:none;color:var(--ink);
+  box-shadow:0 1px 0 rgba(27,17,8,.15),6px 10px 0 rgba(57,69,65,.28);transform:rotate(var(--r));transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.nh-pc__img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:2px}
+.nh-pc__cap{display:flex;justify-content:space-between;gap:.5rem;align-items:baseline;margin-top:.5rem}
+.nh-pc__name{font-family:var(--display);font-weight:700;font-size:1.05rem;line-height:1.1}
+.nh-pc__no{font-family:var(--mono);font-size:.68rem;color:var(--aqua-ink);white-space:nowrap}
+.nh-pc:hover,.nh-pc:focus-visible{transform:rotate(0) translateY(-6px);z-index:4;box-shadow:0 1px 0 rgba(27,17,8,.15),10px 16px 0 rgba(57,69,65,.3)}
+.nh-pc--1{--r:-5deg;left:0;top:4%;z-index:1}
+.nh-pc--2{--r:4deg;left:44%;top:0;z-index:2}
+.nh-pc--3{--r:-2deg;left:22%;top:42%;z-index:3}
+.nh-pin{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--orange);border:2px solid var(--brown);left:calc(50% - 7px);top:-7px;z-index:2}
+.nh-stamp{position:absolute;right:-18px;top:-18px;width:86px;height:86px;color:var(--red);transform:rotate(14deg);mix-blend-mode:multiply;pointer-events:none}
+.nh-stamp svg{width:100%;height:100%;display:block}
+.nh-stamp text{font:700 8.5px var(--mono);letter-spacing:.14em;fill:currentColor}
+
+/* ---------- 2 · Samarbeid: riso market prints ---------- */
+.nh-sa{background:#E5C9A6;color:var(--ink);min-height:min(860px,100vh)}
+.nh-sa__grid{z-index:2;display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:2.5rem;align-items:center;padding-top:clamp(1rem,4vh,3rem);padding-bottom:calc(var(--drip-h) + 3rem)}
+.nh-hero .nh-sa__title{font-size:clamp(2.8rem,5.6vw,5.8rem);text-transform:uppercase;letter-spacing:-.005em;color:var(--ink);margin:.4rem 0 1rem;text-shadow:3px 3px 0 var(--orange)}
+.nh-hero .nh-sa__lede{max-width:30rem;font-size:1.15rem;line-height:1.5;color:var(--brown);margin:0 0 1.6rem}
+.nh-sa__ctas{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.nh-btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.06em;
+  background:var(--orange);color:var(--ink);border:2px solid var(--ink);border-radius:99px;padding:.85rem 1.5rem;text-decoration:none;box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.nh-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);color:var(--ink)}
+.nh-sa__phone{font-family:var(--mono);font-size:.85rem;color:var(--brown);text-decoration:none;border-bottom:1.5px solid currentColor}
+.nh-prints{position:relative;height:clamp(440px,46vw,620px)}
+.nh-pr{position:absolute;width:50%;background:var(--paper);padding:10px 10px 0;box-shadow:5px 8px 0 rgba(90,58,28,.25);transform:rotate(var(--r));transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.nh-pr__img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.nh-pr__cap{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.55rem 0 .65rem}
+.nh-pr__note{font-family:var(--mono);font-size:.66rem;color:var(--brown);opacity:.8}
+.nh-pr::before{content:"";position:absolute;left:50%;top:-12px;width:92px;height:26px;transform:translateX(-50%) rotate(-3deg);background:rgba(245,224,198,.85);
+  box-shadow:0 1px 0 rgba(90,58,28,.12);clip-path:polygon(3% 0,97% 4%,100% 50%,96% 100%,2% 96%,0 50%);z-index:1}
+.nh-pr:hover{transform:rotate(0) scale(1.02);z-index:5}
+.nh-pr--1{--r:-6deg;left:0;top:8%}
+.nh-pr--2{--r:3deg;left:28%;top:0;z-index:2}
+.nh-pr--3{--r:-1.5deg;left:50%;top:22%;z-index:3}
+.nh-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:99px;padding:.3rem .65rem;color:var(--cream)}
+.nh-tag--red{background:var(--red)} .nh-tag--orange{background:var(--orange);color:var(--ink)} .nh-tag--brown{background:var(--brown)}
+.nh-tag:hover{color:var(--cream);filter:brightness(1.08)} .nh-tag--orange:hover{color:var(--ink)}
+.nh-riso-marked{filter:url(#nh-riso-marked)} .nh-riso-brun{filter:url(#nh-riso-brun)} .nh-riso-skumring{filter:url(#nh-riso-skumring)}
+
+/* ---------- 3 · Nøtteverden: the stratosphere, routes home ---------- */
+.nh-nv{--hh:clamp(660px,100svh,1000px);height:var(--hh);background:#3E5B57;color:var(--cream)}
+.nh-nv__art{position:absolute;z-index:0;--aw:max(100%, calc(var(--hh) * 2));width:var(--aw);aspect-ratio:2/1;
+  bottom:calc(var(--hh) * -.07);left:clamp(calc(100% - var(--aw)), calc(50% - var(--aw) * .42), 0px)}
+.nh-nv__img,.nh-nv__art .w-embed,.nh-nv__art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.nh-nv__img{object-fit:cover;max-width:none!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%);mask-image:linear-gradient(180deg,transparent 0,#000 14%)}
+.nh-nv__copy{position:relative;z-index:3;padding-top:clamp(.5rem,3vh,2.5rem);max-width:44rem}
+.nh-nv__kicker{color:var(--aqua-l)}
+.nh-hero .nh-nv__title{font-size:clamp(3.4rem,9vw,8.8rem);color:var(--cream);text-shadow:3px 3px 0 #1F3533;margin:.6rem 0 1rem}
+.nh-nv__alt{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--aqua-l);display:flex;gap:.5rem 1.25rem;flex-wrap:wrap}
+.nh-nv__item::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--orange);margin-right:.5rem;vertical-align:1px}
+.nh-nv__art .route{fill:none;stroke:var(--cream);stroke-width:2.6;stroke-dasharray:3 13;stroke-linecap:round;animation:nhdash 1.6s linear infinite}
+.nh-nv__art .route-ink{fill:none;stroke:#1B1108;stroke-opacity:.35;stroke-width:5.5;stroke-linecap:round;stroke-dasharray:3 13;animation:nhdash 1.6s linear infinite;transform:translate(3px,2px)}
+.nh-nv__art .tag rect{fill:#FBF7F3;stroke:#1B1108;stroke-width:2.5}
+.nh-nv__art .tag text{font:700 19px var(--mono);letter-spacing:.12em;fill:#1B1108}
+.nh-nv__art .tag tspan{fill:#CC6121}
+@keyframes nhdash{to{stroke-dashoffset:-32}}
+@media (max-width:767px){.nh-nv__art .tag.far{display:none}}
+
+/* ---------- Samarbeid body: the three ways + the call, in riso ---------- */
+.verden-samarbeid .section-enkel_grid{gap:clamp(1rem,2.5vw,2rem)}
+.verden-samarbeid .section-enkel_card{position:relative;background:#FBF7F3;border:2px solid #1B1108;border-radius:6px;padding:12px 12px 1.4rem;box-shadow:6px 8px 0 #C49A6C;overflow:visible;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s;scroll-margin-top:140px}
+.verden-samarbeid .section-enkel_card:nth-child(1){transform:rotate(-1.2deg)}
+.verden-samarbeid .section-enkel_card:nth-child(2){transform:rotate(.8deg);box-shadow:6px 8px 0 #E23C2E}
+.verden-samarbeid .section-enkel_card:nth-child(3){transform:rotate(-.6deg);box-shadow:6px 8px 0 #FF7A2A}
+.verden-samarbeid .section-enkel_card:hover{transform:rotate(0) translateY(-4px)}
+.verden-samarbeid .section-enkel_card > *:not(.nh-card__img){margin-left:.6rem;margin-right:.6rem}
+.nh-card__img{display:block;width:100%;aspect-ratio:5/4;object-fit:cover;border-radius:3px;margin:0 0 1rem}
+.verden-samarbeid .section-enkel_label{display:inline-block;font-family:"Space Mono",monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;border-radius:99px;padding:.3rem .7rem;color:#FFFCFB;background:#5A3A1C}
+.verden-samarbeid .section-enkel_card:nth-child(2) .section-enkel_label{background:#E23C2E}
+.verden-samarbeid .section-enkel_card:nth-child(3) .section-enkel_label{background:#FF7A2A;color:#1B1108}
+.verden-samarbeid .section-enkel_link{font-family:"Space Mono",monospace;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:#5A3A1C}
+.verden-samarbeid .section-enkel_cta{position:relative;overflow:hidden;isolation:isolate;background:#1B1108;color:#F5E0C6;border-radius:8px;box-shadow:8px 10px 0 #FF7A2A;padding:clamp(1.8rem,4vw,3.2rem);padding-right:clamp(1.8rem,34%,22rem);min-height:260px}
+.verden-samarbeid .section-enkel_cta::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;background:radial-gradient(circle at 50% 50%,#FF7A2A 0 1.1px,transparent 1.6px) 0 0/7px 7px;-webkit-mask-image:linear-gradient(110deg,transparent 35%,#000 80%);mask-image:linear-gradient(110deg,transparent 35%,#000 80%)}
+.verden-samarbeid .section-enkel_cta-heading{color:#FFFCFB;text-shadow:3px 2px 0 #E23C2E}
+.verden-samarbeid .section-enkel_cta .section-enkel_text{color:#F5E0C6}
+.verden-samarbeid .section-enkel_button{background:#FF7A2A;color:#1B1108;border:2px solid #FFFCFB;box-shadow:4px 4px 0 #FFFCFB;font-family:"Space Mono",monospace;font-weight:700}
+.nh-call__ekorn{position:absolute;right:clamp(-10px,2vw,30px);bottom:-6px;width:min(36%,300px);height:auto;pointer-events:none;filter:drop-shadow(5px 6px 0 rgba(226,60,46,.5))}
+
+@media (prefers-reduced-motion:reduce){
+  .nh-fj__chart .route,.nh-nv__art .route,.nh-nv__art .route-ink{animation:none}
+  .nh-nv__art .mover,.nh-nv__art .pulse{display:none}
+  .nh-pc,.nh-pr,.verden-samarbeid .section-enkel_card{transition:none}
+}
+
+/* ---------- mobile ---------- */
+@media (max-width:860px){
+  .nh-fj__grid,.nh-sa__grid{grid-template-columns:1fr;gap:1.5rem}
+  .nh-cards{height:auto;display:grid;grid-auto-flow:column;grid-auto-columns:72%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:14px 4px 22px;margin:0 -16px}
+  .nh-pc{position:relative;left:auto;top:auto;width:auto;scroll-snap-align:center}
+  .nh-pc--1{margin-left:16px}
+  .nh-prints{height:clamp(300px,92vw,440px)}
+  .nh-pr{width:56%}
+  .nh-pr--1{left:-2%;top:10%} .nh-pr--2{left:24%;top:0} .nh-pr--3{left:46%;top:24%}
+  .nh-pr__note{display:none}
+  .verden-samarbeid .section-enkel_cta{padding-right:clamp(1.4rem,4vw,2rem);padding-bottom:clamp(11rem,52vw,16rem)}
+  .nh-call__ekorn{width:min(52%,220px)}
+}

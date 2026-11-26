@@ -121,22 +121,26 @@ a{color:inherit}
 .riso-marked{filter:url(#riso-marked)} .riso-brun{filter:url(#riso-brun)} .riso-skumring{filter:url(#riso-skumring)} .riso-fjord{filter:url(#riso-fjord)}
 
 /* =========================================================
-   3 · NØTTEVERDEN: the stratosphere, the curve, the routes home
+   3 · NØTTEVERDEN: the stratosphere, drawn; routes home animated on top
    ========================================================= */
-.nv{background:linear-gradient(180deg,#4D625D 0%,#6F8C85 26%,var(--aqua-d) 52%,var(--aqua) 74%,var(--aqua-l) 84%);color:var(--cream);min-height:min(940px,100vh)}
-.nv__sky{position:absolute;inset:0;z-index:0;width:100%;height:100%}
-.nv__copy{position:relative;z-index:3;padding-top:clamp(1rem,4vh,3rem);max-width:40rem}
-.nv__kicker{color:var(--aqua-l);opacity:.9}
-.nv h1{font-size:clamp(3.4rem,9vw,8.8rem);color:var(--cream);text-shadow:3px 3px 0 var(--aqua-ink);margin:.6rem 0 1rem}
-.nv__alt{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--aqua-l);display:flex;gap:1.25rem;flex-wrap:wrap}
+.nv{--hh:clamp(660px,100svh,1000px);height:var(--hh);padding-top:0;background:#3E5B57;color:var(--cream)}
+.nv__art{position:absolute;bottom:calc(var(--hh) * -.07);z-index:0;--aw:max(100%, calc(var(--hh) * 2));width:var(--aw);aspect-ratio:2/1;
+  left:clamp(calc(100% - var(--aw)), calc(50% - var(--aw) * .42), 0px)}
+.nv__art img,.nv__art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.nv__art img{object-fit:cover;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%);mask-image:linear-gradient(180deg,transparent 0,#000 14%)}
+.nv__copy{position:relative;z-index:3;padding-top:calc(131px + clamp(.5rem,3vh,2.5rem));max-width:44rem}
+.nv__kicker{color:var(--aqua-l)}
+.nv h1{font-size:clamp(3.4rem,9vw,8.8rem);color:var(--cream);text-shadow:3px 3px 0 #1F3533;margin:.6rem 0 1rem}
+.nv__alt{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--aqua-l);display:flex;gap:.5rem 1.25rem;flex-wrap:wrap}
 .nv__alt span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--orange);margin-right:.5rem;vertical-align:1px}
-.nv__spacer{height:clamp(380px,46vw,620px)}
-.nv__sky .route{fill:none;stroke:var(--cream);stroke-width:1.6;stroke-dasharray:2 8;stroke-linecap:round;opacity:.9}
-.nv__sky .rlabel{font:700 12px var(--mono);letter-spacing:.12em;fill:var(--aqua-ink);paint-order:stroke;stroke:var(--aqua-l);stroke-width:4px;stroke-linejoin:round}
-.nv__sky .rlabel tspan.k{fill:var(--brown)}
-.nv__sky .home{font:700 13px var(--mono);letter-spacing:.14em;fill:var(--ink)}
-@media (max-width:767px){.nv__sky .rlabel{display:none}}
-@media (prefers-reduced-motion:reduce){.nv__sky .mover{display:none}}
+.nv__art .route{fill:none;stroke:var(--cream);stroke-width:2.6;stroke-dasharray:3 13;stroke-linecap:round;animation:nvdash 1.6s linear infinite}
+.nv__art .route-ink{fill:none;stroke:#1B1108;stroke-opacity:.35;stroke-width:5.5;stroke-linecap:round;stroke-dasharray:3 13;animation:nvdash 1.6s linear infinite;transform:translate(3px,2px)}
+@keyframes nvdash{to{stroke-dashoffset:-32}}
+.nv__art .tag rect{fill:#FBF7F3;stroke:#1B1108;stroke-width:2.5}
+.nv__art .tag text{font:700 19px var(--mono);letter-spacing:.12em;fill:#1B1108}
+.nv__art .tag text tspan{fill:#CC6121}
+@media (max-width:767px){.nv__art .tag.far{display:none}}
+@media (prefers-reduced-motion:reduce){.nv__art .route,.nv__art .route-ink{animation:none}.nv__art .mover{display:none}}
 
 /* ---------- mobile ---------- */
 @media (max-width:860px){
@@ -264,44 +268,32 @@ a{color:inherit}
 <div class="wrap"><span class="label">3 · Nøtteverden: stratosfæren</span></div>
 <section class="hero nv" id="nv" aria-labelledby="nv-h">
   <div class="navfake" aria-hidden="true"><b>Nøttanrop</b><div class="links">Produkter · Om oss · Ressurser</div><span>Kontakt</span></div>
-  <svg class="nv__sky" viewBox="0 0 1440 940" preserveAspectRatio="xMidYMax slice" role="img" aria-labelledby="nv-alt">
-    <title id="nv-alt">Jordas krumning sett fra stratosfæren i dagslys. Stiplede ruter fra California, Tyrkia, India og Sri Lanka møtes på Vinterbro.</title>
-    <!-- atmosphere glow: the only gradient, it is light -->
-    <ellipse cx="720" cy="2560" rx="2140" ry="1990" fill="#E7F5F0" opacity=".55"/>
-    <ellipse cx="720" cy="2560" rx="2105" ry="1955" fill="#D1EDE5" opacity=".7"/>
-    <!-- the earth: flat ocean ink, halftone shadow toward the limb, a few flat land plates -->
-    <ellipse cx="720" cy="2560" rx="2080" ry="1930" fill="#98B8AF"/>
-    <ellipse cx="720" cy="2560" rx="2080" ry="1930" fill="url(#dots)" mask="url(#limbmask)" opacity=".55"/>
-    <!-- flat cloud plates -->
-    <g fill="#FBF7F3" opacity=".92">
-      <path d="M380 690 h120 a14 14 0 0 0 0 -28 a22 22 0 0 0 -40 -10 a26 26 0 0 0 -50 6 a16 16 0 0 0 -30 32 z"/>
-      <path d="M1170 680 h90 a11 11 0 0 0 0 -22 a18 18 0 0 0 -32 -8 a20 20 0 0 0 -40 6 a12 12 0 0 0 -18 24 z"/>
-    </g>
-    <!-- routes home: schematic great-circle arcs, not a map -->
-    <path id="r1" class="route" d="M-40 860 C 120 420 520 470 742 702"/>
-    <path id="r2" class="route" d="M1480 820 C 1340 420 980 430 742 702"/>
-    <path id="r3" class="route" d="M1480 980 C 1240 560 950 560 742 702"/>
-    <path id="r4" class="route" d="M-40 1000 C 200 600 560 560 742 702"/>
-    <text class="rlabel" x="150" y="560"><tspan class="k">Mandel</tspan> · California</text>
-    <text class="rlabel" x="1110" y="500" text-anchor="end"><tspan class="k">Hasselnøtt</tspan> · Tyrkia</text>
-    <text class="rlabel" x="1250" y="690" text-anchor="end"><tspan class="k">Cashew</tspan> · India</text>
-    <text class="rlabel" x="120" y="760"><tspan class="k">Kokos</tspan> · Sri Lanka</text>
-    <!-- travelling nuts (static under reduced motion) -->
-    <g class="mover"><image href="img/nan-ill-mandel-240.webp" width="44" height="44" x="-22" y="-22"><animateMotion dur="14s" repeatCount="indefinite" rotate="auto"><mpath href="#r1"/></animateMotion></image></g>
-    <g class="mover"><image href="img/nan-ill-cashew-240.webp" width="44" height="44" x="-22" y="-22"><animateMotion dur="17s" begin="-6s" repeatCount="indefinite"><mpath href="#r3"/></animateMotion></image></g>
-    <!-- home: Vinterbro, the siren dot -->
-    <g transform="translate(742 702)">
-      <circle r="22" fill="#FF7A2A" opacity=".25"><animate attributeName="r" values="10;30;10" dur="3s" repeatCount="indefinite"/></circle>
-      <circle r="9" fill="#FF7A2A" stroke="#1B1108" stroke-width="2.5"/>
-      <g transform="translate(18 -34)"><rect x="0" y="-18" width="128" height="28" rx="14" fill="#FBF7F3" stroke="#1B1108" stroke-width="2"/><text class="home" x="64" y="1" text-anchor="middle">VINTERBRO</text></g>
-    </g>
-  </svg>
+  <div class="nv__art">
+    <img src="img/nan-hero-notteverden-stratosfaere-2000.webp" srcset="img/nan-hero-notteverden-stratosfaere-1200.webp 1200w, img/nan-hero-notteverden-stratosfaere-2000.webp 2000w" sizes="(max-width:767px) 200vh, 100vw" alt="Nord-Europa sett fra stratosfæren i dagslys: jordas krumning, Norskekysten, Østersjøen og skybånd over havet, tegnet som et trykk fra 1960-tallet." width="2000" height="1000" fetchpriority="high">
+    <svg viewBox="0 0 2048 1024" aria-hidden="true">
+      <!-- routes home: schematic great-circle arcs into Vinterbro (868,812) -->
+      <path id="nvr1" class="route-ink" d="M-80 640 C 160 300 640 380 868 812"/><path class="route" d="M-80 640 C 160 300 640 380 868 812"/>
+      <path id="nvr2" class="route-ink" d="M2130 1080 C 1900 560 1180 520 868 812"/><path class="route" d="M2130 1080 C 1900 560 1180 520 868 812"/>
+      <path id="nvr3" class="route-ink" d="M2130 760 C 1820 330 1120 360 868 812"/><path class="route" d="M2130 760 C 1820 330 1120 360 868 812"/>
+      <path id="nvr4" class="route-ink" d="M2130 920 C 1760 440 1160 430 868 812"/><path class="route" d="M2130 920 C 1760 440 1160 430 868 812"/>
+      <g class="tag far" transform="translate(330 470) rotate(-4)"><rect x="0" y="-26" width="312" height="40" rx="20"/><text x="18" y="1"><tspan>MANDEL</tspan> · CALIFORNIA</text></g>
+      <g class="tag far" transform="translate(1290 405) rotate(3)"><rect x="0" y="-26" width="300" height="40" rx="20"/><text x="18" y="1"><tspan>CASHEW</tspan> · INDIA</text></g>
+      <g class="tag far" transform="translate(1250 525) rotate(-2)"><rect x="0" y="-26" width="356" height="40" rx="20"/><text x="18" y="1"><tspan>HASSELNØTT</tspan> · TYRKIA</text></g>
+      <g class="tag far" transform="translate(1310 645) rotate(2)"><rect x="0" y="-26" width="334" height="40" rx="20"/><text x="18" y="1"><tspan>KOKOS</tspan> · SRI LANKA</text></g>
+      <g class="mover"><image href="img/nan-ill-mandel-240.webp" width="64" height="64" x="-32" y="-32"><animateMotion dur="13s" repeatCount="indefinite" rotate="auto"><mpath href="#nvr1"/></animateMotion></image></g>
+      <g class="mover"><image href="img/nan-ill-cashew-240.webp" width="64" height="64" x="-32" y="-32"><animateMotion dur="16s" begin="-5s" repeatCount="indefinite"><mpath href="#nvr3"/></animateMotion></image></g>
+      <g transform="translate(868 812)">
+        <circle r="26" fill="#FF7A2A" opacity=".3"><animate attributeName="r" values="12;40;12" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".45;0;.45" dur="3s" repeatCount="indefinite"/></circle>
+        <circle r="12" fill="#FF7A2A" stroke="#1B1108" stroke-width="3.5"/>
+        <g class="tag" transform="translate(-92 -78)"><rect x="0" y="-26" width="184" height="40" rx="20"/><text x="92" y="1" text-anchor="middle">VINTERBRO</text></g>
+      </g>
+    </svg>
+  </div>
   <div class="wrap"><div class="nv__copy">
     <p class="mono nv__kicker">11 råvarer fra 9 land</p>
     <h1 id="nv-h">Nøtteverden</h1>
     <div class="nv__alt"><span>Mandel</span><span>Hasselnøtt</span><span>Cashew</span><span>Kokos</span></div>
   </div></div>
-  <div class="nv__spacer" aria-hidden="true"></div>
 </section>
 <div class="after wrap"><p class="mono">Nøtteverden</p><h2>Verden er helt nøtta.</h2><p>Et glass Nøttanrop er et lite verdenskart. Mandler fra California, hasselnøtter fra Tyrkia, cashew fra India og kokos fra Sri Lanka – samlet, ristet og steinkvernet på Vinterbro.</p></div>
 
