@@ -85,6 +85,11 @@
   html .hj-kanaler { width: min(82.5rem, 100vw - 3rem); }
   html .hj-bane { max-width: 73.75rem; height: clamp(17.5rem, 32vw, 26.875rem); }
   html .hj-telefon { width: min(100%, 20.625rem); }
+  html .hj-nott.is-kakao { --w: clamp(4.875rem, 10vw, 8.75rem); }
+  html .hj-nott.is-cashew, html .hj-nott.is-kokos { --w: clamp(5.75rem, 12vw, 10.625rem); }
+  html .hj-nott.is-hassel { --w: clamp(9.375rem, 19vw, 16.875rem); }
+  html .hj-nott.is-mandel { --w: clamp(5.375rem, 11vw, 10rem); }
+  html .proof-card_image-wrapper { width: clamp(7.5rem, 6.4vw, 11.5rem); height: clamp(7.5rem, 6.4vw, 11.5rem); }
 
   /* forhandlere */
   html .fh-hero_jar { max-height: 40rem; }
@@ -116,8 +121,8 @@
   html .verden-samarbeid .section-enkel_cta { min-height: 16.25rem; }
   html .nh-call__ekorn { right: clamp(-.625rem, 2vw, 1.875rem); width: min(36%, 18.75rem); }
 
-  /* the card system's print details: edge, plate offsets, cut corners */
-  :root {
+  /* the card system's print details: edge, plate offsets, cut corners (html:root so the load order of kort.css does not matter) */
+  html:root {
     --k-line: .125rem;
     --k-r-lapp: .4375rem .25rem .5rem .3125rem / .3125rem .4375rem .25rem .5rem;
     --k-plate: .3125rem .375rem;

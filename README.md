@@ -29,6 +29,7 @@ cream paper → grainy light on the water only → flat olive land plate (offset
 | `src/nottekart.js` / `.css` | The globe | Claude / developer |
 | `assets/` | Art the globe loads (Helt nøtta, 27 KB) | — |
 | `dist/nottekart.min.js` | The finished file Webflow loads. **Generated, so don't edit it** | — |
+| `webflow/site/responsiv.css` | **One layout on every screen.** Site-wide responsive rules, loaded from the Webflow head. See `webflow/site/RESPONSIV.md` | Claude / developer |
 | `carousel/render.js` | Carousel part 1, "Nøtt eller bedrager?" (`npm run carousel`) | Claude |
 | `carousel/del2.js` | Carousel part 2, "Alt som er i glassene": all 12 ingredients of the 6 jars (`npm run carousel:del2`). Reads `ingredienser` in `src/notter.json`: confirmed `vaare` → globe route, otherwise "Venter på datablad" | Claude |
 | `carousel/lib.js` | Shared carousel parts: fonts, paper grain, globe snapshots, PNG export | Claude |
