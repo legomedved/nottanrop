@@ -21,8 +21,9 @@ Checked on nottanrop-26.webflow.io at 1440px and 390px with Playwright. The pixe
 - **/om-oss**: the cover now ends in the site's drip shape, cut out of the fjord strip so the sky shows through. The cream wash over the night sky is removed, and the brown band is gone. The fix is in `webflow/om-oss/build.py` (`.oo-shore`), commit 5818194.
 - **Home and /product/***: the "Hvorfor Nøttanrop" waves were painted pure white (#fff) on cream (#fffcfb) and left a visible band. They are now masked in the body-background colour. The fix is an embed in product-proof_section on the home page and on the product template.
 
+- **Om oss world**: the page wrapper changed from `verden-om-notta` (aqua) to `verden-hjem`, so the footer is now orange and matches the dusk cover, as on the home page. Decided November 2026.
+
 ## Open decisions
-1. **Om oss colours**: the cover is dusk orange and the footer is aqua (verden-om-notta). This breaks the top = bottom rule. Option A: set the page world so the footer is orange, as on the home page (dusk hero, orange footer). Option B: keep aqua and change the cover sky to aqua.
-2. **/category/***: six leftover Donutland pages are still live (chocolate, frosted and others). Delete them, or redirect them to /produkter.
-3. **/product/***: these duplicate /produkt/*. Pick one set as canonical and add 301 redirects from the other.
-4. **404 page**: still the English Donutland "PAGE NOT FOUND" donut.
+1. **/category/***: six leftover Donutland pages are still live (chocolate, frosted and others). Delete them, or redirect them to /produkter.
+2. **/product/***: these duplicate /produkt/*. Pick one set as canonical and add 301 redirects from the other.
+3. **404 page**: still the English Donutland "PAGE NOT FOUND" donut.
