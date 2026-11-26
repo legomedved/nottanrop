@@ -197,9 +197,17 @@
   /* chips: snap with the same inset as the padding, so the first chip isn't scrolled under the edge */
   .nk-nav ul { scroll-padding-inline: 16px; }
   /* the globe stays pinned while the card scrolls under it, like a map app */
-  .nk-stage { position: sticky; top: 0; z-index: 3; background: var(--nk-cream); margin: 0 -16px; padding: 0.5rem 16px 0.7rem;
+  .nk-stage { position: sticky; top: 0; z-index: 3; background: var(--nk-cream); box-sizing: border-box; width: 100vw; margin: 0 0 0 calc(50% - 50vw); padding: 0.5rem 16px 0.7rem;
     box-shadow: 0 10px 12px -10px rgba(27, 17, 8, 0.25); }
-  .nk-globe { width: min(100%, 38vh); margin: 0 auto; }
+  .nk-globe { width: min(100%, 35vh); margin: 0 auto; }
+  /* the site's fixed menu button sits top-left (≈ 12–58 px): the pinned globe starts below it,
+     and the strip beside the button carries the atlas title (the cartouche's phone edition) */
+  .nk-stage { padding-top: var(--nk-mobile-top, 3.9rem); }
+  .nk-stage::before {
+    content: "Nøtteverden · skoleatlas for nøtt-nød"; position: absolute; top: 1.35rem; left: 4.5rem; right: 1rem;
+    text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    font: 500 0.62rem/1.2 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--nk-brown);
+  }
   .nk-stage .nk-legend, .nk-hint { display: none; }
   .nk-legend-panel { display: flex; margin-top: 1.4rem; }
   .nk-panel { position: relative; z-index: 1; padding-top: 0.6rem; }
