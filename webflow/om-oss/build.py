@@ -50,6 +50,7 @@ css = css.replace('.oo-cover__kicker{display:block;font:italic 500', '.oo-cover_
 css += '\n.oo-cover h1,.oo-day h2,.oo-day h3,.oo-sheet h2,.oo-sheet h3,.oo-nod h2{color:inherit}\n.oo-cover h1 span,.oo-cover h1 em{color:inherit}\n.oo-cover__display em{color:var(--orange-light)}\n.oo-panel p,.oo-fact p,.oo-cover p{font-size:inherit}\n'
 css += '.oo-fact__art>img{width:100%;height:100%;object-fit:cover}\n'
 # site-level clashes: the floating menu button (top-left, phones) and the site's h3 letter-spacing
+css += '.oo-cover p,.oo-panel p,.oo-fact p,.oo-label dd,.oo-not li span:last-child,.oo-count span{letter-spacing:normal}\n'
 css += '.oo-fact h3,.oo-label__name{letter-spacing:0}\n@media (max-width: 900px){.oo-mel{top:calc(76px + env(safe-area-inset-top,0px))}}\n'
 css += '.oo-label.oo-is-orange{--band:var(--orange)}.oo-label.oo-is-red{--band:var(--red)}.oo-label.oo-is-aqua{--band:var(--aqua)}\n'
 # prototype-only bits
