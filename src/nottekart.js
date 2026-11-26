@@ -41,7 +41,7 @@ const STEMPEL = {
 
 const SVGNS = "http://www.w3.org/2000/svg";
 const S = 600; // viewBox size
-const R0 = S / 2 - 22; // globe radius; the rest is room for the dusk glow
+const R0 = S / 2 - 16; // globe radius; the rest is room for the dusk glow
 const RH = S / 2 - 2; // outer edge of the glow
 const reduceMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const land = feature(land110, land110.objects.land);

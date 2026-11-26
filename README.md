@@ -17,6 +17,8 @@ cream paper → grainy light on the water only → flat olive land plate (offset
 
 - **Utrykning (call-out):** pick something that's in our jars, and Helt nøtta flies the parcel along a dashed route to Nesodden. The siren on Nesodden blinks when he lands.
 - **Bare avstand (distance only):** nuts we don't use get a thin dotted line and no hero. The flight means *this comes to us*, so we don't fake it.
+- **Atlas furniture:** a title cartouche (top left) and an Oslofjord inset (real coastline from Natural Earth 1:10m, built by `node tools/inset.js` into `src/oslofjord.json`) with the siren on Vinterbro.
+- **Dusk:** a grainy glow on the sunlit edge only (upper left). **The print registers itself:** on each pick, the colour plates slide from ~10 px off into register.
 - **The stamp:** every entry gets a botanical verdict: *Ekte nøtt* (true nut), *Ikke nøtt* (not a nut, in red, alarm), *Omstridt* (disputed) or *Ingrediens* (ingredient).
 
 ## Files
