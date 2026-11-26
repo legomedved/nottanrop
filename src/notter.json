@@ -1197,6 +1197,175 @@
         }
       ],
       "side": "/notteverden/jordnott"
+    },
+    {
+      "id": "rorsukker",
+      "navn": "Rørsukker",
+      "latin": "Saccharum officinarum",
+      "farge": "camel",
+      "opphav": {
+        "sted": null,
+        "lat": -21.5,
+        "lon": -48.5
+      },
+      "stempel": "ingrediens",
+      "glass": true,
+      "botanikk": "Sukker fra saften i sukkerrør, som botanisk sett er et gress.",
+      "historie": "Rørsukkeret kommer fra Brasil, samme land som kakaoen. I Sunntella møtes de igjen.",
+      "vits": "Et gress som har gått langt i livet.",
+      "produkter": [
+        "Sunntella",
+        "Cashewdrøm",
+        "Cashewdrøm med matcha",
+        "Cashewdrøm med jordbær",
+        "Pistasjkrem"
+      ],
+      "vaare": {
+        "land": "Brasil",
+        "lat": -21.5,
+        "lon": -48.5
+      },
+      "verifisert": true,
+      "kilder": [
+        {
+          "title": "Wikipedia: Sugarcane",
+          "url": "https://en.wikipedia.org/wiki/Sugarcane",
+          "apnet": true
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Verdens største avling i tonn. Brasil dyrker nesten 40 prosent.",
+          "kilder": [
+            "https://en.wikipedia.org/wiki/Sugarcane"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kakaosmor",
+      "navn": "Kakaosmør",
+      "latin": "Theobroma cacao",
+      "farge": "brown",
+      "opphav": {
+        "sted": null,
+        "lat": -6.5,
+        "lon": -76.4
+      },
+      "stempel": "ingrediens",
+      "glass": true,
+      "botanikk": "Fettet som presses ut av kakaobønnene.",
+      "historie": "Kakaosmøret i pistasjkremen kommer fra Peru.",
+      "vits": "Smør fra en bønne. Ingen ku har vært involvert.",
+      "produkter": [
+        "Pistasjkrem"
+      ],
+      "vaare": {
+        "land": "Peru",
+        "lat": -6.5,
+        "lon": -76.4
+      },
+      "verifisert": true,
+      "kilder": [
+        {
+          "title": "Wikipedia: Cocoa butter",
+          "url": "https://en.wikipedia.org/wiki/Cocoa_butter",
+          "apnet": true
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Smelter ved 34–38 grader. Rett under kroppstemperatur.",
+          "kilder": [
+            "https://en.wikipedia.org/wiki/Cocoa_butter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "olivenolje",
+      "navn": "Olivenolje",
+      "latin": "Olea europaea",
+      "farge": "pistasj",
+      "opphav": {
+        "sted": null,
+        "lat": 39.1,
+        "lon": 22.0
+      },
+      "stempel": "ingrediens",
+      "glass": true,
+      "botanikk": "Olje presset av frukten til oliventreet. Oliven er en steinfrukt.",
+      "historie": "Økologisk extra virgin olivenolje fra Hellas.",
+      "vits": "Enda en steinfrukt i glasset. Bedragerne er overalt.",
+      "produkter": [
+        "Pistasjkrem"
+      ],
+      "vaare": {
+        "land": "Hellas",
+        "lat": 39.1,
+        "lon": 22.0
+      },
+      "verifisert": true,
+      "kilder": [
+        {
+          "title": "Wikipedia: Olive oil",
+          "url": "https://en.wikipedia.org/wiki/Olive_oil",
+          "apnet": true
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Extra virgin: kaldt og mekanisk presset, uten løsemidler.",
+          "kilder": [
+            "https://en.wikipedia.org/wiki/Olive_oil"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salt",
+      "navn": "Salt",
+      "latin": "Natriumklorid",
+      "farge": "camel",
+      "opphav": {
+        "sted": null,
+        "lat": 37.9,
+        "lon": 12.5
+      },
+      "stempel": "ingrediens",
+      "glass": true,
+      "botanikk": "Et mineral, ikke en plante.",
+      "historie": "Havsaltet kommer fra Italia. Én klype, i alle seks glass.",
+      "vits": "Det eneste i glassene som aldri har vokst.",
+      "produkter": [
+        "Mandelykke",
+        "Sunntella",
+        "Cashewdrøm",
+        "Cashewdrøm med matcha",
+        "Cashewdrøm med jordbær",
+        "Pistasjkrem"
+      ],
+      "vaare": {
+        "land": "Italia",
+        "lat": 37.9,
+        "lon": 12.5
+      },
+      "verifisert": true,
+      "kilder": [
+        {
+          "title": "Wikipedia: Sea salt",
+          "url": "https://en.wikipedia.org/wiki/Sea_salt",
+          "apnet": true
+        }
+      ],
+      "fakta": [
+        {
+          "tekst": "Havsalt er sjøvann minus vannet.",
+          "kilder": [
+            "https://en.wikipedia.org/wiki/Sea_salt"
+          ]
+        }
+      ]
     }
   ],
   "ingredienser": [

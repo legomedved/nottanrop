@@ -47,6 +47,11 @@ const HOME = [data.hjem.lon, data.hjem.lat];
 const scriptSrc = document.currentScript && document.currentScript.src;
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 const fmtKm = (n) => n.toLocaleString("nb-NO");
+// Pins are an assumed point in the country, so distances are rounded and marked as approximate.
+const approxKm = (n) => `≈ ${fmtKm(Math.round(n / 100) * 100)} km`;
+// Ingredients that have a drawing in assets/ (nan-ill-<id>-160.webp): shown as a specimen plate on the card.
+const ART = new Set(["mandel", "hasselnott", "cashew", "kokos", "pistasj", "kakao", "matcha", "jordbaer", "mango",
+  "solbaer", "rorsukker", "kakaosmor", "olivenolje", "salt"]);
 const fmtCoord = (lat, lon) =>
   `${Math.abs(lat).toFixed(0)}°${lat >= 0 ? "N" : "S"} ${Math.abs(lon).toFixed(0)}°${lon >= 0 ? "Ø" : "V"}`;
 
@@ -184,7 +189,8 @@ class Nottekart {
     const nav = el("nav", { class: "nk-nav", "aria-label": "Velg nøtt" }, panel);
     this.buttons = [];
     for (const [title, list] of [
-      ["I glassene våre", data.notter.filter((n) => n.produkter.length)],
+      ["I glassene våre", data.notter.filter((n) => n.produkter.length && !n.glass)],
+      ["Resten av glasset", data.notter.filter((n) => n.glass)],
       ["Resten av nøtteverden (og noen bedragere)", data.notter.filter((n) => !n.produkter.length)],
     ]) {
       el("p", { class: "nk-label" }, nav).textContent = title;
@@ -198,6 +204,8 @@ class Nottekart {
       }
     }
     this.card = el("article", { class: "nk-card", "aria-live": "polite" }, panel);
+    // on phones the globe stays pinned at the top, so the key moves under the card
+    el("p", { class: "nk-legend nk-legend-panel", "aria-hidden": "true" }, panel).innerHTML = legend.innerHTML;
 
     // ---- drag to rotate --------------------------------------------------
     let last = null;
@@ -367,7 +375,7 @@ class Nottekart {
 
   renderCard(n, km) {
     const c = this.card;
-    const nr = String(data.notter.indexOf(n) + 1).padStart(2, "0");
+    const nr = String(this.buttons.findIndex((x) => x.n === n) + 1).padStart(2, "0"); // follows the chip order
     const total = String(data.notter.length).padStart(2, "0");
     c.innerHTML = "";
     c.dataset.stempel = n.stempel;
@@ -379,11 +387,19 @@ class Nottekart {
     const stamp = el("p", { class: `nk-stamp nk-stamp-${n.stempel}` }, c);
     stamp.textContent = STEMPEL[n.stempel] || "";
 
-    el("h3", { class: "nk-title" }, c).textContent = n.navn;
-    el("p", { class: "nk-latin" }, c).textContent = `${n.latin} · ${n.opphav.sted}`;
+    const head = el("div", { class: "nk-head" }, c);
+    const name = el("div", { class: "nk-name" }, head);
+    el("h3", { class: "nk-title" }, name).textContent = n.navn;
+    el("p", { class: "nk-latin" }, name).textContent = n.opphav.sted ? `${n.latin} · ${n.opphav.sted}` : n.latin;
+    if (ART.has(n.id)) {
+      const plate = el("figure", { class: "nk-plate-fig" }, head);
+      el("img", { src: `${this.assets}nan-ill-${n.id}-160.webp`, alt: "", width: 160, height: 160, decoding: "async" }, plate);
+      plate.appendChild(stamp); // the stamp lands on the plate's edge
+      c.classList.add("has-plate");
+    }
     el("p", { class: "nk-botany" }, c).textContent = n.botanikk;
     el("p", { class: "nk-story" }, c).textContent = n.historie;
-    el("blockquote", { class: "nk-wit" }, c).textContent = n.vits;
+    if (n.vits) el("blockquote", { class: "nk-wit" }, c).textContent = n.vits;
 
     if (n.fakta && n.fakta.length) {
       const f = el("div", { class: "nk-facts" }, c);
@@ -397,11 +413,11 @@ class Nottekart {
     if (n.produkter.length) {
       row("I glassene våre", n.produkter.join(" · "));
       row("Våre kommer fra", n.vaare ? (n.vaare.notat ? `${n.vaare.land} (${n.vaare.notat.split(" (")[0]})` : n.vaare.land) : "Vi sjekker med leverandøren. Ærlighet tar litt tid.");
-      row(n.vaare ? "Reisen hit" : "Reisen hit (fra opphavet)", `${fmtKm(km)} km til ${data.hjem.sted}`);
+      row(n.vaare ? "Reisen hit" : "Reisen hit (fra opphavet)", `${approxKm(km)} i luftlinje til ${data.hjem.sted}`);
       row("Hjemme", data.hjem.notat);
     } else {
       row("I glassene våre", "Nei. Med på kartet for allmenndannelsens skyld.");
-      row("Avstand", `${fmtKm(km)} km fra ${data.hjem.sted}`);
+      row("Avstand", `${approxKm(km)} i luftlinje fra ${data.hjem.sted}`);
     }
     const kilder = (n.kilder || []).filter((k) => k.apnet !== false);
     if (kilder.length) {
