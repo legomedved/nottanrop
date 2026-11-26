@@ -130,7 +130,7 @@
 }
 /* eyebrow = plain text (pills are for tags only) */
 :root body .section-enkel_card .section-enkel_label.section-enkel_label { background: none !important; padding: 0 !important; border-radius: 0 !important;
-  color: var(--k-text) !important; margin: 0 0 .6rem !important; }
+  color: var(--k-text) !important; margin: 0 0 .6rem !important; opacity: 1 !important; }
 :root body :is(.nv_type-tag, .nv_card-origin) { color: #B54F14 !important; } /* small orange text: 4.8:1 on paper (pure orange was 2.6:1) */
 
 /* Text CTAs inside cards: one form. "Gjør noe →", DM Sans, the arrow answers the hover */
