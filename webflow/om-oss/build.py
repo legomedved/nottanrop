@@ -50,6 +50,18 @@ css = css.replace('.oo-cover__kicker{display:block;font:italic 500', '.oo-cover_
 css += '\n.oo-cover h1,.oo-day h2,.oo-day h3,.oo-sheet h2,.oo-sheet h3,.oo-nod h2{color:inherit}\n.oo-cover h1 span,.oo-cover h1 em{color:inherit}\n.oo-cover__display em{color:var(--orange-light)}\n.oo-panel p,.oo-fact p,.oo-cover p{font-size:inherit}\n'
 css += '.oo-fact__art>img{width:100%;height:100%;object-fit:cover}\n'
 # site-level clashes: the floating menu button (top-left, phones) and the site's h3 letter-spacing
+# the agreed hero structure: the cover ends in the site's own hero drip (same shape/size as Hjem and the old Om oss).
+# The drip is cut out of the fjord strip (mask xor), so whatever sky is behind shows through the gaps — no seam to match.
+WAVE_D = "https://cdn.prod.website-files.com/693eb2bc3e42b68a1bb20701/693eb2bc3e42b68a1bb209fe_white-wave-svg%201.webp"
+WAVE_M = "https://cdn.prod.website-files.com/693eb2bc3e42b68a1bb20701/693eb2bc3e42b68a1bb20a19_smaller-white-wave.webp"
+DRIP_H = "clamp(64px,9.77vw,180px)"
+def shore_mask(w):
+    return ('-webkit-mask-image:url("%s"),linear-gradient(180deg,transparent 0,#000 22%%);mask-image:url("%s"),linear-gradient(180deg,transparent 0,#000 22%%);'
+            '-webkit-mask-size:100%% %s,100%% 100%%;mask-size:100%% %s,100%% 100%%;-webkit-mask-position:center bottom,0 0;mask-position:center bottom,0 0;'
+            '-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-composite:xor;mask-composite:exclude') % (w, w, DRIP_H, DRIP_H)
+css += '.oo-shore{' + shore_mask(WAVE_D) + '}\n@media (max-width: 767px){.oo-shore{' + shore_mask(WAVE_M) + '}}\n'
+# the site's 'cream heroes' rule washes the first <section> of a page; on Om oss that is the day section, which must show the sky
+css += '.oo-day{background-image:none!important}\n'
 css += '.oo-cover p,.oo-panel p,.oo-fact p,.oo-label dd,.oo-not li span:last-child,.oo-count span{letter-spacing:normal}\n'
 css += '.oo-fact h3,.oo-label__name{letter-spacing:0}\n@media (max-width: 900px){.oo-mel{top:calc(76px + env(safe-area-inset-top,0px))}}\n'
 css += '.oo-label.oo-is-orange{--band:var(--orange)}.oo-label.oo-is-red{--band:var(--red)}.oo-label.oo-is-aqua{--band:var(--aqua)}\n'
