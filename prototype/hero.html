@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Helt Nøtta hero</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,600..800,100;1,9..144,600..700,100&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Layout concept: the existing winter plate, separated into the layers the codex asked for
+   (sky, land, ferry, squirrel, grain), with the headline printed into the sky. */
+:root{
+  --paper:#FBF7F3; --almond:#F5E0C6; --ink:#1B1108; --brown:#5A3A1C;
+  --orange:#FF7A2A; --orange-light:#FFA169; --red:#E23C2E;
+  --sky-top:#250E1F; --sky-mid:#4A1F38; --sky-low:#723C46; /* last stop = the plate's own top edge */
+  --display:"Recoleta","Fraunces",Georgia,serif; --body:"DM Sans",system-ui,sans-serif; --mono:"Space Mono",ui-monospace,monospace;
+  --gutter:max(16px, env(safe-area-inset-left, 0px)); --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+
+.ribbon{background:var(--ink);color:var(--almond);padding:.55rem var(--gutter-r) .55rem var(--gutter);font:400 .72rem/1.4 var(--mono);letter-spacing:.06em;display:flex;justify-content:space-between;gap:.5rem 1.5rem;flex-wrap:wrap}
+.ribbon a{color:var(--orange-light)}
+
+.hero{position:relative;overflow:hidden;isolation:isolate;min-height:calc(max(100vw,1180px) * .558 + clamp(300px,26vw,420px));color:var(--paper);
+  background:linear-gradient(180deg,var(--sky-top) 0%,var(--sky-mid) 30%,var(--sky-low) 58%)}
+.layer{position:absolute;pointer-events:none;will-change:transform}
+
+/* land: a box with the plate's own aspect ratio, so the ferry can be placed in plate coordinates */
+.land{left:50%;bottom:0;width:max(100%,1180px);aspect-ratio:2880/1607;translate:-50% 0;transform:translate3d(0,var(--py-land,0px),0)}
+.land img{width:100%;height:100%;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%);mask-image:linear-gradient(180deg,transparent 0,#000 9%)}
+.ferry{position:absolute;left:62.5%;top:44.3%;width:6.4%;animation:sail 46s ease-in-out infinite alternate}
+.ferry img{animation:bob 5.5s ease-in-out infinite alternate;transform-origin:50% 80%}
+/* the ferry only sails Nesoddtangen - Oslo: it moves along its real heading, no further */
+@keyframes sail{from{translate:-18% 12%}to{translate:26% -16%}}
+@keyframes bob{from{rotate:-.8deg}to{rotate:.8deg}}
+.wake{position:absolute;left:58%;top:50%;width:6%;height:1.2%;border-top:2px dotted color-mix(in srgb,var(--paper) 70%,transparent);rotate:-24deg;opacity:.7;animation:sail 46s ease-in-out infinite alternate}
+
+.hero-squirrel{right:max(-2vw,-20px);top:-2%;width:clamp(250px,31vw,520px);transform-origin:100% 9%;transform:translate3d(var(--px,0px),var(--py-sq,0px),0) rotate(var(--sway,0deg))}
+
+.grain{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:.1;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .106 0 0 0 0 .067 0 0 0 0 .031 0 0 0 1.4 -.3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.copy{position:relative;z-index:3;padding:clamp(2.5rem,5vw,4.5rem) var(--gutter-r) 0 var(--gutter);max-width:min(58rem,66vw)}
+.eyebrow{font:400 .78rem/1.3 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--orange-light)}
+h1{margin:1rem 0 0;font:700 clamp(3rem,6vw,6.4rem)/.92 var(--display);font-variation-settings:"SOFT" 100,"opsz" 144;letter-spacing:-.02em;text-wrap:balance;color:var(--paper);position:relative}
+/* the print: an orange plate under cream ink, slightly out of register; it settles on load */
+h1 .plate{position:absolute;inset:0;color:var(--orange);z-index:-1;transform:translate(.05em,.035em);animation:register 1.1s cubic-bezier(.2,.8,.2,1) both}
+h1 em{font-style:italic;color:var(--orange-light)}
+h1 .plate em{color:var(--red)}
+@keyframes register{from{transform:translate(.22em,.16em);opacity:.0}to{transform:translate(.05em,.035em);opacity:1}}
+.lead{max-width:30rem;margin:1.4rem 0 0;font-size:clamp(1.05rem,1.4vw,1.2rem);color:var(--almond)}
+.btn{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.6rem;padding:.95rem 1.4rem;border-radius:999px;background:var(--orange);color:var(--ink);font:700 .95rem/1 var(--mono);text-decoration:none;border:2.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+
+.drip{position:absolute;left:0;right:0;bottom:-1px;z-index:4;height:clamp(46px,7vw,110px)}
+.drip svg{width:100%;height:100%;display:block}
+
+.after{padding:clamp(3rem,7vw,5rem) var(--gutter-r) 5rem var(--gutter);max-width:62rem;margin:0 auto}
+.after h2{font:700 clamp(1.8rem,3.4vw,2.6rem)/1.1 var(--display);font-variation-settings:"SOFT" 100;margin:0 0 1.2rem;color:var(--brown)}
+.after ol{display:grid;gap:.9rem;padding-left:1.2rem;margin:0}
+.after b{color:var(--brown)}
+
+@media (max-width: 760px){
+  .hero{min-height:max(100svh,700px)}
+  h1{font-size:clamp(2.9rem,13vw,4rem)}
+  .copy{max-width:none;padding-top:clamp(9.5rem,30vh,13rem)}
+  .hero-squirrel{width:min(54vw,240px);right:-4vw;top:-1%}
+  .land{width:auto;height:52%;left:50%;translate:-56% 0}
+}
+@media (prefers-reduced-motion: reduce){
+  .ferry,.ferry img,.wake,h1 .plate{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="ribbon"><span>Prototype · forslag til forsidehero · ikke publisert</span><a href="om-oss.html">← Tilbake til Om oss</a></div>
+
+<section class="hero" aria-labelledby="hero-h">
+  <div class="layer land" id="land">
+    <img src="img/nan-hero-landskap-vinter-2000.webp" alt="Oslofjorden i vinterskumring sett ovenfra, med Nesodden i forgrunnen og Oslo i det fjerne.">
+    <div class="wake" aria-hidden="true"></div>
+    <div class="ferry"><img src="img/nan-ferje-jul-400.webp" alt="Nesoddferja med julelys, på vei mot Oslo"></div>
+  </div>
+  <img class="layer hero-squirrel" id="squirrel" src="img/nan-ekorn-helt-notta-900.webp" alt="Ekornhelten Helt Nøtta henger i en grein med et glass Mandelykke.">
+  <div class="copy">
+    <div class="eyebrow">Vinter 2026 · Nettbutikken åpner 1. desember</div>
+    <h1 id="hero-h"><span>Helt Nøtta redder <em>jula.</em></span><span class="plate" aria-hidden="true">Helt Nøtta redder <em>jula.</em></span></h1>
+    <p class="lead">Tre nøtter. Tre smaker laget for ekte sult og ekte glede — rett fra Oslofjord.</p>
+    <a class="btn" href="/produkter">Kjøp nå <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="drip" aria-hidden="true">
+    <svg viewBox="0 0 1440 110" preserveAspectRatio="none"><path fill="#FBF7F3" d="M0 64c40 0 46 30 70 30s22-42 52-42 30 52 56 52 20-40 50-40 34 26 60 26 26-44 58-44 26 58 54 58 24-36 52-36 38 18 64 18 22-50 54-50 30 40 56 40 24-28 52-28 36 46 62 46 22-58 56-58 28 30 54 30 30-40 58-40 30 54 58 54 22-34 52-34 36 22 62 22 26-48 58-48 26 36 54 36 28-30 56-30 34 50 60 50 24-44 54-44 30 28 58 28 28-40 56-40 32 34 60 34V110H0z"/></svg>
+  </div>
+</section>
+
+<section class="after">
+  <h2>Hva som er endret, og hvorfor</h2>
+  <ol>
+    <li><b>Overskriften vises fra første bilde.</b> På dagens side står «Helt Nøtta redder jula.» med opasitet 0 og venter på en inngangsanimasjon som aldri starter (sjekket i Chromium: etter 9 sekunder og etter scroll står den fortsatt usynlig). Ingressen og «Kjøp nå» ble heller ikke synlige i skjermbildet. Her er de der fra start.</li>
+    <li><b>Inngangen er et trykk, ikke en flygetur.</b> I stedet for at tittelen flyr inn fra -500 px og 32 grader, glir den oransje fargeplaten på plass under den kremhvite trykkfargen og blir liggende litt skjevt, slik kodeksen sier.</li>
+    <li><b>Lagene beveger seg hver for seg.</b> Ferja seiler sakte langs sin faktiske kurs mot Oslo og tilbake, ingen andre steder. Greinen gynger litt i vinden. Når du scroller, går landskapet saktere enn ekornet. Alt står stille med «redusert bevegelse».</li>
+    <li><b>Mobil får sitt eget utsnitt.</b> I dag er rundt 60 % av mobilheroen flat lilla himmel. Her er landskapet større, og Nesodden-tuppen, ferja og byen står i midten.</li>
+    <li><b>Neste steg for kunst:</b> et eget himmellag og et eget nærlag (forgrunnen) fra Magnific, så parallaksen får tre dybder i stedet for to.</li>
+  </ol>
+</section>
+
+<script>
+(function(){
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)");
+  var root=document.documentElement, ticking=false, mx=0, t0=performance.now();
+  function frame(now){
+    ticking=false;
+    if(reduce.matches) return;
+    var y=Math.min(window.scrollY,1200);
+    root.style.setProperty("--py-land",(y*.18).toFixed(1)+"px");
+    root.style.setProperty("--py-sq",(y*-.06).toFixed(1)+"px");
+    root.style.setProperty("--px",(mx*-8).toFixed(1)+"px");
+  }
+  function req(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
+  window.addEventListener("scroll",req,{passive:true});
+  window.addEventListener("pointermove",function(e){if(e.pointerType==="mouse"){mx=e.clientX/window.innerWidth-.5;req()}},{passive:true});
+  /* the branch sways: slow, uneven, like wind off the fjord */
+  function sway(now){
+    if(!reduce.matches){
+      var s=(now-t0)/1000;
+      var a=Math.sin(s*.72)*.7+Math.sin(s*1.9+1.3)*.18;
+      root.style.setProperty("--sway",a.toFixed(3)+"deg");
+    }
+    requestAnimationFrame(sway);
+  }
+  requestAnimationFrame(sway);
+})();
+</script>
+</body>
+</html>

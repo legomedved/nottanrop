@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ett døgn i melangeren</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,500..800,100;1,9..144,500..700,100&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Layout concept: comic panels pasted on one sky that lives through 24 hours.
+   Scroll is the clock. Light (sky) is the only gradient; everything else is flat ink on paper.
+   On Webflow: swap Fraunces for the site's Recoleta. */
+:root{
+  --paper:#FBF7F3; --almond:#F5E0C6; --camel:#C49A6C; --brown:#5A3A1C; --ink:#1B1108;
+  --orange:#FF7A2A; --orange-dark:#CC6121; --orange-light:#FFA169; --red:#E23C2E;
+  --aqua:#BEE6DB; --aqua-dark:#98B8AF; --steel:#C8C5C2; --steel-dark:#646261;
+  --display:"Recoleta","Fraunces",Georgia,serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Space Mono",ui-monospace,Menlo,monospace;
+  /* sky, set by script from the clock */
+  --s1:#622553; --s2:#EA766C; --s3:#FFA169; --on-sky:#FBF7F3; --night:0;
+  --gutter:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  --halftone:radial-gradient(circle at 50% 50%, var(--ink) 0 1.1px, transparent 1.6px) 0 0/6px 6px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ink);color:var(--ink);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;font-size:.75rem}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- the sky (light layer) + print artefacts ---------- */
+.sky{position:fixed;inset:0;z-index:-3;background:linear-gradient(180deg,var(--s1) 0%,var(--s2) 58%,var(--s3) 100%)}
+.stars{position:fixed;inset:0;z-index:-2;opacity:var(--night);pointer-events:none;
+  background:
+   radial-gradient(1.2px 1.2px at 12% 18%,#FBF7F3 98%,transparent),radial-gradient(1px 1px at 27% 8%,#FBF7F3 98%,transparent),
+   radial-gradient(1.4px 1.4px at 44% 22%,#F5E0C6 98%,transparent),radial-gradient(1px 1px at 63% 12%,#FBF7F3 98%,transparent),
+   radial-gradient(1.2px 1.2px at 78% 26%,#FBF7F3 98%,transparent),radial-gradient(1px 1px at 91% 9%,#F5E0C6 98%,transparent),
+   radial-gradient(1px 1px at 6% 41%,#FBF7F3 98%,transparent),radial-gradient(1.3px 1.3px at 35% 37%,#FBF7F3 98%,transparent),
+   radial-gradient(1px 1px at 55% 46%,#F5E0C6 98%,transparent),radial-gradient(1.2px 1.2px at 86% 44%,#FBF7F3 98%,transparent)}
+.grain{position:fixed;inset:-50%;z-index:50;pointer-events:none;opacity:.085;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .106 0 0 0 0 .067 0 0 0 0 .031 0 0 0 1.4 -.3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- proto ribbon ---------- */
+.ribbon{position:relative;z-index:5;background:var(--ink);color:var(--almond);padding-block:.55rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em}
+.ribbon .wrap{display:flex;gap:.5rem 1.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center}
+.ribbon a{color:var(--orange-light)}
+
+/* ---------- cover ---------- */
+.cover{position:relative;color:var(--on-sky);padding-top:clamp(3rem,9vh,7rem);overflow:hidden;transition:color .6s}
+.cover__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:2rem;align-items:center}
+.cover__eyebrow{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+.cover__eyebrow .dot{width:.55rem;height:.55rem;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 30%,transparent)}
+.cover h1{margin:1.1rem 0 0;font-weight:inherit}
+.cover__kicker{display:block;font:italic 500 clamp(1.15rem,2vw,1.5rem)/1.2 var(--display);font-variation-settings:"SOFT" 100;opacity:.92}
+.cover__display{display:block;margin-top:.6rem;font:700 clamp(3rem,8.4vw,7.2rem)/.92 var(--display);font-variation-settings:"SOFT" 100,"opsz" 144;letter-spacing:-.02em;text-wrap:balance;
+  text-shadow:.045em .03em 0 color-mix(in srgb,var(--orange) 85%,transparent)}
+.cover__display em{font-style:italic;color:var(--orange-light);text-shadow:.045em .03em 0 color-mix(in srgb,var(--red) 70%,transparent)}
+.cover__text{max-width:34rem;margin:1.6rem 0 0;font-size:1.12rem}
+.cover__text strong{font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.8rem;padding:.95rem 1.4rem;border-radius:999px;background:var(--orange);color:var(--ink);font:700 .95rem/1 var(--mono);text-decoration:none;border:2.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.moon{position:relative;justify-self:center;width:min(100%,430px);aspect-ratio:1}
+.moon__disc{position:absolute;inset:0;border-radius:50%;overflow:hidden;border:3px solid var(--ink);background:var(--almond);transform:rotate(var(--drum,0deg));box-shadow:0 0 0 10px color-mix(in srgb,var(--orange-light) 22%,transparent),0 0 90px 20px color-mix(in srgb,var(--orange-light) 35%,transparent)}
+.moon__disc img{width:100%;height:100%;object-fit:cover;filter:url(#riso);transform:scale(1.08)}
+.moon__disc::after{content:"";position:absolute;inset:0;background:var(--halftone);opacity:.22;mix-blend-mode:multiply}
+.moon__plate{position:absolute;inset:0;border-radius:50%;background:var(--orange);transform:translate(7px,5px);z-index:-1;opacity:.9}
+.moon__cap{position:absolute;left:50%;bottom:-2.4rem;translate:-50% 0;white-space:nowrap;opacity:.8}
+.shore{position:relative;margin-top:clamp(2rem,6vh,4rem);height:clamp(200px,34vw,480px);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22%);mask-image:linear-gradient(180deg,transparent 0,#000 22%)}
+.shore img{width:100%;height:100%;object-fit:cover;object-position:50% 70%}
+.shore::after{content:"";position:absolute;inset:auto 0 0;height:30%;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--ink) 55%,transparent))}
+
+/* ---------- the day ---------- */
+.day{position:relative;padding-block:clamp(3rem,8vh,6rem) 4rem}
+.day__head{color:var(--on-sky);transition:color .6s;max-width:40rem}
+.day__head h2{font:700 clamp(2.2rem,5vw,4rem)/1 var(--display);font-variation-settings:"SOFT" 100;margin:.6rem 0 0;letter-spacing:-.015em;text-wrap:balance}
+.day__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(1.5rem,4vw,4.5rem);margin-top:2.5rem}
+
+/* melanger, sticky */
+.mel{position:sticky;top:max(5vh,1.5rem);align-self:start;height:min(88vh,760px);display:grid;grid-template-rows:auto 1fr auto;justify-items:center;gap:1rem}
+.clock{display:inline-flex;align-items:baseline;gap:.75rem;background:var(--paper);border:2.5px solid var(--ink);border-radius:999px;padding:.45rem 1.1rem .5rem;box-shadow:4px 4px 0 var(--ink)}
+.clock__time{font:700 clamp(1.6rem,3vw,2.3rem)/1 var(--mono);color:var(--red);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.mel__stage{position:relative;width:100%;max-width:520px;align-self:center}
+.mel__svg{width:100%;height:auto;overflow:visible}
+.mel__drum{transform-origin:200px 200px;transform:rotate(var(--drum,0deg))}
+.mel__roll{transform:translateY(var(--roll,0px))}
+.mel__layer{transition:opacity .5s}
+.mel__label{background:var(--ink);color:var(--almond);padding:.35rem .7rem;border-radius:3px}
+.spot{position:absolute;translate:-50% -50%;z-index:2}
+.spot button{display:inline-flex;align-items:center;gap:.4rem;font:700 .74rem/1 var(--mono);letter-spacing:.04em;padding:.42rem .7rem .42rem .45rem;background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:999px;cursor:pointer;box-shadow:2px 2px 0 var(--ink)}
+.spot button span{display:grid;place-items:center;width:1.2rem;height:1.2rem;border-radius:50%;background:var(--orange);font-size:.9rem;transition:transform .25s}
+.spot button[aria-expanded="true"] span{transform:rotate(45deg)}
+.spot__tip{position:absolute;top:calc(100% + .5rem);left:50%;translate:-50% 0;width:15rem;background:var(--paper);border:2px solid var(--ink);border-radius:6px;padding:.7rem .85rem;font-size:.9rem;line-height:1.45;box-shadow:4px 4px 0 var(--ink)}
+.mel__mini{display:none}
+
+/* chapters = comic panels */
+.chapters{list-style:none;margin:0;padding:0;display:grid;gap:clamp(4rem,16vh,9rem);padding-bottom:20vh}
+.panel{position:relative;background:var(--paper);border:2.5px solid var(--ink);border-radius:5px 3px 6px 4px;padding:clamp(1.2rem,2.4vw,2rem)}
+.panel::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:var(--halftone);opacity:.55;transform:translate(10px,10px);transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .9s}
+.panel.is-waiting::after{transform:translate(26px,22px);opacity:0}
+.panel__meta{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:.7rem;margin-bottom:1rem}
+.panel__time{font:700 clamp(1.5rem,2.6vw,2rem)/1 var(--mono);color:var(--red);font-variant-numeric:tabular-nums}
+.panel__place{color:var(--brown)}
+.panel h3{font:700 clamp(1.6rem,2.8vw,2.3rem)/1.05 var(--display);font-variation-settings:"SOFT" 100;margin:0 0 .7rem;letter-spacing:-.01em;text-wrap:balance}
+.panel p{margin:0 0 .9rem;max-width:62ch}
+.panel p:last-child{margin-bottom:0}
+.punch{font:italic 600 1.25rem/1.35 var(--display);font-variation-settings:"SOFT" 100;color:var(--orange-dark);border-left:4px solid var(--orange);padding-left:.9rem}
+.panel.is-intro{background:var(--almond)}
+.panel.is-end{background:var(--ink);color:var(--paper)}
+.panel.is-end .panel__meta{border-color:var(--paper)}
+.panel.is-end .panel__place{color:var(--orange-light)}
+.panel.is-end::after{background:radial-gradient(circle,var(--orange) 0 1.1px,transparent 1.6px) 0 0/6px 6px}
+
+.count{display:flex;align-items:center;gap:1rem;margin:.4rem 0 1rem}
+.count b{font:800 clamp(2.8rem,6vw,4.4rem)/.9 var(--display);font-variation-settings:"SOFT" 100;color:var(--orange-dark);letter-spacing:-.02em}
+.count span{max-width:13rem;font-size:.92rem;line-height:1.35;color:var(--brown)}
+
+details.long{margin:.4rem 0 1rem;border-top:1.5px dashed var(--camel);padding-top:.7rem}
+details.long summary{cursor:pointer;font:700 .8rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--brown)}
+.todo{font-family:var(--display);font-style:italic;color:var(--orange-dark);background:linear-gradient(transparent 62%,color-mix(in srgb,var(--orange-light) 35%,transparent) 0)}
+
+/* prep strip: a real four-step sequence, so numbered */
+.strip{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem}
+.strip li{border:2px solid var(--ink);border-radius:4px;background:var(--paper);padding:.6rem .5rem .55rem;display:grid;justify-items:center;gap:.35rem;text-align:center}
+.strip svg{width:100%;max-width:86px;height:auto}
+.strip b{font:700 .66rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.04em}
+.strip i{font:700 .66rem/1 var(--mono);font-style:normal;color:var(--red)}
+
+/* photos: risograph treatment for places and process; product shots stay true colour */
+.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,118px),1fr));gap:.8rem;margin-top:1.1rem}
+.ph{margin:0;position:relative}
+.ph button{all:unset;display:block;cursor:zoom-in;position:relative;width:100%;aspect-ratio:4/5;border:2px solid var(--ink);border-radius:3px;overflow:visible;background:var(--almond)}
+.ph button:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.ph button::before{content:"";position:absolute;inset:0;background:var(--orange);transform:translate(4px,3px);z-index:-1;border-radius:3px}
+.ph img{width:100%;height:100%;object-fit:cover;transition:filter .5s}
+.ph.is-riso img{filter:url(#riso)}
+.ph.is-riso button::after{content:"";position:absolute;inset:0;background:var(--halftone);opacity:.18;mix-blend-mode:multiply;transition:opacity .5s;pointer-events:none}
+.ph.is-riso button:hover img,.ph.is-riso button:focus-visible img{filter:none}
+.ph.is-riso button:hover::after,.ph.is-riso button:focus-visible::after{opacity:0}
+.ph figcaption{font:400 .68rem/1.35 var(--mono);color:var(--brown);margin-top:.5rem;letter-spacing:.02em}
+.is-end .ph figcaption{color:var(--almond)}
+.ph.is-missing .slot{aspect-ratio:4/5;border:2px dashed var(--camel);border-radius:3px;display:grid;place-items:center;padding:.8rem;text-align:center;font:700 .66rem/1.35 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--brown);
+  background:radial-gradient(circle,color-mix(in srgb,var(--camel) 55%,transparent) 0 1px,transparent 1.5px) 0 0/7px 7px,var(--paper)}
+
+/* ---------- sheets after the day (night) ---------- */
+.sheet{position:relative;background:var(--paper);border:2.5px solid var(--ink);border-radius:8px;margin-inline:max(10px,1.4vw);padding-block:clamp(3rem,8vw,6rem)}
+.sheet::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:radial-gradient(circle,var(--paper) 0 1.1px,transparent 1.6px) 0 0/6px 6px;opacity:.25;transform:translate(12px,12px)}
+.sheet + .sheet{margin-top:clamp(2rem,5vw,3.5rem)}
+.sheet__eyebrow{color:var(--orange-dark)}
+.sheet h2{font:700 clamp(2.1rem,4.6vw,3.6rem)/1.02 var(--display);font-variation-settings:"SOFT" 100;margin:.6rem 0 0;letter-spacing:-.015em;text-wrap:balance;max-width:20ch}
+
+/* founders as jar labels */
+.labels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.2rem,3vw,2.4rem);margin-top:3rem;align-items:start}
+.label{perspective:1400px}
+.label:nth-child(1){rotate:-1.2deg}.label:nth-child(2){rotate:.8deg;margin-top:1.4rem}.label:nth-child(3){rotate:-.5deg;margin-top:.4rem}
+.label__inner{position:relative;display:grid;transition:transform .8s cubic-bezier(.3,.7,.2,1);transform-style:preserve-3d}
+.label.is-flipped .label__inner{transform:rotateY(180deg)}
+.label__face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--paper);border:3px solid var(--orange);outline:2px solid var(--ink);outline-offset:3px;border-radius:14px;overflow:hidden}
+.label__back{position:absolute;inset:0;transform:rotateY(180deg);display:grid;background:var(--almond)}
+.label__back img{width:100%;height:100%;object-fit:cover;filter:url(#riso)}
+.label__band{height:2.6rem;background:var(--band);border-bottom:2px solid var(--ink);position:relative}
+.label__band::after{content:"";position:absolute;inset:0;background:var(--halftone);opacity:.18}
+.label__body{padding:1.1rem 1.2rem 1.3rem}
+.label__est{display:inline-block;border:1.5px solid var(--ink);border-radius:999px;padding:.18rem .6rem;font:700 .62rem/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.label__name{font:700 2.5rem/1 var(--display);font-variation-settings:"SOFT" 100;margin:.7rem 0 .15rem;letter-spacing:-.01em}
+.label__full{color:var(--brown);font-size:.95rem;padding-bottom:.9rem;border-bottom:2.5px solid var(--ink);margin-bottom:.8rem}
+.label dl{margin:0;display:grid;gap:.55rem}
+.label dt{font:700 .62rem/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--brown)}
+.label dd{margin:.1rem 0 0;font-size:.95rem;line-height:1.4}
+.label__micro{margin-top:1rem;padding-top:.6rem;border-top:1.5px dashed var(--camel);font:700 .66rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.label__flip{margin:1rem auto 0;display:flex;font:700 .8rem/1 var(--mono);background:none;border:2px solid var(--ink);border-radius:999px;padding:.55rem 1rem;cursor:pointer;color:var(--ink)}
+.label__ph{display:grid;place-items:center;padding:2rem;text-align:center;font:700 .75rem/1.4 var(--mono);text-transform:uppercase;color:var(--brown);min-height:100%}
+
+/* what we don't do: red correction pen */
+.not{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:2rem;align-items:start}
+.not ul{list-style:none;margin:0;padding:0}
+.not li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding:.9rem 0 .8rem}
+.not li:first-child{border-top:2px solid var(--ink)}
+.word{position:relative;font:700 clamp(2rem,4.6vw,3.6rem)/1 var(--display);font-variation-settings:"SOFT" 100;color:var(--brown)}
+.word svg{position:absolute;left:-3%;top:58%;width:106%;height:.22em;translate:0 -50%;overflow:visible}
+.word path{fill:none;stroke:var(--red);stroke-width:4px;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset .7s cubic-bezier(.6,.1,.3,1)}
+.js .word.is-waiting path{stroke-dashoffset:1}
+.not li span:last-child{color:var(--brown);font-size:1rem}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,2.5vw,2rem);margin-top:2.6rem}
+.fact{border:2.5px solid var(--ink);border-radius:5px;padding:1.3rem;background:var(--paper);display:grid;gap:.7rem;align-content:start}
+.fact__art{aspect-ratio:16/10;border-radius:3px;background:var(--almond);display:grid;place-items:center;overflow:hidden;border:2px solid var(--ink)}
+.fact__art img{max-height:100%;object-fit:contain}
+.fact__pair{display:flex;align-items:center;justify-content:center;gap:4%;height:100%}
+.fact__pair img{width:44%}
+.fact h3{font:700 1.45rem/1.12 var(--display);font-variation-settings:"SOFT" 100;margin:0;text-wrap:balance}
+.fact p{margin:0;color:var(--brown)}
+.gauge{width:86%;height:auto}
+
+/* nød: back at night */
+.nod{position:relative;color:var(--paper);text-align:center;padding-block:clamp(5rem,12vw,9rem) clamp(4rem,9vw,7rem);overflow:hidden}
+.beam{position:absolute;left:50%;top:58%;width:220vmax;height:220vmax;translate:-50% -50%;pointer-events:none;opacity:.55;
+  background:conic-gradient(from var(--beam,0deg),transparent 0 12deg,color-mix(in srgb,var(--red) 55%,transparent) 18deg,transparent 30deg 192deg,color-mix(in srgb,var(--orange) 45%,transparent) 198deg,transparent 210deg);
+  -webkit-mask-image:radial-gradient(circle,#000 0,#000 18%,transparent 45%);mask-image:radial-gradient(circle,#000 0,#000 18%,transparent 45%)}
+.nod .wrap{position:relative;display:grid;justify-items:center}
+.nod__hero{width:min(260px,58vw);margin-bottom:1rem;filter:drop-shadow(8px 10px 0 color-mix(in srgb,var(--ink) 70%,transparent))}
+.nod h2{font:700 clamp(2.4rem,6vw,4.8rem)/1 var(--display);font-variation-settings:"SOFT" 100;margin:.8rem 0 0;text-wrap:balance}
+.phone{display:inline-block;margin-top:1.2rem;font:700 clamp(2.6rem,9vw,6rem)/1 var(--mono);color:var(--orange);text-decoration:none;letter-spacing:.02em;font-variant-numeric:tabular-nums;user-select:all}
+.nod .btn{margin-top:2rem}
+.nod__micro{color:var(--orange-light)}
+
+.notes{position:relative;background:var(--ink);color:var(--almond);padding-block:3rem 4rem;font-size:.95rem}
+.notes h2{font:700 1.4rem/1.2 var(--display);margin:0 0 1rem;color:var(--paper)}
+.notes ol{margin:0;padding-left:1.2rem;display:grid;gap:.6rem;max-width:72ch}
+.notes code{font-family:var(--mono);font-size:.85em;color:var(--orange-light)}
+
+dialog.lb{border:3px solid var(--ink);border-radius:6px;padding:0;max-width:min(92vw,980px);background:var(--paper);box-shadow:10px 10px 0 var(--ink)}
+dialog.lb::backdrop{background:color-mix(in srgb,var(--ink) 82%,transparent)}
+dialog.lb img{max-height:78vh;width:auto;margin:0 auto}
+.lb__foot{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem 1rem;border-top:2px solid var(--ink);font:400 .8rem/1.3 var(--mono)}
+.lb__foot button{font:700 .8rem/1 var(--mono);border:2px solid var(--ink);background:var(--orange);border-radius:999px;padding:.5rem .9rem;cursor:pointer}
+
+/* ---------- small screens ---------- */
+@media (max-width: 900px){
+  .cover__grid{grid-template-columns:1fr}
+  .moon{width:min(62vw,300px);justify-self:end;margin-top:1rem;order:-1}
+  .moon__cap{display:none}
+  .day__grid{grid-template-columns:1fr;margin-top:0}
+  .mel{position:sticky;top:max(10px,env(safe-area-inset-top,0px));height:auto;z-index:6;grid-template-rows:auto;grid-template-columns:auto 1fr;justify-items:start;align-items:center;gap:.8rem;
+    background:var(--paper);border:2.5px solid var(--ink);border-radius:999px;padding:.35rem 1rem .35rem .35rem;box-shadow:4px 4px 0 var(--ink);margin-top:1.6rem}
+  .mel .clock{box-shadow:none;border:0;padding:0;background:none;grid-column:2;grid-row:1;flex-direction:column;align-items:flex-start;gap:.15rem}
+  .mel .clock__time{font-size:1.5rem}
+  .mel__stage{grid-column:1;grid-row:1;width:64px}
+  .spot{display:none}
+  .mel__label{display:none}
+  .mel__mini{display:block;font:700 .62rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--brown)}
+  .chapters{margin-top:2.5rem;gap:4.5rem;padding-bottom:4rem}
+  .labels,.facts{grid-template-columns:1fr}
+  .label:nth-child(n){margin-top:0}
+  .not{grid-template-columns:1fr}
+  .strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sheet::after{transform:translate(6px,6px)}
+}
+@media (prefers-reduced-motion: reduce){
+  .panel::after,.label__inner,.word path,.mel__layer{transition:none}
+  .panel.is-waiting::after{transform:translate(10px,10px);opacity:.55}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- one-colour riso: black maps to brown-darkest ink, white maps to almond paper -->
+  <filter id="riso" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values=".3 .55 .15 0 0  .3 .55 .15 0 0  .3 .55 .15 0 0  0 0 0 1 0"/>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.106 0.56 0.88 0.961"/>
+      <feFuncG type="table" tableValues="0.067 0.37 0.75 0.878"/>
+      <feFuncB type="table" tableValues="0.031 0.2 0.6 0.776"/>
+    </feComponentTransfer>
+  </filter>
+</svg>
+
+<div class="sky" aria-hidden="true"></div>
+<div class="stars" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="ribbon"><div class="wrap">
+  <span>Prototype · ny retning for Om oss · ikke publisert</span>
+  <a href="hero.html">Se også: forslag til forsidehero →</a>
+</div></div>
+
+<main>
+<!-- COVER: kvelden før. Same dusk as the homepage, so the two pages share one sky. -->
+<header class="cover" data-t="19.6">
+  <div class="wrap cover__grid">
+    <div>
+      <div class="cover__eyebrow mono"><span class="dot" aria-hidden="true"></span><span>Om oss · parti nr. 001</span></div>
+      <h1>
+        <span class="cover__kicker">Om oss (og andre nøtter)</span>
+        <span class="cover__display">Noen ting tar tid. <em>Vi tar 24&nbsp;timer.</em></span>
+      </h1>
+      <p class="cover__text">Historien vår males på samme måte som nøttene: sakte, mellom to steiner, til den blir glatt. Rull ned, så skrur vi på.</p>
+      <a class="btn" href="#dognet">Skru på melangeren <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="moon" aria-hidden="true">
+      <div class="moon__plate"></div>
+      <div class="moon__disc"><img src="img/omoss-08-tregere-3.webp" alt=""></div>
+      <span class="moon__cap mono">Blankt smør, mange timer senere</span>
+    </div>
+  </div>
+  <div class="shore" aria-hidden="true"><img src="img/nan-bg-fjord-skumring-strip-1080.webp" alt=""></div>
+</header>
+
+<!-- THE DAY -->
+<section class="day" id="dognet" aria-labelledby="day-h">
+  <div class="wrap">
+    <div class="day__head">
+      <div class="mono">Ett parti · 24 timer · Oslofjorden</div>
+      <h2 id="day-h">Ett døgn i melangeren</h2>
+    </div>
+
+    <div class="day__grid">
+      <aside class="mel" aria-label="Melangeren">
+        <div class="clock" role="timer" aria-live="off">
+          <span class="mono">Maletid</span>
+          <span class="clock__time" id="clock">Før start</span>
+          <span class="mel__mini" id="stage-mini">Hele nøtter</span>
+        </div>
+        <div class="mel__stage">
+          <svg class="mel__svg" viewBox="0 0 400 400" role="img" aria-labelledby="mel-t">
+            <title id="mel-t">Melangeren sett ovenfra. Trommelen snurrer, to granittsteiner holdes på plass og maler nøttene til smør.</title>
+            <defs>
+              <pattern id="ht" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="3.5" cy="3.5" r="1.5" fill="#1B1108"/></pattern>
+              <pattern id="ht-fine" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="2.5" cy="2.5" r=".9" fill="#1B1108"/></pattern>
+              <pattern id="nuts" width="54" height="46" patternUnits="userSpaceOnUse" patternTransform="rotate(14)">
+                <rect width="54" height="46" fill="#F5E0C6"/>
+                <g fill="#C49A6C" stroke="#1B1108" stroke-width="1.6">
+                  <path d="M6 14c4-8 16-9 20-2-3 7-14 9-20 2z"/>
+                  <path d="M30 34c4-8 16-9 20-2-3 7-14 9-20 2z" transform="rotate(38 40 33)"/>
+                  <path d="M4 38c3-6 12-7 15-1-2 5-10 7-15 1z" transform="rotate(-30 11 37)"/>
+                  <path d="M34 10c3-6 12-7 15-1-2 5-10 7-15 1z" transform="rotate(70 41 9)"/>
+                </g>
+                <g stroke="#1B1108" stroke-width=".9" opacity=".6"><path d="M10 13h12"/><path d="M33 32l11 5"/></g>
+              </pattern>
+              <pattern id="meal" width="14" height="14" patternUnits="userSpaceOnUse">
+                <rect width="14" height="14" fill="#E2C09A"/>
+                <circle cx="3" cy="3" r="2" fill="#C49A6C"/><circle cx="10" cy="6" r="1.6" fill="#5A3A1C"/>
+                <circle cx="6" cy="11" r="1.4" fill="#C49A6C"/><circle cx="12" cy="12" r="1" fill="#F5E0C6"/>
+              </pattern>
+              <pattern id="granite" width="18" height="18" patternUnits="userSpaceOnUse">
+                <rect width="18" height="18" fill="#C8C5C2"/>
+                <circle cx="4" cy="5" r="1.7" fill="#646261"/><circle cx="12" cy="10" r="1.2" fill="#FBF7F3"/>
+                <circle cx="8" cy="15" r="1.1" fill="#4B4A48"/><circle cx="15" cy="3" r="1" fill="#646261"/>
+              </pattern>
+              <clipPath id="bowl"><circle cx="200" cy="200" r="156"/></clipPath>
+              <clipPath id="sa"><rect x="262" y="150" width="82" height="100" rx="22"/></clipPath>
+              <clipPath id="sb"><rect x="56" y="150" width="82" height="100" rx="22"/></clipPath>
+            </defs>
+
+            <!-- plate 1: flat spot colour, offset 3,2 against the ink (misregistration) -->
+            <g transform="translate(3 2)">
+              <circle cx="200" cy="200" r="186" fill="#C8C5C2"/>
+              <circle cx="200" cy="200" r="168" fill="#EEEBE8"/>
+            </g>
+            <!-- halftone: shadow side, lower right -->
+            <path d="M372 210a172 172 0 0 1-330 60 186 186 0 0 0 330-60z" fill="url(#ht)" opacity=".55"/>
+
+            <g class="mel__drum">
+              <g clip-path="url(#bowl)">
+                <circle cx="200" cy="200" r="156" fill="url(#granite)"/>
+                <circle class="mel__layer" data-stage="0" cx="200" cy="200" r="156" fill="url(#nuts)"/>
+                <circle class="mel__layer" data-stage="1" cx="200" cy="200" r="156" fill="url(#meal)" opacity="0"/>
+                <circle class="mel__layer" data-stage="2" cx="200" cy="200" r="156" fill="#C49A6C" opacity="0"/>
+                <circle class="mel__layer" data-stage="3" cx="200" cy="200" r="156" fill="#5A3A1C" opacity="0"/>
+                <g class="mel__layer" data-stage="swirl" fill="none" stroke="#F5E0C6" stroke-width="3.2" stroke-linecap="round" opacity="0">
+                  <path d="M200 66a134 134 0 0 1 134 134"/><path d="M200 334a134 134 0 0 1-134-134"/>
+                  <path d="M120 120a112 112 0 0 1 80-34"/><path d="M280 280a112 112 0 0 1-80 34"/>
+                  <path d="M200 114a86 86 0 0 1 86 86"/><path d="M200 286a86 86 0 0 1-86-86"/>
+                </g>
+                <path d="M356 200a156 156 0 0 1-286 86 170 170 0 0 0 286-86z" fill="url(#ht-fine)" opacity=".35"/>
+              </g>
+              <!-- drum ink -->
+              <circle cx="200" cy="200" r="156" fill="none" stroke="#1B1108" stroke-width="3"/>
+              <g stroke="#1B1108" stroke-width="2" opacity=".8">
+                <path d="M200 30v10M370 200h-10M200 370v-10M30 200h10M320 80l-7 7M80 320l7-7M320 320l-7-7M80 80l7 7"/>
+              </g>
+            </g>
+
+            <!-- the stones and the arm stand still; the drum turns under them -->
+            <g transform="rotate(-18 200 200)">
+              <g transform="translate(3 2)">
+                <rect x="262" y="150" width="82" height="100" rx="22" fill="url(#granite)"/>
+                <rect x="56" y="150" width="82" height="100" rx="22" fill="url(#granite)"/>
+              </g>
+              <g clip-path="url(#sa)"><g class="mel__roll" stroke="#1B1108" stroke-opacity=".45" stroke-width="2"><path d="M262 126h82M262 140h82M262 154h82M262 168h82M262 182h82M262 196h82M262 210h82M262 224h82M262 238h82M262 252h82M262 266h82"/></g></g>
+              <g clip-path="url(#sb)"><g class="mel__roll" stroke="#1B1108" stroke-opacity=".45" stroke-width="2"><path d="M56 126h82M56 140h82M56 154h82M56 168h82M56 182h82M56 196h82M56 210h82M56 224h82M56 238h82M56 252h82M56 266h82"/></g></g>
+              <rect x="300" y="150" width="44" height="100" rx="20" fill="url(#ht)" opacity=".35"/>
+              <rect x="94" y="150" width="44" height="100" rx="20" fill="url(#ht)" opacity=".35"/>
+              <g fill="none" stroke="#1B1108" stroke-width="3">
+                <rect x="262" y="150" width="82" height="100" rx="22"/>
+                <rect x="56" y="150" width="82" height="100" rx="22"/>
+              </g>
+              <rect x="64" y="193" width="272" height="14" rx="7" fill="#EEEBE8" stroke="#1B1108" stroke-width="2.6"/>
+              <circle cx="200" cy="200" r="20" fill="#C8C5C2" stroke="#1B1108" stroke-width="3"/>
+              <circle cx="200" cy="200" r="7" fill="#FF7A2A" stroke="#1B1108" stroke-width="2"/>
+            </g>
+            <!-- scraper -->
+            <g transform="rotate(118 200 200)">
+              <path d="M200 182V60" stroke="#1B1108" stroke-width="12" stroke-linecap="round"/>
+              <path d="M200 182V60" stroke="#C8C5C2" stroke-width="6" stroke-linecap="round"/>
+              <path d="M186 58h28" stroke="#1B1108" stroke-width="7" stroke-linecap="round"/>
+            </g>
+          </svg>
+          <div class="spot" style="left:84%;top:14%">
+            <button type="button" aria-expanded="false" aria-controls="tip-1"><span aria-hidden="true">+</span>Trommelen</button>
+            <div class="spot__tip" id="tip-1" hidden>Rustfritt stål med granittbunn. Den snurrer. Hele døgnet.</div>
+          </div>
+          <div class="spot" style="left:12%;top:58%">
+            <button type="button" aria-expanded="false" aria-controls="tip-2"><span aria-hidden="true">+</span>Steinene</button>
+            <div class="spot__tip" id="tip-2" hidden>To granittsteiner. De holdes på plass og ruller mot bunnen. Ingen meninger, bare press.</div>
+          </div>
+          <div class="spot" style="left:30%;top:16%">
+            <button type="button" aria-expanded="false" aria-controls="tip-3"><span aria-hidden="true">+</span>Skrapen</button>
+            <div class="spot__tip" id="tip-3" hidden>Skyver massen tilbake under steinene, så ingenting slipper unna.</div>
+          </div>
+        </div>
+        <span class="mel__label mono" id="stage">Hele nøtter</span>
+      </aside>
+
+      <ol class="chapters">
+        <li class="panel is-intro" data-t="21">
+          <div class="panel__meta"><span class="panel__time">Før start</span><span class="panel__place mono">Møt sjefen</span></div>
+          <h3>Det er ikke vi som bestemmer her</h3>
+          <p>Det er melangeren. En trommel av stål med granittbunn snurrer rundt, mens to granittsteiner holdes på plass og ruller mot bunnen. Time etter time. Friksjonen varmer massen, oljen i nøttene slipper løs, og det som var hele nøtter blir smør. Trykk på maskinen og hils på.</p>
+          <div class="photos">
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-01-for-start-1.webp" alt="Melangeren i gang, massen har begynt å bli blank" loading="lazy"></button><figcaption>Melangeren i gang</figcaption></figure>
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-01-for-start-2.webp" alt="Steinene ruller, massen er fortsatt grov" loading="lazy"></button><figcaption>Steinene ruller</figcaption></figure>
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-01-for-start-3.webp" alt="Mandelmasse på vei mot smør" loading="lazy"></button><figcaption>På vei mot smør</figcaption></figure>
+          </div>
+        </li>
+
+        <li class="panel" data-t="23">
+          <div class="panel__meta"><span class="panel__time">Før 00:00</span><span class="panel__place mono">Forarbeidet</span></div>
+          <h3>Ingen nøtt går rett i trommelen</h3>
+          <p>Før melangeren får noe som helst, går nøttene fire runder på kjøkkenet. De stekes i ovnen og kjøles på rist. Så forkverner vi dem i Magimixen og blander inn resten. Sukkeret males like fint som nøttene, saltet også, så alt starter i samme kornstørrelse. Da får steinene en jevn start, og smøret blir glatt.</p>
+          <ol class="strip" aria-label="Fire steg før melangeren">
+            <li><i>1</i><svg viewBox="0 0 80 64" aria-hidden="true"><rect x="8" y="14" width="64" height="44" rx="6" fill="#F5E0C6" stroke="#1B1108" stroke-width="2.5"/><rect x="15" y="28" width="50" height="24" rx="3" fill="#CC6121" stroke="#1B1108" stroke-width="2"/><path d="M15 28h50v24H15z" fill="url(#ht)" opacity=".3"/><circle cx="18" cy="21" r="2.4" fill="#E23C2E"/><circle cx="27" cy="21" r="2.4" fill="#1B1108"/><path d="M30 6c-3 3 3 4 0 7M42 4c-3 3 3 4 0 7M54 6c-3 3 3 4 0 7" fill="none" stroke="#FF7A2A" stroke-width="2.2" stroke-linecap="round"/></svg><b>Steking</b></li>
+            <li><i>2</i><svg viewBox="0 0 80 64" aria-hidden="true"><path d="M10 40h60M16 40v16M64 40v16" stroke="#1B1108" stroke-width="2.6" stroke-linecap="round"/><path d="M18 40v-4M28 40v-4M38 40v-4M48 40v-4M58 40v-4" stroke="#1B1108" stroke-width="1.6"/><g fill="#C49A6C" stroke="#1B1108" stroke-width="1.4"><ellipse cx="22" cy="33" rx="6" ry="3.4"/><ellipse cx="36" cy="32" rx="6" ry="3.4" transform="rotate(-14 36 32)"/><ellipse cx="50" cy="33" rx="6" ry="3.4"/><ellipse cx="60" cy="31" rx="5" ry="3" transform="rotate(16 60 31)"/></g><path d="M28 14c-3 3 3 4 0 7M44 10c-3 3 3 4 0 7" fill="none" stroke="#98B8AF" stroke-width="2.2" stroke-linecap="round"/></svg><b>Kjøling på rist</b></li>
+            <li><i>3</i><svg viewBox="0 0 80 64" aria-hidden="true"><path d="M24 8h32l-3 34H27z" fill="#FBF7F3" stroke="#1B1108" stroke-width="2.5"/><path d="M27 28h26l-1 14H28z" fill="#C49A6C"/><path d="M40 10v30M30 30c6-3 14-3 20 2" stroke="#1B1108" stroke-width="2" fill="none"/><rect x="18" y="42" width="44" height="16" rx="4" fill="#5A3A1C" stroke="#1B1108" stroke-width="2"/><circle cx="30" cy="50" r="3" fill="#FF7A2A"/></svg><b>Forkverning</b></li>
+            <li><i>4</i><svg viewBox="0 0 80 64" aria-hidden="true"><path d="M8 30h64c0 16-14 26-32 26S8 46 8 30z" fill="#BEE6DB" stroke="#1B1108" stroke-width="2.5"/><path d="M8 30h64c0 16-14 26-32 26S8 46 8 30z" fill="url(#ht)" opacity=".18"/><path d="M13 30c3-6 15-9 27-9s24 3 27 9z" fill="#C49A6C" stroke="#1B1108" stroke-width="2"/><path d="M58 4L44 26" stroke="#1B1108" stroke-width="3" stroke-linecap="round"/></svg><b>Blanding</b></li>
+          </ol>
+        </li>
+
+        <li class="panel" data-t="24">
+          <div class="panel__meta"><span class="panel__time">00:00</span><span class="panel__place mono">Nesodden</span></div>
+          <h3>Gaven</h3>
+          <p>Det begynte med mandelsmør Barbora laget som gave. Folk smakte og sa det samme: «Dette redder dagen.» Vi hørte det så mange ganger at vi til slutt tok det bokstavelig.</p>
+          <div class="photos">
+            <figure class="ph"><button type="button"><img src="img/omoss-02-gaven-1.webp" alt="Tre smør i tre skåler" loading="lazy"></button><figcaption>Tre smør i tre skåler</figcaption></figure>
+            <figure class="ph"><button type="button"><img src="img/omoss-02-gaven-2.webp" alt="Mandelykke. Mandelsmør, der alt startet" loading="lazy"></button><figcaption>Der alt startet</figcaption></figure>
+          </div>
+        </li>
+
+        <li class="panel" data-t="26">
+          <div class="panel__meta"><span class="panel__time">02:00</span><span class="panel__place mono">Nesodden</span></div>
+          <h3>Knekken</h3>
+          <p>Barbora skulle på loppemarked med noen glass. Jeg tenkte: vent litt. Dette fortjener et ansikt. 23 timer senere hadde vi logo, nettside, etiketter og tekst til hvert glass. Søvn hadde vi ikke.</p>
+          <p class="punch">Det heter å knekke nøtta. Noen ganger må man knekke litt selv først.</p>
+          <details class="long"><summary>Den lange versjonen</summary><p><span class="todo">[Lego skriver denne selv. Så rå som du vil. Den står bak en knapp, så de som åpner den, har valgt å lese.]</span></p></details>
+          <div class="photos">
+            <figure class="ph"><button type="button"><img src="img/omoss-03-knekken-1.webp" alt="Etikettene: Mandelykke, Sunntella og Cashewdrøm" loading="lazy"></button><figcaption>Etikettene</figcaption></figure>
+            <figure class="ph"><button type="button"><img src="img/omoss-03-knekken-2.webp" alt="Sunntella, ansikt og alt" loading="lazy"></button><figcaption>Sunntella, ansikt og alt</figcaption></figure>
+          </div>
+        </li>
+
+        <li class="panel" data-t="30">
+          <div class="panel__meta"><span class="panel__time">06:00</span><span class="panel__place mono">Første kunde</span></div>
+          <h3>Jonas</h3>
+          <p>Første kunde het Jonas. Han fikk 20&nbsp;% rabatt på neste kjøp. Jonas, hvis du leser dette: den gjelder fortsatt. Vi venter.</p>
+          <div class="photos">
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-04-jonas-1.webp" alt="Markedsdag i Moss, mars 2026" loading="lazy"></button><figcaption>Markedsdag i Moss, mars 2026</figcaption></figure>
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-04-jonas-2.webp" alt="Standen ved bilen, glassene på bordet" loading="lazy"></button><figcaption>Standen ved bilen</figcaption></figure>
+          </div>
+        </li>
+
+        <li class="panel" data-t="32">
+          <div class="panel__meta"><span class="panel__time">08:00</span><span class="panel__place mono">Hallangspollen</span></div>
+          <h3>Nye vinduer, samme nøtter</h3>
+          <p>Så flyttet vi, og ideen ble med til Hallangspollen. Nøttene klaget ikke.</p>
+          <div class="photos">
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-05-hallangspollen-1.webp" alt="Utsikten over Hallangspollen" loading="lazy"></button><figcaption>Utsikten</figcaption></figure>
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-05-hallangspollen-2.webp" alt="Stua i Hallangspollen" loading="lazy"></button><figcaption>Stua</figcaption></figure>
+          </div>
+        </li>
+
+        <li class="panel" data-t="34">
+          <div class="panel__meta"><span class="panel__time">10:00</span><span class="panel__place mono">Markedene</span></div>
+          <h3>Hånd til hånd</h3>
+          <p>Ingen reklame. Bare et bord, en skje og smaksprøver. På FLOKE, på søndagsmarkeder, i gårdsbutikker. Folk smakte, kjøpte, kom tilbake og tok med en venn.</p>
+          <div class="count"><b data-count="5000">5&nbsp;000</b><span>glass har funnet veien hjem til noen ved lansering</span></div>
+          <div class="photos">
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-06-hand-til-hand-1.webp" alt="Smaksprøver og gaveeske" loading="lazy"></button><figcaption>Smaksprøver</figcaption></figure>
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-06-hand-til-hand-2.webp" alt="Folk ved standen i Moss" loading="lazy"></button><figcaption>Folk ved standen</figcaption></figure>
+            <figure class="ph"><button type="button"><img src="img/omoss-06-hand-til-hand-3.webp" alt="Sunntella i vårsola" loading="lazy"></button><figcaption>Sunntella i vårsola</figcaption></figure>
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-06-hand-til-hand-4.webp" alt="Glass klare til nye hender" loading="lazy"></button><figcaption>Klare til nye hender</figcaption></figure>
+          </div>
+        </li>
+
+        <li class="panel" data-t="38">
+          <div class="panel__meta"><span class="panel__time">14:00</span><span class="panel__place mono">Fager Bakst, Fagerstrand</span></div>
+          <h3>Nattskiftet</h3>
+          <p>Fager Bakst lånte oss bakeriet om natta. Vi malte mens Fagerstrand sov, vasket ut og var borte før fem, når bakerne kom. Vi kaller dem medskapere. Det er de.</p>
+          <div class="photos">
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-07-nattskiftet-1.webp" alt="Fager Bakst, litt over to om natta" loading="lazy"></button><figcaption>Litt over to om natta</figcaption></figure>
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-07-nattskiftet-2.webp" alt="Glass med lokk, klare før morgenen" loading="lazy"></button><figcaption>Klare før morgenen</figcaption></figure>
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-07-nattskiftet-3.webp" alt="Tralla med råvarer og glass" loading="lazy"></button><figcaption>Tralla</figcaption></figure>
+          </div>
+        </li>
+
+        <li class="panel" data-t="42">
+          <div class="panel__meta"><span class="panel__time">18:00</span><span class="panel__place mono">Oppskriften</span></div>
+          <h3>Tregere med vilje</h3>
+          <p>Den første oppskriften tok to–tre timer i maskinen. Så ga vi steinene mer tid. Nå går et parti opptil et døgn. Det ble ikke raskere. Det ble bedre.</p>
+          <div class="photos">
+            <figure class="ph"><button type="button"><img src="img/omoss-08-tregere-1.webp" alt="Tidlig: grovt og tørt" loading="lazy"></button><figcaption>Tidlig: grovt og tørt</figcaption></figure>
+            <figure class="ph"><button type="button"><img src="img/omoss-08-tregere-2.webp" alt="Massen begynner å slippe oljen" loading="lazy"></button><figcaption>Oljen slipper</figcaption></figure>
+            <figure class="ph"><button type="button"><img src="img/omoss-08-tregere-3.webp" alt="Mange timer senere: blankt smør" loading="lazy"></button><figcaption>Blankt smør</figcaption></figure>
+          </div>
+        </li>
+
+        <li class="panel" data-t="46">
+          <div class="panel__meta"><span class="panel__time">22:00</span><span class="panel__place mono">Kiosken på Nesset, Oslofjorden</span></div>
+          <h3>Kiosken</h3>
+          <p>I dag males det i Kiosken på Nesset, en iskiosk som har solgt is siden 60-tallet. Et steinkast fra fjorden. Vi passer inn: litt retro, og vi selger også noe du spiser med skje.</p>
+          <div class="photos">
+            <figure class="ph is-missing"><div class="slot">Bilde kommer: Kiosken på Nesset</div></figure>
+            <figure class="ph is-missing"><div class="slot">Bilde kommer: Produksjon i kiosken</div></figure>
+            <figure class="ph is-missing"><div class="slot">Bilde kommer: Fjorden rett utenfor</div></figure>
+          </div>
+        </li>
+
+        <li class="panel is-end" data-t="48">
+          <div class="panel__meta"><span class="panel__time">24:00</span><span class="panel__place mono">Neste parti</span></div>
+          <h3>Ferdig malt? Nei.</h3>
+          <p>Et døgn er bare én runde. Neste parti står allerede i trommelen. Du finner oss i gårdsbutikker og delikatesser fra Sørlandet til Brumunddal.</p>
+          <a class="btn" href="/forhandlere">Se alle forhandlere <span aria-hidden="true">→</span></a>
+          <div class="photos">
+            <figure class="ph"><button type="button"><img src="img/omoss-10-ferdig-3.webp" alt="Alle tre på bordet" loading="lazy"></button><figcaption>Alle tre på bordet</figcaption></figure>
+            <figure class="ph is-riso"><button type="button"><img src="img/omoss-10-ferdig-1.webp" alt="Neste parti er allerede i trommelen" loading="lazy"></button><figcaption>Neste parti</figcaption></figure>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDERS: three jar labels -->
+<section class="sheet" aria-labelledby="lab-h">
+  <div class="wrap">
+    <div class="mono sheet__eyebrow">Varedeklarasjon</div>
+    <h2 id="lab-h">Tre på etiketten. Ingen tilsetnings&shy;stoffer.</h2>
+    <div class="labels">
+      <article class="label" style="--band:var(--orange)">
+        <div class="label__inner">
+          <div class="label__face">
+            <div class="label__band"></div>
+            <div class="label__body">
+              <span class="label__est">Est. 2025</span>
+              <h3 class="label__name">Lego</h3>
+              <div class="label__full">Ľubomír Krestián</div>
+              <dl>
+                <div><dt>Ingredienser</dt><dd>Designer, poet, trommeslager, far, 23 timer uten søvn.</dd></div>
+                <div><dt>Funksjon</dt><dd>Merkevare, nettside og nattskift ved melangeren.</dd></div>
+                <div><dt>Kan inneholde spor av</dt><dd>Ironi.</dd></div>
+                <div><dt>Oppbevaring</dt><dd>Tåler mørke. Best med trommer.</dd></div>
+              </dl>
+              <div class="label__micro">Best før: aldri</div>
+            </div>
+          </div>
+          <div class="label__face label__back"><img src="img/omoss-11-lego-1.webp" alt="Lego ved benken, med hørselvern og nøttemasse" loading="lazy"></div>
+        </div>
+        <button class="label__flip" type="button" aria-pressed="false">Snu glasset</button>
+      </article>
+
+      <article class="label" style="--band:var(--red)">
+        <div class="label__inner">
+          <div class="label__face">
+            <div class="label__band"></div>
+            <div class="label__body">
+              <span class="label__est">Est. 2025</span>
+              <h3 class="label__name">Barbora</h3>
+              <div class="label__full">Barbora Solar</div>
+              <dl>
+                <div><dt>Ingredienser</dt><dd><span class="todo">[Barbora skriver selv]</span></dd></div>
+                <div><dt>Funksjon</dt><dd>Oppskriftene. Det var hennes mandelsmør som startet alt.</dd></div>
+                <div><dt>Kan inneholde spor av</dt><dd><span class="todo">[Barbora skriver selv]</span></dd></div>
+                <div><dt>Oppbevaring</dt><dd><span class="todo">[Barbora skriver selv]</span></dd></div>
+              </dl>
+              <div class="label__micro">Best før: <span class="todo">[Barbora skriver selv]</span></div>
+            </div>
+          </div>
+          <div class="label__face label__back"><div class="label__ph">Foto av Barbora kommer</div></div>
+        </div>
+        <button class="label__flip" type="button" aria-pressed="false">Snu glasset</button>
+      </article>
+
+      <article class="label" style="--band:var(--aqua)">
+        <div class="label__inner">
+          <div class="label__face">
+            <div class="label__band"></div>
+            <div class="label__body">
+              <span class="label__est">Est. dag én</span>
+              <h3 class="label__name">Jakob</h3>
+              <div class="label__full">Sjefssmaker og produktutviklingsassistent</div>
+              <dl>
+                <div><dt>Ingredienser</dt><dd>Ærlige smaksløker, raske fingre, null filter.</dd></div>
+                <div><dt>Funksjon</dt><dd>Smaker på alt. Har vetorett. Satt på fanget da logoen ble tegnet.</dd></div>
+                <div><dt>Kan inneholde spor av</dt><dd>Sunntella rundt munnen.</dd></div>
+                <div><dt>Oppbevaring</dt><dd>Utenfor rekkevidde av glassene. Det fungerer ikke.</dd></div>
+              </dl>
+              <div class="label__micro">Best før: leggetid</div>
+            </div>
+          </div>
+          <div class="label__face label__back"><img src="img/omoss-13-jakob-1.webp" alt="Jakob på fotoshoot, mars 2026" loading="lazy"></div>
+        </div>
+        <button class="label__flip" type="button" aria-pressed="false">Snu glasset</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DON'T DO -->
+<section class="sheet" aria-labelledby="not-h">
+  <div class="wrap not">
+    <div>
+      <div class="mono sheet__eyebrow">Ingrediensliste, baksiden</div>
+      <h2 id="not-h">Det vi ikke gjør</h2>
+    </div>
+    <ul>
+      <li><span class="word">Fabrikk<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 6c18-3 40 2 60-1s28-2 38 1"/></svg></span><span>Vi lager alt selv, der vi er.</span></li>
+      <li><span class="word">Hastverk<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 5c20 2 34-3 54 0s30 2 44-2"/></svg></span><span>Opptil et døgn på stein.</span></li>
+      <li><span class="word">Emulgator<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 6c14-2 36-3 52 0s32 1 46-1"/></svg></span><span>Ikke i ett eneste glass.</span></li>
+      <li><span class="word">Fokusgruppe<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 5c22-3 38 3 58 0s26-3 40 1"/></svg></span><span>Bare oss to og en skje.</span></li>
+      <li><span class="word">Snarvei<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M1 6c16 1 36-4 56-1s28 1 42-1"/></svg></span><span>Vi har ikke laget den.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- FACTS -->
+<section class="sheet" aria-labelledby="fakta-h">
+  <div class="wrap">
+    <div class="mono sheet__eyebrow">Nøtt-fakta</div>
+    <h2 id="fakta-h">Ting du ikke trengte å vite</h2>
+    <div class="facts">
+      <article class="fact">
+        <div class="fact__art"><div class="fact__pair"><img src="img/nan-ill-mandel-240.webp" alt="Mandel, tegnet" loading="lazy"><img src="img/nan-ill-cashew-240.webp" alt="Cashew, tegnet" loading="lazy"></div></div>
+        <span class="mono">01</span>
+        <h3>Vi har bygget et firma på falske nøtter.</h3>
+        <p>Mandler og cashew er botanisk sett ikke nøtter. Vi har valgt å ikke ta det personlig.</p>
+      </article>
+      <article class="fact">
+        <div class="fact__art">
+          <svg class="gauge" viewBox="0 0 220 120" role="img" aria-labelledby="g-t"><title id="g-t">Melangeren fylles til 5,9 av 6 kilo</title>
+            <path d="M20 110a90 90 0 0 1 180 0" fill="none" stroke="#1B1108" stroke-width="16" stroke-linecap="round"/>
+            <path d="M20 110a90 90 0 0 1 180 0" fill="none" stroke="#FBF7F3" stroke-width="10" stroke-linecap="round"/>
+            <path d="M20 110a90 90 0 0 1 177 -15" fill="none" stroke="#FF7A2A" stroke-width="10" stroke-linecap="round"/>
+            <path d="M200 110l-4-14" stroke="#E23C2E" stroke-width="4" stroke-linecap="round"/>
+            <path d="M110 110L193 92" stroke="#1B1108" stroke-width="4" stroke-linecap="round"/><circle cx="110" cy="110" r="8" fill="#1B1108"/>
+            <text x="110" y="78" text-anchor="middle" font-family="Space Mono, monospace" font-weight="700" font-size="22" fill="#1B1108">5,9 / 6 kg</text>
+          </svg>
+        </div>
+        <span class="mono">02</span>
+        <h3>Melangeren har grenser.</h3>
+        <p>Den tar seks kilo. Vi fyller 5,9. Ved full last stopper den og blir bare stående, helt stille, til noen oppdager det.</p>
+      </article>
+      <article class="fact">
+        <div class="fact__art"><img src="img/omoss-10-ferdig-3.webp" alt="Glassene på bordet" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+        <span class="mono">03</span>
+        <h3>Vi valgte det tyngste alternativet.</h3>
+        <p>Glass er tyngre og dyrere å sende. Men det kan brukes om igjen, og det ser bra ut på frokostbordet.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- NØD: back at night, the siren turns -->
+<section class="nod" aria-labelledby="nod-h">
+  <div class="beam" aria-hidden="true"></div>
+  <div class="wrap">
+    <img class="nod__hero" src="img/nan-ill-heltnotta-telefon-583.webp" alt="Helt Nøtta tar telefonen" loading="lazy">
+    <div class="mono nod__micro">Åpnes ved nøtt-nød</div>
+    <h2 id="nod-h">Ved nøtt-nød – ring oss.</h2>
+    <a class="phone" href="tel:+4792970305">929 70 305</a>
+    <a class="btn" href="/produkter">Eller redd dagen i butikken <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+</main>
+
+<footer class="notes">
+  <div class="wrap">
+    <h2>Notater til prototypen</h2>
+    <ol>
+      <li>Brødteksten er hentet ordrett fra dagens Om oss-side. I hero er bare rekkefølgen endret, så den sterkeste linjen er størst. Nytt er bare korte merkelapper: navn på stadiene i melangeren, kortere bildetekster og én overlinje («Ett parti · 24 timer · Oslofjorden»).</li>
+      <li>Himmelen følger klokka: kvelden før (samme skumring som forsiden), natt ved 00:00, morgen ved 06:00, dag, skumring ved 18:00, natt igjen ved 24:00.</li>
+      <li>Steder og prosess trykkes som riso (brun-svart på mandel). Produktbilder står i ekte farge, som kodeksen sier. Hold musa over et riso-bilde for å se fargene.</li>
+      <li>Melangeren er tegnet på nytt i trykkstabelen: flate farger, blekk, halvtone på skyggesiden og en fargeplate som ligger 3 px skjevt.</li>
+      <li>Telefonnummeret er 929 70 305 på siden, men 980 48 585 i merkevareguiden. Ett av dem må rettes.</li>
+      <li>Helt Nøtta er brukt én gang, i nød-seksjonen. Om oss står ikke på listen over hans faste steder i kodeksen, så dette må dere bestemme.</li>
+    </ol>
+  </div>
+</footer>
+
+<dialog class="lb" id="lb" aria-label="Bilde">
+  <img id="lb-img" alt="">
+  <div class="lb__foot"><span id="lb-cap"></span><button type="button" id="lb-close">Lukk</button></div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  root.classList.add("js");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  /* ---- sky keyframes, hour of day -> [top, middle, horizon] (brand ramps) ---- */
+  var SKY = [
+    [0,  ["#1B1108","#250E1F","#4C240C"]],
+    [3,  ["#1B1108","#31122A","#5A1812"]],
+    [5,  ["#31122A","#A26D95","#FFA169"]],
+    [7,  ["#F2FAF7","#FFEED3","#FFF1E9"]],
+    [11, ["#D1EDE5","#F2FAF7","#FBF7F3"]],
+    [15, ["#BEE6DB","#F8FCFB","#F5E0C6"]],
+    [18, ["#A26D95","#EA766C","#FFA169"]],
+    [20, ["#622553","#EA766C","#FFA169"]],
+    [22, ["#31122A","#622553","#B43024"]],
+    [24, ["#1B1108","#250E1F","#4C240C"]]
+  ];
+  function hex(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+  SKY.forEach(function(k){k[1]=k[1].map(hex)});
+  function mix(a,b,f){return a.map(function(v,i){return Math.round(v+(b[i]-v)*f)})}
+  function css(c){return "rgb("+c.join(",")+")"}
+  function lum(c){var r=c.map(function(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*r[0]+.7152*r[1]+.0722*r[2]}
+  function skyAt(h){
+    h=((h%24)+24)%24;
+    for(var i=0;i<SKY.length-1;i++){
+      var a=SKY[i],b=SKY[i+1];
+      if(h>=a[0]&&h<=b[0]){var f=(h-a[0])/(b[0]-a[0]);f=f*f*(3-2*f);return [0,1,2].map(function(j){return mix(a[1][j],b[1][j],f)})}
+    }
+    return SKY[0][1];
+  }
+
+  /* ---- clock anchors ---- */
+  var anchors=[].slice.call(document.querySelectorAll("[data-t]"));
+  var pos=[];
+  function measure(){
+    pos=anchors.map(function(el){var r=el.getBoundingClientRect();return {y:r.top+window.scrollY+Math.min(r.height,window.innerHeight)*.35,t:parseFloat(el.dataset.t)}});
+    pos[0].y=0;
+  }
+  function tAt(probe){
+    if(probe<=pos[0].y) return pos[0].t;
+    for(var i=0;i<pos.length-1;i++){
+      if(probe<pos[i+1].y){var f=(probe-pos[i].y)/(pos[i+1].y-pos[i].y);return pos[i].t+(pos[i+1].t-pos[i].t)*f}
+    }
+    return pos[pos.length-1].t;
+  }
+
+  var clock=document.getElementById("clock"),stage=document.getElementById("stage"),stageMini=document.getElementById("stage-mini");
+  var layers=[].slice.call(document.querySelectorAll(".mel__layer"));
+  var STAGES=["Hele nøtter","Nøttemel","Grov masse","Blankt smør"];
+  var lastKey="",lastStage=-1,lastClock="";
+
+  function frame(){
+    ticking=false;
+    var y=window.scrollY, vh=window.innerHeight;
+    var t=tAt(y+vh*.55);
+    var c=skyAt(t);
+    var key=c.join();
+    if(key!==lastKey){
+      lastKey=key;
+      root.style.setProperty("--s1",css(c[0]));root.style.setProperty("--s2",css(c[1]));root.style.setProperty("--s3",css(c[2]));
+      var L=lum(c[0])*.6+lum(c[1])*.4;
+      root.style.setProperty("--on-sky",L>.36?"#1B1108":"#FBF7F3");
+      var h=((t%24)+24)%24, night=h<4?1:h<6?(6-h)/2:h>21?Math.min(1,(h-21)/2):0;
+      root.style.setProperty("--night",night.toFixed(3));
+    }
+    /* drum turns with scroll; the stones' surface rolls */
+    if(!reduce.matches){
+      root.style.setProperty("--drum",(y*.18).toFixed(1)+"deg");
+      root.style.setProperty("--roll",((y*.12)%14).toFixed(1)+"px");
+      root.style.setProperty("--beam",(y*.08).toFixed(1)+"deg");
+    }
+    /* grinding progress: 00:00 (t=24) -> 24:00 (t=48) */
+    var p=Math.max(0,Math.min(1,(t-24)/24));
+    var label;
+    if(t<24){label=t<22.5?"Før start":"Før 00:00"}
+    else{var mins=Math.round((t-24)*60/10)*10;var hh=Math.floor(mins/60),mm=mins%60;label=(hh<10?"0":"")+hh+":"+(mm<10?"0":"")+mm}
+    if(label!==lastClock){clock.textContent=label;lastClock=label}
+    var w=[1-sm(p,.1,.25), band(p,.1,.25,.38,.5), band(p,.38,.5,.62,.75), sm(p,.62,.8)];
+    layers.forEach(function(l){var s=l.dataset.stage;var o=s==="swirl"?sm(p,.5,.9)*.85:w[+s];l.setAttribute("opacity",o.toFixed(3))});
+    var si=p<.18?0:p<.44?1:p<.7?2:3;
+    if(si!==lastStage){lastStage=si;stage.textContent=STAGES[si];stageMini.textContent=STAGES[si]}
+  }
+  function sm(x,a,b){var f=Math.max(0,Math.min(1,(x-a)/(b-a)));return f*f*(3-2*f)}
+  function band(x,a,b,c,d){return Math.min(sm(x,a,b),1-sm(x,c,d))}
+
+  var ticking=false;
+  function req(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
+  window.addEventListener("scroll",req,{passive:true});
+  window.addEventListener("resize",function(){measure();req()});
+  window.addEventListener("load",function(){measure();req()});
+  if("ResizeObserver" in window){new ResizeObserver(function(){measure();req()}).observe(document.body)}
+  measure();frame();
+
+  /* ---- panels print in: the halftone plate slides into register ---- */
+  if("IntersectionObserver" in window && !reduce.matches){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove("is-waiting");io.unobserve(e.target)}})},{rootMargin:"0px 0px -12% 0px"});
+    document.querySelectorAll(".panel, .word").forEach(function(el){
+      if(el.getBoundingClientRect().top>window.innerHeight*.9){el.classList.add("is-waiting");io.observe(el)}
+    });
+  }
+
+  /* ---- hotspots ---- */
+  document.querySelectorAll(".spot button").forEach(function(b){
+    b.addEventListener("click",function(){
+      var open=b.getAttribute("aria-expanded")==="true";
+      document.querySelectorAll(".spot button").forEach(function(o){o.setAttribute("aria-expanded","false");document.getElementById(o.getAttribute("aria-controls")).hidden=true});
+      if(!open){b.setAttribute("aria-expanded","true");document.getElementById(b.getAttribute("aria-controls")).hidden=false}
+    });
+  });
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll('.spot button[aria-expanded="true"]').forEach(function(b){b.click()})});
+
+  /* ---- labels flip ---- */
+  document.querySelectorAll(".label__flip").forEach(function(b){
+    b.addEventListener("click",function(){var l=b.closest(".label");var on=l.classList.toggle("is-flipped");b.setAttribute("aria-pressed",on?"true":"false")});
+  });
+
+  /* ---- lightbox ---- */
+  var lb=document.getElementById("lb"),lbImg=document.getElementById("lb-img"),lbCap=document.getElementById("lb-cap"),last=null;
+  document.querySelectorAll(".ph button").forEach(function(b){
+    var img=b.querySelector("img");
+    b.setAttribute("aria-label","Vis større: "+img.alt);
+    b.addEventListener("click",function(){last=b;lbImg.src=img.src;lbImg.alt=img.alt;lbCap.textContent=img.alt;if(lb.showModal)lb.showModal();else lb.setAttribute("open","")});
+  });
+  document.getElementById("lb-close").addEventListener("click",function(){lb.close()});
+  lb.addEventListener("click",function(e){if(e.target===lb)lb.close()});
+  lb.addEventListener("close",function(){if(last)last.focus()});
+})();
+</script>
+</body>
+</html>
