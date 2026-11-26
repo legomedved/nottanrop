@@ -79,3 +79,20 @@ npm install
 npm run build       # the globe
 npm run carousel    # the Insta slides (put Recoleta-Bold.woff2/.otf in fonts-local/ – never committed, it's licensed)
 ```
+
+## Om oss (ny): ett døgn i melangeren
+
+The new Om oss page. Scroll is the clock: the sky passes through 24 hours, the melanger grinds whole nuts to butter,
+chapters are comic panels, photos of places and process are printed as two-plate riso in brand inks.
+
+```
+prototype/om-oss.html  ──►  webflow/om-oss/build.py  ──►  sections/*.html   native Webflow elements (classes prefixed oo-)
+                                                     └──►  om-oss.css         loaded by the embed at the top of the page
+                                                     └──►  om-oss.js          page footer code: clock, sky, melanger, riso filters,
+                                                                              label flips, strikes, lightbox
+```
+
+In Webflow: page **«Om oss (ny)»** (`/om-oss-ny`, draft). The text and photos are ordinary Designer elements, so edit them there.
+The stylesheet and script load from jsDelivr pinned to a commit (embed «Om oss – stil (jsDelivr)» and the page footer code).
+To change the look: edit `prototype/om-oss.html`, run `python3 webflow/om-oss/build.py`, commit, and swap the commit hash in both places.
+The melanger, riso colours and sky are drawn by the script, so they show on the published page, not on the Designer canvas.
