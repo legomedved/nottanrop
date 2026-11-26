@@ -44,7 +44,7 @@
 .nk-ink { fill: none; stroke: var(--nk-key); stroke-width: 1.3; stroke-linejoin: round; }
 .nk-halftone { opacity: 0.5; mix-blend-mode: multiply; pointer-events: none; }
 .nk-rim { fill: none; stroke: var(--nk-key); stroke-width: 3.2; pointer-events: none; }
-.nk-grain { opacity: 0.09; mix-blend-mode: multiply; pointer-events: none; }
+.nk-grain { opacity: 0.11; mix-blend-mode: multiply; pointer-events: none; }
 
 /* utrykning route: dashed orange ink, knocked out of a cream underlay like a printed map line */
 .nk-route-under { fill: none; stroke: var(--nk-cream); stroke-width: 6; stroke-linecap: round; opacity: 0.85; }

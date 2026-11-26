@@ -110,6 +110,14 @@ function stampInk() {
   return (stampURL = c.toDataURL());
 }
 
+// Grain as a tiled pattern at (about) its own resolution: crisp print specks, not a stretched, cloudy blur.
+function grainRect(parent, id, w, h, tile, attrs = {}) {
+  const defs = svg("defs", {}, parent);
+  const pat = svg("pattern", { id, width: tile, height: tile, patternUnits: "userSpaceOnUse" }, defs);
+  svg("image", { href: grain(), width: tile, height: tile, preserveAspectRatio: "none" }, pat);
+  return svg("rect", { width: w, height: h, fill: `url(#${id})`, class: "nk-grain", ...attrs }, parent);
+}
+
 // The Oslofjord inset: real coastline (Natural Earth 1:10m), Nesodden's tooth between the two arms, the siren on Vinterbro.
 function inset(parent, cls) {
   const f = el("figure", { class: `nk-inset ${cls}`, "aria-hidden": "true" }, parent);
@@ -118,7 +126,7 @@ function inset(parent, cls) {
   svg("rect", { width: fjord.w, height: fjord.h, class: "nk-in-land" }, s);
   svg("path", { d: fjord.land, class: "nk-in-water", "fill-rule": "evenodd", transform: "translate(1.6 1.2)" }, s);
   svg("path", { d: fjord.land, class: "nk-in-ink", "fill-rule": "evenodd" }, s);
-  svg("image", { href: grain(), width: fjord.w, height: fjord.h, preserveAspectRatio: "none", class: "nk-grain" }, s);
+  grainRect(s, "nk-in-g" + Math.random().toString(36).slice(2, 6), fjord.w, fjord.h, 40);
   const { oslo, nesodden, vinterbro } = fjord.steder;
   const label = (t, [x, y], dx, dy, anchor = "start") =>
     (svg("text", { x: x + dx, y: y + dy, "text-anchor": anchor, class: "nk-in-label" }, s).textContent = t);
@@ -172,7 +180,7 @@ class Nottekart {
 
     // light: grainy gradient, water only, lit from upper left (dusk sun)
     const water = svg("radialGradient", { id: `${uid}-w`, cx: "0.34", cy: "0.3", r: "0.8" }, defs);
-    [["0", "#f2faf7"], ["0.42", "#d1ede5"], ["0.78", "#bee6db"], ["1", "#98b8af"]].forEach(([o, c]) =>
+    [["0", "#e2f3ed"], ["0.42", "#d1ede5"], ["0.78", "#bee6db"], ["1", "#98b8af"]].forEach(([o, c]) =>
       svg("stop", { offset: o, "stop-color": c }, water));
 
     // halftone: 45° dot screen, faded in toward the shadow side (lower right)
@@ -211,10 +219,10 @@ class Nottekart {
     this.gHome = svg("g", { class: "nk-home" }, this.svg);
     this.gHero = svg("g", { class: "nk-hero" }, this.svg);
     this.gRim = svg("path", { class: "nk-rim" }, this.svg);
-    svg("image", { href: grain(), width: S, height: S, preserveAspectRatio: "none", class: "nk-grain", "clip-path": `url(#${uid}-c)` }, this.svg);
+    grainRect(this.svg, `${uid}-gr`, S, S, 80, { "clip-path": `url(#${uid}-c)` });
     // the glow gets its own grain, only where the glow is (lit side), so the shadow side stays clean paper
     const gg = svg("g", { mask: `url(#${uid}-lm)`, "clip-path": `url(#${uid}-h)`, class: "nk-glow-grain" }, this.svg);
-    svg("image", { href: grain(), width: S, height: S, preserveAspectRatio: "none", class: "nk-grain" }, gg);
+    grainRect(gg, `${uid}-gg`, S, S, 80);
 
     // markers: lid stickers (accent ring) for what's in our jars, small ink dots for the rest
     this.marks = data.notter.map((n) => {
