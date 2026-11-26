@@ -60,6 +60,17 @@ The live nottanrop.no is the site **"& nan – Nøttanrop coming soon"**, in the
 - [ ] 🔴 Nøttanrop → Site settings → SEO: indexing on, auto sitemap on; keep "disable Webflow subdomain indexing" on
 - [ ] Then Claude publishes to all domains and checks robots.txt, sitemap, redirects and HTTPS on the live domain
 
+## Pre-launch sweep (26 Nov, afternoon)
+
+- [x] **Share images:** 12 of 14 main pages had no og:image (a shared link showed no picture). All static pages and the product, Nøtteverden and recipe templates now have hero art
+- [ ] 🟡 Optional, Designer: bind the template share images to each item's `hovedbilde`, so every jar and nut shows its own picture (the API can't set CMS bindings)
+- [x] **Favicon and phone icon were the Donutland pink donut.** New icon: Helt Nøtta's head on brand brown (`webflow/site/ikon/`). Swapped in browser tabs by `lansering.js` 1.2.0 as a stopgap
+- [ ] 🔴 Site settings → General: upload `favicon-32.png` as Favicon and `webclip-256.png` as Webclip (search engines read these, not the script)
+- [x] Tablet (820px) checked on 7 pages: layout holds, no sideways scroll
+- [x] Forms: Kontakt and Nøttpost are wired, with Norwegian success and error messages
+- [ ] 🟡 External links (Spleis, Instagram, TikTok, Facebook, retailers, Forbrukertilsynet, Datatilsynet) could not be reached from the audit machine; tap through them once on a phone
+- [ ] 🟡 Speed: /produkter is about 8 MB; the biggest files are PNG jar stickers of 0.7–0.9 MB each. Converting them to WebP would roughly halve the page (Webflow converts in place, so approve first)
+
 ## Still open (small)
 
 - [x] "Kjøp nå" on the home hero stays as it is (decided 26 Nov)
