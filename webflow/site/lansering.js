@@ -17,6 +17,7 @@
  * 5. Typography: every H1 in sentence case; the home hero line gets weight and a plum halo.
  * 6. Language: English CMS dates become "26. november 2026"; Kontakt subject placeholder "Emne".
  * 7. Unwritten copy: rows still reading "[… skriver selv]" are hidden until the text is written.
+ * 7b. "Open to read" sections holding only a placeholder (oo-todo) are hidden too.
  * 8. Icons: swaps the template donut favicon/touch icon for Helt Nøtta until Site settings has them.
  *
  * Debug: add ?kontrast to a URL to log every change in the console.
@@ -176,7 +177,19 @@
   }
   icons();
 
+  /* 7b · "open to read" sections that hold nothing but a placeholder (e.g. "Den lange versjonen") */
+  function emptyDetails() {
+    Array.prototype.forEach.call(d.querySelectorAll('details'), function (det) {
+      if (!det.querySelector('.oo-todo')) return;
+      var body = det.cloneNode(true), sum = body.querySelector('summary');
+      if (sum) sum.remove();
+      Array.prototype.forEach.call(body.querySelectorAll('.oo-todo'), function (t) { t.remove(); });
+      if (!body.textContent.trim()) det.classList.add('nan-skjult');
+    });
+  }
+
   function run() {
+    try { emptyDetails(); } catch (e) {}
     [language, unwritten, worlds, accents, fills, floor].forEach(function (f) { try { f(); } catch (e) { if (DEBUG) console.warn('lansering', f.name, e); } });
     if (DEBUG) console.table(log);
   }
