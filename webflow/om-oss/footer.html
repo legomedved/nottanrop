@@ -1,0 +1,152 @@
+<!-- Om oss (ny): scroll clock, sky, melanger, flips, lightbox.
+     Source: github.com/legomedved/nottanrop webflow/om-oss (built from prototype/om-oss.html). -->
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  root.classList.add("oo-js");
+
+  /* --- things Webflow can't hold natively: real buttons, the strikes, the lightbox --- */
+  document.querySelectorAll(".oo-ph img").forEach(function(img){
+    if(img.parentElement.tagName==="BUTTON") return;
+    var b=document.createElement("button");b.type="button";img.parentNode.insertBefore(b,img);b.appendChild(img);
+  });
+  document.querySelectorAll(".oo-label").forEach(function(l){
+    if(l.querySelector(".oo-label__flip")) return;
+    var b=document.createElement("button");b.type="button";b.className="oo-label__flip";b.setAttribute("aria-pressed","false");b.textContent="Snu glasset";l.appendChild(b);
+  });
+  var STRIKES=["M1 6c18-3 40 2 60-1s28-2 38 1","M1 5c20 2 34-3 54 0s30 2 44-2","M1 6c14-2 36-3 52 0s32 1 46-1","M1 5c22-3 38 3 58 0s26-3 40 1","M1 6c16 1 36-4 56-1s28 1 42-1"];
+  document.querySelectorAll(".oo-word").forEach(function(w,i){
+    if(w.querySelector("svg")) return;
+    w.insertAdjacentHTML("beforeend",'<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="'+STRIKES[i%5]+'"/></svg>');
+  });
+  if(!document.getElementById("lb")){
+    document.body.insertAdjacentHTML("beforeend",'<dialog class="oo-lb" id="lb" aria-label="Bilde"><img id="lb-img" alt=""><div class="oo-lb__foot"><span id="lb-cap"></span><button type="button" id="lb-close">Lukk</button></div></dialog>');
+  }
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  /* ---- sky keyframes, hour of day -> [top, middle, horizon] (brand ramps) ---- */
+  var SKY = [
+    [0,  ["#1B1108","#250E1F","#4C240C"]],
+    [3,  ["#1B1108","#31122A","#5A1812"]],
+    [5,  ["#31122A","#A26D95","#FFA169"]],
+    [7,  ["#F2FAF7","#FFEED3","#FFF1E9"]],
+    [11, ["#D1EDE5","#F2FAF7","#FBF7F3"]],
+    [15, ["#BEE6DB","#F8FCFB","#F5E0C6"]],
+    [18, ["#A26D95","#EA766C","#FFA169"]],
+    [20, ["#622553","#EA766C","#FFA169"]],
+    [22, ["#31122A","#622553","#B43024"]],
+    [24, ["#1B1108","#250E1F","#4C240C"]]
+  ];
+  function hex(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+  SKY.forEach(function(k){k[1]=k[1].map(hex)});
+  function mix(a,b,f){return a.map(function(v,i){return Math.round(v+(b[i]-v)*f)})}
+  function css(c){return "rgb("+c.join(",")+")"}
+  function lum(c){var r=c.map(function(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*r[0]+.7152*r[1]+.0722*r[2]}
+  function skyAt(h){
+    h=((h%24)+24)%24;
+    for(var i=0;i<SKY.length-1;i++){
+      var a=SKY[i],b=SKY[i+1];
+      if(h>=a[0]&&h<=b[0]){var f=(h-a[0])/(b[0]-a[0]);f=f*f*(3-2*f);return [0,1,2].map(function(j){return mix(a[1][j],b[1][j],f)})}
+    }
+    return SKY[0][1];
+  }
+
+  /* ---- clock anchors ---- */
+  var anchors=[].slice.call(document.querySelectorAll("[data-t]"));
+  var pos=[];
+  function measure(){
+    pos=anchors.map(function(el){var r=el.getBoundingClientRect();return {y:r.top+window.scrollY+Math.min(r.height,window.innerHeight)*.35,t:parseFloat(el.dataset.t)}});
+    pos[0].y=0;
+  }
+  function tAt(probe){
+    if(probe<=pos[0].y) return pos[0].t;
+    for(var i=0;i<pos.length-1;i++){
+      if(probe<pos[i+1].y){var f=(probe-pos[i].y)/(pos[i+1].y-pos[i].y);return pos[i].t+(pos[i+1].t-pos[i].t)*f}
+    }
+    return pos[pos.length-1].t;
+  }
+
+  var clock=document.querySelector('[data-oo="clock"]'),stage=document.querySelector('[data-oo="stage"]'),stageMini=document.querySelector('[data-oo="stage-mini"]');
+  var layers=[].slice.call(document.querySelectorAll(".oo-mel__layer"));
+  var STAGES=["Hele nøtter","Nøttemel","Grov masse","Blankt smør"];
+  var lastKey="",lastStage=-1,lastClock="";
+
+  function frame(){
+    ticking=false;
+    var y=window.scrollY, vh=window.innerHeight;
+    var t=tAt(y+vh*.55);
+    var c=skyAt(t);
+    var key=c.join();
+    if(key!==lastKey){
+      lastKey=key;
+      root.style.setProperty("--s1",css(c[0]));root.style.setProperty("--s2",css(c[1]));root.style.setProperty("--s3",css(c[2]));
+      var L=lum(c[0])*.6+lum(c[1])*.4;
+      root.style.setProperty("--on-sky",L>.36?"#1B1108":"#FBF7F3");
+      var h=((t%24)+24)%24, night=h<4?1:h<6?(6-h)/2:h>21?Math.min(1,(h-21)/2):0;
+      root.style.setProperty("--night",night.toFixed(3));
+    }
+    /* drum turns with scroll; the stones' surface rolls */
+    if(!reduce.matches){
+      root.style.setProperty("--drum",(y*.18).toFixed(1)+"deg");
+      root.style.setProperty("--roll",((y*.12)%14).toFixed(1)+"px");
+      root.style.setProperty("--beam",(y*.08).toFixed(1)+"deg");
+    }
+    /* grinding progress: 00:00 (t=24) -> 24:00 (t=48) */
+    var p=Math.max(0,Math.min(1,(t-24)/24));
+    var label;
+    if(t<24){label=t<22.5?"Før start":"Før 00:00"}
+    else{var mins=Math.round((t-24)*60/10)*10;var hh=Math.floor(mins/60),mm=mins%60;label=(hh<10?"0":"")+hh+":"+(mm<10?"0":"")+mm}
+    if(label!==lastClock){clock.textContent=label;lastClock=label}
+    var w=[1-sm(p,.1,.25), band(p,.1,.25,.38,.5), band(p,.38,.5,.62,.75), sm(p,.62,.8)];
+    layers.forEach(function(l){var s=l.dataset.stage;var o=s==="swirl"?sm(p,.5,.9)*.85:w[+s];l.setAttribute("opacity",o.toFixed(3))});
+    var si=p<.18?0:p<.44?1:p<.7?2:3;
+    if(si!==lastStage){lastStage=si;stage.textContent=STAGES[si];stageMini.textContent=STAGES[si]}
+  }
+  function sm(x,a,b){var f=Math.max(0,Math.min(1,(x-a)/(b-a)));return f*f*(3-2*f)}
+  function band(x,a,b,c,d){return Math.min(sm(x,a,b),1-sm(x,c,d))}
+
+  var ticking=false;
+  function req(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
+  window.addEventListener("scroll",req,{passive:true});
+  window.addEventListener("resize",function(){measure();req()});
+  window.addEventListener("load",function(){measure();req()});
+  if("ResizeObserver" in window){new ResizeObserver(function(){measure();req()}).observe(document.body)}
+  measure();frame();
+
+  /* ---- panels print in: the halftone plate slides into register ---- */
+  if("IntersectionObserver" in window && !reduce.matches){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove("oo-is-waiting");io.unobserve(e.target)}})},{rootMargin:"0px 0px -12% 0px"});
+    document.querySelectorAll(".oo-panel, .oo-word").forEach(function(el){
+      if(el.getBoundingClientRect().top>window.innerHeight*.9){el.classList.add("oo-is-waiting");io.observe(el)}
+    });
+  }
+
+  /* ---- hotspots ---- */
+  document.querySelectorAll(".oo-spot button").forEach(function(b){
+    b.addEventListener("click",function(){
+      var open=b.getAttribute("aria-expanded")==="true";
+      document.querySelectorAll(".oo-spot button").forEach(function(o){o.setAttribute("aria-expanded","false");document.getElementById(o.getAttribute("aria-controls")).hidden=true});
+      if(!open){b.setAttribute("aria-expanded","true");document.getElementById(b.getAttribute("aria-controls")).hidden=false}
+    });
+  });
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")document.querySelectorAll('.spot button[aria-expanded="true"]').forEach(function(b){b.click()})});
+
+  /* ---- labels flip ---- */
+  document.querySelectorAll(".oo-label__flip").forEach(function(b){
+    b.addEventListener("click",function(){var l=b.closest(".oo-label");var on=l.classList.toggle("oo-is-flipped");b.setAttribute("aria-pressed",on?"true":"false")});
+  });
+
+  /* ---- lightbox ---- */
+  var lb=document.getElementById("lb"),lbImg=document.getElementById("lb-img"),lbCap=document.getElementById("lb-cap"),last=null;
+  document.querySelectorAll(".oo-ph button").forEach(function(b){
+    var img=b.querySelector("img");
+    b.setAttribute("aria-label","Vis større: "+img.alt);
+    b.addEventListener("click",function(){last=b;lbImg.src=img.src;lbImg.alt=img.alt;lbCap.textContent=img.alt;if(lb.showModal)lb.showModal();else lb.setAttribute("open","")});
+  });
+  document.getElementById("lb-close").addEventListener("click",function(){lb.close()});
+  lb.addEventListener("click",function(e){if(e.target===lb)lb.close()});
+  lb.addEventListener("close",function(){if(last)last.focus()});
+})();
+</script>
