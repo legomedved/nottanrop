@@ -24,3 +24,10 @@ Only links move: hover lifts the card off the paper, press prints it.
 | | Utforsk mer, oppskrifter |
 
 Tokens live at the top of `kort.css` (`--k-*`): ink, paper, radii, plate offsets, padding, type.
+
+## Also in this file
+- **One mono, one sans:** the names "Space Mono" and "Plus Jakarta Sans" are re-pointed to the DM Mono / DM Sans files,
+  so every old rule (Hjem, Om oss, Samarbeid, map labels, FAQ answers) prints in DM. When convenient, delete the
+  Space Mono upload and the Plus Jakarta Google Fonts entry in Webflow; nothing will change visually.
+- **Panels and menu:** the Kontakt form panels and the Ressurser menu cards use the same edge and solid plate.
+- **The globe card** keeps its entry-coloured plate on purpose: it's the "print registers itself" moment.

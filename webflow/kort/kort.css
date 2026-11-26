@@ -230,3 +230,43 @@
 @media (max-width: 479px) {
   :root { --k-plate: 4px 5px; --k-plate-lg: 5px 6px; --k-plate-up: 6px 7px; }
 }
+
+/* ==========================================================================
+   6 · One mono, one sans (DM Mono + DM Sans, as decided 26 Nov 2026)
+   Space Mono and Plus Jakarta Sans are still named all over the site (Hjem, Om oss,
+   Samarbeid, Nøtteverden, FAQ answers, even SVG map text). Instead of hunting every
+   rule, those names now point at the DM files. Defined after Webflow's own faces,
+   so these win. Remove the Space Mono upload and the Google Fonts entry when convenient.
+   ========================================================================== */
+@font-face { font-family: "Space Mono"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("https://cdn.prod.website-files.com/693eb2bc3e42b68a1bb20701/69aee84bd53e6970afa52452_DMMono-Regular.ttf") format("truetype"); }
+@font-face { font-family: "Space Mono"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("https://cdn.prod.website-files.com/693eb2bc3e42b68a1bb20701/69aee84c79ed2d8901ae1561_DMMono-Italic.ttf") format("truetype"); }
+@font-face { font-family: "Space Mono"; font-style: normal; font-weight: 500 900; font-display: swap; /* DM Mono has no bold: Medium */
+  src: url("https://cdn.prod.website-files.com/693eb2bc3e42b68a1bb20701/69aee84cb0eea36f808d1cf9_DMMono-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Space Mono"; font-style: italic; font-weight: 500 900; font-display: swap;
+  src: url("https://cdn.prod.website-files.com/693eb2bc3e42b68a1bb20701/69aee84b98637ce6b14ae09a_DMMono-MediumItalic.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 100 1000; font-display: swap;
+  src: url("https://cdn.prod.website-files.com/693eb2bc3e42b68a1bb20701/69af48b5655ce1eec28f103c_DMSans-VariableFont_opsz%2Cwght.ttf") format("truetype"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-style: italic; font-weight: 100 1000; font-display: swap;
+  src: url("https://cdn.prod.website-files.com/693eb2bc3e42b68a1bb20701/69af48b6c44af85ec1aae889_DMSans-Italic-VariableFont_opsz%2Cwght.ttf") format("truetype"); }
+
+/* ==========================================================================
+   7 · Panels and the menu speak the same print language
+   ========================================================================== */
+/* Kontakt: the two form panels are large etiketter (no blurred shadows) */
+:root body :is(.section-kontakt-side, .section-kontakt-skjema_col) {
+  border: var(--k-line) solid var(--k-ink) !important; border-radius: var(--k-r-etikett) !important;
+  box-shadow: var(--k-plate-lg) 0 0 var(--k-ink) !important;
+}
+/* Ressurser menu: same etikett on the cocoa panel; the plate is a deeper cocoa so it still reads */
+:root body .nav-dropdown_list-grid > .nav-dropdown_card {
+  border-radius: var(--k-r-etikett) !important; border: var(--k-line) solid #120A04 !important;
+  box-shadow: 4px 5px 0 0 #120A04 !important;
+}
+@media (hover: hover) {
+  :root body .nav-dropdown_list-grid > .nav-dropdown_card:hover { transform: translate(-2px, -3px) !important; box-shadow: 6px 8px 0 0 #120A04 !important; }
+}
+:root body .nav-dropdown_list-grid > .nav-dropdown_card:active { transform: translate(2px, 3px) !important; box-shadow: 1px 1px 0 0 #120A04 !important; }
+:root body .dropdown-cta-block-3 .button-7 { border-radius: var(--k-r-etikett) !important; border: var(--k-line) solid #120A04; box-shadow: 4px 5px 0 0 #120A04 !important; }
+:root body .nav-dropdown_list-component { box-shadow: 8px 10px 0 0 rgba(18, 10, 4, .55) !important; }
