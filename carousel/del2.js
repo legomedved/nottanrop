@@ -34,7 +34,7 @@ const chips = (list) => list.map((p) => `<span class="jar" style="--c:${PRODUKT[
   slides.push(`<section class="slide cover">
     <div class="top"><span class="tag">Nøtteverden · del 2</span>${pager(1)}</div>
     <h1 class="display" style="margin-top:70px">Alt som er<br>i glassene.</h1>
-    <p class="lead small" style="margin-top:28px;max-width:860px">${ING.length} ingredienser. 6 glass. ${CONFIRMED} ruter vi kan stå inne for. Resten tegner vi når databladene ligger på bordet.</p>
+    <p class="lead small" style="margin-top:28px;max-width:860px">${ING.length} ingredienser. 6 glass. ${CONFIRMED === ING.length ? `${CONFIRMED} ruter, alle hjem til Oslofjorden.` : `${CONFIRMED} ruter vi kan stå inne for. Resten tegner vi når databladene ligger på bordet.`}</p>
     <div class="pantry">${ING.map((x) => `<figure><img src="${art(`notter/nan-ill-${x.id}-512.webp`)}" alt=""><figcaption class="mono">${x.navn}</figcaption></figure>`).join("")}</div>
   </section>`);
 
