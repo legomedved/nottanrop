@@ -69,7 +69,7 @@ async function globeShots(browser, list) {
   const p = await browser.newPage({ viewport: { width: 900, height: 1400 } });
   await p.goto(url(path.join(BUILD, "globe.html")));
   await p.waitForFunction(() => window.Nottekart);
-  await p.evaluate(() => { document.querySelectorAll(".nk-hint, .nk-panel, .nk-legend").forEach((e) => e.remove()); window.Nottekart.instances[0].idle = false; });
+  await p.evaluate(() => { document.querySelectorAll(".nk-hint, .nk-panel, .nk-legend, .nk-cartouche, .nk-inset").forEach((e) => e.remove()); window.Nottekart.instances[0].idle = false; });
   const files = {};
   for (const { id, flight = 1 } of list) {
     await p.evaluate(async ([id, t]) => {
@@ -97,7 +97,7 @@ async function routeShots(browser, list) {
   const p = await browser.newPage({ viewport: { width: 900, height: 1400 } });
   await p.goto(url(path.join(BUILD, "globe.html")));
   await p.waitForFunction(() => window.Nottekart);
-  await p.evaluate(() => document.querySelectorAll(".nk-hint, .nk-panel, .nk-legend").forEach((e) => e.remove()));
+  await p.evaluate(() => document.querySelectorAll(".nk-hint, .nk-panel, .nk-legend, .nk-cartouche, .nk-inset").forEach((e) => e.remove()));
   const files = {};
   for (const { key, from, cargo, t = 0.58 } of list) {
     await p.evaluate(([from, href, t]) => window.Nottekart.instances[0].showRoute(from, href, t), [from, url(cargo), t]);

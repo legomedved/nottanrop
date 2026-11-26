@@ -21,6 +21,7 @@ import { geoOrthographic, geoPath, geoGraticule10, geoDistance, geoInterpolate }
 import { feature } from "topojson-client";
 import land110 from "world-atlas/land-110m.json";
 import data from "./notter.json";
+import fjord from "./oslofjord.json";
 import css from "./nottekart.css";
 
 // Inks: [base, darker] per family, from the Nøttanrop palette ramps.
@@ -40,6 +41,8 @@ const STEMPEL = {
 
 const SVGNS = "http://www.w3.org/2000/svg";
 const S = 600; // viewBox size
+const R0 = S / 2 - 22; // globe radius; the rest is room for the dusk glow
+const RH = S / 2 - 2; // outer edge of the glow
 const reduceMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const land = feature(land110, land110.objects.land);
 const graticule = geoGraticule10();
@@ -50,8 +53,8 @@ const fmtKm = (n) => n.toLocaleString("nb-NO");
 // Pins are an assumed point in the country, so distances are rounded and marked as approximate.
 const approxKm = (n) => `≈ ${fmtKm(Math.round(n / 100) * 100)} km`;
 // Ingredients that have a drawing in assets/ (nan-ill-<id>-160.webp): shown as a specimen plate on the card.
-const ART = new Set(["mandel", "hasselnott", "cashew", "kokos", "pistasj", "kakao", "matcha", "jordbaer", "mango",
-  "solbaer", "rorsukker", "kakaosmor", "olivenolje", "salt"]);
+const ART = new Set(["mandel", "hasselnott", "cashew", "kokos", "pistasj", "kakao", "matcha", "jordbaer",
+  "rorsukker", "kakaosmor", "olivenolje", "salt"]);
 const fmtCoord = (lat, lon) =>
   `${Math.abs(lat).toFixed(0)}°${lat >= 0 ? "N" : "S"} ${Math.abs(lon).toFixed(0)}°${lon >= 0 ? "Ø" : "V"}`;
 
@@ -87,12 +90,57 @@ function grain() {
   return (grainURL = c.toDataURL());
 }
 
+// Rubber-stamp ink: mostly solid, with speckles and a few starved patches where the stamp didn't touch.
+let stampURL;
+function stampInk() {
+  if (stampURL) return stampURL;
+  const w = 140, h = 70, c = document.createElement("canvas");
+  c.width = w; c.height = h;
+  const ctx = c.getContext("2d");
+  const img = ctx.createImageData(w, h);
+  const blots = Array.from({ length: 5 }, () => [Math.random() * w, Math.random() * h, 6 + Math.random() * 12]);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const i = (y * w + x) * 4;
+    let a = Math.random() < 0.13 ? 0.4 : 0.96;
+    for (const [bx, by, br] of blots) if ((x - bx) ** 2 + (y - by) ** 2 < br * br) a *= 0.72;
+    img.data[i] = img.data[i + 1] = img.data[i + 2] = 0;
+    img.data[i + 3] = a * 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  return (stampURL = c.toDataURL());
+}
+
+// The Oslofjord inset: real coastline (Natural Earth 1:10m), Nesodden's tooth between the two arms, the siren on Vinterbro.
+function inset(parent, cls) {
+  const f = el("figure", { class: `nk-inset ${cls}`, "aria-hidden": "true" }, parent);
+  el("figcaption", {}, f).textContent = "Hjemme · Oslofjorden";
+  const s = svg("svg", { viewBox: `0 0 ${fjord.w} ${fjord.h}` }, f);
+  svg("rect", { width: fjord.w, height: fjord.h, class: "nk-in-land" }, s);
+  svg("path", { d: fjord.land, class: "nk-in-water", "fill-rule": "evenodd", transform: "translate(1.6 1.2)" }, s);
+  svg("path", { d: fjord.land, class: "nk-in-ink", "fill-rule": "evenodd" }, s);
+  svg("image", { href: grain(), width: fjord.w, height: fjord.h, preserveAspectRatio: "none", class: "nk-grain" }, s);
+  const { oslo, nesodden, vinterbro } = fjord.steder;
+  const label = (t, [x, y], dx, dy, anchor = "start") =>
+    (svg("text", { x: x + dx, y: y + dy, "text-anchor": anchor, class: "nk-in-label" }, s).textContent = t);
+  svg("circle", { cx: oslo[0], cy: oslo[1], r: 2.6, class: "nk-in-dot" }, s);
+  label("Oslo", oslo, 6, 3);
+  label("Nesodden", nesodden, 0, 0, "middle");
+  const home = svg("g", { class: "nk-home nk-in-home", transform: `translate(${vinterbro[0]} ${vinterbro[1]}) scale(0.8)` }, s);
+  const rays = svg("g", { class: "nk-rays" }, home);
+  [[-12, -10, -16, -15], [0, -14, 0, -21], [12, -10, 16, -15]].forEach(([x1, y1, x2, y2]) => svg("line", { x1, y1, x2, y2 }, rays));
+  svg("path", { d: "M-7 1 A7 7 0 0 1 7 1 Z", fill: "#e23c2e", stroke: KEY, "stroke-width": 1.6 }, home);
+  svg("rect", { x: -9, y: 1, width: 18, height: 4, rx: 1, fill: "#5a3a1c", stroke: KEY, "stroke-width": 1.4 }, home);
+  label("Vinterbro", vinterbro, 0, 18, "middle");
+  svg("text", { x: fjord.w - 10, y: 18, "text-anchor": "end", class: "nk-in-label nk-in-north" }, s).textContent = "N ↑";
+  return f;
+}
+
 class Nottekart {
   constructor(root, assets) {
     this.root = root;
     this.assets = root.dataset.nkAssets || assets;
     this.rotation = [-20, -40, 0];
-    this.projection = geoOrthographic().scale(S / 2 - 6).translate([S / 2, S / 2]).clipAngle(90).precision(0.4);
+    this.projection = geoOrthographic().scale(R0).translate([S / 2, S / 2]).clipAngle(90).precision(0.4);
     this.path = geoPath(this.projection);
     this.flight = null;
     this.idle = true;
@@ -111,10 +159,15 @@ class Nottekart {
 
     // ---- globe -----------------------------------------------------------
     const stage = el("div", { class: "nk-stage" }, r);
+    const orb = el("div", { class: "nk-orb" }, stage);
     this.svg = svg("svg", {
       class: "nk-globe", viewBox: `0 0 ${S} ${S}`, role: "img",
       "aria-label": "Jordklode tegnet som et gammelt skoleatlas. Den viser hvor nøttene kommer fra, og ruten hjem til Oslofjorden. Dra for å snu den, eller velg en nøtt i listen.",
-    }, stage);
+    }, orb);
+    // atlas furniture: the title cartouche (top left) and the home inset (bottom right), as in a 1965 school atlas
+    el("div", { class: "nk-cartouche", "aria-hidden": "true" }, orb).innerHTML =
+      `<b>Nøtteverden</b><span>Skoleatlas for nøtt-nød</span><span>Utgave 2026 · Målestokk 1 : ∞</span>`;
+    this.insets = [inset(orb, "nk-inset-stage")];
     const defs = svg("defs", {}, this.svg);
 
     // light: grainy gradient, water only, lit from upper left (dusk sun)
@@ -130,9 +183,20 @@ class Nottekart {
       svg("stop", { offset: o, "stop-color": c }, fade));
     const mask = svg("mask", { id: `${uid}-m` }, defs);
     svg("rect", { width: S, height: S, fill: `url(#${uid}-f)` }, mask);
+    // dusk: a grainy glow on the sunlit edge only (upper left), orange → red → a breath of plum
+    const glow = svg("radialGradient", { id: `${uid}-g`, cx: S / 2, cy: S / 2, r: RH, gradientUnits: "userSpaceOnUse" }, defs);
+    [[R0 / RH - 0.01, "#ffa169", 0], [R0 / RH, "#ffa169", 1], [R0 / RH + (1 - R0 / RH) * 0.45, "#ea766c", 0.75], [1, "#a26d95", 0]].forEach(([o, c, a]) =>
+      svg("stop", { offset: o, "stop-color": c, "stop-opacity": a }, glow));
+    const lit = svg("linearGradient", { id: `${uid}-l`, x1: 0, y1: 0, x2: 1, y2: 1 }, defs);
+    [["0", "#fff"], ["0.35", "#fff"], ["0.6", "#000"]].forEach(([o, c]) => svg("stop", { offset: o, "stop-color": c }, lit));
+    const litMask = svg("mask", { id: `${uid}-lm` }, defs);
+    svg("rect", { width: S, height: S, fill: `url(#${uid}-l)` }, litMask);
+    const haloClip = svg("clipPath", { id: `${uid}-h` }, defs);
+    svg("circle", { cx: S / 2, cy: S / 2, r: RH }, haloClip);
     const clip = svg("clipPath", { id: `${uid}-c` }, defs);
     this.clipSphere = svg("path", {}, clip);
 
+    svg("circle", { cx: S / 2, cy: S / 2, r: RH, fill: `url(#${uid}-g)`, mask: `url(#${uid}-lm)`, class: "nk-glow" }, this.svg);
     this.gWater = svg("path", { class: "nk-water", fill: `url(#${uid}-w)` }, this.svg);
     this.gGrat = svg("path", { class: "nk-grat" }, this.svg);
     this.gPlate = svg("path", { class: "nk-plate", transform: "translate(2.2 1.6)" }, this.svg); // misregistered plate
@@ -148,6 +212,9 @@ class Nottekart {
     this.gHero = svg("g", { class: "nk-hero" }, this.svg);
     this.gRim = svg("path", { class: "nk-rim" }, this.svg);
     svg("image", { href: grain(), width: S, height: S, preserveAspectRatio: "none", class: "nk-grain", "clip-path": `url(#${uid}-c)` }, this.svg);
+    // the glow gets its own grain, only where the glow is (lit side), so the shadow side stays clean paper
+    const gg = svg("g", { mask: `url(#${uid}-lm)`, "clip-path": `url(#${uid}-h)`, class: "nk-glow-grain" }, this.svg);
+    svg("image", { href: grain(), width: S, height: S, preserveAspectRatio: "none", class: "nk-grain" }, gg);
 
     // markers: lid stickers (accent ring) for what's in our jars, small ink dots for the rest
     this.marks = data.notter.map((n) => {
@@ -205,7 +272,9 @@ class Nottekart {
     }
     this.card = el("article", { class: "nk-card", "aria-live": "polite" }, panel);
     // on phones the globe stays pinned at the top, so the key moves under the card
+    this.insets.push(inset(panel, "nk-inset-panel"));
     el("p", { class: "nk-legend nk-legend-panel", "aria-hidden": "true" }, panel).innerHTML = legend.innerHTML;
+    r.style.setProperty("--nk-stamp-ink", `url(${stampInk()})`);
 
     // ---- drag to rotate --------------------------------------------------
     let last = null;
@@ -320,6 +389,7 @@ class Nottekart {
     const interp = geoInterpolate(from, HOME);
     const km = Math.round(geoDistance(from, HOME) * 6371);
     this.renderCard(n, km);
+    if (animate) this.register();
     this.root.dispatchEvent(new CustomEvent("nottekart:select", { bubbles: true, detail: { id, km } }));
 
     // frame the trip: centre between origin and home, unless it's half the planet away
@@ -366,9 +436,26 @@ class Nottekart {
   }
 
   alarm() {
-    this.gHome.classList.remove("is-alarm");
-    void this.gHome.getBBox();
-    this.gHome.classList.add("is-alarm");
+    for (const h of [this.gHome, ...this.insets.map((f) => f.querySelector(".nk-in-home"))]) {
+      h.classList.remove("is-alarm");
+      void h.getBBox();
+      h.classList.add("is-alarm");
+    }
+  }
+
+  // "The print registers itself": the colour plate starts out of register and slides into place.
+  register() {
+    if (reduceMotion()) return;
+    const t0 = performance.now();
+    const step = (now) => {
+      const t = Math.min(1, (now - t0) / 520), k = 1 - ease(t);
+      this.gPlate.setAttribute("transform", `translate(${(2.2 + 10 * k).toFixed(2)} ${(1.6 + 7 * k).toFixed(2)})`);
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+    this.card.classList.remove("nk-reg");
+    void this.card.offsetWidth;
+    this.card.classList.add("nk-reg");
   }
 
   goTo(id) { this.select(id); }

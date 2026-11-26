@@ -189,7 +189,8 @@
 }
 .nk-plate-fig img { width: 78%; height: 78%; object-fit: contain; display: block; }
 .has-plate .nk-card-top { padding-right: 0; }
-.has-plate .nk-stamp { top: auto; right: auto; bottom: -0.4rem; left: 50%; translate: -50% 0; white-space: nowrap; background: rgba(251, 247, 243, 0.85); }
+.has-plate .nk-head { margin-bottom: 1rem; }
+.has-plate .nk-stamp { top: auto; right: auto; bottom: -0.2rem; left: 50%; translate: -50% 0; white-space: nowrap; background: rgba(251, 247, 243, 0.85); }
 .nk-legend-panel { display: none; }
 
 @media (max-width: 860px) {
@@ -204,4 +205,55 @@
   .nk-panel { position: relative; z-index: 1; padding-top: 0.6rem; }
   .nk-head { gap: 0.75rem; }
   .has-plate .nk-stamp { font-size: 0.68rem; }
+}
+
+/* ---- v0.3 round 2: atlas furniture, dusk, registration, rubber stamps --------------- */
+.nk-orb { position: relative; }
+.nk-glow { pointer-events: none; }
+
+/* title cartouche, top-left corner outside the globe */
+.nk-cartouche {
+  position: absolute; top: 0; left: 0; display: grid; gap: 0.15rem; padding: 0.55rem 0.75rem 0.5rem;
+  background: var(--nk-cream); border: 1.5px solid var(--nk-key); outline: 1px solid var(--nk-key); outline-offset: 2.5px;
+  font: 500 0.56rem/1.25 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--nk-brown);
+  transform: rotate(-1.5deg); pointer-events: none;
+}
+.nk-cartouche b { font: 600 1.05rem/1 var(--nk-display); letter-spacing: 0; text-transform: none; color: var(--nk-key); margin-bottom: 0.1rem; }
+
+/* home inset: a printed map glued over the corner */
+.nk-inset { margin: 0; background: var(--nk-cream); border: 2px solid var(--nk-key); border-radius: 0.5rem; box-shadow: 5px 5px 0 #cc6121; overflow: hidden; }
+.nk-inset figcaption { font: 500 0.56rem/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--nk-cream); background: var(--nk-brown); padding: 0.45em 0.7em; }
+.nk-inset svg { display: block; width: 100%; height: auto; }
+.nk-in-land { fill: #b8be6e; }
+.nk-in-water { fill: #bee6db; }
+.nk-in-ink { fill: none; stroke: var(--nk-key); stroke-width: 1.1; stroke-linejoin: round; }
+.nk-in-label { font: 500 8.5px/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase; fill: var(--nk-key); paint-order: stroke; stroke: rgba(251, 247, 243, 0.85); stroke-width: 2.5px; }
+.nk-in-north { font-size: 7.5px; }
+.nk-in-dot { fill: var(--nk-key); }
+.nk-inset-stage { position: absolute; right: -0.6rem; bottom: 0.4rem; width: 31%; transform: rotate(1.5deg); pointer-events: none; }
+.nk-inset-panel { display: none; }
+
+/* the print registers itself: card plate, title and specimen plate start out of register */
+.nk-card.nk-reg { animation: nk-reg 0.52s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.nk-card.nk-reg .nk-title { animation: nk-reg-t 0.52s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.nk-card.nk-reg .nk-plate-fig { animation: nk-reg-p 0.52s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@keyframes nk-reg { from { box-shadow: 17px 14px 0 var(--nk-accent); } }
+@keyframes nk-reg-t { from { text-shadow: 6px 4px 0 var(--nk-accent); } to { text-shadow: 0 0 0 transparent; } }
+@keyframes nk-reg-p { from { box-shadow: 15px 12px 0 var(--nk-accent); } }
+
+/* rubber stamps: starved ink, a faint double strike, an uneven edge */
+.nk .nk-stamp {
+  -webkit-mask-image: var(--nk-stamp-ink); mask-image: var(--nk-stamp-ink);
+  -webkit-mask-size: 140px 70px; mask-size: 140px 70px;
+  text-shadow: 0.8px 0.6px 0 color-mix(in srgb, currentColor 45%, transparent);
+  border-radius: 0.35rem 0.2rem 0.4rem 0.25rem / 0.25rem 0.4rem 0.2rem 0.35rem;
+  opacity: 0.92;
+}
+
+@media (max-width: 860px) {
+  .nk-cartouche, .nk-inset-stage { display: none; }
+  .nk-inset-panel { display: block; max-width: 300px; margin: 1.6rem auto 0; transform: rotate(-1deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nk-card.nk-reg, .nk-card.nk-reg .nk-title, .nk-card.nk-reg .nk-plate-fig { animation: none; }
 }

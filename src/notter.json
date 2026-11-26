@@ -22,8 +22,7 @@
       "historie": "Dyrket i tusenvis av år i Sørvest-Asia, og nevnt flere ganger i Bibelen. I dag kommer over halvparten av verdens mandler fra California.",
       "vits": "Fersken i forkledning. Vi elsker den likevel.",
       "produkter": [
-        "Mandelykke",
-        "Mango"
+        "Mandelykke"
       ],
       "vaare": {
         "land": "California, USA",
@@ -155,8 +154,7 @@
       "produkter": [
         "Cashewdrøm",
         "Cashewdrøm med matcha",
-        "Cashewdrøm med jordbær",
-        "Solbær"
+        "Cashewdrøm med jordbær"
       ],
       "vaare": {
         "land": "India",
@@ -238,7 +236,9 @@
       "historie": "Kokosnøtter kan flyte over hav. Austronesiske sjøfolk tok dem med seg videre, helt til Madagaskar.",
       "vits": "I samme kategori som oliven. Det har ingen fortalt den.",
       "produkter": [
-        "Cashewdrøm"
+        "Cashewdrøm",
+        "Cashewdrøm med matcha",
+        "Cashewdrøm med jordbær"
       ],
       "vaare": {
         "land": "Sri Lanka",
@@ -532,120 +532,6 @@
         },
         {
           "tekst": "Norge har sitt eget ville jordbær, markjordbæret. Det vokser i hele landet og har ingenting med hagejordbærets reisebrev å gjøre.",
-          "kilder": []
-        }
-      ]
-    },
-    {
-      "id": "mango",
-      "navn": "Mango",
-      "latin": "Mangifera indica",
-      "farge": "mango",
-      "opphav": {
-        "sted": "Sør- og Sørøst-Asia",
-        "lat": 22,
-        "lon": 92
-      },
-      "stempel": "ingrediens",
-      "botanikk": "En steinfrukt, i familie med cashew og pistasj.",
-      "historie": "Dyrket i India og Sørøst-Asia i flere tusen år. Regnet som nasjonalfrukten i India, Pakistan og Filippinene.",
-      "vits": "Fetter av cashew. Familieselskap i glasset.",
-      "produkter": [
-        "Mango"
-      ],
-      "vaare": null,
-      "verifisert": true,
-      "kilder": [
-        {
-          "title": "Wikipedia: Mango",
-          "url": "https://en.wikipedia.org/wiki/Mango",
-          "apnet": true
-        },
-        {
-          "title": "Wikipedia: Mangifera indica",
-          "url": "https://en.wikipedia.org/wiki/Mangifera_indica",
-          "apnet": true
-        },
-        {
-          "title": "Wikipedia: Anacardiaceae",
-          "url": "https://en.wikipedia.org/wiki/Anacardiaceae",
-          "apnet": true
-        },
-        {
-          "title": "Wikipedia: Cashew",
-          "url": "https://en.wikipedia.org/wiki/Cashew",
-          "apnet": true
-        },
-        {
-          "title": "SNL: sumakfamilien",
-          "url": "https://snl.no/sumakfamilien",
-          "apnet": true
-        },
-        {
-          "title": "SNL: kasjutre",
-          "url": "https://snl.no/kasjutre",
-          "apnet": true
-        }
-      ],
-      "fakta": [
-        {
-          "tekst": "Mangoskallet inneholder urushiol, det samme stoffet som gjør giftsumak beryktet, og kan gi utslett hos følsomme personer. Cashewskallet har beslektede stoffer, derfor selges cashew nesten aldri med skall.",
-          "kilder": []
-        },
-        {
-          "tekst": "Ifølge tradisjonen plantet mogulkeiser Akbar en lund med hundre tusen mangotrær nær Darbhanga i Bihar.",
-          "kilder": []
-        }
-      ]
-    },
-    {
-      "id": "solbaer",
-      "navn": "Solbær",
-      "latin": "Ribes nigrum",
-      "farge": "solbaer",
-      "opphav": {
-        "sted": "Nord-Europa og Nord-Asia",
-        "lat": 61,
-        "lon": 30
-      },
-      "stempel": "ingrediens",
-      "botanikk": "Et ekte bær. Botanisk sett mer bær enn jordbæret.",
-      "historie": "Vokser vilt i Nord-Europa og Nord-Asia, i Norge helt opp til Trøndelag. En vanlig hagebusk her i landet.",
-      "vits": "Kom aldri lenger enn til hagen. Trengte ikke.",
-      "produkter": [
-        "Solbær"
-      ],
-      "vaare": null,
-      "verifisert": true,
-      "kilder": [
-        {
-          "title": "Wikipedia: Blackcurrant",
-          "url": "https://en.wikipedia.org/wiki/Blackcurrant",
-          "apnet": true
-        },
-        {
-          "title": "Wikipedia: Ribena",
-          "url": "https://en.wikipedia.org/wiki/Ribena",
-          "apnet": true
-        },
-        {
-          "title": "Wikipedia: Strawberry",
-          "url": "https://en.wikipedia.org/wiki/Strawberry",
-          "apnet": true
-        },
-        {
-          "title": "SNL: solbær",
-          "url": "https://snl.no/solbær",
-          "apnet": true
-        }
-      ],
-      "fakta": [
-        {
-          "tekst": "I USA ble solbær forbudt i flere tiår fordi busken huser en soppsykdom som dreper furu. I 1966 ble forbudet overlatt til delstatene, og noen har fortsatt restriksjoner.",
-          "kilder": []
-        },
-        {
-          "tekst": "Under andre verdenskrig var appelsiner nesten umulige å få tak i i Storbritannia. Solbær ble dyrket i stor skala som C-vitamin til barna, og det er slik Ribena fikk sitt store gjennombrudd.",
           "kilder": []
         }
       ]
