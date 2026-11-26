@@ -27,16 +27,45 @@ Staging: https://nottanrop-26.webflow.io · Webflow site `693eb2bc3e42b68a1bb207
 - [x] Checked: 70 pages crawled. No lorem ipsum or template leftovers, one H1 per page, Norwegian meta descriptions, no sideways scroll
 - [x] Checked: prelaunch mode hides cart and buy buttons and shows "Nettbutikken åpner 1. desember"
 
-## Before publishing to nottanrop.no (needs you, in Webflow)
+## Readability and language pass (published to staging)
 
-- [ ] 🔴 **Connect the domain.** Webflow lists no custom domain on the site. A paid site plan is needed (take the Ecommerce plan now, the shop needs it on 1 Dec anyway). Site settings → Publishing → Custom domains: add `nottanrop.no` and `www.nottanrop.no`, set the DNS records at the registrar, and make one of them the default
-- [ ] 🔴 **Let search engines in.** robots.txt is currently `Disallow: /`. Site settings → SEO: turn indexing on for the custom domain and switch on the auto-generated sitemap
-- [ ] 🟠 **Hero text contrast on desktop.** "Tre nøtter. Tre smaker…" is white over pale snowy land and hard to read. Fix with a soft shadow or a darker plate behind the text
-- [ ] 🟠 **"Kjøp nå" on the hero** goes to /produkter and carries the "Fra 1. des" tag. Fine for a week, or change it to "Se glassene" until 1 Dec (your call)
-- [ ] 🟡 **Fjordnotat date** shows "November 26, 2026". Set a Norwegian date format on the date element in the template
+All in `webflow/site/lansering.js`, loaded as site script `nanlansering2` (1.1.0, pinned to a commit with SRI).
+Measured on 25 pages at 1440 and 390 px: axe-core for text on plain colour, rendered-pixel contrast for text on images and gradients.
+
+- [x] **Mid-tone worlds:** small hero text and the Nøttpost band take the world's own deep shade (as mango, cashew and matcha already do); big titles keep cream with a riso plate shadow
+  - mandelykke orange: cream measured 2.3–2.7:1 → deep orange-brown #421C08 (6.7–8:1)
+  - jordbær pink: 3.4–3.9 → #24060C
+  - nød coral (FAQ, Kontakt): 3.0–3.8 → #2A0604; FAQ subtitle also enlarged from ~12px to 16–18px
+  - fjord sage band: 2.2–2.5 → #1F2B28
+  - Om oss lead and kicker on salmon → deep plum #2E0F18
+  - sunntella band and cookies (praktisk 3): neither colour reaches 4.5:1 → cream kept, with a dark halo
+- [x] **Accent orange on cream** (#CC6121, 3.7–3.9:1): every legal link and section number, the Nøtteverden kickers, "Se glasset →" → #A3470F (5.4:1). Bright #FF7A2A text (2.5:1: stats, 404) → #C9541A for large text, #A3470F for small
+- [x] **Buttons and labels:** cream on orange buttons → ink; cream on red "Telefonbeskjed", "Ring inn" and "Åpner 1. des" → fill deepened to pass
+- [x] **Minimum 12px** for all text (was down to 8.5px: footer copyright on mobile, "Via Google", "Est. 2025")
+- [x] **Home hero line:** weight 325 → 400, plus a soft plum halo over the snowy land
+- [x] **Norwegian dates** on Fjordnotater ("26. november 2026"); "Emne" placeholder on Kontakt (was "Last name")
+- [x] Already fine and left alone: light worlds (mango, cashew, matcha, pistasj, kjøkken, samarbeid, mint), dark worlds (praktisk 1–2, Nøtteverden), the Fjordnotater title (riso shadow), "Se glasset", "Utforsk produkter"
+
+## Waiting for Barbora
+
+- [ ] **Om oss, Barbora's founder card:** "Ingredienser", "Kan inneholde spor av" and "Oppbevaring" still read "[Barbora skriver selv]". The rows are hidden on the site until she writes them in the Designer; they reappear on their own once the text changes
+
+## Move nottanrop.no to this site (needs you, in the Webflow dashboard — the API can't move domains or plans)
+
+The live nottanrop.no is the site **"& nan – Nøttanrop coming soon"**, in the same workspace. It holds `nottanrop.no`, `www.nottanrop.no`, `nøttanrop.no` and `www.nøttanrop.no`, and has no form submissions to save. Both sites are on Webflow, so the DNS records stay as they are.
+
+- [ ] 🔴 Workspace → Site plans: move the coming-soon site's plan to **Nøttanrop (nottanrop-26)**, upgrading to Ecommerce if it's Basic or CMS
+- [ ] 🔴 Coming-soon site → Site settings → Publishing: remove the four domains
+- [ ] 🔴 Nøttanrop → Site settings → Publishing: add the four domains; make `www.nottanrop.no` (or the bare domain) the default
+- [ ] 🔴 Nøttanrop → Site settings → SEO: indexing on, auto sitemap on; keep "disable Webflow subdomain indexing" on
+- [ ] Then Claude publishes to all domains and checks robots.txt, sitemap, redirects and HTTPS on the live domain
+
+## Still open (small)
+
+- [x] "Kjøp nå" on the home hero stays as it is (decided 26 Nov)
 - [ ] 🟡 **"Endre samtykke"** on /cookies links to `#` and should reopen the consent banner
 - [ ] 🟡 **Unused fonts:** remove Anton and Plus Jakarta Sans (Site settings → Fonts) and the Space Mono upload. Nothing changes on screen; two fewer downloads
-- [ ] Final click-through on your phone, then publish to staging + nottanrop.no + www
+- [ ] Final click-through on your phone
 
 ## Stage 2 — shop live by 1 Dec
 
