@@ -4,7 +4,9 @@ const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
 const BUILD = path.join(__dirname, "build");
-const OUT = path.join(__dirname, "out");
+// SLIDE_H=1350 renders the 4:5 feed format (Meta Business Suite); default 1440 is 3:4.
+const H = Number(process.env.SLIDE_H || 1440);
+const OUT = path.join(__dirname, "out", H === 1440 ? "" : `${H}`);
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, "src/notter.json"), "utf8"));
 const HOME = data.hjem;
 const url = (p) => "file://" + p;
@@ -42,7 +44,7 @@ const BASE_CSS = `
 :root{--cream:#fbf7f3;--almond:#f5e0c6;--brown:#5a3a1c;--key:#1b1108;--red:#e23c2e;--orange:#ff7a2a;
   --display:"Recoleta","Fraunces",Georgia,serif;--body:"DM Sans",system-ui,sans-serif;--mono:"DM Mono","Space Mono",monospace}
 *{box-sizing:border-box} body{margin:0;background:#ccc}
-.slide{position:relative;width:1080px;height:1440px;overflow:hidden;background:var(--cream);color:var(--brown);
+.slide{position:relative;width:1080px;height:${H}px;overflow:hidden;background:var(--cream);color:var(--brown);
   font-family:var(--body);padding:72px;display:flex;flex-direction:column;margin-bottom:20px}
 .slide::after{content:"";position:absolute;inset:0;background-image:${GRAIN};opacity:.10;mix-blend-mode:multiply;pointer-events:none;z-index:9}
 .top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:3}
@@ -112,7 +114,7 @@ async function exportSlides(browser, html, prefix) {
   fs.mkdirSync(OUT, { recursive: true });
   const f = path.join(BUILD, `${prefix}.html`);
   fs.writeFileSync(f, html);
-  const p = await browser.newPage({ viewport: { width: 1080, height: 1440 }, deviceScaleFactor: 1 });
+  const p = await browser.newPage({ viewport: { width: 1080, height: H }, deviceScaleFactor: 1 });
   await p.goto(url(f));
   await p.evaluate(() => document.fonts.ready);
   await p.waitForTimeout(300);
@@ -125,5 +127,5 @@ async function exportSlides(browser, html, prefix) {
   await p.close();
 }
 
-module.exports = { ROOT, data, HOME, url, art, nut, km, ACCENT, fontCSS, BASE_CSS, globeShots, routeShots, exportSlides,
+module.exports = { H, ROOT, data, HOME, url, art, nut, km, ACCENT, fontCSS, BASE_CSS, globeShots, routeShots, exportSlides,
   hasRecoleta: () => fs.existsSync(local("Recoleta-SemiBold.otf")) };

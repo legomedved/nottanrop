@@ -10,7 +10,7 @@
 */
 const path = require("path");
 const { chromium } = require("playwright");
-const { data, HOME, art, km, ACCENT, fontCSS, BASE_CSS, routeShots, exportSlides, hasRecoleta } = require("./lib");
+const { H, data, HOME, art, km, ACCENT, fontCSS, BASE_CSS, routeShots, exportSlides, hasRecoleta } = require("./lib");
 
 const ING = data.ingredienser;
 const PRODUKT = {
@@ -110,6 +110,7 @@ const approx = (v) => `≈ ${(Math.round(Number(km(v).replace(/\s/g, "")) / 100)
   .jar{font:500 19px/1 var(--body);padding:9px 14px 9px 11px;border:2px solid var(--key);border-radius:999px;display:inline-flex;align-items:center;gap:8px}
   .jar::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 0 1.5px var(--key)}
 
+  ${H < 1440 ? `.globe-s .globe{width:680px;height:680px}.art-s .plate{width:560px;height:560px}.art-s .plate img{max-width:410px;max-height:350px}.cover h1{margin-top:40px!important}.cover figure{height:160px}.cover figure img{max-height:100px}` : ""}
   .home{background:url(${art("nan-bg-oslofjorden-skumring-1080.webp")}) center/cover}
   .home .sign{font:600 46px/1.1 var(--display);margin:40px 0 0;color:var(--brown);max-width:700px}
   .home .cta{margin-top:auto;padding-bottom:40px}

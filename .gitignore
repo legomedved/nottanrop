@@ -3,3 +3,4 @@ node_modules/
 carousel/build/
 # licensed fonts: never commit (Recoleta is commercial)
 fonts-local/
+carousel/*.zip
