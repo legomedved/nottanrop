@@ -265,3 +265,29 @@
 @media (prefers-reduced-motion: reduce) {
   .nk-card.nk-reg, .nk-card.nk-reg .nk-title, .nk-card.nk-reg .nk-plate-fig { animation: none; }
 }
+
+/* ---- v0.4: tablet and phone (≤ 991 px, the site's own tablet breakpoint) -----------------
+   Floor for type: 12 px, as the rest of the site (the mono labels were 9.6–10.9 px).
+   Touch: chips, the sources toggle and the "read more" button get a finger-sized height.
+   The atlas furniture on the globe (cartouche, inset) shrank to 4–8 px type at 861–991,
+   so the inset moves under the card there too, the way it already does on phones. */
+@media (max-width: 991px) {
+  .nk .nk-label, .nk .nk-tag, .nk .nk-ours dt, .nk .nk-sources summary, .nk .nk-draft,
+  .nk .nk-legend, .nk .nk-hint, .nk .nk-inset figcaption { font-size: 0.75rem; }
+  .nk .nk-stamp, .nk .has-plate .nk-stamp { font-size: 0.75rem; }
+  .nk .nk-more { font-size: 0.8rem; min-height: 2.75rem; box-sizing: border-box; }
+  .nk .nk-chip { min-height: 2.5rem; box-sizing: border-box; padding-block: 0.55em; }
+  .nk .nk-sources summary { padding-block: 0.6rem; margin-block: -0.6rem; }
+  .nk .nk-legend { gap: 0.5rem 1.2rem; }
+  .nk-cartouche { font-size: 0.75rem; }
+  .nk-cartouche b { font-size: 1.15rem; }
+  .nk-inset-stage { display: none; }
+  .nk-inset-panel { display: block; max-width: 320px; margin: 1.6rem auto 0; transform: rotate(-1deg); }
+  .nk-legend-panel { display: flex; margin-top: 1.4rem; }
+  .nk-stage .nk-legend { display: none; }
+}
+@media (min-width: 861px) and (max-width: 991px) {
+  /* two columns on a small tablet: the cartouche sits over the globe's corner, keep it compact */
+  .nk-cartouche { top: -0.75rem; left: -0.75rem; padding: 0.4rem 0.6rem; }
+  .nk-cartouche span:last-child { display: none; }
+}

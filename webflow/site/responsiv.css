@@ -1,0 +1,260 @@
+/* ==========================================================================
+   Nøttanrop · responsiv.css
+   One layout, every screen. Loaded site-wide from the Webflow head, pinned to a commit.
+   Source: github.com/legomedved/nottanrop  webflow/site/responsiv.css
+
+   The rule: the 1440 px design is the design. Above it, the page is the same
+   page, only larger; it never re-flows into something else. Below it, the
+   template's own breakpoints (991 / 767 / 479) carry on as before.
+
+   1 · Wide screens: the scale
+   2 · Wide screens: template rules made for another site, back to the 1440 values
+   3 · Wide screens: pixel caps that stopped growing, as rem
+   4 · Fixes at every width
+   ========================================================================== */
+
+/* ---------- 1 · The scale ---------------------------------------------------
+   Above 1440 px, 1rem follows the window: 16 px at 1440, 21.3 px at 1920.
+   From --nan-maks on it stops: the type holds its size, the content sits
+   centred, and the artwork still runs edge to edge. Change that one number to
+   move the ceiling (2560px = the page keeps growing on a 27" screen).
+   The body size is tied to rem, so everything the template sets in em follows. */
+@media (min-width: 1440px) {
+  :root { --nan-maks: 1920px; }
+  html { font-size: calc(min(100vw, var(--nan-maks)) / 90); }
+  html body { --_type---body-size--body-global-size: .9rem; }
+}
+
+/* ---------- 2 · Template rules from 1920 px, reset ---------------------------
+   The Donutland template restyles 25 classes at 1920 px for its own content
+   (left-aligned intros, 364 px gutters, a 1920 px container). On this site they
+   pull the layout apart. Each one goes back to what it is at 1440. */
+@media (min-width: 1920px) {
+  .container, .main_container { max-width: 87.5rem; }
+  .home-intro_component { align-items: center; }
+  .section-heading_component { align-items: end; }
+  .heading-component_wrapper, .home-shop_component, .faq-section_content-wrapper { align-items: normal; }
+  .heading-grid { column-gap: 5.5rem; }
+  .product-proof_component { column-gap: var(--_ux---gaps-paddings--medium); }
+  .contact-hero_component { column-gap: var(--_ux---gaps-paddings--grid); }
+  .contact-cards_grid { column-gap: var(--_ux---gaps-paddings--grid); width: 100%; }
+  .faq-section_grid { grid-template-columns: 1.75fr 1.75fr; }
+  .faq_card { width: 100%; }
+  .faq-card_heading-block { padding: var(--_ux---gaps-paddings--card-padding); }
+  .marquee-component_text { font-size: 8rem; }
+  .h1-heading.white { font-size: 6.5rem; }
+  .h1-heading.white.subscribe-save-hero-03 { font-size: 15svw; }
+  .h2-heading { font-size: 5.5rem; }
+  .checkout-h2 { font-size: 4rem; }
+  .image_wrapper._404-image, .image_wrapper.password-image { width: 45%; }
+  .article-text-wrapper { max-width: none; }
+  .container.blog-post-hero { padding-top: 25.1875rem; }
+  .review-rectangle-box-wrapper._01 { width: auto; }
+}
+
+/* ---------- 3 · Pixel caps, as rem -------------------------------------------
+   Widths, heights and gutters written in px (or clamp(…, …, px)) stop growing
+   exactly where the rest of the page starts to. Same numbers, in rem (px / 16). */
+@media (min-width: 1440px) {
+  /* template */
+  .button, .inverse_button { padding: 1.375rem 2rem; }
+  .container.category-heros { padding-top: 11.75rem; padding-bottom: 17.75rem; }
+  .faq_card { margin-bottom: 4.5rem; }
+  .faq-section_grid { column-gap: 6.5rem; }
+  .heading-grid { column-gap: 5.5rem; }
+  .heading-grid.one-column { row-gap: 3.1875rem; }
+  .collection-grid { column-gap: 2rem; row-gap: 2rem; }
+  .w-container, .w-layout-blockcontainer { max-width: 58.75rem; }
+
+  /* page containers */
+  html .section-produkt_container, html .section-produkt-hero_container, html .section-enkel_container,
+  html .section-fjord-intro_container, html .section-oppskrift-teaser_container, html .section-utforsk_container,
+  html .fn-caption-text, html .verden-fjord .collection-grid { max-width: 80rem; }
+  html .nut_page .legal_hero-inner { max-width: 75rem; padding-inline: clamp(1rem, 5vw, 3rem); }
+  html .contact-form_component { max-width: 70rem; }
+  html .oo-wrap, html .nh-wrap, html .nk { max-width: 77.5rem; }
+
+  /* the legal pages' column had no auto margins: it sat 40 px left of centre at 1440, and hugged the left edge beyond the ceiling */
+  html .section.is-legal > .container { margin-inline: auto; }
+
+  /* headings sized in svw alone would keep growing past the ceiling */
+  html .h1-heading.white.why-donutland-hero, html .h1-heading.white.why-donutland-02-hero,
+  html .h1-heading.white.subscribe-save-hero-03 { font-size: min(15svw, 13.5rem); }
+
+  /* home */
+  html .hj-kanaler { width: min(82.5rem, 100vw - 3rem); }
+  html .hj-bane { max-width: 73.75rem; height: clamp(17.5rem, 32vw, 26.875rem); }
+  html .hj-telefon { width: min(100%, 20.625rem); }
+  html .hj-nott.is-kakao { --w: clamp(4.875rem, 10vw, 8.75rem); }
+  html .hj-nott.is-cashew, html .hj-nott.is-kokos { --w: clamp(5.75rem, 12vw, 10.625rem); }
+  html .hj-nott.is-hassel { --w: clamp(9.375rem, 19vw, 16.875rem); }
+  html .hj-nott.is-mandel { --w: clamp(5.375rem, 11vw, 10rem); }
+  html .proof-card_image-wrapper { width: clamp(7.5rem, 6.4vw, 11.5rem); height: clamp(7.5rem, 6.4vw, 11.5rem); }
+
+  /* forhandlere */
+  html .fh-hero_jar { max-height: 40rem; }
+  html .fh-stop_dot { width: 1.5rem; height: 1.5rem; }
+  html .section-om-hero::after, html .fh-hero::after { height: clamp(4rem, 9.77vw, 11.25rem); }
+
+  /* om oss */
+  html .oo-cover { padding-top: calc(8.1875rem + clamp(2rem, 6vh, 5rem)); }
+  html .oo-moon { width: min(100%, 26.875rem); }
+  html .oo-shore { height: clamp(12.5rem, 34vw, 30rem); }
+  html .oo-mel { height: min(88vh, 47.5rem); }
+  html .oo-mel__stage { max-width: 32.5rem; }
+  html .oo-strip svg { max-width: 5.375rem; }
+  html .oo-photos { grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.375rem), 1fr)); }
+  html .oo-nod__hero { width: min(16.25rem, 58vw); }
+  html dialog.oo-lb { max-width: min(92vw, 61.25rem); }
+  html .oo-gauge-slot { width: 18.75rem; }   /* an SVG with no width falls back to 300 px */
+
+  /* heroes (Fjordnotater, Samarbeid, Nøtteverden) */
+  html .nh-hero { padding-top: 8.1875rem; }
+  html .nh-fj { min-height: min(56.25rem, 100vh); }
+  html .nh-sa { min-height: min(53.75rem, 100vh); }
+  html .nh-nv { --hh: clamp(41.25rem, 100svh, 62.5rem); }
+  html .nh-cards { height: clamp(26.25rem, 44vw, 37.5rem); }
+  html .nh-prints { height: clamp(27.5rem, 46vw, 38.75rem); }
+  html .nh-pin { width: .875rem; height: .875rem; }
+  html .nh-stamp { width: 5.375rem; height: 5.375rem; }
+  html .nh-pr::before { width: 5.75rem; height: 1.625rem; }
+  html .verden-samarbeid .section-enkel_cta { min-height: 16.25rem; }
+  html .nh-call__ekorn { right: clamp(-.625rem, 2vw, 1.875rem); width: min(36%, 18.75rem); }
+
+  /* the card system's print details: edge, plate offsets, cut corners (html:root so the load order of kort.css does not matter) */
+  html:root {
+    --k-line: .125rem;
+    --k-r-lapp: .4375rem .25rem .5rem .3125rem / .3125rem .4375rem .25rem .5rem;
+    --k-plate: .3125rem .375rem;
+    --k-plate-lg: .4375rem .5rem;
+    --k-plate-up: .5rem .625rem;
+    --k-plate-down: .125rem .125rem;
+  }
+}
+
+/* ---------- 4 · Fixes at every width ----------------------------------------- */
+
+/* Footer, last row. The five legal links were stretched to equal boxes and ran
+   into the copyright (touching from 1280 up, printed on top of it at 1024).
+   Links keep their own width; the row wraps before anything can collide. */
+@media (min-width: 992px) {
+  .footer-bottom_wrapper { flex-wrap: wrap; gap: 1rem 2.5rem; }
+  .footer-bottom_legal-wrapper { flex: 1 1 auto; min-width: 0; }
+  .footer-legal_link-wrapper { flex-wrap: wrap; gap: .5rem 1.5rem; }
+  .footer-legal_link-wrapper .footer-link { width: auto; flex: 0 0 auto; }
+  .footer-copyright_wrapper { flex: 0 1 26rem; width: auto; min-width: 16rem; }
+}
+/* "Created by Ramen & Pho" broke after the ampersand on phones */
+.footer-copyright_studio-text { white-space: nowrap; }
+@media (max-width: 479px) {
+  .footer-copyright_studio-text { flex: 0 0 auto; }
+}
+/* between 992 and 1439 the two halves no longer fit on one line: stack them, both flush left */
+@media (min-width: 992px) and (max-width: 1439px) {
+  .footer-copyright_wrapper { flex: 1 1 100%; align-items: flex-start; }
+}
+
+/* Sticky side columns taller than the window could never be read to the end
+   (the Nøtteverden filter was 90–210 px too tall on a 13" laptop). They now
+   stop at the window's height and scroll inside themselves. */
+@media (min-width: 992px) {
+  .nl-side, .legal_toc { max-height: calc(100vh - 8rem); overflow-y: auto; overscroll-behavior: contain; }
+  .nut_aside { max-height: calc(100vh - 9rem); overflow-y: auto; overscroll-behavior: contain; }
+}
+
+/* FAQ block (Forhandlere, FAQ, Kontakt): the portrait photo.
+   Desktop: it follows you down the list, so it may not be taller than the window.
+   Tablet: it stayed pinned while the questions slid over the baker's face; it is now an ordinary picture above the list. */
+@media (min-width: 992px) {
+  .faq-section_image-block { height: auto; max-height: calc(100vh - 8.5rem); }
+  .faq-section_image-wrapper { height: 100%; max-height: inherit; overflow: hidden; }
+  .faq-section_image-wrapper > img { width: 100%; height: 100%; max-height: inherit; object-fit: cover; object-position: 50% 22%; }
+}
+@media (max-width: 991px) {
+  .faq-section_image-block { position: static; height: auto; }
+  .faq-section_image-wrapper { aspect-ratio: 4 / 3; overflow: hidden; }
+  .faq-section_image-wrapper > img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+}
+
+/* Home · "Hvorfor Nøttanrop?" The four notes had a fixed height and their last
+   line hung out below the paper from 1280 down; at tablet they stood in one row,
+   wider than the screen, with the button printed across them. */
+@media (max-width: 1439px) {
+  .product-proof_content-block { height: auto; }
+  .product-proof_content-block > .product-proof_card { height: auto; min-height: 16.5rem; }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .product-proof_component { grid-template-columns: minmax(0, 1fr); }
+  .product-proof_content-block { flex-wrap: wrap; gap: 1.8rem 1rem; max-width: 36rem; margin-inline: auto; }
+  .product-proof_content-wrapper { margin-top: 1.5rem; }   /* the intro's last line ran into the "Nº" tags */
+  .product-proof_content-block > .product-proof_card { flex: 1 1 calc(50% - .5rem); }
+}
+
+/* Home · "Nøtta i glasset". The list runs right-to-left so Mandelykke leads on
+   desktop; in two columns that left the third jar alone on the right with a
+   blank half-screen beside it. Same reading order, last jar centred. */
+@media (min-width: 480px) and (max-width: 991px) {
+  html .product_feed-section .produkter-liste { direction: ltr; }
+  .product_feed-section .produkter-liste_item:nth-child(1):nth-last-child(3) { order: 3; grid-column: 1 / -1; justify-self: center; width: calc(50% - .75rem); }
+  .product_feed-section .produkter-liste_item:nth-child(3):nth-last-child(1) { order: 1; }
+  .product_feed-section .produkter-liste_item:nth-child(2):nth-last-child(2) { order: 2; }
+}
+@media (max-width: 479px) {
+  html .product_feed-section .produkter-liste { direction: ltr; }
+  .product_feed-section .produkter-liste_item:nth-child(1):nth-last-child(3) { order: 3; }
+  .product_feed-section .produkter-liste_item:nth-child(3):nth-last-child(1) { order: 1; }
+  .product_feed-section .produkter-liste_item:nth-child(2):nth-last-child(2) { order: 2; }
+}
+
+/* Section headings with a button beside them: on a phone the button was
+   squeezed into a 100 px blob with its label on three lines. Stack them. */
+@media (max-width: 479px) {
+  .section-heading_component { flex-direction: column; align-items: flex-start; }
+  .section-heading_button-wrapper .button, .section-heading_button-wrapper .inverse_button { white-space: nowrap; }
+}
+
+/* Samarbeid, Presse, Investor: the paragraph in the dark call-out was brown on brown (1.3:1). */
+:root body .section-enkel_cta .section-enkel_text { color: #F5E0C6 !important; }   /* the card system paints all card text brown */
+
+/* Legal tables on a phone scroll sideways; nothing said so. The right edge now fades, the way a page continues. */
+@media (max-width: 767px) {
+  .legal_table-wrap { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 2.25rem), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 2.25rem), transparent); }
+  .legal_table-wrap .legal_table { margin-right: 1.5rem; }
+}
+
+/* Nøtteverden hero on tablets and small laptops: the atlas art is one 2:1 picture
+   sized by the hero's height, so narrow windows saw a slice of it with the
+   country tags cut by the edges ("KOKOS · SRI LANK"). */
+@media (min-width: 992px) and (max-width: 1279px) {
+  html .nh-nv__art { left: clamp(calc(100% - var(--aw)), calc(50% - var(--aw) * .47), 0px); }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  html .nh-nv { --hh: clamp(34rem, 78svh, 46rem); }
+  html .nh-nv__art .tag.far { display: none; }
+}
+
+/* Small phones (320–359 px): "Informasjons-kapsler" was 24 px wider than the screen */
+@media (max-width: 359px) {
+  html .legal_hero-title { font-size: 2.6rem; }
+}
+
+/* 404: the line under the heading shrank to about 9 px on phones */
+@media (max-width: 767px) {
+  .utility-page-content .paragraph { font-size: 1rem; line-height: 1.45; }
+}
+
+/* Newsletter band: Helt Nøtta flew across the end of the consent line. The line now turns before it reaches him. */
+@media (min-width: 992px) {
+  .footer-newsletter_form .nan-consent { max-width: 16rem; }
+}
+
+/* Phone numbers never break in the middle ("929 70 / 305" on Allergeninformasjon) */
+a[href^="tel:"] { white-space: nowrap; }
+
+/* "Allergeninformasjon" is one 19-letter word: let it hyphenate instead of running through the postmark or off the card */
+.nav-card_heading-text { -webkit-hyphens: auto; hyphens: auto; overflow-wrap: break-word; }
+
+/* New heroes (Fjordnotater, Samarbeid, Nøtteverden): 16 px side margin where the rest of the site has 32 */
+@media (min-width: 768px) and (max-width: 1439px) {
+  html .nh-wrap { padding-left: max(2rem, env(safe-area-inset-left, 0px)); padding-right: max(2rem, env(safe-area-inset-right, 0px)); }
+}
