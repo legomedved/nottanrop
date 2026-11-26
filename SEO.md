@@ -15,14 +15,33 @@ Companion to `LAUNCH.md` (on branch `claude/magical-lovelace-1kcvq3`), which alr
 |---|---|---|---|
 | 1 | nottanrop.no still serves the **coming-soon site**. The new site lives only on webflow.io, which is `Disallow: /` | Nothing ranks until this moves | 🔴 You, dashboard |
 | 2 | **92 CMS pages are orphans**: Nøtteverden cards are plain `div`s, recipe cards link to `href="#"` | Search engines and AI crawlers can't reach your best content | 🔴 You, Designer (10 min) |
-| 3 | **LCP 10–17 s** on mobile. Hero images are `loading="lazy"`, plus 7 render-blocking head scripts | Core Web Vitals fail, and so does ranking | 🔴 Designer + Claude |
-| 4 | **Duplicate product pages**: `/produkt/x` and `/product/x`, same title and description | Splits ranking signals | 🟡 Your decision |
+| 3 | **LCP 10–17 s** on mobile. Hero images are `loading="lazy"`, plus 7 render-blocking head scripts | Core Web Vitals fail, and so does ranking | 🔴 Designer (hero Load: Eager). Head scripts ✅ done |
+| 4 | **Duplicate product pages**: `/produkt/x` and `/product/x`, same title and description | Splits ranking signals | ✅ `/product` main, `/produkt` noindex |
 | 5 | Structured data gaps (no FAQPage, no retailer data, empty Article image, thin Recipe, Organization without logo/socials) | Fewer rich results; less for AI answers to quote | ✅ Fixed (staged) |
 | 6 | Checkout, PayPal, order confirmation and password pages indexable | Junk in the index | ✅ Fixed (staged) |
 | 7 | Facts disagree across pages (where it's made, cocoa origin) | AI answers quote whichever they read first | 🟡 You and Barbora |
-| 8 | 4.8 MB of PNG stickers and 2–3 MB photo originals on /produkter | Slow on phones | 🟡 Approve compression |
+| 8 | 4.8 MB of PNG stickers and 2–3 MB photo originals on /produkter | Slow on phones | ✅ /produkter 6.9 → 3.6 MB |
 
 "Staged" = saved in Webflow, **not published**. It goes live with the next publish.
+
+### Done 26 Nov, evening (approved, published to staging only, checked)
+
+Published to nottanrop-26.webflow.io at 17:37 and 17:40, after checking that no other session had work waiting.
+20 screenshots (10 pages × 1440 px and 390 px) taken before and after are visually identical: the largest colour
+difference is 20/255 (WebP noise); the only other change is the globe's grain, which is random on every load.
+
+| What | Result |
+|---|---|
+| Head scripts | `nanenkel`, `nandrypp2`, `nanfix4` removed as scripts. Their CSS, and the two stylesheets `nanfix4` wrote (`kort.css`, `responsiv.css`), now sit at the end of the site head code in the same order (block "Speed (26 Nov 2026)"). `drips.js` and `lansering.js` moved to the footer: Webflow only accepts `data-` attributes, so `defer` can't be set, and both already wait for the page to be ready. `nanprelaunch` stays in the head until 1 Dec |
+| Render-blocking resources | 9–10 → 2–3 per page. FCP: Home 6.4 s → 3.6–4.3 s; recipe 6.4 s → 3.3–5.7 s; /produkter 5.0 → 3.1–4.1 s |
+| `/produkt/…` | `noindex, follow` in the template head (label styling unchanged, verified byte for byte). Menu links now go to `/product/…` |
+| Images | 13 assets → WebP: 24.5 MB → 2.0 MB (the three `&-nan-*-230g` jars, `nottanrop-1-2…11`). The 21 `kakepiknikk-*.jpg` were left alone: WebP came out bigger. The 6 CMS jar stickers (≈800 KB PNG each) were replaced by WebP versions (≈80 KB) with the same alt text. **/produkter: 6.9 MB → 3.6 MB** |
+| Not compressed, on purpose | `nan-mandelykke/sunntella/cashewdrom-klistremerke.png` and `nan-grain.png` are referenced by URL in code on every page; compressing them in place would break those references |
+| Titles | /produkter "Nøttesmør og nøttepålegg, håndlaget \| Nøttanrop"; Sunntella and Cashewdrøm (ecommerce SEO title); recipe pattern "{name} \| Nøttanrop"; Home description shortened by removing "og uten tull" |
+| robots.txt | Training crawlers allowed (your call). Paste `webflow/site/robots.txt` after the domain move |
+
+Still slow: **LCP 9–14 s**, because the hero images are lazy-loaded (§6, Designer, about 2 min). That is now the biggest single speed win.
+New find: Webflow loads **all 20 GSAP plugins** on every page (Site settings → GSAP). The site likely uses ScrollTrigger and maybe SplitText *(inference: check before switching off)*; switching off the rest saves ~18 requests.
 
 ---
 
