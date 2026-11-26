@@ -16,9 +16,11 @@ proportions, never stretched, and each page gets its own offset, so no two pages
 | Seam | How |
 |---|---|
 | hero → next section (home, produkter, produkt/*, product/*, nøtteverden, om, forhandlere, legal pages, faq/presse/investor) | the hero is masked along its bottom edge and pulled down over the next section. The drops *are* the hero (its gradient, grain and picture run into them). The gaps show the real section below. Nothing to colour-match, so nothing can seam. |
-| last section → footer | a drip layer in the last section's bottom-edge colour over the footer colour. It's a separate layer, so cards hanging out of the last section (reviews on /produkter) are never clipped. |
+| last section → footer | when the last section is see-through (most pages, and Om oss with its fixed night sky), the drops are cut out of the footer, so the real backdrop shows through, colour-exact. Otherwise it's a drip layer in the last section's bottom-edge colour. Either way nothing above the footer is clipped (the review cards on /produkter hang over it). The strip grows if the footer content rides up over it, so drop tips are never cut. |
+| new heroes (`.nh-hero`: Nøtteverden, Fjordnotater, Samarbeid) | same as the other heroes; they keep their built-in drip space |
 | Om oss fjord strip | the strip drips down into the night |
-| review cards | the frame colour drips into the card (drawn 1.9× wider at this size) |
+| review cards, /produkt/* smak and glass cards | the frame colour drips into the card (drawn 1.9× wider at this size) |
+| product cards (home, /produkter) | the picture drips down into the card body (was a cream wave rising up) |
 
 **Retired:** the white-wave masks (they pointed *up*), the rising footer SVG drip, the legal wave, the per-hero
 template SVGs, the home mask PNG and `drip-seams.js` / nanfix7.
