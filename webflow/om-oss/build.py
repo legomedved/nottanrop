@@ -22,7 +22,11 @@ def px(m):  # prefix a class token
 def prefix_class_attr(html):
     return re.sub(r'class="([^"]*)"', lambda m: 'class="' + ' '.join(px(c) for c in m.group(1).split()) + '"', html)
 def prefix_css(css):
-    return re.sub(r'(?<![\w\d#-])\.([a-z][\w-]*)', lambda m: '.' + px(m.group(1)), css)
+    # protect url(...) values (the grain's data URI contains "www.w3.org")
+    urls = []
+    css = re.sub(r'url\([^)]*\)', lambda m: urls.append(m.group(0)) or f'\x00{len(urls)-1}\x00', css)
+    css = re.sub(r'(?<![\d])\.([a-z][\w-]*)', lambda m: '.' + (m.group(1) if m.group(1).startswith('oo-') else px(m.group(1))), css)
+    return re.sub(r'\x00(\d+)\x00', lambda m: urls[int(m.group(1))], css)
 
 # ---------- CSS ----------
 css = re.search(r'<style>(.*?)</style>', SRC, re.S).group(1)
@@ -43,6 +47,7 @@ css = css.replace('.oo-cover__display em{font-style:italic;', '.oo-cover__displa
 css = css.replace('.oo-cover__kicker{display:block;font:italic 500', '.oo-cover__kicker{display:block;font:normal 600')
 # Webflow resets headings/paragraph margins and colours; make ours win inside our sections
 css += '\n.oo-cover h1,.oo-day h2,.oo-day h3,.oo-sheet h2,.oo-sheet h3,.oo-nod h2{color:inherit}\n.oo-cover h1 span,.oo-cover h1 em{color:inherit}\n.oo-cover__display em{color:var(--orange-light)}\n.oo-panel p,.oo-fact p,.oo-cover p{font-size:inherit}\n'
+css += '.oo-fact__art>img{width:100%;height:100%;object-fit:cover}\n'
 css += '.oo-label.oo-is-orange{--band:var(--orange)}.oo-label.oo-is-red{--band:var(--red)}.oo-label.oo-is-aqua{--band:var(--aqua)}\n'
 # prototype-only bits
 css = re.sub(r'/\* ---------- proto ribbon ---------- \*/.*?\n(?=\n/\* ---------- cover)', '', css, flags=re.S)
@@ -83,6 +88,9 @@ body = re.sub(r'<svg viewBox="0 0 100 10".*?</svg>', '', body, flags=re.S)
 for i in ['clock', 'stage-mini', 'stage']:
     body = body.replace(f'id="{i}"', f'data-oo="{i}"')
 body = prefix_class_attr(body)
+# images point at their Webflow assets
+ASSETS = json.load(open(os.path.join(HERE, 'assets.json')))
+body = re.sub(r'src="img/([\w-]+)\.webp"', lambda m: 'src="https://s3.amazonaws.com/webflow-prod-assets/693eb2bc3e42b68a1bb20701/' + ASSETS[m.group(1)] + '"', body)
 
 # split into top-level sections
 parts = re.findall(r'(<(header|section)\b.*?</\2>)', body, re.S)
@@ -141,3 +149,31 @@ footer = ('<!-- Om oss (ny): scroll clock, sky, melanger, flips, lightbox.\n'
           '<script>\n' + js + '\n</script>')
 open(os.path.join(OUT, 'footer.html'), 'w').write(footer)
 print('sections', [n for n in names], 'classes', len(seen), 'css', len(style_embed), 'footer', len(footer))
+
+# ---------- jsDelivr bundle: om-oss.css + om-oss.js ----------
+# The Webflow page loads these pinned to a commit (same pattern as dist/nottekart.min.js):
+#   embed at the top of the page:  <link rel="stylesheet" href=".../webflow/om-oss/om-oss.css">
+#   page footer code:              <script src=".../webflow/om-oss/om-oss.js" defer></script>
+import subprocess, shutil
+esb = shutil.which('esbuild') or '/tmp/claude-0/node_modules/.bin/esbuild'
+open(os.path.join(OUT, 'om-oss.src.css'), 'w').write(css)
+mcss = subprocess.run([esb, os.path.join(OUT, 'om-oss.src.css'), '--minify'], capture_output=True, text=True, check=True).stdout
+os.remove(os.path.join(OUT, 'om-oss.src.css'))
+open(os.path.join(OUT, 'om-oss.css'), 'w').write('/* Nøttanrop · Om oss (ny) · built from prototype/om-oss.html by webflow/om-oss/build.py */\n' + mcss)
+def squeeze(h): return re.sub(r'>\s+<', '><', re.sub(r'<!--.*?-->', '', h, flags=re.S)).strip()
+inject = {
+  'defs': squeeze(filters) + sky,
+  'mel': squeeze(open(os.path.join(OUT, 'embed-mel.html')).read()),
+  'strip': squeeze(open(os.path.join(OUT, 'embed-strip.html')).read()),
+  'gauge': squeeze(open(os.path.join(OUT, 'embed-gauge.html')).read()),
+}
+inj_js = ('  /* --- drawings: riso filters, sky layers, melanger, prep strip, gauge (kept out of Webflow) --- */\n'
+          '  var ART=' + json.dumps(inject, ensure_ascii=False) + ';\n'
+          '  if(!document.querySelector(".oo-sky")) document.body.insertAdjacentHTML("afterbegin",ART.defs);\n'
+          '  ["mel","strip","gauge"].forEach(function(k){document.querySelectorAll(\'[data-slot="\'+k+\'"]\').forEach(function(el){if(!el.firstElementChild) el.innerHTML=ART[k]})});\n')
+bundle = js.replace(pre, inj_js + pre, 1)
+open(os.path.join(OUT, 'om-oss.src.js'), 'w').write(bundle)
+mjs = subprocess.run([esb, os.path.join(OUT, 'om-oss.src.js'), '--minify', '--target=es2017'], capture_output=True, text=True, check=True).stdout
+os.remove(os.path.join(OUT, 'om-oss.src.js'))
+open(os.path.join(OUT, 'om-oss.js'), 'w').write('/* Nøttanrop · Om oss (ny) · built by webflow/om-oss/build.py */\n' + mjs)
+print('bundle css', len(mcss), 'js', len(mjs))
