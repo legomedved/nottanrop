@@ -4,14 +4,23 @@
 
 (Kept apart from `webflow/site/README.md`, which lives on the drips branch, so the two merge cleanly.)
 
-Loaded on every page from Webflow → Site settings → Custom code → Head, pinned to a commit:
+Loaded on every page by the registered site script **nanfix4** (version 1.3.0, in the head), the same small
+script that loads the card system. It writes both stylesheets with `document.write`, so they block rendering
+like any stylesheet in the head and the page never flashes unscaled:
 
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/legomedved/nottanrop@<commit>/webflow/site/responsiv.css">
+```js
+document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/legomedved/nottanrop@<commit>/webflow/kort/kort.css">');
+document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/legomedved/nottanrop@<commit>/webflow/site/responsiv.css">');
 ```
 
-To change it: edit the file, commit and push, swap the commit hash in the Head code, publish.
-To switch it off: delete that one line and publish. Nothing else depends on it.
+It comes after `kort.css` on purpose. Currently pinned to commit `115a951`.
+
+To change it: edit the file, commit and push, register nanfix4 as a new version with the new hash, apply it
+(keep it *before* nandrypp3 and nanlansering2 in the list, as it was), publish.
+To switch it off: go back to nanfix4 1.2.0 and publish. Nothing else depends on it.
+
+The globe fixes from the same pass ship in `dist/nottekart.min.js`; the Nøtteverden page's footer code is
+pinned to the same commit.
 
 ### The rule
 
@@ -57,7 +66,7 @@ What the file does about it:
 
 ### How it was checked
 
-Every one of the 22 page templates, on the published staging site, with headless Chromium:
+Every one of the 22 page templates, with headless Chromium, before publishing and again on the published staging site (26 Nov 2026):
 
 - **Scale test**: each element's box at 1920 and 2560 px compared with the same element at 1440 px.
 - **Measured audit** at 2560, 1920, 1440, 1280, 1024, 991, 768, 600, 480, 390, 360, 320 px: sideways scroll,
