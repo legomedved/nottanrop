@@ -34,20 +34,23 @@ css = prefix_css(css)
 css = css.replace('--display:"Recoleta","Fraunces",Georgia,serif;', '--display:"Recoleta",Georgia,serif;')
 css = css.replace('--body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;', '--body:"Dmsans Variablefont Opsz Wght","DM Sans",system-ui,sans-serif;')
 # page-level rules only touch this page (the embed lives on this page alone)
-css = css.replace('img{max-width:100%;display:block}', '[class*="oo-"] img{max-width:100%;display:block}')
+SCOPE = ['.oo-cover', '.oo-day', '.oo-sheet', '.oo-nod', '.oo-lb']  # never [class*=oo-]: the script puts oo-js on <html>
+css = css.replace('img{max-width:100%;display:block}', ','.join(s + ' img' for s in SCOPE) + '{max-width:100%;display:block}')
 css = css.replace('a{color:inherit}\n', '')
-css = css.replace('*{box-sizing:border-box}\n', '[class*="oo-"],[class*="oo-"] *{box-sizing:border-box}\n')
+css = css.replace('*{box-sizing:border-box}\n', ','.join(SCOPE) + ',' + ','.join(s + ' *' for s in SCOPE) + '{box-sizing:border-box}\n')
 css = css.replace('body{margin:0;background:var(--ink);color:var(--ink);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}',
-                  'body{background:var(--ink)}\n.page_wrapper{background:transparent}\n[class*="oo-"]{font-family:var(--body)}\n.oo-cover,.oo-day,.oo-sheet,.oo-nod{color:var(--ink);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}')
+                  'body{background:var(--ink)}\n.page_wrapper{background:transparent}\n' + ','.join(SCOPE) + '{font-family:var(--body)}\n' + '.oo-cover,.oo-day,.oo-sheet,.oo-nod{color:var(--ink);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}')
 # the site nav sits on top of the cover (absolute, ~131px)
 css = css.replace('.oo-cover{position:relative;color:var(--on-sky);padding-top:clamp(3rem,9vh,7rem);',
                   '.oo-cover{position:relative;color:var(--on-sky);padding-top:calc(131px + clamp(2rem,6vh,5rem));')
 # Recoleta has no italic: keep the colour change, drop the fake slant
 css = css.replace('.oo-cover__display em{font-style:italic;', '.oo-cover__display em{font-style:normal;')
-css = css.replace('.oo-cover__kicker{display:block;font:italic 500', '.oo-cover__kicker{display:block;font:normal 600')
+css = css.replace('.oo-cover__kicker{display:block;font:italic 500', '.oo-cover__kicker{display:block;letter-spacing:0;font:normal 600')
 # Webflow resets headings/paragraph margins and colours; make ours win inside our sections
 css += '\n.oo-cover h1,.oo-day h2,.oo-day h3,.oo-sheet h2,.oo-sheet h3,.oo-nod h2{color:inherit}\n.oo-cover h1 span,.oo-cover h1 em{color:inherit}\n.oo-cover__display em{color:var(--orange-light)}\n.oo-panel p,.oo-fact p,.oo-cover p{font-size:inherit}\n'
 css += '.oo-fact__art>img{width:100%;height:100%;object-fit:cover}\n'
+# site-level clashes: the floating menu button (top-left, phones) and the site's h3 letter-spacing
+css += '.oo-fact h3,.oo-label__name{letter-spacing:0}\n@media (max-width: 900px){.oo-mel{top:calc(76px + env(safe-area-inset-top,0px))}}\n'
 css += '.oo-label.oo-is-orange{--band:var(--orange)}.oo-label.oo-is-red{--band:var(--red)}.oo-label.oo-is-aqua{--band:var(--aqua)}\n'
 # prototype-only bits
 css = re.sub(r'/\* ---------- proto ribbon ---------- \*/.*?\n(?=\n/\* ---------- cover)', '', css, flags=re.S)
