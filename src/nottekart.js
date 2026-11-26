@@ -567,12 +567,15 @@ class Nottekart {
     pose();
     // Opacity only (never visibility): hidden chips would drop out of keyboard navigation.
     const enter = [];
-    enter.push(gsap.from(this.root.querySelectorAll(".nk-nav .nk-label, .nk-chip"), {
-      y: 14, opacity: 0, duration: 0.5, ease: "power2.out", stagger: 0.018,
+    // fromTo with explicit end values: the chips have a CSS transition on transform, so a plain from() read
+    // their half-moved position as the resting place and left every chip 14px low (clipped in the mobile swipe row).
+    // clearProps hands transform back to CSS, so the hover lift works afterwards.
+    enter.push(gsap.fromTo(this.root.querySelectorAll(".nk-nav .nk-label, .nk-chip"), { y: 14, opacity: 0 }, {
+      y: 0, opacity: 1, duration: 0.5, ease: "power2.out", stagger: 0.018, clearProps: "transform,translate,rotate,scale,opacity",
       scrollTrigger: { trigger: this.root.querySelector(".nk-panel"), start: "top 85%", once: true },
     }));
-    enter.push(gsap.from(this.card, {
-      y: 28, opacity: 0, duration: 0.7, ease: "power3.out",
+    enter.push(gsap.fromTo(this.card, { y: 28, opacity: 0 }, {
+      y: 0, opacity: 1, duration: 0.7, ease: "power3.out", clearProps: "transform,translate,rotate,scale,opacity",
       scrollTrigger: { trigger: this.card, start: "top 90%", once: true },
     }));
     // Keyboard users who tab in before scrolling see everything at once.

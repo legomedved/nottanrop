@@ -17,7 +17,7 @@
   align-items: start;
   color: var(--nk-brown);
   font-family: var(--nk-body);
-  max-width: 1240px;
+  max-width: 77.5rem;
   margin: 0 auto;
 }
 @media (max-width: 860px) { .nk { grid-template-columns: minmax(0, 1fr); } }
@@ -70,7 +70,7 @@
 
 .nk-legend {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1.2rem; margin: 0.8rem 0 0;
-  font: 400 0.68rem/1.2 var(--nk-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--nk-brown);
+  font: 400 0.75rem/1.25 var(--nk-mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--nk-brown);
 }
 .nk-legend span { display: inline-flex; align-items: center; gap: 0.45em; }
 .nk-legend i { display: inline-block; }
@@ -82,7 +82,7 @@
 .nk-lg-dist { width: 2em; border-top: 2.5px dotted var(--nk-key); }
 .nk-hint {
   display: table; margin: 0.9rem auto 0; white-space: nowrap;
-  font: 500 0.66rem/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase;
+  font: 500 0.72rem/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--nk-cream); background: var(--nk-brown); padding: 0.5em 0.9em; border-radius: 999px;
   transition: opacity 0.4s;
 }
@@ -92,7 +92,7 @@
 .nk-hint { opacity: 0; }
 
 /* ---- panel ---------------------------------------------------------- */
-.nk-label { margin: 0 0 0.5rem; font: 500 0.68rem/1.3 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--nk-brown); opacity: 0.75; }
+.nk-label { margin: 0 0 0.5rem; font: 500 0.75rem/1.3 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--nk-brown); opacity: 0.75; }
 .nk-nav ul { list-style: none; margin: 0 0 1.1rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .nk-chip {
   font: 500 0.88rem/1 var(--nk-body); color: var(--nk-brown); background: var(--nk-cream);
@@ -109,7 +109,7 @@
     scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 28px), transparent); }
   .nk-nav ul::-webkit-scrollbar { display: none; }
   .nk-nav li { flex: none; scroll-snap-align: start; }
-  .nk-legend { font-size: 0.6rem; }
+  .nk-legend { font-size: 0.72rem; }
 }
 
 /* the card is a printed panel: key-ink frame, accent plate misregistered behind it */
@@ -121,7 +121,7 @@
 }
 .nk-card-top { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.1rem; padding-right: 7.5rem; }
 .nk-tag {
-  font: 500 0.66rem/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase;
+  font: 500 0.72rem/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase;
   background: var(--nk-brown); color: var(--nk-cream); padding: 0.5em 0.8em; border-radius: 999px;
 }
 .nk-tag-ghost { background: transparent; color: var(--nk-brown); box-shadow: inset 0 0 0 1.5px var(--nk-brown); }
@@ -154,12 +154,12 @@
 .nk-facts li::before { content: "!"; position: absolute; left: 0; top: 0.1em; width: 0.95rem; height: 0.95rem; border-radius: 50%;
   background: var(--nk-red); color: var(--nk-cream); font: 500 0.62rem/0.95rem var(--nk-mono); text-align: center; }
 .nk-sources { margin-top: 1rem; font-size: 0.82rem; }
-.nk-sources summary { cursor: pointer; font: 500 0.66rem/1.6 var(--nk-mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.nk-sources summary { cursor: pointer; font: 500 0.72rem/1.6 var(--nk-mono); letter-spacing: 0.06em; text-transform: uppercase; }
 .nk-sources summary:focus-visible { outline: 3px solid var(--nk-accent); outline-offset: 2px; }
 .nk-sources ol { margin: 0.5rem 0 0; padding-left: 1.2rem; display: grid; gap: 0.25rem; }
 .nk-sources a { color: var(--nk-brown); text-underline-offset: 2px; }
 .nk-ours { margin: 0; padding-top: 1rem; border-top: 1.5px dashed var(--nk-brown); display: grid; grid-template-columns: auto 1fr; gap: 0.45rem 1rem; }
-.nk-ours dt { font: 500 0.66rem/1.6 var(--nk-mono); letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.8; }
+.nk-ours dt { font: 500 0.72rem/1.6 var(--nk-mono); letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.8; }
 .nk-ours dd { margin: 0; font-size: 0.95rem; }
 @media (max-width: 480px) { .nk-ours { grid-template-columns: 1fr; gap: 0.1rem; } .nk-ours dd { margin-bottom: 0.5rem; } }
 .nk .nk-more {
@@ -172,7 +172,7 @@
 .nk .nk-more span { transition: transform 0.15s; }
 .nk .nk-more:hover span { transform: translateX(3px); }
 .nk .nk-more:focus-visible { outline: 3px solid var(--nk-accent); outline-offset: 3px; }
-.nk-draft { margin: 1rem 0 0; font: 500 0.62rem/1 var(--nk-mono); color: #b43024; letter-spacing: 0.08em; text-transform: uppercase; }
+.nk-draft { margin: 1rem 0 0; font: 500 0.72rem/1 var(--nk-mono); color: #b43024; letter-spacing: 0.08em; text-transform: uppercase; }
 
 @media (prefers-reduced-motion: reduce) {
   .nk-mark.is-active .nk-pulse, .nk-stamp, .nk-home.is-alarm .nk-rays line { animation: none; }
@@ -204,25 +204,27 @@
   .nk-legend-panel { display: flex; margin-top: 1.4rem; }
   .nk-panel { position: relative; z-index: 1; padding-top: 0.6rem; }
   .nk-head { gap: 0.75rem; }
-  .has-plate .nk-stamp { font-size: 0.68rem; }
+  .has-plate .nk-stamp { font-size: 0.72rem; }
 }
 
 /* ---- v0.3 round 2: atlas furniture, dusk, registration, rubber stamps --------------- */
 .nk-orb { position: relative; }
+/* pinned beside the card, the globe (with its legend) may not be taller than the window */
+@media (min-width: 861px) { .nk-orb { max-width: max(17rem, calc(100vh - clamp(5rem, 10vh, 7rem) - 7.5rem)); margin-inline: auto; } }
 .nk-glow { pointer-events: none; }
 
 /* title cartouche, top-left corner outside the globe */
 .nk-cartouche {
   position: absolute; top: -0.5rem; left: -0.5rem; display: grid; gap: 0.15rem; padding: 0.5rem 0.7rem 0.45rem;
   background: var(--nk-cream); border: 1.5px solid var(--nk-key); outline: 1px solid var(--nk-key); outline-offset: 2.5px;
-  font: 500 clamp(0.54rem, 0.62vw, 0.66rem)/1.3 var(--nk-mono); letter-spacing: 0.07em; text-transform: uppercase; color: var(--nk-brown);
+  font: 500 clamp(0.66rem, 0.72vw, 0.75rem)/1.3 var(--nk-mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--nk-brown);
   transform: rotate(-1.5deg); pointer-events: none;
 }
-.nk-cartouche b { font: 600 clamp(0.95rem, 1.15vw, 1.3rem)/1 var(--nk-display); letter-spacing: 0; text-transform: none; color: var(--nk-key); margin-bottom: 0.1rem; }
+.nk-cartouche b { font: 600 clamp(1.05rem, 1.25vw, 1.4rem)/1 var(--nk-display); letter-spacing: 0; text-transform: none; color: var(--nk-key); margin-bottom: 0.1rem; }
 
 /* home inset: a printed map glued over the corner */
 .nk-inset { margin: 0; background: var(--nk-cream); border: 2px solid var(--nk-key); border-radius: 0.5rem; box-shadow: 5px 5px 0 #cc6121; overflow: hidden; }
-.nk-inset figcaption { white-space: nowrap; overflow: hidden; text-overflow: clip; font: 500 clamp(0.52rem, 0.6vw, 0.64rem)/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--nk-cream); background: var(--nk-brown); padding: 0.45em 0.7em; }
+.nk-inset figcaption { white-space: nowrap; overflow: hidden; text-overflow: clip; font: 500 clamp(0.68rem, 0.7vw, 0.74rem)/1 var(--nk-mono); letter-spacing: 0.03em; text-transform: uppercase; color: var(--nk-cream); background: var(--nk-brown); padding: 0.45em 0.6em; }
 .nk-inset svg { display: block; width: 100%; height: auto; }
 .nk-in-land { fill: #b8be6e; }
 .nk-in-water { fill: #bee6db; }
@@ -230,7 +232,7 @@
 .nk-in-label { font: 500 8.5px/1 var(--nk-mono); letter-spacing: 0.08em; text-transform: uppercase; fill: var(--nk-key); paint-order: stroke; stroke: rgba(251, 247, 243, 0.85); stroke-width: 2.5px; }
 .nk-in-north { font-size: 7.5px; }
 .nk-in-dot { fill: var(--nk-key); }
-.nk-inset-stage { position: absolute; right: 0; bottom: 0.4rem; width: 31%; transform: rotate(1.5deg); pointer-events: none; }
+.nk-inset-stage { position: absolute; right: 0; bottom: 0.4rem; width: 33%; min-width: 9.5rem; transform: rotate(1.5deg); pointer-events: none; }
 .nk-inset-panel { display: none; }
 
 /* the print registers itself: card plate, title and specimen plate start out of register */
