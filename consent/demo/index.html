@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Samtykke demo</title>
+  <!-- 1. Samtykke first in <head>: no defer, no async -->
+  <script src="../dist/samtykke.min.js" data-policy="/personvern" data-version="1" data-floating></script>
+  <!-- 2. Then GTM / gtag would go here -->
+  <style>
+    body { font: 17px/1.6 system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 32px 16px 200px; background: #fbf7f0; color: #1b1108; }
+    :root { --smk-accent: #1b1108; --smk-bg: #fffdf8; }
+    iframe { width: 100%; border: 0; aspect-ratio: 16/9; }
+    .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; background: #e6f4ea; }
+  </style>
+</head>
+<body>
+  <h1>Samtykke · demo</h1>
+  <p data-samtykke-if="analytics" class="pill">Statistikk er på</p>
+  <p data-samtykke-unless="analytics" class="pill" style="background:#fde8e8">Statistikk er av</p>
+
+  <h2>Innebygd video</h2>
+  <iframe data-samtykke="marketing" data-samtykke-src="embed.html" width="16" height="9" title="Demo-video"></iframe>
+
+  <footer><a href="#" data-samtykke-action="open-preferences">Informasjonskapsler</a></footer>
+
+  <!-- Blocked until "analytics": library first, then the inline init that depends on it -->
+  <script type="text/plain" data-samtykke="analytics" src="fake-analytics.js"></script>
+  <script type="text/plain" data-samtykke="analytics">FakeAnalytics.init("G-DEMO");</script>
+  <script type="text/plain" data-samtykke="marketing">window.marketingRan = true;</script>
+</body>
+</html>

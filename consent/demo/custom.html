@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Samtykke custom UI</title>
+  <script src="../dist/samtykke.min.js" data-ui="none" data-categories="analytics marketing"></script>
+  <style>
+    body { font: 17px/1.6 Georgia, serif; padding: 32px 16px; }
+    .my-banner { position: fixed; inset: auto 0 0 0; display: flex; gap: 12px; padding: 16px; background: #102a43; color: #fff; }
+    .my-prefs { position: fixed; inset: 10% 20%; display: block; padding: 24px; background: #fff; border: 2px solid #102a43; }
+  </style>
+</head>
+<body>
+  <h1>Built in the Designer</h1>
+  <!-- What a Webflow designer builds: plain divs, link blocks and a Webflow form checkbox -->
+  <div class="my-banner" data-samtykke-ui="banner">
+    <p>Cookies?</p>
+    <a href="#" role="button" data-samtykke-action="reject-all">Reject</a>
+    <a href="#" role="button" data-samtykke-action="open-preferences">Choose</a>
+    <a href="#" role="button" data-samtykke-action="accept-all">Accept</a>
+  </div>
+  <div class="my-prefs" data-samtykke-ui="preferences" aria-labelledby="p-title">
+    <h2 id="p-title">Settings</h2>
+    <form>
+      <label class="w-checkbox"><div class="w-checkbox-input w-checkbox-input--inputType-custom"></div>
+        <input type="checkbox" data-samtykke-toggle="analytics" style="opacity:0;position:absolute"><span>Statistics</span></label>
+      <label class="w-checkbox"><div class="w-checkbox-input w-checkbox-input--inputType-custom"></div>
+        <input type="checkbox" data-samtykke-toggle="marketing" style="opacity:0;position:absolute"><span>Marketing</span></label>
+      <button type="submit">Save</button>
+      <a href="#" role="button" data-samtykke-action="close">Close</a>
+    </form>
+  </div>
+  <script type="text/plain" data-samtykke="analytics">window.analyticsRan = true;</script>
+  <script type="text/plain" data-samtykke="marketing">window.marketingRan = true;</script>
+</body>
+</html>

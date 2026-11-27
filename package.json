@@ -5,7 +5,8 @@
   "scripts": {
     "build": "esbuild src/nottekart.js --bundle --minify --format=iife --loader:.css=text --target=es2019 --outfile=dist/nottekart.min.js",
     "carousel": "node carousel/render.js",
-    "carousel:del2": "node carousel/del2.js"
+    "carousel:del2": "node carousel/del2.js",
+    "build:samtykke": "esbuild consent/src/samtykke.js --bundle --minify --format=iife --loader:.css=text --target=es2019 --legal-comments=none --outfile=consent/dist/samtykke.min.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "@fontsource/dm-sans": "^5.1.0",
     "@fontsource/fraunces": "^5.1.0",
     "@fontsource/space-mono": "^5.1.0",
+    "axe-core": "^4.10.2",
     "d3-geo": "^3.1.1",
     "esbuild": "^0.24.0",
     "gsap": "^3.12.5",

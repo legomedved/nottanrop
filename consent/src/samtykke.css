@@ -1,0 +1,92 @@
+/* Samtykke default UI. Restyle from Webflow by overriding the variables:
+   :root { --smk-bg: #fff8ee; --smk-ink: #1b1108; --smk-accent: #ff7a2a; --smk-font: "DM Sans", sans-serif; } */
+[data-samtykke-ui]:not([data-samtykke-open]) { display: none !important; }
+[data-samtykke-if][hidden], [data-samtykke-unless][hidden] { display: none !important; }
+
+.smk {
+  --_bg: var(--smk-bg, #ffffff);
+  --_ink: var(--smk-ink, #1a1a1a);
+  --_muted: var(--smk-muted, #555555);
+  --_line: var(--smk-line, rgba(0, 0, 0, 0.14));
+  --_accent: var(--smk-accent, #1a1a1a);
+  --_on-accent: var(--smk-on-accent, #ffffff);
+  --_focus: var(--smk-focus, #2563eb);
+  --_radius: var(--smk-radius, 12px);
+  font-family: var(--smk-font, system-ui, -apple-system, "Segoe UI", sans-serif);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--_ink);
+  box-sizing: border-box;
+}
+.smk *, .smk *::before, .smk *::after { box-sizing: inherit; }
+.smk h2 { font: inherit; font-size: 1.125rem; font-weight: 700; margin: 0 0 0.375rem; color: inherit; }
+.smk p { margin: 0 0 0.75rem; color: var(--_muted); }
+.smk a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+.smk-banner {
+  position: fixed; z-index: 2147483000;
+  left: 16px; right: 16px; bottom: 16px;
+  max-width: 640px; margin: 0 auto;
+  background: var(--_bg); border: 1px solid var(--_line); border-radius: var(--_radius);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  padding: 20px;
+}
+.smk-banner[data-position="left"] { margin: 0; right: auto; max-width: 420px; }
+
+.smk-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.smk-btn {
+  flex: 1 1 auto; min-height: 44px; padding: 10px 16px;
+  font: inherit; font-weight: 600; cursor: pointer;
+  border-radius: calc(var(--_radius) - 4px);
+  border: 2px solid var(--_accent); background: transparent; color: var(--_ink);
+}
+/* Accept and reject carry the same weight: refusing must be as easy as agreeing. */
+.smk-btn[data-samtykke-action="accept-all"],
+.smk-btn[data-samtykke-action="reject-all"] { background: var(--_accent); color: var(--_on-accent); }
+.smk-btn:hover { filter: brightness(1.08); }
+.smk :focus-visible { outline: 3px solid var(--_focus); outline-offset: 2px; }
+
+.smk-dialog {
+  width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px);
+  padding: 0; border: 1px solid var(--_line); border-radius: var(--_radius);
+  background: var(--_bg); color: var(--_ink); overflow: auto;
+}
+.smk-dialog::backdrop { background: rgba(0, 0, 0, 0.45); }
+.smk-dialog-inner { padding: 24px; }
+.smk-close {
+  float: right; width: 44px; height: 44px; margin: -10px -10px 0 8px;
+  border: 0; background: transparent; color: inherit; font-size: 24px; line-height: 1; cursor: pointer; border-radius: 8px;
+}
+.smk-cats { list-style: none; margin: 16px 0; padding: 0; border-top: 1px solid var(--_line); }
+.smk-cat { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--_line); }
+.smk-cat label { font-weight: 600; cursor: pointer; }
+.smk-cat p { margin: 2px 0 0; font-size: 0.9375rem; }
+.smk-always { font-size: 0.875rem; font-weight: 600; white-space: nowrap; color: var(--_muted); }
+.smk-note { font-size: 0.875rem; padding: 10px 12px; border-radius: 8px; background: rgba(0, 0, 0, 0.05); }
+
+/* Switch: a real checkbox, so it works with keyboard, screen readers and forced colours. */
+.smk-switch { appearance: none; -webkit-appearance: none; flex: none; position: relative; width: 48px; height: 28px; margin: 0; border-radius: 999px; background: var(--_line); border: 2px solid var(--_muted); cursor: pointer; transition: background 0.15s; }
+.smk-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%; background: var(--_muted); transition: transform 0.15s; }
+.smk-switch:checked { background: var(--_accent); border-color: var(--_accent); }
+.smk-switch:checked::after { transform: translateX(20px); background: var(--_on-accent); }
+@media (forced-colors: active) { .smk-switch { appearance: auto; -webkit-appearance: auto; width: 24px; height: 24px; } .smk-switch::after { display: none; } }
+
+.smk-floating {
+  position: fixed; z-index: 2147482999; left: 16px; bottom: 16px;
+  min-height: 44px; padding: 8px 14px; font: inherit; font-size: 0.875rem; font-weight: 600; cursor: pointer;
+  border-radius: 999px; border: 1px solid var(--_line); background: var(--_bg); color: var(--_ink);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.smk-placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center;
+  padding: 24px; min-height: 200px; background: rgba(0, 0, 0, 0.05); border: 1px dashed var(--_line); border-radius: var(--_radius);
+}
+.smk-placeholder p { margin: 0; max-width: 36ch; }
+.smk-placeholder .smk-btn { flex: none; }
+
+@media (max-width: 479px) {
+  .smk-banner { left: 8px; right: 8px; bottom: 8px; padding: 16px; }
+  .smk-btn { flex-basis: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .smk * { transition: none !important; } }
