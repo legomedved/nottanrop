@@ -258,3 +258,183 @@ a[href^="tel:"] { white-space: nowrap; }
 @media (min-width: 768px) and (max-width: 1439px) {
   html .nh-wrap { padding-left: max(2rem, env(safe-area-inset-left, 0px)); padding-right: max(2rem, env(safe-area-inset-right, 0px)); }
 }
+
+/* ==========================================================================
+   5 · Phones and tablets (27 Nov 2026)
+   A measured pass over 19 page templates at 375, 768 and 991 px, every fix
+   checked on the staging site before it went in. Nothing here applies above
+   991 px except where marked "all widths" (bugs that showed on desktop too).
+   ========================================================================== */
+
+/* ---- 5.1 · Bugs at every width ---- */
+
+/* Om oss, "24:00 Neste parti": the paragraph was ink on an ink panel (1.00:1), so it read as an empty gap */
+:root body .oo-panel.oo-is-end > p { color: #F5E0C6; }
+/* Allergeninformasjon: the legal-page rule turns the logo white, which vanished on the mint hero */
+body:has(.page_wrapper.verden-om-notta .legal_hero) .nav-main_brand-link img { filter: none; }
+/* Forhandlere: the region dot was 42 px (content-box + border), covered the first letter of "3 STEDER" and sat 5 px off the stop dots */
+html .fh-region::before { box-sizing: border-box; }
+/* Nøtteverden entries: where one rich-text block ends and the next begins, 137 px instead of 48 */
+html .nut_page .nut_article > .nut_rich + .nut_rich > h2:first-child { margin-top: 0 !important; }
+.nut_article > .nut_rich:has(+ .nut_rich) { margin-bottom: -.5rem; }
+.nut_article > .nut_rich:has(+ .nut_rich) > :last-child { margin-bottom: 0; }
+/* Kontakt form: placeholders were darker than typed text, so the form looked filled in */
+.section-kontakt-skjema_col .w-input::placeholder { color: rgba(67, 18, 13, .45); }
+/* Small text links: 17–18 px tall tap targets, now about 41 px, same layout */
+.section-produkt-hero_link, .nk-opp_tilbake { display: inline-block; padding-block: .75rem; margin-block: -.75rem; }
+/* Home hero kicker: "DESEMBER" alone on the second line */
+.hero-vinter_label { text-wrap: balance; }
+
+/* ---- 5.2 · One rhythm on phones: gaps and gutters ----
+   The template adds 5rem above and below every container below 768 px, on top of each
+   section's own padding: 200–420 px of blank between sections. And the side gutter
+   changed between 10, 16, 19, 21 and 24 px, sometimes on one screen. Now: one gutter
+   on phones, 20 px (1.25rem, the footer's), and the sections' own padding is the gap. */
+@media (max-width: 767px) {
+  html .main_container { padding: 0 1.25rem; }
+  html .main_container.is-over-layers { padding-top: 5rem; padding-bottom: 5rem; }   /* the home hero places its text with it */
+  html .product-proof_section > .main_container { padding-top: 2.5rem; padding-bottom: 3rem; }   /* this section has no padding of its own */
+  html .section:not(._2px-top-margin) > .container.w-container:not(.category-heros):not(.subscribe-save-hero-03):not(.blog-post-hero),
+  html .faq_section > .main_container,
+  html .contact-form_section > .main_container,
+  html .section.is-legal > .container { padding-top: 0; padding-bottom: 0; }
+  html .section._2px-top-margin > .container.w-container { padding-top: 2.5rem; }   /* article body: the pill sat 139 px under the caption */
+  html .legal_layout { padding-bottom: 0; }
+  html .footer_container { padding-top: 1.5rem; }
+  html .footer-section_newsletter-wrapper { padding-top: 2.5rem; }
+}
+@media (max-width: 479px) {
+  html .container.w-container, html .nh-wrap,
+  html .section-fjord-intro, html .section-enkel, html .section-utforsk, html .fn-caption,
+  html .fh-takk, html .fh-rute, html .fh-bli, html .fh-pris,
+  html .legal_hero-inner, html .legal_page, html .section.is-legal > .container { padding-left: 1.25rem; padding-right: 1.25rem; }
+  html .oo-sheet { margin-left: 1.25rem; margin-right: 1.25rem; }
+  html .container.why-donut-land { max-width: calc(100% - 2.5rem); margin-left: 1.25rem; margin-right: 1.25rem; }   /* Nøttekjøkkenet hero card */
+  html .section-oppskrift-teaser { padding-top: 2.5rem; }
+  html .container.category-heros { padding-bottom: 6rem; }   /* Presse and FAQ heroes filled most of the first screen */
+}
+
+/* ---- 5.3 · Top bar on phones ----
+   The logo sat 23 px left of centre (margin-left: 25vw); the Kontakt pill (41 px, resting at scale 1.03)
+   was taller than the 39 px bar and poked out above and below it. */
+@media (max-width: 767px) {
+  html .nav-main_brand-link { margin-left: 0; position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); }
+  html .nav-contact_button-wrapper { margin-left: auto; }
+}
+@media (max-width: 479px) {
+  html .nav-mainbar, html .nav-main_menu-button { height: 3rem; min-height: 3rem; }
+  html .nav-contact_button-wrapper .inverse_button { transform: none; padding-top: .5rem; padding-bottom: .5rem; }
+}
+
+/* ---- 5.4 · Phones: things that sat crooked ---- */
+@media (max-width: 479px) {
+  /* section headings: the button wrapper carries align-self:end on its Webflow node id, so stacked it sat flush right */
+  .section-heading_component > .section-heading_button-wrapper { align-self: flex-start !important; }
+  /* Produkter · Anmeldelser: the cards overlapped by 26 px (names hidden) and the second ran 52 px off the screen */
+  html .review-rectangle-boxes-container { row-gap: 2.5rem; padding-left: .75rem; padding-right: .75rem; }
+  html .review-rectangle-box-wrapper { width: 85%; }
+  html .review-rectangle-box-wrapper._02, html .review-rectangle-box-wrapper._03, html .review-rectangle-box-wrapper._06 { margin-top: 0; margin-right: 0; }
+  /* Home · Hvorfor: the note text box was 109 px wide for 16 px text; "tilsetningsstoffer" ran out of it */
+  .proof-card_paragraph-wrapper { max-width: none; }
+  /* card copy fell to the 12 px floor next to 19–24 px text */
+  .section-produkt_text, .section-oppskrift-teaser_text, .produkt-moment > span:not(.produkt-moment_n), .section-produkt-fakta_allergen { font-size: .9375rem; }
+  /* Samarbeid hero: the third print covered the "På stand" tag */
+  html .nh-pr--2 { left: 3.25rem; }
+  /* newsletter: "Meld meg på" hugged the box edge, 11 px text; Kontakt: submit wider than the fields */
+  html .footer-form_button-wrapper { padding: 0 .625rem .625rem; }
+  html .footer-form_button-wrapper input.w-button, html .section-kontakt-skjema_col input.w-button { font-size: .75rem; }
+  html .section-kontakt-skjema_col .inverse_button { transform: none; min-height: 2.75rem; }
+  /* Forhandlere · Bli forhandler: one full-width button, two equal ones under it (was three ragged widths) */
+  html .fh-bli_actions { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+  html .fh-bli_actions > .fh-bli_btn { grid-column: 1 / -1; }
+  html .fh-bli_actions > a { justify-content: center; text-align: center; margin: 0; }
+}
+/* Presse hero subtitle: a 9.8 px template size that the 12 px floor caught; now sized like the FAQ one */
+@media (max-width: 991px) {
+  .category-heros .text-box .small-paragraph.white { font-size: clamp(1rem, 1.2vw, 1.125rem); line-height: 1.45; }
+}
+
+/* ---- 5.5 · FAQ block (FAQ, Kontakt, Forhandlere) ----
+   The questions were 80–95 % of a column that had shrunk to its content: they hugged the left
+   under a full-width photo, with the right third blank. */
+@media (max-width: 991px) {
+  html .faq-section_cms-wrapper { justify-self: stretch; width: 100%; }
+  html .faq_card { width: 100%; }
+  html .faq-answer_paragraph-wrapper { max-width: 42rem; }
+}
+
+/* ---- 5.6 · Footer, tablet and phone ----
+   Phones: "Sosiale medier" hung under "Praktisk" with the right column empty.
+   Tablets: "Produkter" stood alone beside a blank cell; the legal links were full-width rows.
+   Everywhere below 992: the links were 18 px tall. */
+@media (max-width: 479px) {
+  .footer-section_main-grid > .footer-links_column:has(> .footer-links_column) { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; column-gap: inherit; align-items: start; }
+  .footer-section_main-grid > .footer-links_column > .footer-links_column { grid-column: 2; grid-row: 1 / span 2; }
+}
+@media (max-width: 991px) {
+  .footer-links_column .footer-links_wrapper, .footer-products_cl, .footer-legal_link-wrapper { row-gap: 0; }
+  .footer-section_main-grid .footer-link, .footer-legal_link-wrapper .footer-link { padding-block: .625rem; }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  html .footer-section_main-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  html .footer-section_main-grid > .footer-links_wrapper { grid-column: 1 / -1 !important; }   /* Webflow places it by #w-node id */
+  html .footer-section_main-grid > .footer-links_wrapper .footer-content_wrapper { max-width: 38rem; }
+  html .footer-legal_link-wrapper { flex-wrap: wrap; column-gap: 1.5rem; }
+  html .footer-legal_link-wrapper .footer-link { width: auto; flex: 0 0 auto; }
+  html .footer-section_main-grid .footer-link, html .footer-legal_link-wrapper .footer-link { padding-block: .45rem; }
+}
+
+/* ---- 5.7 · Tablets: layouts that were phone layouts blown up ---- */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Samarbeid, Presse, Investor: three cards in one column (Samarbeid: 2,700 px of scrolling); one row, as on desktop */
+  html .section-enkel_grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 1.25rem; }
+  /* two-column card grids with an odd count: the last card stands centred, not alone on the left */
+  html .section-oppskrift-teaser_grid > :last-child:nth-child(odd),
+  html .nv_types > :last-child:nth-child(odd),
+  html .collection-grid.products > :last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - .7rem); }
+  /* Nøtteverden list: only the first cards show (the rest carry style="display: none"), so count the visible ones */
+  html .nv_grid > :nth-last-child(1 of :not([style*="none"])):nth-child(odd of :not([style*="none"])) { grid-column: 1 / -1; justify-self: center; width: calc(50% - .625rem); }
+  /* «Utforsk mer»: the first card spans both columns, so the orphan comes with an even count */
+  html .section-utforsk_grid > :last-child:nth-child(even) { grid-column: 1 / -1 !important; justify-self: center; width: calc(50% - .7rem); }
+  /* Nøtteverden: 24 px gutter where the page has 32; the three stats were full-width bars */
+  html .nv_section { padding-left: 2rem; padding-right: 2rem; }
+  html .nv_stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  /* Forhandlere: 24 px gutter where the page has 32 */
+  html .fh-takk, html .fh-rute, html .fh-bli, html .fh-pris { padding-left: 2rem; padding-right: 2rem; }
+  /* Om oss: 16 px gutter where the site has 32 */
+  html .oo-cover .oo-wrap, html .oo-day .oo-wrap, html .oo-nod .oo-wrap { padding-left: max(2rem, env(safe-area-inset-left, 0px)); padding-right: max(2rem, env(safe-area-inset-right, 0px)); }
+  /* legal pages: contents full width, text pinned left with 159 px blank beside it */
+  html .legal_layout { max-width: 48rem; margin-inline: auto; }
+  /* recipe: «Du trenger» and the steps side by side, as on desktop (a 923 px card of short lines) */
+  html .nk-opp_container.is-innhold { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); column-gap: 2rem; }
+  html .nk-opp_ingredienser { position: sticky; top: 6rem; }
+}
+/* product page: the "uten tilsatt sukker" seal covered the end of the «Slik smaker den» text (480–991) */
+@media (min-width: 480px) and (max-width: 991px) {
+  html .section-produkt-smak .section-produkt_card:first-child { padding-bottom: 5.5rem; }
+}
+/* Om oss · «Ting du ikke trengte å vite»: three cards stacked to 1,763 px */
+@media (min-width: 768px) and (max-width: 900px) {
+  html .oo-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  html .oo-fact { padding: 1rem; }
+  html .oo-fact h3 { font-size: 1.2rem; }
+}
+/* Fjordnotater hero, 768–860: keep the postcard pile instead of the phone carousel that cut the second card */
+@media (min-width: 768px) and (max-width: 860px) {
+  html .nh-cards { display: block; height: clamp(26rem, 62vw, 33rem); overflow: visible; padding: 0; margin: 0; }
+  html .nh-pc { position: absolute; width: 50%; }
+  html .nh-pc--1 { left: 0; top: 4%; margin-left: 0; }
+  html .nh-pc--2 { left: 48%; top: 0; }
+  html .nh-pc--3 { left: 24%; top: 40%; }
+}
+/* Large tablets (880–991): three across, as on desktop, instead of two and a straggler */
+@media (min-width: 880px) and (max-width: 991px) {
+  html .produkter-liste { max-width: none; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  html .product_feed-section .produkter-liste_item:nth-child(1):nth-last-child(3) { grid-column: auto; justify-self: stretch; width: auto; }
+  html .hj-kanaler { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  html .hj-kanal.is-marked { grid-column: auto; max-width: none; justify-self: stretch; margin-top: 1.2rem; }
+}
+/* Nøtteverden lexicon: the "Filtrer" box is 52 px tall but only its 13 px label was tappable */
+@media (max-width: 991px) {
+  html .nl-sum { margin: -1.1rem; padding: 1.1rem; }
+}

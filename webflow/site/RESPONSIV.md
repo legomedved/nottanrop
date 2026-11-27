@@ -4,20 +4,18 @@
 
 (Kept apart from `webflow/site/README.md`, which lives on the drips branch, so the two merge cleanly.)
 
-Loaded on every page by the registered site script **nanfix4** (version 1.3.0, in the head), the same small
-script that loads the card system. It writes both stylesheets with `document.write`, so they block rendering
-like any stylesheet in the head and the page never flashes unscaled:
+Loaded on every page from the site's head code, as a plain stylesheet link right after the card system,
+so it blocks rendering like any stylesheet in the head and the page never flashes unscaled:
 
-```js
-document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/legomedved/nottanrop@<commit>/webflow/kort/kort.css">');
-document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/legomedved/nottanrop@<commit>/webflow/site/responsiv.css">');
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/legomedved/nottanrop@<commit>/webflow/kort/kort.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/legomedved/nottanrop@<commit>/webflow/site/responsiv.css">
 ```
 
-It comes after `kort.css` on purpose. Currently pinned to commit `115a951`.
+It comes after `kort.css` on purpose. The pin is the commit hash in that `<link>`, in **Site settings → Custom code → Head code**.
 
-To change it: edit the file, commit and push, register nanfix4 as a new version with the new hash, apply it
-(keep it *before* nandrypp3 and nanlansering2 in the list, as it was), publish.
-To switch it off: go back to nanfix4 1.2.0 and publish. Nothing else depends on it.
+To change it: edit the file, commit and push, put the new hash in the `<link>` in the head code, publish.
+To roll back: put the previous hash back and publish. Nothing else depends on it.
 
 The globe fixes from the same pass ship in `dist/nottekart.min.js`; the Nøtteverden page's footer code is
 pinned to the same commit.
@@ -64,6 +62,39 @@ What the file does about it:
 | Cookies title at 320 px | 24 px wider than the screen | Fits |
 | 404 on phones | Line under the heading about 9 px | 16 px |
 
+### Phones and tablets (section 5 of the file, 27 Nov 2026)
+
+A second pass, only for the smaller breakpoints. Nothing in it applies above 991 px, except five bugs that showed on desktop too (5.1).
+
+| Where | What was wrong | Now |
+|---|---|---|
+| Every page, phones | 200–420 px of blank between sections (the template adds 5rem above and below each container under 768 px, on top of the section's own padding) | The sections' own padding is the gap |
+| Every page, phones | Side gutter of 10, 16, 19, 21 or 24 px, sometimes on one screen | 20 px everywhere, the footer's gutter |
+| Top bar, phones | Logo 23 px left of centre; Kontakt pill taller than the bar, poking out above and below | Logo centred, pill inside a 48 px bar |
+| Section headings with a button, phones | Button stranded on the right under a left-aligned heading (a Webflow node-id rule beat the stacking) | Left-aligned under the text |
+| Produkter, reviews, phones | Cards overlapped (names hidden), one ran 52 px off the screen | Stacked, tilted, clear of the edges |
+| FAQ block, tablet and phone | Questions in 80 % of a shrunken column, right third blank | Full width, answers capped at a readable line |
+| Footer, tablet and phone | "Sosiale medier" under "Praktisk" with an empty column (phone); "Produkter" alone beside a blank cell (tablet); 18 px tap targets | Balanced columns, links 32–38 px tall |
+| Samarbeid, Presse, Investor, tablet | Three cards stacked (Samarbeid: 2,700 px of scrolling) | One row of three, as on desktop |
+| Two-column grids with an odd count, tablet | Last card alone on the left (Julekringle, Knoll, Bunya-nøtt, Hallangspollen, Utforsk mer) | Centred |
+| Product page, 480–991 | The "uten tilsatt sukker" seal covered the end of «Slik smaker den» | Room for the seal |
+| Om oss | "Ferdig malt? Nei." paragraph ink on ink (1:1), at every width | Almond, readable |
+| Allergeninformasjon | White logo on the mint hero | Brown |
+| Forhandlere | Region dot covered the first letter and sat 5 px off the timeline | Centred on the line |
+| Nøtteverden entries | 137 px gaps where the CMS splits the article, 48 px elsewhere | 48 px everywhere |
+| Small cards and links, phones | Card copy at the 12 px floor beside 19–24 px text; 17 px tall text links; newsletter and contact buttons misaligned | 15 px copy, 41 px targets, aligned |
+| Tablet gutters (Nøtteverden, Forhandlere, Om oss) | 16–24 px where the site has 32 | 32 |
+| Recipe, tablet | Ingredients in a 923 px card above the steps | Side by side, as on desktop |
+| Fjordnotater hero, 768–860 | Phone carousel cut the second postcard | The postcard pile |
+
+The globe (`dist/nottekart.min.js`) got the same treatment in the same pass: 12 px floor for its labels, 40 px chips,
+and at 861–991 the Oslofjord inset moves under the card (on the globe it was 124 px wide with 4 px place names).
+The Nøtteverden page's footer code pins the globe to its own commit.
+
+**A note for whoever edits this next:** `lansering.js` writes an inline `font-size: 12px !important` on any text that
+renders under 12 px. A size fix therefore only works from the head (this file), and a "12px !important" seen in the
+inspector usually means the template's size was smaller, not that someone typed it in the Designer.
+
 ### How it was checked
 
 Every one of the 22 page templates, with headless Chromium, before publishing and again on the published staging site (26 Nov 2026):
@@ -74,6 +105,17 @@ Every one of the 22 page templates, with headless Chromium, before publishing an
 - **Read by eye**: contact sheets of every page at 390, 768 and 1024 px, reviewed independently.
 
 ### Not changed here (found on the way)
+
+From the 27 Nov phone and tablet pass (content or Designer, not CSS):
+
+- The 404 page has no link back into the site, and no menu. It needs a "Til forsiden" button in the Designer.
+- Om oss still shows three "Bilde kommer" boxes (Kiosken på Nesset, Produksjon i kiosken, Fjorden rett utenfor).
+- The product page shows two "Ingredienser" cards one after the other (CMS content).
+- Produkter uses the old template review cards; Hjem uses the new phone-message notes.
+- The FAQ page repeats its hero text right under the hero.
+- Images: the Forhandlere hero (2880 px) and the Fjordnotater pictures (2000 px) load full size on phones. In the Designer, turn on responsive image sizes for them or upload a 1200 px version.
+
+From the first pass:
 
 - The round menu button is fixed at the top left and the page's left margin is 32 px, so text scrolls
   under it. A design decision, not a bug in the CSS.
